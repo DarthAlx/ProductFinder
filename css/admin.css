@@ -1,0 +1,116 @@
+body {
+    background: #f6f7fa;
+}
+
+header, .main, footer {
+      padding-left: 300px;
+    }
+
+header{
+    background: #0e1a35;
+    border-color: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+header a, header .btn-flat{
+    color: #fff;
+}
+nav img{
+    padding: 0 10%;
+}
+
+.row{
+        margin-bottom: 0px;
+}
+.side-nav .collapsible-header, .side-nav.fixed .collapsible-header {
+    background-color: transparent;
+    border: none;
+    line-height: inherit;
+    height: inherit;
+    padding: 0 32px;
+}
+.input-field label {
+    left: 0.75rem;
+}
+nav{
+        height: 0;
+    color: inherit;
+}
+
+@media only screen and (max-width : 992px) {
+  header, .main, footer {
+    padding-left: 0;
+  }
+}
+
+.popletscontrols a{
+    cursor: pointer;
+}
+
+.row-fluid{
+    width: 100%;
+}
+.row-fluid:first-child{
+    float: left;
+}
+.row-fluid:last-child{
+    float: right;
+}
+
+.btn, .btn:active, .btn:hover, .btn:focus{
+    color: #fff;
+    text-decoration: none;
+}
+.modal {
+
+    bottom: auto !important;
+}
+.modal-content {
+    display: block;
+}
+
+.bx-wrapper {
+    border: 0px;
+}
+
+.slider-item{
+    padding: 50px 0;
+
+}
+.slider-item h2, .slider-item h5{
+    color: #fff;
+}
+
+.slider-img{
+    max-width: 350px;
+    max-height: 350px;
+    min-height: 350px;
+    min-width: 350px;
+}
+
+.slider-item .btn{
+    border-radius: 30px;
+}
+.img-responsive{
+    width: 100%;
+}
+
+.tabs .indicator {
+    display: none;
+}
+.tabs li a{
+    transition: 5s;
+    transition:
+      border-bottom-width 0s linear 0.35s; // Solid edge post-rotation
+  
+}
+.tabs li a.active{
+    border-bottom: 2px solid #f6b2b5;
+    will-change: left, right;
+}
+
+.input-field label {
+     left: 0; 
+         height: auto;
+}

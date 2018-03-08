@@ -1,0 +1,236 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+html, body{
+    font-family: Lato;
+}
+header{
+	padding:25px 0;
+    position: absolute;
+    z-index: 999999;
+    width: 100%;
+}
+@font-face {
+    font-family: Finder;
+    src: url('../fonts/theboldfont.ttf');
+}
+@font-face {
+    font-family: Lato;
+    src: url('../fonts/Lato-Light.ttf');
+    font-weight: light;
+    font-style: normal;
+}
+@font-face {
+    font-family: Lato;
+    src: url('../fonts/Lato-Regular.ttf');
+    font-weight: normal
+    font-style: normal;
+}
+@font-face {
+    font-family: Lato;
+    src: url('../fonts/Lato-Bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+nav{
+        background: transparent;
+    border: none;
+    box-shadow: none;
+    font-family: Lato;
+    font-size: 2rem;
+    font-weight: 700;
+}
+nav ul a, nav ul a:hover, nav ul a:focus{
+    text-decoration: none;
+    color: #fff;
+
+}
+
+.titlemain{
+    background: url('../img/money-256314_1280.png');
+    background-size: cover;
+    padding: 100px;
+    background-position: center center;
+}
+.titleinner{
+        background: #fff;
+    text-align: center;
+    padding: 10px;
+}
+.titleinner{
+    padding: 10px 0;
+}
+h1{
+    margin: 0;
+}
+.page-footer {
+    background-color: #C42854;
+}
+
+.info .info-item{
+        padding: 80px 0;
+}
+
+.info-item svg{
+    margin: 40px 0;
+    color: #6421C6;
+}
+
+#search {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ccc;
+    background: url('../img/search.jpg');
+	background-size: cover;
+	background-position: center top;
+	background-attachment: fixed;
+    
+    opacity: 0.8;
+}
+
+#search.open {
+    -webkit-transform: translate(0px, 0px) scale(1, 1);
+    -moz-transform: translate(0px, 0px) scale(1, 1);
+	-o-transform: translate(0px, 0px) scale(1, 1);
+	-ms-transform: translate(0px, 0px) scale(1, 1);
+	transform: translate(0px, 0px) scale(1, 1); 
+    opacity: 1;
+}
+
+#search input[type="search"] {
+	
+    font-family: Finder;
+
+
+    width: 70%;
+    color: #fff;
+    background: rgba(155, 155, 155, 0.58);
+    font-size: 60px;
+    font-weight: 300;
+    text-align: center;
+    border: 2px solid #ccc;
+    padding-left: 30px;
+    padding-right: 30px;
+    outline: none;
+    line-height: 1.4;
+    text-align: center !important;
+}
+#search input[type="search"]::placeholder {
+    color: #fff;
+}
+#search .btn {
+	font-family: Finder;
+
+
+    background-color: #C42854;
+    font-size: 30px;
+}
+
+.img-container {
+    height: 140px;
+    margin: 0 auto 15px;
+    position: relative;
+    text-align: center;
+}
+.img-container img{
+    height: auto;
+    max-height: 140px;
+    max-width: 100%;
+    width: auto;
+    transition: 0.3s;
+}
+.product-small:hover .img-container img{
+    transform: scale(0.8);
+}
+.product-small{
+    cursor: pointer;
+}
+
+.pricefrom p{
+    color: #959595;
+    font-family: Lato;
+    font-size: 1rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+.price{
+    color: #C42854;
+    font-weight: 700;
+    font-size: 2.3rem;
+    line-height: 1;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.name{
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: Lato;
+}
+.from{
+    color: #959595;
+    font-family: Lato;
+    font-size: 1rem;
+    margin: 0;
+    font-weight: light;
+}
+
+.carousel-control {
+    background: transparent;
+    background-image: none !important;
+    font-size: 50px;
+    color: #000;
+    top: 30%;
+    width: auto
+}
+
+
+hr {
+    border-top: 2px solid #ccc;
+}
+
+.main-stores{
+    background: #E9E9E9;
+    padding: 100px 0;
+}
+.logostore{
+    height: 80px; background: #ccc;
+    border-radius: 2px;
+
+}
+.store-name{
+    padding: 20px 0;
+}
+.logo{
+    
+    padding: 50px 0;
+
+}
+.logo img, .store-product-image img{
+    border-radius: 5px;
+    max-width: 50px; margin: 0 auto;
+    border: 1px solid #ccc;
+
+}
+.store-link a{
+    color:#959595;
+    font-weight: bold; 
+}
+
+.store-link {
+    padding-bottom: 20px;
+}
+#search p{
+    text-align: center;
+    color: #fff;
+    font-size: 3rem;
+    font-family: Finder;
+}
+
+.datepicker, .timepicker{
+    cursor: pointer;
+}
