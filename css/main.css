@@ -55,7 +55,7 @@ nav ul a, nav ul a:hover, nav ul a:focus{
     background-position: center center;
 }
 .titleinner{
-        background: #fff;
+        background: rgba(255,255,255,0.5);
     text-align: center;
     padding: 10px;
 }
@@ -110,7 +110,7 @@ h1{
     width: 70%;
     color: #fff;
     background: rgba(155, 155, 155, 0.58);
-    font-size: 60px;
+    font-size: 3rem;
     font-weight: 300;
     text-align: center;
     border: 2px solid #ccc;
@@ -227,7 +227,7 @@ hr {
 #search p{
     text-align: center;
     color: #fff;
-    font-size: 3rem;
+    font-size: 4.2rem;
     font-family: Finder;
 }
 
