@@ -72,30 +72,36 @@
         @yield('pagecontent')
        
 
-      
 
       <footer class="page-footer">
           <div class="container-fluid">
             <div class="row">
               <div class="col l6 s12">
                 <h5 class="white-text">Product Finder </h5>
-                <p class="grey-text text-lighten-4">Encuentra eso que buscas.</p>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Todas las tiendas</a></li>
+                </ul>
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
+                <h5 class="white-text">Empresa</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Acerca de Product Finder</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Empleos</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Contáctanos</a></li>
+                </ul>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Siguenos</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2018 Todos los derechos reservados
-            <a class="grey-text text-lighten-4 right" href="#!">Mas Links</a>
+            Los precios se indican en Peso Mexicano e incluyen IVA, pero no los gastos de envío. Puede haber cambios en el precio, la clasificación, las condiciones de entrega y los gastos.
             </div>
           </div>
         </footer>
