@@ -163,6 +163,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Weidner\Goutte\GoutteServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -227,6 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Goutte' => Weidner\Goutte\GoutteFacade::class,
 
     ],
 

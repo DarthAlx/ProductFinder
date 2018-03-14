@@ -11,11 +11,12 @@
 @section('pagecontent')
 
     <div id="search" class=" valign-wrapper">
-        <form style="width: 100%;">
+        <form action="{{url('/buscar')}}" method="post" style="width: 100%;">
+          {{ csrf_field() }}
           <div class="row">
             <div class="col-md-12 text-center">
               <p>Compara y ahorra con nosotros</p>
-              <input type="search" value="" placeholder="¿qué estás buscando?" class="browser-default" autofocus/>
+              <input type="search" name="busqueda" value="" placeholder="¿qué estás buscando?" class="browser-default" autofocus/>
             </div>
           </div>
           <div class="row">

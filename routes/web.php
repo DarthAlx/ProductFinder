@@ -14,6 +14,50 @@
 Auth::routes();
 
 
+Route::get('/z', function() {
+
+
+  $crawler = Goutte::request('GET', 'https://www.liverpool.com.mx/tienda/?s=xbox');
+  $contador=0;
+  $productos=array();
+    $crawler->filter('.product-cell')->each(function ($node) {
+
+
+
+
+      if($node->filter('.product-name')->text()!=""){
+        $nombre=$node->filter('.product-name')->text();
+        $enlace=$node->filter('.product-name')->attr('href');
+      }
+      if($node->filter('.product-thumb')->attr('data-original')!=""){
+        $imagen=$node->filter('.product-thumb')->attr('data-original');
+      }
+      if($node->filter('.price-amount')->text()!=""){
+        $precio=$node->filter('.price-amount')->text();
+      }
+
+      $productos[]=array(
+          'nombre'=>$nombre,
+          'imagen'=>$imagen,
+          'precio'=>$precio
+        );
+ 
+    echo "<a href='https://www.liverpool.com.mx".$enlace."'><p>".$nombre."</p>"."<br></a>";
+    echo "<a href='https://www.liverpool.com.mx".$enlace."'><img src='". $imagen."'><br></a>";
+
+
+
+    });
+
+
+
+
+});
+
+
+
+
+
 Route::get('/', function () {
     return view('inicio');
 });
@@ -24,7 +68,7 @@ Route::get('/perfil', function () {
     return view('perfil');
 })->middleware('auth');
 
-
+Route::post('buscar', 'SearchController@index');
 
 
 

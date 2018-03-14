@@ -234,3 +234,7 @@ hr {
 .datepicker, .timepicker{
     cursor: pointer;
 }
+.product-small a{
+    text-decoration: none;
+    color: inherit;
+}
