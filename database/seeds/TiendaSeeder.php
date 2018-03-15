@@ -23,5 +23,22 @@ class TiendaSeeder extends Seeder
 			'selectprecio'=> '.price-amount',
 			'selectvaloracion'=> '',
         ]);
+
+
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Palacio de hierro',
+            'url'=> 'https://www.elpalaciodehierro.com',
+            'urlbusqueda'=> 'https://www.elpalaciodehierro.com/catalogsearch/result/?q=',
+            'selectenlace'=> '.enlace-mobile',
+            'selectitem'=> '.ls-grid-item',
+            'selectnombre'=> '.title_large',
+            'selectimagen'=> '.product-image img',
+            'attrimagen'=> 'src',
+            'selectprecio'=> '.ls-grid-price .price',
+            'selectvaloracion'=> '',
+        ]);
+
+
+
     }
 }

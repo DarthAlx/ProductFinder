@@ -30,7 +30,10 @@ class SearchController extends Controller
 
 			      if($node->filter($tienda->selectnombre)->text()!=""){
 			        $nombre=$node->filter($tienda->selectnombre)->text();
-			        $enlace=$node->filter($tienda->selectnombre)->attr('href');
+			       
+			      }
+			      if ($enlace=$node->filter($tienda->selectenlace)->attr('href')!="") {
+			      	$enlace=$node->filter($tienda->selectenlace)->attr('href');
 			      }
 			      if($node->filter($tienda->selectimagen)->attr($tienda->attrimagen)!=""){
 			        $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
@@ -42,10 +45,10 @@ class SearchController extends Controller
 
 			 
 			    $productos[]=array(
-			    	'nombre'=>$nombre,
+			    	'nombre'=>trim($nombre),
 			    	'enlace'=>$tienda->url.$enlace,
 			    	'imagen'=>$imagen,
-			    	'precio'=>$precio,
+			    	'precio'=>str_replace('$', '', $precio),
 			    	'tienda'=>$tienda->nombre,
 			    	'enlacetienda'=>$tienda->url
 
@@ -69,11 +72,11 @@ class SearchController extends Controller
 		    $busqueda->save();
 		}
 	    
-
-		return view('buscar', ['productos'=>$productos]);
-        $sorted = array_values(array_sort($productos, function ($value) {
-		    return $value['precio'];
+$sorted = array_values(array_sort($productos, function ($value) {
+		    return $value['nombre'];
 		}));
+		return view('buscar', ['productos'=>$sorted]);
+        
 
       
     }
