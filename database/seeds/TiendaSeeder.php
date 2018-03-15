@@ -31,9 +31,9 @@ class TiendaSeeder extends Seeder
             'urlbusqueda'=> 'https://www.elpalaciodehierro.com/catalogsearch/result/?q=',
             'selectenlace'=> '.enlace-mobile',
             'selectitem'=> '.ls-grid-item',
-            'selectnombre'=> '.title_large',
+            'selectnombre'=> '.jbb-list-item-description',
             'selectimagen'=> '.product-image img',
-            'attrimagen'=> 'src',
+            'attrimagen'=> 'data-src',
             'selectprecio'=> '.ls-grid-price .price',
             'selectvaloracion'=> '',
         ]);
