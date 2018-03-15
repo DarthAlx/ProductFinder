@@ -126,8 +126,8 @@ Route::group(['middleware' => 'admin'], function(){
 			$mujeres=App\User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->where('genero','Femenino')->count();
 			$hombres=App\User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->where('genero','Masculino')->count();
 
-      $busquedas=DB::table('busquedas')->distinct()->count('keywords');
-      dd($busquedas);
+      $busquedas=App\Busqueda::whereBetween('created_at', array($from, $to))->orderBy('contador','desc')->get();
+
 			
 				
 		

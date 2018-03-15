@@ -57,15 +57,15 @@ class SearchController extends Controller
 			    });
         	
         }
-		$busqueda=Busqueda::where('keywords',strtoupper($request->busqueda))->get();
+		$busqueda=Busqueda::where('keywords',strtoupper($request->busqueda))->first();
 
-		if ($busqueda->count()>0) {
-			$busqueda->busquedas=$busqueda->busquedas+1;
+		if ($busqueda) {
+			$busqueda->contador=$busqueda->contador+1;
 			$busqueda->save();
 		}else{
 			$busqueda=new Busqueda();
 		    $busqueda->keywords=$request->busqueda;
-		    $busqueda->busquedas=1;
+		    $busqueda->contador=1;
 		    $busqueda->save();
 		}
 	    

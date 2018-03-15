@@ -55,12 +55,16 @@
     </div>
     <div class="row">
       <div class="col-md-12">
+<div class="card  darken-1">
+                <div class="card-content">
+                  <span class="card-title">Busquedas</span>
+
         <div class="adv-table table-responsive">
           <table class="display table table-bordered table-striped table-hover" id="dynamic-table">
           <thead>
             <tr>
-              <th class="sorting_desc">Palabras clave</th>
-              <th>Busquedas</th>
+              <th class="sorting">Palabras clave</th>
+              <th class="sorting_desc">Busquedas</th>
             </tr>
           </thead>
           <tbody>
@@ -68,7 +72,7 @@
               @foreach($busquedas as $busqueda)
                 <tr style="cursor: pointer;">
                   <td>{{$busqueda->keywords}}</td>
-                  <td align="right" style="text-align: right;"></td>
+                  <td align="right" style="text-align: right;">{{$busqueda->contador}}</td>
                 </tr>
               @endforeach
           @else
@@ -92,6 +96,10 @@
           </table>
 
         </div>
+
+</div>
+                
+            </div>
       </div>
     </div>
 
@@ -108,6 +116,16 @@
 <script type="text/javascript" src="{{ url('js/data-tables/DT_bootstrap.js') }}"></script>
 <!--dynamic table initialization -->
 <script src="{{ url('js/dynamic_table_init.js') }}"></script>
+<script>
+  $(document).ready(function() {
+    $('.table tr th:first-child').removeClass('sorting_desc');
+    $('.table tr th:first-child').addClass('sorting');
+    $('.table tr th:nth-child(2)').addClass('sorting_desc');
+
+    $('#dynamic-table_wrapper .row-fluid .span6').addClass('col-md-6');
+  });
+  
+</script>
 
 <script>
 var ctx = document.getElementById("usuariosbar").getContext('2d');
