@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Rifa Web</title>
+        <title>Product Finder</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.min.css') }}" media="screen" />
         <link rel="stylesheet" type="text/css" href="{{ url('css/materialize.css') }}" media="screen" />
