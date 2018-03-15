@@ -1,5 +1,9 @@
 @extends('templates.admin')
 
+@section('head')
+<link rel="stylesheet" href="{{ url('js/data-tables/DT_bootstrap.css') }}" />
+@endsection
+
 @section('pagecontent')
 <div class=" main">
   <div class="container-fluid">
@@ -49,6 +53,47 @@
       
       
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="adv-table table-responsive">
+          <table class="display table table-bordered table-striped table-hover" id="dynamic-table">
+          <thead>
+            <tr>
+              <th class="sorting_desc">Palabras clave</th>
+              <th>Busquedas</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if($busquedas)
+              @foreach($busquedas as $busqueda)
+                <tr style="cursor: pointer;">
+                  <td>{{$busqueda->keywords}}</td>
+                  <td align="right" style="text-align: right;"></td>
+                </tr>
+              @endforeach
+          @else
+            <tr style="cursor: pointer;">
+              <td></td>
+              <td></td>         
+            </tr>
+
+          @endif
+          
+
+
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <th class="sorting_desc">Palabras clave</th>
+              <th>Busquedas</th>
+            </tr>
+          </tfoot>
+          </table>
+
+        </div>
+      </div>
+    </div>
 
     
 
@@ -58,6 +103,12 @@
 @endsection
 
 @section('scripts')
+
+<script type="text/javascript" language="javascript" src="{{ url('js/advanced-datatable/js/jquery.dataTables.js') }}"></script>
+<script type="text/javascript" src="{{ url('js/data-tables/DT_bootstrap.js') }}"></script>
+<!--dynamic table initialization -->
+<script src="{{ url('js/dynamic_table_init.js') }}"></script>
+
 <script>
 var ctx = document.getElementById("usuariosbar").getContext('2d');
 var myChart = new Chart(ctx, {

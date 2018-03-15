@@ -76,13 +76,13 @@
       <footer class="page-footer">
           <div class="container-fluid">
             <div class="row">
-              <div class="col l6 s12">
+              <div class="col l4 s12">
                 <h5 class="white-text">Product Finder </h5>
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="#!">Todas las tiendas</a></li>
                 </ul>
               </div>
-              <div class="col l4 offset-l2 s12">
+              <div class="col l4 s12">
                 <h5 class="white-text">Empresa</h5>
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="#!">Acerca de Product Finder</a></li>
@@ -90,7 +90,7 @@
                   <li><a class="grey-text text-lighten-3" href="#!">Contáctanos</a></li>
                 </ul>
               </div>
-              <div class="col l4 offset-l2 s12">
+              <div class="col l4 s12">
                 <h5 class="white-text">Siguenos</h5>
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>

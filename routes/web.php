@@ -69,7 +69,10 @@ Route::get('/perfil', function () {
 })->middleware('auth');
 
 Route::post('buscar', 'SearchController@index');
-
+Route::get('/buscar', function () {
+  $productos=array();
+    return view('buscar', ['productos'=>$productos]);
+});
 
 
 // Authentication routes...
@@ -95,9 +98,7 @@ Route::get('auth/facebook', 'Auth\LoginController@redirectToProvider');
 Route::get('auth/facebook/retorno', 'Auth\LoginController@handleProviderCallback');
 
 
-Route::get('/admin', function () {
-    return view('admin');
-})->middleware('admin');
+
 Route::get('/productos', function () {
     return view('admin.productos');
 })->middleware('admin');
@@ -124,10 +125,13 @@ Route::group(['middleware' => 'admin'], function(){
 			$usuarios=App\User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->count();
 			$mujeres=App\User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->where('genero','Femenino')->count();
 			$hombres=App\User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->where('genero','Masculino')->count();
+
+      $busquedas=DB::table('busquedas')->distinct()->count('keywords');
+      dd($busquedas);
 			
 				
 		
-	    	return view('admin', ['usuarios'=>$usuarios,'mujeres'=>$mujeres,'hombres'=>$hombres,'from'=>$from,'to'=>$to]);
+	    	return view('admin', ['usuarios'=>$usuarios,'mujeres'=>$mujeres,'hombres'=>$hombres,'from'=>$from,'to'=>$to,'busquedas'=>$busquedas]);
 		});
 
 	Route::post('admin', 'HomeController@admin');

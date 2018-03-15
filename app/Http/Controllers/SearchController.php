@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tienda;
 use Goutte;
+use App\Busqueda;
+use Input;
 
 class SearchController extends Controller
 {
@@ -51,9 +53,22 @@ class SearchController extends Controller
 
 
 
+
 			    });
         	
         }
+		$busqueda=Busqueda::where('keywords',strtoupper($request->busqueda))->get();
+
+		if ($busqueda->count()>0) {
+			$busqueda->busquedas=$busqueda->busquedas+1;
+			$busqueda->save();
+		}else{
+			$busqueda=new Busqueda();
+		    $busqueda->keywords=$request->busqueda;
+		    $busqueda->busquedas=1;
+		    $busqueda->save();
+		}
+	    
 
 		return view('buscar', ['productos'=>$productos]);
         $sorted = array_values(array_sort($productos, function ($value) {

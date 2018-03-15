@@ -15,8 +15,21 @@
             <hr>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+          <form action="{{url('/buscar')}}" method="post" style="width: 100%;">
+            {{ csrf_field() }}
+
+            <div class="input-field valign-wrapper">
+              <i class="fa fa-search prefix"></i>
+              <input id="buscador" name="busqueda" type="text" placeholder="Busca otro producto" class="validate">
+            </div>
+            </form>
+          </div>
+        </div>
 
         <div class="row">
+
           <div class="col-md-12">
 
                   <div class="row-fluid">
