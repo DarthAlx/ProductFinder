@@ -24,6 +24,7 @@ class CreateTiendasTable extends Migration
             $table->string('selectimagen');
             $table->string('attrimagen');
             $table->string('selectprecio');
+            $table->string('selectprecio_especial')->nullable();
             $table->string('selectvaloracion');
             $table->bigInteger('clicks')->default(0);
             $table->timestamps();

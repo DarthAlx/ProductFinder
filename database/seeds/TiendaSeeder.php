@@ -20,7 +20,8 @@ class TiendaSeeder extends Seeder
 			'selectnombre'=> '.product-name',
 			'selectimagen'=> '.product-thumb',
 			'attrimagen'=> 'data-original',
-			'selectprecio'=> '.price-amount',
+			'selectprecio'=> '.precio-especial .price-amount',
+            'selectprecio_especial'=>'.precio-promocion .price-amount',
 			'selectvaloracion'=> '',
         ]);
 
@@ -34,7 +35,8 @@ class TiendaSeeder extends Seeder
             'selectnombre'=> '.jbb-list-item-description',
             'selectimagen'=> '.product-image img',
             'attrimagen'=> 'data-src',
-            'selectprecio'=> '.ls-grid-price .price',
+            'selectprecio'=> '.price-box .price',
+            'selectprecio_especial'=>'.ls-price-now-price.price',
             'selectvaloracion'=> '',
         ]);
 

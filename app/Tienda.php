@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tienda extends Model
 {
     protected $table = 'tiendas';
-	protected $fillable = ['nombre', 'url', 'urlbusqueda', 'selectenlace', 'selectitem', 'selectnombre','selectimagen', 'attrimagen', 'selectprecio', 'selectvaloracion', 'clicks'];
+	protected $fillable = ['nombre', 'url', 'urlbusqueda', 'selectenlace', 'selectitem', 'selectnombre','selectimagen', 'attrimagen', 'selectprecio_especial', 'selectprecio', 'selectvaloracion', 'clicks'];
 
 
 }

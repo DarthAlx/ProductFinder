@@ -38,8 +38,10 @@ class SearchController extends Controller
 			      if($node->filter($tienda->selectimagen)->attr($tienda->attrimagen)!=""){
 			        $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
 			      }
-			      if($node->filter($tienda->selectprecio)->text()!=""){
-			        $precio=$node->filter($tienda->selectprecio)->html();
+			      if($node->filter($tienda->selectprecio_especial)->count() > 0){
+			        $precio=$node->filter($tienda->selectprecio_especial)->html();
+			      }else if($node->filter($tienda->selectprecio)->text()!=""){
+			        $precio=$node->filter($tienda->selectprecio)->text();
 			      }
 
 
@@ -71,13 +73,13 @@ class SearchController extends Controller
 		    $busqueda->contador=1;
 		    $busqueda->save();
 		}
-	    
+
+
+		return view('buscar', ['productos'=>$productos]);
+        
 $sorted = array_values(array_sort($productos, function ($value) {
 		    return $value['nombre'];
 		}));
-		return view('buscar', ['productos'=>$sorted]);
-        
-
       
     }
 }
