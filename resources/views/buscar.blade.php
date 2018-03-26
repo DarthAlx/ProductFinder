@@ -22,10 +22,36 @@
 
             <div class="input-field valign-wrapper">
               <i class="fa fa-search prefix"></i>
-              <input id="buscador" name="busqueda" type="text" placeholder="Busca otro producto" class="validate">
+              <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate">
             </div>
             </form>
           </div>
+
+          <div class="col-md-4">
+            <form id="ordenformmini" action="{{url('/buscar')}}" method="post" style="width: 100%;">
+              {{ csrf_field() }}
+              <input name="busqueda" type="hidden" value="{{$busqueda}}">
+            <div class="input-field valign-wrapper selectorden">
+                <select id="ordenmini" name="sort" class="select" required>
+                  <option value="Popularidad">Popularidad</option>
+                  <option value="A - Z">A - Z</option>
+                  <option value="Menor precio">Menor precio</option>
+                  <option value="Mayor precio">Mayor precio</option>
+                </select>
+            </div>
+            </form>
+            <script>
+              document.getElementById('ordenmini').value="{!!$sorting!!}";
+              $('#ordenmini').change(function(){
+                $('#ordenformmini').submit();
+
+              });
+            </script>
+
+          </div>
+
+
+          
         </div>
 
         <div class="row">
@@ -42,7 +68,7 @@
                           </div>
                           <div class="pricefrom">
                             <p>lo encuentras desde</p>
-                            <div class="price">{!!$producto['precio']!!}</div>
+                            <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
                           </div>
                           <div class="name">
                             <b>{{str_limit($producto['nombre'], $limit = 22, $end = '...')}}</b>

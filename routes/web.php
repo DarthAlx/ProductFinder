@@ -17,6 +17,7 @@ Auth::routes();
 Route::get('/z', function() {
 
 
+
   $crawler = Goutte::request('GET', 'https://www.liverpool.com.mx/tienda/?s=xbox');
   $contador=0;
   $productos=array();

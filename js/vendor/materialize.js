@@ -4851,7 +4851,7 @@ if (Vel) {
 
       var uniqueID = Materialize.guid();
       $select.attr('data-select-id', uniqueID);
-      var wrapper = $('<div class="select-wrapper"></div>');
+      var wrapper = $('<div class="select-wrapper"  style="width:100%"></div>');
       wrapper.addClass($select.attr('class'));
       if ($select.is(':disabled')) wrapper.addClass('disabled');
       var options = $('<ul id="select-options-' + uniqueID + '" class="dropdown-content select-dropdown ' + (multiple ? 'multiple-select-dropdown' : '') + '"></ul>'),

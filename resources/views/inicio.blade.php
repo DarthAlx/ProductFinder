@@ -16,7 +16,7 @@
           <div class="row">
             <div class="col-md-12 text-center">
               <p>Compara y ahorra con nosotros</p>
-              <input type="search" name="busqueda" value="" placeholder="¿qué estás buscando?" class="browser-default" autofocus/>
+              <input type="search" name="busqueda" value="" placeholder="¿qué estás buscando?" class="browser-default" autocomplete="off" autofocus/>
             </div>
           </div>
           <div class="row">

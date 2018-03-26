@@ -3175,7 +3175,7 @@ tbody.collapse.in {
        -o-transition-property: height, visibility;
           transition-property: height, visibility;
 }
-.caret {
+/*.caret {
   display: inline-block;
   width: 0;
   height: 0;
@@ -3184,7 +3184,7 @@ tbody.collapse.in {
   border-top: 4px solid;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
-}
+}*/
 .dropdown {
   position: relative;
 }
