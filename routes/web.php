@@ -60,7 +60,18 @@ Route::get('/z', function() {
 
 
 Route::get('/', function () {
-    return view('inicio');
+  $busquedas=App\Busqueda::orderBy('keywords','asc')->get();
+
+    if ($busquedas) {
+      $string = "{";
+      foreach ($busquedas as $busqueda) {
+        $string .="'".$busqueda->keywords."'".":"."'"."',";
+          }
+          $string.="}";
+          $busquedasjson=json_encode($string);
+    }
+
+    return view('inicio', ['busquedas'=>$busquedasjson]);
 });
 
 
@@ -72,9 +83,10 @@ Route::get('/perfil', function () {
 Route::post('buscar', 'SearchController@index');
 Route::get('/buscar', function () {
   $productos=array();
-    return view('buscar', ['productos'=>$productos]);
+  $categorias=App\Categoria::orderBy('nombre','asc')->get();
+    return view('buscar', ['productos'=>$productos,'categorias'=>$categorias]);
 });
-
+Route::get('/buscar/{slug}', 'SearchController@categoria');
 
 // Authentication routes...
 Route::get('entrar', 'Auth\LoginController@showLoginForm');

@@ -16,7 +16,7 @@
           <div class="row">
             <div class="col-md-12 text-center">
               <p>Compara y ahorra con nosotros</p>
-              <input type="search" name="busqueda" value="" placeholder="¿qué estás buscando?" class="browser-default" autocomplete="off" autofocus/>
+              <input type="search" name="busqueda" value="" placeholder="¿qué estás buscando?" class="browser-default autocomplete" id="autocomplete" autocomplete="off" autofocus/>
             </div>
           </div>
           <div class="row">
@@ -777,4 +777,35 @@ Los precios y ofertas de idealo se actualizan cada hora para que la disponibilid
       </div>
 
 
+@endsection
+
+@section('scripts')
+
+@if ($busquedas!= '')
+
+<script>
+  
+  $(document).ready(function(){
+  $('input.autocomplete').autocomplete({
+    data: {!!json_decode($busquedas)!!},
+    limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
+    onAutocomplete: function(val) {
+      $('#autocomplete').val(val);
+    },
+    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+  });
+  });
+
+
+$(document).ready(function() {
+  $("ul.autocomplete-content.dropdown-content").css({
+    'width': ($("#autocomplete").width() + 'px')
+  });
+});
+
+</script>
+
+
+
+@endif
 @endsection

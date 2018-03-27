@@ -1,0 +1,16 @@
+@media (max-width: 768px) {
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 992px) {
+	ul.dropdown-menu.dropdown-menu-large.row {
+    	width: 100vh;
+	}
+	ul.autocomplete-content.dropdown-content {
+
+    text-align: center !important;
+    margin: 0 auto;
+	}
+}
+@media (min-width: 1200px) {
+}

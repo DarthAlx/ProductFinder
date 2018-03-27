@@ -114,8 +114,8 @@ h1{
     font-weight: 300;
     text-align: center;
     border: 2px solid #ccc;
-    padding-left: 30px;
-    padding-right: 30px;
+    /*padding-left: 30px;
+    padding-right: 30px;*/
     outline: none;
     line-height: 1.4;
     text-align: center !important;
@@ -237,4 +237,15 @@ hr {
 .product-small a{
     text-decoration: none;
     color: inherit;
+}
+
+
+i.fa.fa-search.prefix{
+    font: normal normal normal 14px/1 FontAwesome;
+    margin-top: -10px;
+    text-align: right;
+    padding-right: 3px;
+}
+.dropdown a{
+    font-weight: normal;
 }

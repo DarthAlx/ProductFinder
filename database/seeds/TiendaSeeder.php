@@ -42,5 +42,27 @@ class TiendaSeeder extends Seeder
 
 
 
+
+        DB::table('categorias')->insert([
+            'nombre'=> 'Mascotas',
+            'slug'=> 'mascotas',
+        ]);
+        DB::table('categorias')->insert([
+            'nombre'=> 'Casa y jardín',
+            'slug'=> 'casa-y-jardin',
+        ]);
+        DB::table('categorias')->insert([
+            'nombre'=> 'Electrónica',
+            'slug'=> 'electronica',
+        ]);
+        DB::table('categorias')->insert([
+            'nombre'=> 'Videojuegos',
+            'slug'=> 'videojuegos',
+        ]);
+        DB::table('categorias')->insert([
+            'nombre'=> 'Vestidos',
+            'slug'=> 'vestidos',
+        ]);
+
     }
 }

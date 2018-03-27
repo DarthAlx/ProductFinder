@@ -15,44 +15,99 @@
             <hr>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-4 col-md-offset-4">
-          <form action="{{url('/buscar')}}" method="post" style="width: 100%;">
-            {{ csrf_field() }}
 
-            <div class="input-field valign-wrapper">
-              <i class="fa fa-search prefix"></i>
-              <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate">
-            </div>
-            </form>
-          </div>
 
+      <div class="row">
           <div class="col-md-4">
-            <form id="ordenformmini" action="{{url('/buscar')}}" method="post" style="width: 100%;">
-              {{ csrf_field() }}
-              <input name="busqueda" type="hidden" value="{{$busqueda}}">
-            <div class="input-field valign-wrapper selectorden">
-                <select id="ordenmini" name="sort" class="select" required>
-                  <option value="Popularidad">Popularidad</option>
-                  <option value="A - Z">A - Z</option>
-                  <option value="Menor precio">Menor precio</option>
-                  <option value="Mayor precio">Mayor precio</option>
-                </select>
+            <nav class="navbar navbar-default navbar-static" style="background: transparent; border: 0; margin-top: 1rem;">
+              <div class="navbar-header">
+              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
             </div>
-            </form>
-            <script>
-              document.getElementById('ordenmini').value="{!!$sorting!!}";
-              $('#ordenmini').change(function(){
-                $('#ordenformmini').submit();
 
-              });
-            </script>
+            <div class="collapse navbar-collapse js-navbar-collapse">
+              
+              <ul class="nav navbar-nav" style="width:100%">
+                <li class="dropdown dropdown-large" style="width:100%">
+                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #777777;"><i class="fa fa-bars prefix"></i> Categorías <b class="caret"></b></a>
 
-          </div>
+                  <?php
+                  $arraycat=array();
+                  $arrayslug=array();
+                  foreach($categorias as $categoria){
+                     
+                      $arraycat[]=$categoria->nombre;
+                      $arrayslug[]=$categoria->slug;
+                    
+                  }
+
+                   ?>
+                  <ul class="dropdown-menu dropdown-menu-large row">
+                    @for ($i=0; $i < 4 ; $i++)
+                    <li class="col-sm-3">
+                      <ul>
+                        <!--li class="dropdown-header">Glyphicons</li-->
+                        @for ($x=$i*5; $x < ($i+1)*5 ; $x++)
+                        <li style="width: 100%;"><a href="{{url('/buscar/')}}/{{$arrayslug[$x] or ''}}">{{$arraycat[$x] or ''}}</a></li>
+                        @endfor
+                      </ul>
+                    </li>
+                    @endfor
+                  </ul>
+                  
+                </li>
+              </ul>
+            
 
 
-          
+              
+
+
+              
+            </div><!-- /.nav-collapse -->
+          </nav>
         </div>
+
+        <div class="col-md-4">
+                <form action="{{url('/buscar')}}" method="post" style="width: 100%;">
+                  {{ csrf_field() }}
+
+                  <div class="input-field valign-wrapper">
+                    <i class="fa fa-search prefix"></i>
+                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;">
+                  </div>
+                  </form>
+                </div>
+
+                <div class="col-md-4">
+                  <form id="ordenformmini" action="{{url('/buscar')}}" method="post" style="width: 100%;">
+                    {{ csrf_field() }}
+                    <input name="busqueda" type="hidden" value="{{$busqueda}}">
+                  <div class="input-field valign-wrapper selectorden">
+                      <select id="ordenmini" name="sort" class="select" required>
+                        <option value="Popularidad">Popularidad</option>
+                        <option value="A - Z">A - Z</option>
+                        <option value="Menor precio">Menor precio</option>
+                        <option value="Mayor precio">Mayor precio</option>
+                      </select>
+                  </div>
+                  </form>
+                  <script>
+                    document.getElementById('ordenmini').value="{!!$sorting!!}";
+                    $('#ordenmini').change(function(){
+                      $('#ordenformmini').submit();
+
+                    });
+                  </script>
+
+                </div>
+      </div>
+
 
         <div class="row">
 
