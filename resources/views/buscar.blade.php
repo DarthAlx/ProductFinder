@@ -114,10 +114,20 @@
           <div class="col-md-12">
 
                   <div class="row-fluid">
-                    @foreach($productos as $producto)
+
+                    <?php $productocount=0;?>
+              @foreach($productos as $producto)
+                    <form action="{{url('/producto')}}" method="post" id="producto{{$productocount}}" style="display: none;">
+                      {{ csrf_field() }}
+                      <input type="hidden" name="nombre" value="{{$producto['nombre']}}">
+                      <input type="hidden" name="enlace" value="{{$producto['enlace']}}">
+                      <input type="hidden" name="precio" value="{{$producto['precio']}}">
+                      <input type="hidden" name="imagen" value="{{$producto['imagen']}}">
+                      <input type="hidden" name="tienda" value="{{$producto['tienda']}}">
+                    </form>
                     <div class="col-md-2 col-sm-4 col-xs-6">
                       <div class="product-small">
-                        <a href="{{$producto['enlace']}}" target="_blank">
+                        <a href="#" onclick="document.getElementById('producto{{$productocount}}').submit()">
                           <div class="img-container text-center">
                             <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
                           </div>
@@ -136,7 +146,9 @@
                         </a>
                       </div>
                     </div>
-                    @endforeach
+                    
+                    <?php $productocount++;?>
+              @endforeach
                   </div><!--/row-fluid-->
           </div>
         </div>

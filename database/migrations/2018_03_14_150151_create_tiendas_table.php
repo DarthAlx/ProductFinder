@@ -26,6 +26,7 @@ class CreateTiendasTable extends Migration
             $table->string('selectprecio');
             $table->string('selectprecio_especial')->nullable();
             $table->string('selectvaloracion');
+            $table->longText('selectdesc');
             $table->bigInteger('clicks')->default(0);
             $table->timestamps();
         });

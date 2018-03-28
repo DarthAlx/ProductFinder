@@ -23,6 +23,7 @@ class TiendaSeeder extends Seeder
 			'selectprecio'=> '.precio-especial .price-amount',
             'selectprecio_especial'=>'.precio-promocion .price-amount',
 			'selectvaloracion'=> '',
+            'selectdesc'=>'#intro'
         ]);
 
 
@@ -38,6 +39,7 @@ class TiendaSeeder extends Seeder
             'selectprecio'=> '.price-box .price',
             'selectprecio_especial'=>'.ls-price-now-price.price',
             'selectvaloracion'=> '',
+            'selectdesc'=>'.std'
         ]);
 
 

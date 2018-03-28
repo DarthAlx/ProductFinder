@@ -163,6 +163,9 @@ Route::get('/buscar', function () {
 });
 Route::get('/buscar/{slug}', 'SearchController@categoria');
 
+Route::post('producto', 'SearchController@producto');
+
+
 // Authentication routes...
 Route::get('entrar', 'Auth\LoginController@showLoginForm');
 Route::post('entrar', 'Auth\LoginController@login');

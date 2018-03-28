@@ -268,7 +268,100 @@ class SearchController extends Controller
 
 
 
+	public function producto(Request $request){
 
+		$tienda=Tienda::where('nombre',$request->tienda)->first();
+		$crawler = Goutte::request('GET', $request->enlace);
+		if ($crawler->filter($tienda->selectdesc)->count() >0) {
+			$descripcion= $crawler->filter($tienda->selectdesc)->text();
+		}
+		else{
+			$descripcion="No hay datos disponibles.";
+		}
+    	
+
+    	$producto=array(
+			    	'nombre'=>$request->nombre,
+			    	'enlace'=>$request->enlace,
+			    	'imagen'=>$request->imagen,
+			    	'precio'=>$request->precio,
+			    	'tienda'=>$request->tienda,
+			    	'enlacetienda'=>$tienda->url,
+			    	'descripcion'=>$descripcion
+				    );
+    	$productos=array();
+    	$tiendas=Tienda::all();
+		foreach ($tiendas as $tiendax) {
+
+    	$key=explode(" ", $request->nombre);
+
+    	$keywords=$key[0]. " ". $key[1];
+
+    	$crawler = Goutte::request('GET', $tiendax->urlbusqueda.$keywords);
+			
+
+			$contador=1;
+			$crawler->filter($tiendax->selectitem)->each(function ($node) use (&$tiendax,&$productos,&$contador) {
+
+			$agregar=true;
+
+
+			      if($node->filter($tiendax->selectnombre)->count() > 0){
+			        $nombre=$node->filter($tiendax->selectnombre)->text();
+			      }
+			      else{
+			      	$agregar=false;
+			      }
+			      if ($enlace=$node->filter($tiendax->selectenlace)->count() > 0) {
+			      	$enlace=$node->filter($tiendax->selectenlace)->attr('href');
+			      }
+			      else{
+			      	$agregar=false;
+			      }
+			      if($node->filter($tiendax->selectimagen)->count() > 0){
+			        $imagen=$node->filter($tiendax->selectimagen)->attr($tiendax->attrimagen);
+			      }
+			      else{
+			      	$agregar=false;
+			      }
+			      if($node->filter($tiendax->selectprecio_especial)->count() > 0){
+			        $precio=$node->filter($tiendax->selectprecio_especial)->html();
+			      }else if($node->filter($tiendax->selectprecio)->count() > 0){
+			        $precio=$node->filter($tiendax->selectprecio)->text();
+			      }else{
+			      	$agregar=false;
+			      }
+
+			      
+
+			 	if ($agregar) {
+			 		$precio=$this->precio($precio, $tiendax->nombre);
+			 		$productos[]=array(
+			    	'nombre'=>trim($nombre),
+			    	'enlace'=>$tiendax->url.$enlace,
+			    	'imagen'=>$imagen,
+			    	'precio'=>$precio,
+			    	'tienda'=>$tiendax->nombre,
+			    	'enlacetienda'=>$tiendax->url,
+			    	'orden'=>$contador
+				    );
+				    $contador++;
+			 	}
+			    
+
+
+
+
+			    });
+		}
+    	$productos = array_values(array_sort($productos, function ($value) {
+				    return $value['orden'];
+				}));
+
+    	$categorias=Categoria::orderBy('nombre','asc')->get();
+		return view('producto', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$productos]);
+
+	}
 
 
     public static function precio($precio, $tienda){

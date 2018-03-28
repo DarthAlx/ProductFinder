@@ -44,10 +44,20 @@
         <div class="row">
           <div class="col-md-12">
             <div class="intereses">
+              <?php $tendenciacount=0;?>
               @foreach($tendencias as $producto)
+
                     <div class="col-md-2 col-sm-4 col-xs-6">
+                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$tendenciacount}}" style="display: none;">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="nombre" value="{{$producto['nombre']}}">
+                        <input type="hidden" name="enlace" value="{{$producto['enlace']}}">
+                        <input type="hidden" name="precio" value="{{$producto['precio']}}">
+                        <input type="hidden" name="imagen" value="{{$producto['imagen']}}">
+                        <input type="hidden" name="tienda" value="{{$producto['tienda']}}">
+                      </form>
                       <div class="product-small">
-                        <a href="{{$producto['enlace']}}" target="_blank">
+                        <a style="cursor: pointer;" onclick="document.getElementById('tendencia{{$tendenciacount}}').submit()">
                           <div class="img-container text-center">
                             <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
                           </div>
@@ -66,7 +76,9 @@
                         </a>
                       </div>
                     </div>
-                    @endforeach
+                    
+                    <?php $tendenciacount++;?>
+              @endforeach
             </div>
     
 
