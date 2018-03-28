@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Top extends Model
 {
     protected $table = 'tops';
-	protected $fillable = ['url', 'tienda', 'orden'];
+	protected $fillable = ['nombre','descripcion', 'imagen', 'precio', 'enlace', 'tienda_id', 'orden'];
+
+	public function tienda(){
+        return $this->belongsTo('App\Tienda');
+    }
 
 }

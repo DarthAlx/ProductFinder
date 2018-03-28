@@ -15,8 +15,12 @@ class CreateTopsTable extends Migration
     {
         Schema::create('tops', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url');
             $table->integer('tienda_id');
+            $table->string('nombre');
+            $table->longText('descripcion');
+            $table->longText('imagen');
+            $table->string('precio');
+            $table->longText('enlace');
             $table->integer('orden');
             $table->timestamps();
         });

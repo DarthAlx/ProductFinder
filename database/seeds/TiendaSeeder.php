@@ -76,5 +76,17 @@ class TiendaSeeder extends Seeder
             'nombre'=> 'iphone',
         ]);
 
+
+
+        DB::table('tops')->insert([
+            'nombre'=> 'Consola Xbox One X 1 TB',
+            'enlace'=> 'https://www.liverpool.com.mx/tienda/pdp/consola-xbox-one-x-1-tb/1063763108?s=xbox&skuId=1063763108',
+            'tienda_id'=> 1,
+            'precio'=> '1106910',
+            'descripcion'=> 'Los juegos son mejores en Xbox One X. Con 40 % más de potencia que cualquier otra consola, disfruta de los juegos en un verdadero 4K envolvente. Los grandes títulos de lanzamiento tienen un aspecto genial, funcionan sin problemas y cargan rápido, y puedes llevar todos tus juegos y accesorios de Xbox One contigo',
+            'imagen'=> 'https://ss423.liverpool.com.mx/lg/1063763108.jpg',
+            'orden'=> 1
+        ]);
+
     }
 }

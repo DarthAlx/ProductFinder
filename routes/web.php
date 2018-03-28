@@ -146,7 +146,23 @@ Route::get('/', function () {
             return $value['orden'];
         }));
 
-    return view('inicio', ['busquedas'=>$busquedasjson,'tendencias'=>$tendenciasarray]);
+
+
+
+        $tops=App\Top::orderBy('orden')->get();
+        foreach ($tops as $top) {
+          $destacados[]=array(
+            'nombre'=>$top->nombre,
+            'enlace'=>$top->enlace,
+            'imagen'=>$top->imagen,
+            'precio'=>$top->precio,
+            'tienda'=>$top->tienda->nombre,
+            'enlacetienda'=>$top->tienda->url,
+            'orden'=>$top->orden
+            );
+        }
+
+    return view('inicio', ['busquedas'=>$busquedasjson,'tendencias'=>$tendenciasarray,'tops'=>$destacados]);
 });
 
 

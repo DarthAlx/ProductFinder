@@ -103,43 +103,43 @@
 
         <div class="row">
           <div class="col-md-12">
-            <div id="myCarousel" class="carousel slide" data-interval="false">    
-                <!-- Carousel items -->
-                <div class="carousel-inner">
-                    
-                <div class="item active">
-                  <div class="row-fluid">
+            <div class="tops">
+              <?php $topcount=0;?>
+              @foreach($tops as $producto)
+
                     <div class="col-md-2 col-sm-4 col-xs-6">
+                      <form action="{{url('/producto')}}" method="post" id="top{{$topcount}}" style="display: none;">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="nombre" value="{{$producto['nombre']}}">
+                        <input type="hidden" name="enlace" value="{{$producto['enlace']}}">
+                        <input type="hidden" name="precio" value="{{$producto['precio']}}">
+                        <input type="hidden" name="imagen" value="{{$producto['imagen']}}">
+                        <input type="hidden" name="tienda" value="{{$producto['tienda']}}">
+                      </form>
                       <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
+                        <a style="cursor: pointer;" onclick="document.getElementById('top{{$topcount}}').submit()">
+                          <div class="img-container text-center">
+                            <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
+                          </div>
+                          <div class="pricefrom">
+                            <p>lo encuentras desde</p>
+                            <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
+                          </div>
+                          <div class="name">
+                            <b>{{str_limit($producto['nombre'], $limit = 22, $end = '...')}}</b>
+                          </div>
+                        </a>
+                        <a href="{{$producto['enlacetienda']}}" target="_blank">
+                          <div class="from">
+                            <p>De: {{$producto['tienda']}}</p>
+                          </div>
+                        </a>
                       </div>
                     </div>
-                  </div><!--/row-fluid-->
-                </div><!--/item-->
-
-
-                
-
-
-
-
-                </div><!--/carousel-inner-->
-                 
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-            </div><!--/myCarousel-->
+                    
+                    <?php $topcount++;?>
+              @endforeach
+            </div>
           </div>
         </div>
       </div> 
@@ -457,6 +457,35 @@ $(document).ready(function() {
       settings: {
         arrows: false,
         centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+
+    $('.tops').slick({
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  autoplay: false,
+  arrows: true,
+  autoplaySpeed: 2000,
+  centerMode: false,
+   responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: false,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: false,
         centerPadding: '40px',
         slidesToShow: 1
       }
