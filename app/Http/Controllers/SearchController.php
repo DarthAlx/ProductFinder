@@ -271,7 +271,7 @@ class SearchController extends Controller
 
 
 
-    public function precio($precio, $tienda){
+    public static function precio($precio, $tienda){
 
     	if ($tienda=="Liverpool") {
     		$string=$precio;

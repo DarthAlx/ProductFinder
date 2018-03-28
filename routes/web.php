@@ -71,7 +71,82 @@ Route::get('/', function () {
           $busquedasjson=json_encode($string);
     }
 
-    return view('inicio', ['busquedas'=>$busquedasjson]);
+    $tendencias=App\Tendencia::all();
+    $tiendas=App\Tienda::all();
+    $productos=array();
+  
+
+
+        foreach ($tiendas as $tienda) {
+          foreach ($tendencias as $tendencia) {
+
+
+
+      $crawler = Goutte::request('GET', $tienda->urlbusqueda.$tendencia->nombre);
+      
+
+      $contador=1;
+      $crawler->filter($tienda->selectitem)->each(function ($node) use (&$tienda,&$productos,&$contador) {
+
+      $agregar=true;
+
+
+            if($node->filter($tienda->selectnombre)->count() > 0){
+              $nombre=$node->filter($tienda->selectnombre)->text();
+            }
+            else{
+              $agregar=false;
+            }
+            if ($enlace=$node->filter($tienda->selectenlace)->count() > 0) {
+              $enlace=$node->filter($tienda->selectenlace)->attr('href');
+            }
+            else{
+              $agregar=false;
+            }
+            if($node->filter($tienda->selectimagen)->count() > 0){
+              $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
+            }
+            else{
+              $agregar=false;
+            }
+            if($node->filter($tienda->selectprecio_especial)->count() > 0){
+              $precio=$node->filter($tienda->selectprecio_especial)->html();
+            }else if($node->filter($tienda->selectprecio)->count() > 0){
+              $precio=$node->filter($tienda->selectprecio)->text();
+            }else{
+              $agregar=false;
+            }
+
+            
+
+        if ($agregar) {
+          $precio=App\Http\Controllers\SearchController::precio($precio, $tienda->nombre);
+          $productos[]=array(
+            'nombre'=>trim($nombre),
+            'enlace'=>$tienda->url.$enlace,
+            'imagen'=>$imagen,
+            'precio'=>$precio,
+            'tienda'=>$tienda->nombre,
+            'enlacetienda'=>$tienda->url,
+            'orden'=>$contador
+            );
+            $contador++;
+        }
+         
+
+
+
+
+
+          });
+          }//tendencia
+        }//tienda
+
+        $tendenciasarray = array_values(array_sort($productos, function ($value) {
+            return $value['orden'];
+        }));
+
+    return view('inicio', ['busquedas'=>$busquedasjson,'tendencias'=>$tendenciasarray]);
 });
 
 

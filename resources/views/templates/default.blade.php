@@ -12,6 +12,8 @@
 
         <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.css') }}" media="screen" />
         <link rel="stylesheet" type="text/css" href="{{ url('css/materialize.css') }}" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ url('css/slick/slick.css') }}" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ url('css/slick/slick-theme.css') }}" media="screen" />
         <script defer src="https://use.fontawesome.com/3346f99067.js"></script>
 
         <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}?v={{rand()}}" media="screen" />
@@ -110,6 +112,7 @@
 
       <script type="text/javascript" src="{{ url('js/vendor/bootstrap.min.js') }}"></script>
       <script type="text/javascript" src="{{ url('js/vendor/materialize.js') }}"></script>
+      <script type="text/javascript" src="{{ url('css/slick/slick.js') }}"></script>
 
       <script type="text/javascript" src="{{ url('js/main.js') }}"></script>
       <script>

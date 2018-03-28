@@ -64,5 +64,15 @@ class TiendaSeeder extends Seeder
             'slug'=> 'vestidos',
         ]);
 
+
+
+
+        DB::table('tendencias')->insert([
+            'nombre'=> 'xbox',
+        ]);
+        DB::table('tendencias')->insert([
+            'nombre'=> 'iphone',
+        ]);
+
     }
 }

@@ -43,233 +43,34 @@
 
         <div class="row">
           <div class="col-md-12">
-            <div id="products1" class="carousel slide" data-interval="false">    
-                <!-- Carousel items -->
-                <div class="carousel-inner">
-                    
-                <div class="item active">
-                  <div class="row-fluid">
+            <div class="intereses">
+              @foreach($tendencias as $producto)
                     <div class="col-md-2 col-sm-4 col-xs-6">
                       <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
+                        <a href="{{$producto['enlace']}}" target="_blank">
+                          <div class="img-container text-center">
+                            <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
+                          </div>
+                          <div class="pricefrom">
+                            <p>lo encuentras desde</p>
+                            <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
+                          </div>
+                          <div class="name">
+                            <b>{{str_limit($producto['nombre'], $limit = 22, $end = '...')}}</b>
+                          </div>
+                        </a>
+                        <a href="{{$producto['enlacetienda']}}" target="_blank">
+                          <div class="from">
+                            <p>De: {{$producto['tienda']}}</p>
+                          </div>
+                        </a>
                       </div>
                     </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div><!--/row-fluid-->
-                </div><!--/item-->
+                    @endforeach
+            </div>
+    
 
 
-                <div class="item">
-                  <div class="row-fluid">
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div><!--/row-fluid-->
-                </div><!--/item-->
-
-
-
-
-                </div><!--/carousel-inner-->
-                 
-                <a class="left carousel-control" href="#products1" data-slide="prev">‹</a>
-                <a class="right carousel-control" href="#products1" data-slide="next">›</a>
-            </div><!--/myCarousel-->
           </div>
         </div>
 
@@ -313,201 +114,11 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
                   </div><!--/row-fluid-->
                 </div><!--/item-->
 
 
-                <div class="item">
-                  <div class="row-fluid">
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2 col-sm-4 col-xs-6">
-                      <div class="product-small">
-                        <div class="img-container text-center">
-                          <img src="img/iphone.png" alt="" style="max-width: 100%; margin: 0 auto;">
-                        </div>
-                        <div class="pricefrom">
-                          <p>lo encuentras desde</p>
-                          <div class="price">664</div>
-                        </div>
-                        <div class="name">
-                          <b>Apple IPhone 8 64GB gris</b>
-                        </div>
-                        <div class="from">
-                          <p>De: Amazon</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div><!--/row-fluid-->
-                </div><!--/item-->
+                
 
 
 
@@ -808,4 +419,43 @@ $(document).ready(function() {
 
 
 @endif
+
+
+<script>
+  
+  $(document).ready(function(){
+    $('.intereses').slick({
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  autoplay: false,
+  arrows: true,
+  autoplaySpeed: 2000,
+   responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+});
+
+</script>
+
+
+
+
 @endsection
