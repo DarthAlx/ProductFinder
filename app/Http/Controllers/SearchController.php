@@ -295,7 +295,14 @@ class SearchController extends Controller
 
     	$key=explode(" ", $request->nombre);
 
-    	$keywords=$key[0]. " ". $key[1];
+    	if (array_key_exists(1, $key)) {
+    		$keywords=$key[0]. " ". $key[1];
+    	}
+    	else{
+    		$keywords=$key[0];
+    	}
+
+    	
 
     	$crawler = Goutte::request('GET', $tiendax->urlbusqueda.$keywords);
 			

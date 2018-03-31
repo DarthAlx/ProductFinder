@@ -243,4 +243,19 @@ Route::group(['middleware' => 'admin'], function(){
 
 	Route::post('admin', 'HomeController@admin');
 
+  Route::get('/categorias', function () {
+    $categorias=App\Categoria::orderBy('nombre','asc')->get();
+      return view('admin.categorias', ['categorias'=>$categorias]);
+  });
+  Route::post('agregar-categoria', 'CategoriaController@store');
+  Route::delete('eliminar-categoria', 'CategoriaController@destroy');
+
+  Route::get('/tendencias', function () {
+    $tendencias=App\Tendencia::orderBy('nombre','asc')->get();
+      return view('admin.tendencias', ['tendencias'=>$tendencias]);
+  });
+  Route::post('agregar-tendencia', 'TendenciaController@store');
+  Route::delete('eliminar-tendencia', 'TendenciaController@destroy');
+
+
 });
