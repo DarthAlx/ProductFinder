@@ -10,7 +10,7 @@
       <p>&nbsp;</p>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-12 text-center">
             <h5 style="margin: 0;">Resultados de busqueda</h5>
             <hr>
           </div>
