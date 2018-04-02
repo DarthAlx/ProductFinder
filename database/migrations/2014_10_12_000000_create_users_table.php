@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60)->default('face_account');
-            $table->date('dob');
-            $table->string('tel');
+            $table->date('dob')->nullable();
+            $table->string('tel')->nullable();
             $table->string('genero');
             $table->string('avatar')->default(url('/img/dummy.png'));
             $table->boolean('is_admin')->default(false);

@@ -59,13 +59,13 @@
                         </div>
                         <div class="md-form input-field">
                             
-                            <input type="text" name="dob" id="dob" class="form-control datepicker" required>
-                            <label for="dob"><i class="fa fa-calendar grey-text fa-lg"></i> Fecha de nacimiento</label>
+                            <input type="text" name="dob" id="dob" class="form-control datepicker">
+                            <label for="dob"><i class="fa fa-calendar grey-text fa-lg"></i> Fecha de nacimiento (opcional)</label>
                         </div>
                         <div class="md-form input-field">
                             
-                            <input type="text" name="tel" id="tel" class="form-control" required>
-                            <label for="tel"><i class="fa fa-phone grey-text fa-lg"></i> Teléfono</label>
+                            <input type="text" name="tel" id="tel" class="form-control">
+                            <label for="tel"><i class="fa fa-phone grey-text fa-lg"></i> Teléfono (opcional)</label>
                         </div>
                         <label for="defaultForm-email"><i class="fa fa-venus-mars grey-text fa-lg"></i> Genero</label>
                         <div class="md-form">

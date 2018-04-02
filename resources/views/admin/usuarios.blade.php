@@ -36,8 +36,7 @@
 			      	<th><i class="fa fa-picture-o"></i></th>
 					<th class="sorting_desc">Nombre</th>
 			      	<th>Email</th>
-			      	<th>Fecha de nacimiento</th>
-			      	<th>Teléfono</th>
+			      	
 					<th>Genero</th>
 			      	
 			      	<th></th>
@@ -52,14 +51,13 @@
 							<td><img src="{{$usuario->avatar}}" alt="" style="max-width: 50px;"></td>
 							<td>{{$usuario->name}}</td>
 							<td>{{$usuario->email}}</td>
-							<td>{{$usuario->dob}}</td>
-							<td>{{$usuario->tel}}</td>
+					
 							<td>{{$usuario->genero}}</td>
 							
 							<td>
-								<a class="waves-effect waves-light btn" href="#"><i class="fa fa-search-plus"></i></a>
+								<a class="waves-effect waves-light btn" href="{{url('/usuario')}}/{{$usuario->id}}"><i class="fa fa-search-plus"></i></a>
 								<a class="waves-effect waves-light btn  modal-trigger " href="#mensaje{{$usuario->id}}"><i class="fa fa-envelope"></i></a>
-								<a class="waves-effect waves-light btn red" href="#"><i class="fa fa-times-circle"></i></a>
+								<a class="waves-effect waves-light btn  modal-trigger red" href="#delete{{$usuario->id}}"><i class="fa fa-times-circle"></i></a>
 									
 							</td>	
 						</tr>
@@ -88,8 +86,7 @@
 			      	<th class="sorting"><i class="fa fa-picture-o"></i></th>
 					<th class="sorting_desc">Nombre</th>
 			      	<th>Email</th>
-			      	<th>Fecha de nacimiento</th>
-			      	<th>Teléfono</th>
+			      	
 					<th>Genero</th>
 			      	<th></th>
 			  	</tr>
@@ -118,17 +115,20 @@
     <div class="modal-content">
       <h4>Banear usuario ({{$usuario->name}})</h4>
       <p>¿Está seguro que desea banear este usuario?</p>
-    </div>
-    <div class="modal-footer">
-    	<a href="#!" class="modal-action modal-close waves-effect waves-green btn">Cancelar</a> &nbsp; 
+
+      <div class="col m12 text-right">
+
+     
 		<form action="{{ url('/eliminar-usuario') }}" method="post" enctype="multipart/form-data">
 			{{ method_field('DELETE') }}
 			{!! csrf_field() !!}
-			<input type="hidden" name="eliminar" value="{{$usuario->id}}">
-			<input type="submit" class="modal-action modal-close waves-effect waves-green red btn" value="Eliminar">
+			<input type="hidden" name="eliminar" value="{{$usuario->id}}" style="display: inline-block;">
+			 <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Cancelar</a> &nbsp; <input type="submit" class="modal-action modal-close waves-effect waves-green red btn" value="Eliminar" style="display: inline-block;">
 		</form>
-    	
+		<p>&nbsp;</p>
     </div>
+    </div>
+
   </div>
 
 

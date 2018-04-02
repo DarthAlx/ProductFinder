@@ -251,15 +251,21 @@ function addtofavorite(nombre,enlace,precio,imagen,tienda,url,id){
         id : id,
         _token : _token
         }, function(data) {
-          datos=data.split(',');
-          if (datos[0]!="") {
-            $('.'+datos[0]+"0").hide();
-            $('.'+datos[0]+"1").show();
+          if (data=="guest") {
+            window.location.href = "{{url('/entrar')}}";
           }
-          if (datos[1]!=""){
-            script="<script>$(document).ready(function(){$( '.'+datos[0]+'1' ).click(function() {removefromfavorite(datos[1],datos[0]);});});";
-            $('#'+datos[0]).html(script);
+          else{
+            datos=data.split(',');
+            if (datos[0]!="") {
+              $('.'+datos[0]+"0").hide();
+              $('.'+datos[0]+"1").show();
+            }
+            if (datos[1]!=""){
+              script="<script>$(document).ready(function(){$( '.'+datos[0]+'1' ).click(function() {removefromfavorite(datos[1],datos[0]);});});";
+              $('#'+datos[0]).html(script);
+            }
           }
+          
         });
 }
 

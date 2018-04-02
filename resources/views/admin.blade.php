@@ -32,7 +32,30 @@
     </form>
     <p>&nbsp;</p>
 
-    
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">Busquedas totales</span>
+
+                  <h5 style="font-weight: 700">{{$busquedastotales}}</h5>
+                </div>
+                
+            </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">Categoría más vista</span>
+
+                  <h5 style="font-weight: 700">{{$categoria}}</h5>
+                </div>
+                
+            </div>
+      </div>
+      
+      
+    </div>
 
         
     <div class="row">

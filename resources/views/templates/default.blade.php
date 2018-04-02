@@ -42,6 +42,14 @@
 @php
 
 $categorias=App\Categoria::orderBy('nombre','asc')->get();
+if(!Auth::guest()){
+$carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first();
+        if ($carrito) {
+          Cart::restore(Auth::user()->id);
+        }
+        
+}
+
 @endphp
         <header>
           <div class="container-fluid">
@@ -94,7 +102,7 @@ $categorias=App\Categoria::orderBy('nombre','asc')->get();
                   
                 </li>
                 <li><a href="{{url('/favoritos')}}">Favoritos</a></li>
-                @if (Auth::guest())
+                    @if (Auth::guest())
                         <li><a href="{{url('/entrar')}}">Entrar</a></li>
                         <li><a href="{{url('/registro')}}">Registrar</a></li>
                       @else

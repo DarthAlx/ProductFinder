@@ -5465,6 +5465,7 @@ button.close {
   background: transparent;
   border: 0;
 }
+/*
 .modal-open {
   overflow: hidden;
 }
@@ -5547,21 +5548,7 @@ button.close {
   position: relative;
   padding: 15px;
 }
-.modal-footer {
-  padding: 15px;
-  text-align: right;
-  border-top: 1px solid #e5e5e5;
-}
-.modal-footer .btn + .btn {
-  margin-bottom: 0;
-  margin-left: 5px;
-}
-.modal-footer .btn-group .btn + .btn {
-  margin-left: -1px;
-}
-.modal-footer .btn-block + .btn-block {
-  margin-left: 0;
-}
+
 .modal-scrollbar-measure {
   position: absolute;
   top: -9999px;
@@ -5586,6 +5573,22 @@ button.close {
   .modal-lg {
     width: 900px;
   }
+}
+*/
+.modal-footer {
+  padding: 15px;
+  text-align: right;
+  border-top: 1px solid #e5e5e5;
+}
+.modal-footer .btn + .btn {
+  margin-bottom: 0;
+  margin-left: 5px;
+}
+.modal-footer .btn-group .btn + .btn {
+  margin-left: -1px;
+}
+.modal-footer .btn-block + .btn-block {
+  margin-left: 0;
 }
 .tooltip {
   position: absolute;

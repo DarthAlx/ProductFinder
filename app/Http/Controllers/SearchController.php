@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Tienda;
 use Goutte;
 use App\Busqueda;
+use App\Busquedauser;
 use App\Categoria;
 use Input;
 use Cart;
+use Auth;
 
 class SearchController extends Controller
 {
@@ -80,7 +82,7 @@ class SearchController extends Controller
 			    });
         	
         }
-		$busqueda=Busqueda::where('keywords',strtoupper($request->busqueda))->first();
+		$busqueda=Busqueda::where('keywords',$request->busqueda)->first();
 
 		if ($busqueda) {
 			$busqueda->contador=$busqueda->contador+1;
@@ -90,6 +92,24 @@ class SearchController extends Controller
 		    $busqueda->keywords=$request->busqueda;
 		    $busqueda->contador=1;
 		    $busqueda->save();
+		}
+
+
+
+
+		if (!Auth::guest()) {
+			$busqueda=Busquedauser::where('keywords',$request->busqueda)->where('user_id',Auth::user()->id)->first();
+
+			if ($busqueda) {
+				$busqueda->contador=$busqueda->contador+1;
+				$busqueda->save();
+			}else{
+				$busqueda=new Busquedauser();
+			    $busqueda->keywords=$request->busqueda;
+			    $busqueda->contador=1;
+			    $busqueda->user_id=Auth::user()->id;
+			    $busqueda->save();
+			}
 		}
 
 
@@ -143,6 +163,7 @@ class SearchController extends Controller
     	$tiendas=Tienda::all();
     	$productos=array();
   		$contador=1;
+  		Cart::restore(Auth::user()->id);
   		$items=Cart::content();
   		if (Cart::content()->count()>0){
 
@@ -206,7 +227,7 @@ class SearchController extends Controller
 
 	  	}
 		else{
-
+			return view('favoritosvacio', ['busqueda'=>'']);
 		}
 		
 
@@ -225,6 +246,11 @@ class SearchController extends Controller
     	$productos=array();
     	if ($slug) {
     		$request->busqueda=$slug;
+    		$contadorcate=Categoria::where('slug',$slug)->first();
+    		if ($contadorcate) {
+    			$contadorcate->contador++;
+    			$contadorcate->save();
+    		}
     	}
 
 
@@ -375,12 +401,17 @@ class SearchController extends Controller
 
     	$key=explode(" ", $request->nombre);
 
-    	if (array_key_exists(1, $key)) {
+    	if (array_key_exists(2, $key)) {
+    		$keywords=$key[0]. " ". $key[1]. " ". $key[2];
+    	}
+
+    	else if (array_key_exists(1, $key)) {
     		$keywords=$key[0]. " ". $key[1];
     	}
     	else{
     		$keywords=$key[0];
     	}
+
 
     	
 
@@ -477,15 +508,26 @@ class SearchController extends Controller
     }
 
     public function addtofavorite(Request $request){
-    	$id = $request->id;
-    	$item=Cart::add($id,$request->nombre,1,$request->precio, ['imagen'=>$request->imagen, 'enlace'=>$request->enlace, 'tienda' => $request->tienda,'url' => $request->url]);
-    	echo $id.",".$item->rowId;
+    	if (Auth::guest()) {
+    		echo "guest";
+
+    	}
+    	else{
+    		$id = $request->id;
+    		Cart::restore(Auth::user()->id);
+	    	$item=Cart::add($id,$request->nombre,1,$request->precio, ['imagen'=>$request->imagen, 'enlace'=>$request->enlace, 'tienda' => $request->tienda,'url' => $request->url]);
+	    	Cart::store(Auth::user()->id);
+	    	echo $id.",".$item->rowId;
+
+    	}
+    	
     }
 
     public function removefromfavorite(Request $request){
     	$id = $request->id;
+    	Cart::restore(Auth::user()->id);
     	Cart::remove($request->rowId);
-    	
+    	Cart::store(Auth::user()->id);
     	echo $id;
     }
 }

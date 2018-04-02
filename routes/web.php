@@ -185,8 +185,7 @@ Route::get('/', function () {
 
 
 Route::get('/perfil', function () {
-	dd("Perfil de usuario");
-    return view('perfil');
+	return redirect()->intended(url('/favoritos'));
 })->middleware('auth');
 
 Route::post('buscar', 'SearchController@index');
@@ -209,6 +208,8 @@ Route::post('entrar', 'Auth\LoginController@login');
 Route::get('acceso', 'RolesController@index');
 
 Route::get('/salir', function () {
+    Cart::restore(Auth::user()->id);
+    Cart::store(Auth::user()->id);
     Auth::logout();
     return redirect()->intended('/');
 })->middleware('auth');
@@ -230,8 +231,8 @@ Route::get('/productos', function () {
     return view('admin.productos');
 })->middleware('admin');
 
-Route::get('favoritos', 'SearchController@favoritos');
-Route::post('favoritos', 'SearchController@favoritos');
+Route::get('favoritos', 'SearchController@favoritos')->middleware('auth');;
+Route::post('favoritos', 'SearchController@favoritos')->middleware('auth');;
 
 
 
@@ -250,7 +251,9 @@ Route::group(['middleware' => 'admin'], function(){
 		      $day = date("d", mktime(0,0,0, 12, 31, $year+1));
 		      $to = date('Y-m-d', mktime(0,0,0, 12, 31, $year));
 
-			
+			$busquedastotales=App\Busqueda::whereBetween('created_at', array($from, $to))->sum('contador');
+      $categoria=App\Categoria::whereBetween('created_at', array($from, $to))->max('contador');
+      dd($categoria);
 			$usuarios=App\User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->count();
 			$mujeres=App\User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->where('genero','Femenino')->count();
 			$hombres=App\User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->where('genero','Masculino')->count();
@@ -260,7 +263,7 @@ Route::group(['middleware' => 'admin'], function(){
 			
 				
 		
-	    	return view('admin', ['usuarios'=>$usuarios,'mujeres'=>$mujeres,'hombres'=>$hombres,'from'=>$from,'to'=>$to,'busquedas'=>$busquedas]);
+	    	return view('admin', ['usuarios'=>$usuarios,'mujeres'=>$mujeres,'hombres'=>$hombres,'from'=>$from,'to'=>$to,'categoria'=>$categoria,'busquedas'=>$busquedas,'busquedastotales'=>$busquedastotales]);
 		});
 
 	Route::post('admin', 'HomeController@admin');
@@ -286,5 +289,20 @@ Route::group(['middleware' => 'admin'], function(){
   Route::post('actualizar-ad', 'AdController@update');
 
   Route::post('enviar-mensaje', 'MensajeController@send');
+
+  Route::delete('eliminar-usuario', 'UserController@destroy');
+
+  Route::get('/usuario/{id}', function ($id) {
+    $usuario=App\User::find($id);
+    if ($usuario) {
+      return view('admin.usuario', ['usuario'=>$usuario]);
+    }
+    else{
+      return redirect()->intended(url('/404'));
+    }
+      
+  });
+
+  Route::post('cambiar-contrasena', 'UserController@changepass');
 
 });

@@ -94,7 +94,7 @@
 		}
 
 		body,#bodyTable{
-			background-color:#1AA5B9;
+			background-color:#C42854;
 		}
 
 		#bodyCell{

@@ -38,4 +38,7 @@ class User extends Authenticatable
     {
         $this->notify(new RecuperaciónDeContraseña($token));
     }
+    public function busquedas(){
+        return $this->hasMany('App\Busquedauser');
+    }
 }
