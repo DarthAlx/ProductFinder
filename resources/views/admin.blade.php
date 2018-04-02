@@ -48,7 +48,7 @@
                 <div class="card-content white-text">
                   <span class="card-title">Categoría más vista</span>
 
-                  <h5 style="font-weight: 700">{{$categoria}}</h5>
+                  <h5 style="font-weight: 700">{{$categoria}} ({{$categoriac}})</h5>
                 </div>
                 
             </div>
