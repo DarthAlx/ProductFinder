@@ -253,7 +253,7 @@ Route::group(['middleware' => 'admin'], function(){
 
 			$busquedastotales=App\Busqueda::whereBetween('created_at', array($from, $to))->sum('contador');
       $categoria=App\Categoria::whereBetween('created_at', array($from, $to))->max('contador');
-      dd($categoria);
+
 			$usuarios=App\User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->count();
 			$mujeres=App\User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->where('genero','Femenino')->count();
 			$hombres=App\User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->where('genero','Masculino')->count();
