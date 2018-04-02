@@ -39,7 +39,10 @@
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+@php
 
+$categorias=App\Categoria::orderBy('nombre','asc')->get();
+@endphp
         <header>
           <div class="container-fluid">
             <div class="row">
@@ -47,27 +50,79 @@
                 <a href="{{url('/')}}"><img src="{{url('img/product-finder.png')}}" alt="logo" class="img-responsive"></a>
               </div>
               <div class="col-md-10">
-                <ul id="dropdown1" class="dropdown-content">
-                  <li><a href="{{url('/perfil')}}">Perfil</a></li>
+                <nav class="navbar navbar-default navbar-static navegacion" style="background: transparent; border: 0; margin-top: 1rem;">
+              <div class="navbar-header">
+              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+            </div>
+
+            <div class="collapse navbar-collapse js-navbar-collapse">
+              
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{url('/')}}">Inicio</a></li>
+                <li class="dropdown dropdown-large">
+                   <a href="#" class="dropdown-toggle dropdown-button" data-toggle="dropdown">Categorías <b class="caret"></b></a>
+
+                  <?php
+                  $arraycat=array();
+                  $arrayslug=array();
+                  foreach($categorias as $categoria){
+                     
+                      $arraycat[]=$categoria->nombre;
+                      $arrayslug[]=$categoria->slug;
+                    
+                  }
+
+                   ?>
+                  <ul class="dropdown-menu dropdown-menu-large row">
+                    @for ($i=0; $i < 4 ; $i++)
+                    <li class="col-sm-3">
+                      <ul>
+                        <!--li class="dropdown-header">Glyphicons</li-->
+                        @for ($x=$i*5; $x < ($i+1)*5 ; $x++)
+                        <li style="width: 100%;"><a href="{{url('/buscar/')}}/{{$arrayslug[$x] or ''}}">{{$arraycat[$x] or ''}}</a></li>
+                        @endfor
+                      </ul>
+                    </li>
+                    @endfor
+                  </ul>
                   
-                  <li><a href="{{url('/salir')}}">Salir</a></li>
-                </ul>
-                <nav>
-                  <div class="nav-wrapper">
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                      <li><a href="#">Tiendas</a></li>
-                      @if (Auth::guest())
+                </li>
+                <li><a href="{{url('/favoritos')}}">Favoritos</a></li>
+                @if (Auth::guest())
                         <li><a href="{{url('/entrar')}}">Entrar</a></li>
                         <li><a href="{{url('/registro')}}">Registrar</a></li>
                       @else
-                      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Mi cuenta</a></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle dropdown-button" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi cuenta <span class="caret"></span></a>
+                        <ul class="dropdown-menu"> 
+                          <li><a href="{{url('/salir')}}">Salir</a></li>
+                        </ul>
+                      </li>
                       @endif
-                      
-                    </ul>
-                  </div>
-                </nav>
+              </ul>
+            
+
+
+              
+
+
+              
+            </div><!-- /.nav-collapse -->
+          </nav>
               </div>
             </div>
+
+
+
+
+
+
           </div>
         </header>
 

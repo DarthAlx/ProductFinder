@@ -42,10 +42,18 @@ nav{
     font-size: 2rem;
     font-weight: 700;
 }
-nav ul a, nav ul a:hover, nav ul a:focus{
+nav.navegacion ul a, nav.navegacion ul a:hover, nav.navegacion ul a:focus{
     text-decoration: none;
-    color: #fff;
+    color: #fff !important;
+    line-height: 25px !important;
 
+}
+.navegacion a.dropdown-toggle.dropdown-button{
+    font-weight: 600;
+    line-height: 25px !important;
+}
+.navegacion .dropdown-menu a, .navegacion .dropdown-menu a:focus, .navegacion .dropdown-menu a:hover {
+    color: #777 !important;
 }
 
 .titlemain{

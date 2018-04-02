@@ -15,6 +15,13 @@
 
 @endsection
 @section('pagecontent')
+@php
+$items=Cart::content();
+@endphp
+
+
+
+ <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 <div class="container-fluid">
   <div class="row" style="border-bottom: 5px solid #C42854;">
           <div class="col-md-4">
@@ -83,24 +90,22 @@
                   </form>
                 </div>
 
-                <div class="col-md-4">
-                  <form id="ordenformmini" action="{{url('/buscar')}}" method="post" style="width: 100%;">
-                    {{ csrf_field() }}
-                    <input name="busqueda" type="hidden" value="">
-                  <div class="input-field valign-wrapper selectorden">
-                      <select id="ordenmini" name="sort" class="select" required>
-                        <option value="Popularidad">Popularidad</option>
-                        <option value="A - Z">A - Z</option>
-                        <option value="Menor precio">Menor precio</option>
-                        <option value="Mayor precio">Mayor precio</option>
-                      </select>
-                  </div>
-                  </form>
+                <div class="col-md-4" style="padding-top: 2rem;">
+                  <a href="{{url('/favoritos')}}" style="color: #777777; width: 100%; display: block; text-decoration: none;"><i class="fa fa-heart"></i> Favoritos</a>
                   
 
                 </div>
       </div>
 </div>
+<?php $esfav=false;?>
+@php
+  $nombre = $producto['nombre'];
+  $enlace = $producto['enlace'];
+  $precio = $producto['precio'];
+  $imagen = $producto['imagen'];
+  $tienda = $producto['tienda'];
+  $url = $producto['enlacetienda']
+@endphp
       <div class="container">
         <div class="row">
 
@@ -111,6 +116,54 @@
                      <img src="{{$producto['imagen']}}" class="img-responsive" alt="">
                    </div> 
                    <div class="col-md-7">
+                    <div class="favorito">
+                          @foreach ($items as $product)
+                             @if($product->name==$nombre)
+                              <?php $esfav=true;
+                              $productid=$product->rowId;
+                               break; ?>
+                             @else
+                              <?php $esfav=false; $productid=""; ?>
+                             @endif         
+                          @endforeach
+                          <a class="favp0" onclick="addtofavorite('{{$nombre}}','{{$enlace}}','{{$precio}}','{{$imagen}}','{{$tienda}}','{{$url}}', 'favp')" style=" cursor: pointer;">
+                            <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
+                          </a>
+                         
+                          <a class="favp1" style="display: none; cursor: pointer;">
+                            <i class="fa fa-heart fa-2x " aria-hidden="true"></i>
+                          </a>
+
+                          @if($esfav)
+                            <script>
+                                $('.favp'+"0").hide();
+                                $('.favp'+"1").show();
+                                $(document).ready(function(){
+                                  $( ".favp1" ).click(function() {
+                                    removefromfavorite('{{$productid}}','favp');
+                                  });
+                                });
+                            </script>
+                          @else
+                          <script>
+                                $('.favp'+"1").hide();
+                                $('.favp'+"0").show();
+
+
+                            </script>
+                            
+                            <div id="favp">
+                              
+                            </div>
+                            </script>
+
+                          @endif
+
+                          
+                              
+                        </div>
+
+
                      <h4>{{$producto['nombre']}}</h4>
                      <div class="pricefrom">
                         <p>lo encuentras desde</p>
@@ -119,7 +172,7 @@
                      <p>{{$producto['descripcion']}}</p>
                      <a href="{{$producto['enlacetienda']}}" target="_blank">
                         <div class="from">
-                          <p>De: {{$producto['tienda']}}</p>
+                          <p>{{$producto['tienda']}}</p>
                         </div>
                       </a>
                      <div class="buttons">
@@ -149,33 +202,93 @@
         <div class="row">
           <div class="col-md-12">
             <div class="relacionados">
-              <?php $relacionadocount=0;?>
+              <?php $relacionadocount=0; $esfav=false;?>
               @foreach($relacionados as $producto)
+
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                      <form action="{{url('/producto')}}" method="post" id="relacionado{{$relacionadocount}}" style="display: none;">
+                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$relacionadocount}}" style="display: none;">
                         {{ csrf_field() }}
-                        <input type="hidden" name="nombre" value="{{$producto['nombre']}}">
-                        <input type="hidden" name="enlace" value="{{$producto['enlace']}}">
-                        <input type="hidden" name="precio" value="{{$producto['precio']}}">
-                        <input type="hidden" name="imagen" value="{{$producto['imagen']}}">
-                        <input type="hidden" name="tienda" value="{{$producto['tienda']}}">
+                        @php
+                          $nombre = $producto['nombre'];
+                          $enlace = $producto['enlace'];
+                          $precio = $producto['precio'];
+                          $imagen = $producto['imagen'];
+                          $tienda = $producto['tienda'];
+                          $url = $producto['enlacetienda']
+                        @endphp
+                        <input type="hidden" name="nombre" value="{{$nombre}}">
+                        <input type="hidden" name="enlace" value="{{$enlace}}">
+                        <input type="hidden" name="precio" value="{{$precio}}">
+                        <input type="hidden" name="imagen" value="{{$imagen}}">
+                        <input type="hidden" name="tienda" value="{{$tienda}}">
+                        <input type="hidden" name="url" value="{{$url}}">
                       </form>
                       <div class="product-small">
-                        <a href="#" onclick="document.getElementById('relacionado{{$relacionadocount}}').submit()">
+                        <div class="favorito">
+                          @foreach ($items as $product)
+                             @if($product->name==$nombre)
+                              <?php $esfav=true;
+                              $productid=$product->rowId;
+                               break; ?>
+                             @else
+                              <?php $esfav=false; $productid=""; ?>
+                             @endif         
+                          @endforeach
+                          <a class="fav{{$relacionadocount}}0" onclick="addtofavorite('{{$nombre}}','{{$enlace}}','{{$precio}}','{{$imagen}}','{{$tienda}}','{{$url}}', 'fav{{$relacionadocount}}')">
+                            <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i>
+                          </a>
+                         
+                          <a class="fav{{$relacionadocount}}1" style="display: none;">
+                            <i class="fa fa-heart fa-lg " aria-hidden="true"></i>
+                          </a>
+
+                          @if($esfav)
+                            <script>
+                                $('.fav'+'{{$relacionadocount}}'+"0").hide();
+                                $('.fav'+'{{$relacionadocount}}'+"1").show();
+                                $(document).ready(function(){
+                                  $( ".fav{{$relacionadocount}}1" ).click(function() {
+                                    removefromfavorite('{{$productid}}','fav{{$relacionadocount}}');
+                                  });
+                                });
+                            </script>
+                          @else
+                          <script>
+                                $('.fav'+'{{$relacionadocount}}'+"1").hide();
+                                $('.fav'+'{{$relacionadocount}}'+"0").show();
+
+
+                            </script>
+                            
+                            <div id="fav{{$relacionadocount}}">
+                              
+                            </div>
+                            </script>
+
+                          @endif
+
+                          
+                              
+                        </div>
+                        <a style="cursor: pointer;" onclick="document.getElementById('tendencia{{$relacionadocount}}').submit()">
                           <div class="img-container text-center">
+                            
                             <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
-                          </div>
-                          <div class="pricefrom">
-                            <p>lo encuentras desde</p>
-                            <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
+                            <div class="ver-producto">
+                              <p>Ver producto <i class="fa fa-search" aria-hidden="true"></i></p>
+                            </div>
                           </div>
                           <div class="name">
                             <b>{{str_limit($producto['nombre'], $limit = 22, $end = '...')}}</b>
                           </div>
+                          <div class="pricefrom">
+                            <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
+                          </div>
+                          
                         </a>
                         <a href="{{$producto['enlacetienda']}}" target="_blank">
                           <div class="from">
-                            <p>De: {{$producto['tienda']}}</p>
+                            <p>{{$producto['tienda']}}</p>
                           </div>
                         </a>
                       </div>
@@ -285,6 +398,51 @@
     });
   }
 </script>
+
+
+
+
+<script>
+function addtofavorite(nombre,enlace,precio,imagen,tienda,url,id){
+    _token = $('#token').val();
+    $.post("{{url('/addtofavorite')}}", {
+        nombre : nombre,
+        enlace : enlace,
+        precio : precio,
+        imagen : imagen,
+        tienda : tienda,
+        url : url,
+        id : id,
+        _token : _token
+        }, function(data) {
+          datos=data.split(',');
+          if (datos[0]!="") {
+            $('.'+datos[0]+"0").hide();
+            $('.'+datos[0]+"1").show();
+          }
+          if (datos[1]!=""){
+            script="<script>$(document).ready(function(){$( '.'+datos[0]+'1' ).click(function() {removefromfavorite(datos[1],datos[0]);});});";
+            $('#'+datos[0]).html(script);
+          }
+        });
+}
+
+function removefromfavorite(rowId,id){
+    _token = $('#token').val();
+    $.post("{{url('/removefromfavorite')}}", {
+        rowId : rowId,
+        id : id,
+        _token : _token
+        }, function(data) {
+          if (data!="") {
+            $('.'+data+"1").hide();
+            $('.'+data+"0").show();
+          }
+        });
+}
+</script>
+
+
 
 
 @endsection

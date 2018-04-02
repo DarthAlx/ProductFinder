@@ -14,7 +14,7 @@ $items=Cart::content();
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h5 style="margin: 0;">Resultados de busqueda</h5>
+            <h5 style="margin: 0;">Tus favoritos</h5>
             <hr>
           </div>
         </div>
@@ -31,7 +31,7 @@ $items=Cart::content();
                 <span class="icon-bar"></span>
               </button>
               
-            </div>
+              </div>
 
             <div class="collapse navbar-collapse js-navbar-collapse">
               
@@ -88,7 +88,7 @@ $items=Cart::content();
                 </div>
 
                 <div class="col-md-4">
-                  <form id="ordenformmini" action="{{url('/buscar')}}" method="post" style="width: 100%;">
+                  <form id="ordenformmini" action="{{url('/favoritos')}}" method="post" style="width: 100%;">
                     {{ csrf_field() }}
                     <input name="busqueda" type="hidden" value="{{$busqueda}}">
                   <div class="input-field valign-wrapper selectorden">
@@ -194,17 +194,17 @@ $items=Cart::content();
                               <p>Ver producto <i class="fa fa-search" aria-hidden="true"></i></p>
                             </div>
                           </div>
+                          <div class="pricefrom">
+                            <p>lo encuentras desde</p>
+                            <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
+                          </div>
                           <div class="name">
                             <b>{{str_limit($producto['nombre'], $limit = 22, $end = '...')}}</b>
                           </div>
-                          <div class="pricefrom">
-                            <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
-                          </div>
-                          
                         </a>
                         <a href="{{$producto['enlacetienda']}}" target="_blank">
                           <div class="from">
-                            <p>{{$producto['tienda']}}</p>
+                            <p>De: {{$producto['tienda']}}</p>
                           </div>
                         </a>
                       </div>
@@ -517,8 +517,10 @@ function removefromfavorite(rowId,id){
           if (data!="") {
             $('.'+data+"1").hide();
             $('.'+data+"0").show();
+            
           }
         });
+    location.reload();
 }
 </script>
 

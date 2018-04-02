@@ -8,6 +8,7 @@ use Goutte;
 use App\Busqueda;
 use App\Categoria;
 use Input;
+use Cart;
 
 class SearchController extends Controller
 {
@@ -131,6 +132,85 @@ class SearchController extends Controller
 //dd($productos);
 			$categorias=Categoria::orderBy('nombre','asc')->get();
 		return view('buscar', ['productos'=>$productos,'busqueda'=>$request->busqueda,'sorting'=>$request->sort,'categorias'=>$categorias]);
+        
+
+      
+    }
+
+
+    public function favoritos(Request $request)
+    {
+    	$tiendas=Tienda::all();
+    	$productos=array();
+  		$contador=1;
+  		$items=Cart::content();
+  		if (Cart::content()->count()>0){
+
+
+
+  			foreach ($items as $producto) {
+			 		$productos[]=array(
+			    	'nombre'=>$producto->name,
+			    	'enlace'=>$producto->options->enlace,
+			    	'imagen'=>$producto->options->imagen,
+			    	'precio'=>$producto->price,
+			    	'tienda'=>$producto->options->tienda,
+			    	'enlacetienda'=>$producto->options->url,
+			    	'orden'=>$contador
+				    );
+				    $contador++;
+			    }
+        	
+        
+			$busqueda=Busqueda::where('keywords',strtoupper($request->busqueda))->first();
+
+			if ($request->sort) {
+			if ($request->sort=="Menor precio") {
+				$productos = array_values(array_sort($productos, function ($value) {
+				    return $value['precio'];
+				}));
+			}
+			else if ($request->sort=="Mayor precio") {
+				$productos = array_values(array_sort($productos, function ($value) {
+				    return $value['precio'];
+				}));
+				$productos=array_reverse($productos);
+			}
+			else if ($request->sort=="A - Z") {
+				$productos = array_values(array_sort($productos, function ($value) {
+				    return $value['nombre'];
+				}));
+			}
+			else if ($request->sort=="Popularidad") {
+				$productos = array_values(array_sort($productos, function ($value) {
+				    return $value['orden'];
+				}));
+			}
+			else{
+				$productos = array_values(array_sort($productos, function ($value) {
+				    return $value['orden'];
+				}));
+
+			}
+		}
+		else{
+			$request->sort="Popularidad";
+				$productos = array_values(array_sort($productos, function ($value) {
+				    return $value['orden'];
+				}));
+
+			}
+			//dd($productos);
+			$categorias=Categoria::orderBy('nombre','asc')->get();
+			return view('favoritos', ['productos'=>$productos,'busqueda'=>'','sorting'=>$request->sort,'categorias'=>$categorias]);
+
+	  	}
+		else{
+
+		}
+		
+
+        
         
 
       
@@ -394,5 +474,18 @@ class SearchController extends Controller
 
     	return $precio;
 
+    }
+
+    public function addtofavorite(Request $request){
+    	$id = $request->id;
+    	$item=Cart::add($id,$request->nombre,1,$request->precio, ['imagen'=>$request->imagen, 'enlace'=>$request->enlace, 'tienda' => $request->tienda,'url' => $request->url]);
+    	echo $id.",".$item->rowId;
+    }
+
+    public function removefromfavorite(Request $request){
+    	$id = $request->id;
+    	Cart::remove($request->rowId);
+    	
+    	echo $id;
     }
 }

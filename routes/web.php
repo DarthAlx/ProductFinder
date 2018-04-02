@@ -14,6 +14,18 @@
 Auth::routes();
 
 
+Route::get('pruebacookie', function(){
+  $array=array(
+    'nombre'=>'Alexis',
+    'apellidos'=>'Morales'
+  );
+  $nueva_cookie = cookie('nombre', implode(',',$array), 60);
+  $response = response("Voy a enviarte una cookie");
+  $response->withCookie($nueva_cookie);
+  return $response;
+});
+Route::get('readc', 'HomeController@readc');
+
 Route::get('/z', function() {
 
 
@@ -60,6 +72,10 @@ Route::get('/z', function() {
 
 
 Route::get('/', function () {
+
+
+ /* $item=Cart::add(1,"test",1,2500);
+  dd($item->rowId);*/
   $busquedas=App\Busqueda::orderBy('keywords','asc')->get();
 
     if ($busquedas) {
@@ -161,8 +177,9 @@ Route::get('/', function () {
             'orden'=>$top->orden
             );
         }
+        $categorias=App\Categoria::orderBy('nombre','asc')->get();
 
-    return view('inicio', ['busquedas'=>$busquedasjson,'tendencias'=>$tendenciasarray,'tops'=>$destacados]);
+    return view('inicio', ['busquedas'=>$busquedasjson,'tendencias'=>$tendenciasarray,'tops'=>$destacados,'categorias'=>$categorias]);
 });
 
 
@@ -181,6 +198,8 @@ Route::get('/buscar/{slug}', 'SearchController@categoria');
 
 Route::post('producto', 'SearchController@producto');
 
+Route::post('addtofavorite', 'SearchController@addtofavorite');
+Route::post('removefromfavorite', 'SearchController@removefromfavorite');
 
 // Authentication routes...
 Route::get('entrar', 'Auth\LoginController@showLoginForm');
@@ -210,6 +229,8 @@ Route::get('/productos', function () {
     return view('admin.productos');
 })->middleware('admin');
 
+Route::get('favoritos', 'SearchController@favoritos');
+Route::post('favoritos', 'SearchController@favoritos');
 
 
 

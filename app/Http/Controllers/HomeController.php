@@ -43,4 +43,10 @@ class HomeController extends Controller
     
         return view('admin', ['usuarios'=>$usuarios,'mujeres'=>$mujeres,'hombres'=>$hombres,'from'=>$from,'to'=>$to,'busquedas'=>$busquedas]);
     }
+
+
+    public function readc(Request $request){
+        $cookie_leida = $request->cookie('nombre');
+        dd($cookie_leida);
+    }
 }
