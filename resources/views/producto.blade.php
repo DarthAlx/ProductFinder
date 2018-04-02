@@ -314,36 +314,7 @@ $items=Cart::content();
 
 
 
-      <div class="container-fluid info">
-        <div class="row">
-          <div class="col-md-3 info-item">
-            <div class="text-center">
-              <i class="fa fa-tags fa-3x"></i>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus reprehenderit inventore qui molestias perspiciatis, animi? Nisi eum repellat ad in aspernatur ullam voluptas voluptates deserunt quod totam, modi, dolorum. Reiciendis?</p>
-          </div>
-            <div class="col-md-3 info-item">
-            <div class="text-center">
-              <i class="fa fa-comment fa-3x"></i>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus reprehenderit inventore qui molestias perspiciatis, animi? Nisi eum repellat ad in aspernatur ullam voluptas voluptates deserunt quod totam, modi, dolorum. Reiciendis?</p>
-          </div>
-          <div class="col-md-3 info-item">
-            <div class="text-center">
-              <i class="fa fa-certificate fa-3x"></i>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus reprehenderit inventore qui molestias perspiciatis, animi? Nisi eum repellat ad in aspernatur ullam voluptas voluptates deserunt quod totam, modi, dolorum. Reiciendis?</p>
-          </div>
-          <div class="col-md-3 info-item">
-            <div class="text-center">
-              <i class="fa fa-trophy fa-3x"></i>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus reprehenderit inventore qui molestias perspiciatis, animi? Nisi eum repellat ad in aspernatur ullam voluptas voluptates deserunt quod totam, modi, dolorum. Reiciendis?</p>
-          </div>
-        </div>
-            
-          
-      </div>
+      
 
 
 @endsection

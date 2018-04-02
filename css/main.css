@@ -257,3 +257,9 @@ i.fa.fa-search.prefix{
 .dropdown a{
     font-weight: normal;
 }
+.dropdown-menu{
+    z-index: 99999999999999;
+}
+.product-small {
+    text-align: center;
+}

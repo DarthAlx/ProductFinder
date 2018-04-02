@@ -88,5 +88,11 @@ class TiendaSeeder extends Seeder
             'orden'=> 1
         ]);
 
+
+        DB::table('ads')->insert([
+            'imagen'=> 'ad1.jpg',
+            'lugar'=> 'inicio'
+        ]);
+
     }
 }

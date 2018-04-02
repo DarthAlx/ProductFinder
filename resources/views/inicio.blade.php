@@ -37,7 +37,7 @@ $items=Cart::content();
       </div> 
       <p>&nbsp;</p>
       <div class="anuncio">
-        <img src="img/ad1.jpg" alt="" class="img-responsive">
+        <img src="{{url('/uploads/ads')}}/{{$ad->imagen}}"  class="img-responsive">
       </div>
       <p>&nbsp;</p>
       <div class="container-fluid">

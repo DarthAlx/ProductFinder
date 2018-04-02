@@ -58,6 +58,7 @@
 							
 							<td>
 								<a class="waves-effect waves-light btn" href="#"><i class="fa fa-search-plus"></i></a>
+								<a class="waves-effect waves-light btn  modal-trigger " href="#mensaje{{$usuario->id}}"><i class="fa fa-envelope"></i></a>
 								<a class="waves-effect waves-light btn red" href="#"><i class="fa fa-times-circle"></i></a>
 									
 							</td>	
@@ -133,6 +134,48 @@
 
 
 
+  <!-- Modal Structure -->
+  <div id="mensaje{{$usuario->id}}" class="modal">
+	<form action="{{ url('/enviar-mensaje') }}" method="post" enctype="multipart/form-data">
+    <div class="modal-content">
+      <h4>Enviar mensaje</h4>
+			{!! csrf_field() !!}
+			<div class="col s12">
+							<div class="row" id="dest">
+							        <div class="input-field col s12">
+							          <input type="text" name="destinatario" value="{{$usuario->email}}" required>
+							          
+							          <label for="autocomplete-input">Destinatario</label>
+							          <p>{{$usuario->name}} ({{$usuario->email}})</p>
+							        </div>
+							  </div>
+							  <div class="row">
+							        <div class="input-field col s12">
+							          <input type="text" id="asunto" name="asunto" id="asunto" required>
+							          
+							          <label for="asunto">Asunto</label>
+							        </div>
+							  </div>
+							  <div class="row">
+						        <div class="input-field col s12">
+						          <textarea id="msg" name="msg" class="materialize-textarea" required>{{old('msg')}}</textarea>
+						          <label for="msg">Mensaje</label>
+						        </div>
+						      </div>
+
+						      <div class="row">
+						      	<div class="text-center col s12" style="margin-left: auto;">
+									<button type="submit" class="btn btn-primary right waves-effect waves-light">Enviar <i class="fa fa-paper-plane"></i></button>
+								</div>  
+								</div>
+
+						       
+					      </div>
+	        <p>&nbsp;</p><p>&nbsp;</p>
+    </div>
+
+    </form>
+  </div>
 
 
 

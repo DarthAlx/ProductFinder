@@ -178,8 +178,9 @@ Route::get('/', function () {
             );
         }
         $categorias=App\Categoria::orderBy('nombre','asc')->get();
+        $ad=App\Ad::where('lugar','inicio')->first();
 
-    return view('inicio', ['busquedas'=>$busquedasjson,'tendencias'=>$tendenciasarray,'tops'=>$destacados,'categorias'=>$categorias]);
+    return view('inicio', ['busquedas'=>$busquedasjson,'tendencias'=>$tendenciasarray,'tops'=>$destacados,'categorias'=>$categorias,'ad'=>$ad]);
 });
 
 
@@ -278,5 +279,12 @@ Route::group(['middleware' => 'admin'], function(){
   Route::post('agregar-tendencia', 'TendenciaController@store');
   Route::delete('eliminar-tendencia', 'TendenciaController@destroy');
 
+  Route::get('/ads', function () {
+    $ads=App\Ad::all();
+      return view('admin.ads', ['ads'=>$ads]);
+  });
+  Route::post('actualizar-ad', 'AdController@update');
+
+  Route::post('enviar-mensaje', 'MensajeController@send');
 
 });
