@@ -23,19 +23,10 @@ class MensajeController extends Controller
                     $m->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
                     $m->to($destinatario->email, $destinatario->name)->subject($asunto);
                 });
-
-
-	    		if ($mensaje->save()) {
 	    		Session::flash('mensaje', 'Mensaje enviado correctamente.');
 		        Session::flash('class', 'success');
 		        return redirect()->intended(url()->previous())->withInput();
-		    	}
-		    	else
-		    	{
-		    		Session::flash('mensaje', 'No se pudo enviar el mensaje, intentalo nuevamente.');
-			        Session::flash('class', 'danger');
-			        return redirect()->intended(url()->previous())->withInput();
-		    	}
+
 	    	}
 	    	else{
 	    		Session::flash('mensaje', 'No se puede encontrar al destinatario.');
