@@ -54,8 +54,8 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
         <header>
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-2">
-                <a href="{{url('/')}}"><img src="{{url('img/product-finder.png')}}" alt="logo" class="img-responsive"></a>
+              <div class="col-md-2 col-xs-6 col-sm-3">
+                <a href="{{url('/')}}"><img src="{{url('img/product-finder.png')}}" alt="logo" class="img-responsive logomain"></a>
               </div>
               <div class="col-md-10">
                 <nav class="navbar navbar-default navbar-static navegacion" style="background: transparent; border: 0; margin-top: 1rem;">
@@ -79,6 +79,8 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
                   <?php
                   $arraycat=array();
                   $arrayslug=array();
+                  $countcat=$categorias->count();
+                  $division=round($countcat/5, 0, PHP_ROUND_HALF_UP);
                   foreach($categorias as $categoria){
                      
                       $arraycat[]=$categoria->nombre;
@@ -88,7 +90,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
                    ?>
                   <ul class="dropdown-menu dropdown-menu-large row">
-                    @for ($i=0; $i < 4 ; $i++)
+                    @for ($i=0; $i < $division ; $i++)
                     <li class="col-sm-3">
                       <ul>
                         <!--li class="dropdown-header">Glyphicons</li-->

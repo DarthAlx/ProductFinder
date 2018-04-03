@@ -1,6 +1,90 @@
 @media (max-width: 768px) {
+	.price {
+		font-size: 1.5rem;
+	}
+	#search p {
+    font-size: 2rem;
+	}
+	#search{
+		height: 50vh !important;
+	}
+	#search input[type="search"] {
+	    width: 80vw;
+	    font-size: 1.5rem;
+	}
+	.navbar-collapse.js-navbar-collapse.collapse.in{
+		background: #fff;
+	}
+	.navbar-default .navbar-nav > li > a {
+    	color: #777 !important;
+	}
+	nav.navegacion ul a, nav.navegacion ul a:hover, nav.navegacion ul a:focus {
+    	color: #777 !important;
+	}
+	nav ul li{
+		display: block;
+    	width: 100%;
+	}
+	.dropdown-toggle::after {
+	    border-top: .4em solid;
+	    border-right: .4em solid transparent;
+	    border-left: .4em solid transparent;
+	}
+	ul.dropdown-menu.dropdown-menu-large.row {
+    	margin: 0;
+	}
+	.navbar-toggle {
+	    background-color: #ccc;
+	}
+	.info .info-item {
+    	padding: 10px 15px;
+	}
+	.titlemain {
+    	padding: 50px 0;
+	}
+	.titleinner h1{
+		font-size: 1.8rem;
+	}
+	.logomain{
+		    max-width: 170px;
+	}
+	.collapsible {
+	    border: 0;
+ 		box-shadow: none;
+	}
+	.collapsible-header {
+    	border-bottom: 1px solid #9e9e9e;
+	}
+	input#buscador {
+	    width: 100%;
+	    margin-left: 0;
+	}
+	.input-field .prefix {
+    	position: relative;
+    	width: 1rem;
+	}
+
+
+
 }
 @media (min-width: 768px) {
+	#search p {
+    font-size: 2.5rem;
+	}
+	#search{
+		height: 60vh !important;
+	}
+	.navbar-collapse ul li a{
+		font-size: 1.3rem
+	}
+	.info .info-item {
+    	padding: 20px 15px;
+	}
+	.titleinner h1{
+		font-size: 3rem;
+	}
+
+	
 }
 @media (min-width: 992px) {
 	ul.dropdown-menu.dropdown-menu-large.row {
@@ -11,6 +95,30 @@
     text-align: center !important;
     margin: 0 auto;
 	}
+	.price {
+		font-size: 1.3rem;
+	}
+	#search p {
+    font-size: 3rem;
+	}
+	#search{
+		height: 100vh !important;
+	}
+	.navbar-collapse ul li a{
+		font-size: 1rem
+	}
+	.info .info-item {
+    	padding: 80px 15px;
+ 	}
+ 	.titleinner h1{
+		font-size: 4.2rem;
+	}
 }
 @media (min-width: 1200px) {
+	.price {
+		font-size: 1.8rem;
+	}
+	#search p {
+    font-size: 4.2rem;
+	}
 }

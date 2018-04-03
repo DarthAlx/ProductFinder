@@ -128,7 +128,7 @@ $items=Cart::content();
                             </div>
                           </div>
                           <div class="name">
-                            <b>{{str_limit($producto['nombre'], $limit = 22, $end = '...')}}</b>
+                            <b>{{str_limit($producto['nombre'], $limit = 17, $end = '...')}}</b>
                           </div>
                           <div class="pricefrom">
                             <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
@@ -247,7 +247,7 @@ $items=Cart::content();
                             </div>
                           </div>
                           <div class="name">
-                            <b>{{str_limit($producto['nombre'], $limit = 22, $end = '...')}}</b>
+                            <b>{{str_limit($producto['nombre'], $limit = 17, $end = '...')}}</b>
                           </div>
                           <div class="pricefrom">
                             <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
@@ -490,19 +490,19 @@ $items=Cart::content();
 
       <div class="container info">
         <div class="row">
-          <div class="col-md-3 info-item">
+          <div class="col-md-3 col-sm-6 info-item">
             <div class="text-center">
               <i class="fa fa-tags fa-3x"></i>
             </div>
             <p><b>Tu comparador de precios</b><br>Product Finder es uno de los comparadores de precios más destacados de México con más de 81 millones de ofertas de entre más de 11.500 tiendas online. El gran número de tiendas y ofertas aumenta las posibilidades de encontrar en idealo el precio más barato. Además, el catálogo de productos y variantes disponibles en Product Finder es muy amplio.</p>
           </div>
-            <div class="col-md-3 info-item">
+            <div class="col-md-3 col-sm-6 info-item">
             <div class="text-center">
               <i class="fa fa-comment fa-3x"></i>
             </div>
             <p><b>Comparar precios por resultados de análisis</b><br>En sus 15 años de historia, idealo ha recibido buenas valoraciones en repetidas ocasiones y ha sido premiado en diferentes comparativas. En 2014, idealo fue certificado como el comparador de precios más eficiente en cuanto a calidad, actualización y protección de datos por la TÜV Saarland, la organización líder en análisis de calidad en Alemania.</p>
           </div>
-          <div class="col-md-3 info-item">
+          <div class="col-md-3 col-sm-6 info-item">
             <div class="text-center">
               <i class="fa fa-certificate fa-3x"></i>
             </div>
@@ -510,7 +510,7 @@ $items=Cart::content();
 
 Más de 600 trabajadores se encargan de actualizar la información acerca de los productos, notificar a los usuarios cuando un producto alcanza el precio deseado y de que las opciones de filtrado sean las más amplias que se pueden encontrar en un comparador de precios.</p>
           </div>
-          <div class="col-md-3 info-item">
+          <div class="col-md-3 col-sm-6 info-item">
             <div class="text-center">
               <i class="fa fa-trophy fa-3x"></i>
             </div>
@@ -570,16 +570,16 @@ $(document).ready(function() {
     {
       breakpoint: 768,
       settings: {
-        arrows: false,
+        arrows: true,
         centerMode: true,
         centerPadding: '40px',
-        slidesToShow: 3
+        slidesToShow: 2
       }
     },
     {
       breakpoint: 480,
       settings: {
-        arrows: false,
+        arrows: true,
         centerMode: true,
         centerPadding: '40px',
         slidesToShow: 1
@@ -599,16 +599,16 @@ $(document).ready(function() {
     {
       breakpoint: 768,
       settings: {
-        arrows: false,
+        arrows: true,
         centerMode: false,
         centerPadding: '40px',
-        slidesToShow: 3
+        slidesToShow: 2
       }
     },
     {
       breakpoint: 480,
       settings: {
-        arrows: false,
+        arrows: true,
         centerMode: false,
         centerPadding: '40px',
         slidesToShow: 1
