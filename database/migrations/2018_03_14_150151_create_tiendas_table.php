@@ -27,6 +27,14 @@ class CreateTiendasTable extends Migration
             $table->string('selectprecio_especial')->nullable();
             $table->string('selectvaloracion');
             $table->longText('selectdesc');
+
+            $table->string('productnombre');
+            $table->string('productprecio');
+            $table->string('productprecioespecial');
+            $table->string('productimagen');
+            $table->string('productgaleria');
+            $table->string('productpoplet');
+            $table->string('productdesc');
             $table->bigInteger('clicks')->default(0);
             $table->timestamps();
         });

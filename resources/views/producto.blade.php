@@ -104,7 +104,8 @@ $items=Cart::content();
   $precio = $producto['precio'];
   $imagen = $producto['imagen'];
   $tienda = $producto['tienda'];
-  $url = $producto['enlacetienda']
+  $url = $producto['enlacetienda'];
+  $tiendax=App\Tienda::where('nombre',$tienda)->first();
 @endphp
       <div class="container">
         <div class="row">
@@ -112,8 +113,27 @@ $items=Cart::content();
           <div class="col-md-12">
 
                   <div class="row-fluid">
+
                    <div class="col-md-5">
-                     <img src="{{$producto['imagen']}}" class="img-responsive" alt="">
+                    <div class="row">
+                      <div class="col-md-4">
+                        @php
+                        $crawler = Goutte::request('GET', $enlace);
+                        $crawler->filter($tiendax->productpoplet)->each(function ($node) {
+                        if(trim($node->attr('src'))!=""){
+                        @endphp
+                          <img src="{{$node->attr('src')}}" class="img-responsive"><br>
+                        @php
+                        }
+                        });
+
+                        @endphp
+                      </div>
+                      <div class="col-md-8">
+                        <img src="{{$producto['imagen']}}" class="img-responsive" alt="">
+                      </div>
+                    </div>
+                     
                    </div> 
                    <div class="col-md-7">
                     <div class="favorito">

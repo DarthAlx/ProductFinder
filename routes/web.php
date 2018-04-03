@@ -133,13 +133,17 @@ Route::get('/', function () {
               $agregar=false;
             }
 
-            
+            if(str_contains($enlace, $tienda->url)){
+              $enlacecompleto=$enlace;
+            }else{
+              $enlacecompleto=$tienda->url.$enlace;
+            }
 
         if ($agregar) {
           $precio=App\Http\Controllers\SearchController::precio($precio, $tienda->nombre);
           $productos[]=array(
             'nombre'=>trim($nombre),
-            'enlace'=>$tienda->url.$enlace,
+            'enlace'=>$enlacecompleto,
             'imagen'=>$imagen,
             'precio'=>$precio,
             'tienda'=>$tienda->nombre,
@@ -254,6 +258,15 @@ Route::group(['middleware' => 'admin'], function(){
 			$busquedastotales=App\Busqueda::whereBetween('created_at', array($from, $to))->sum('contador');
       $categoriac=App\Categoria::whereBetween('created_at', array($from, $to))->max('contador');
       $categoria=App\Categoria::whereBetween('created_at', array($from, $to))->where('contador',$categoriac)->first();
+      
+      if ($categoriac&&$categoria){
+      $categoria=$categoria->nombre;
+      }
+
+       else{
+        $categoriac="";
+        $categoria="";
+      }
 
 
 			$usuarios=App\User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->count();
@@ -265,7 +278,7 @@ Route::group(['middleware' => 'admin'], function(){
 			
 				
 		
-	    	return view('admin', ['usuarios'=>$usuarios,'mujeres'=>$mujeres,'hombres'=>$hombres,'from'=>$from,'to'=>$to,'categoria'=>$categoria->nombre,'categoriac'=>$categoriac,'busquedas'=>$busquedas,'busquedastotales'=>$busquedastotales]);
+	    	return view('admin', ['usuarios'=>$usuarios,'mujeres'=>$mujeres,'hombres'=>$hombres,'from'=>$from,'to'=>$to,'categoria'=>$categoria,'categoriac'=>$categoriac,'busquedas'=>$busquedas,'busquedastotales'=>$busquedastotales]);
 		});
 
 	Route::post('admin', 'HomeController@admin');
@@ -306,5 +319,31 @@ Route::group(['middleware' => 'admin'], function(){
   });
 
   Route::post('cambiar-contrasena', 'UserController@changepass');
+  Route::get('/destacados', function () {
+    $destacados=App\Top::orderBy('orden','asc')->get();
+    
+      return view('admin.destacados', ['destacados'=>$destacados]);
+      
+  });
+
+  Route::get('/agregar-destacado', function () {
+    $tiendas=App\Tienda::all();
+    
+      return view('admin.top', ['tiendas'=>$tiendas]);
+      
+  });
+
+  Route::post('agregar-destacado', 'ProductoController@store');
+  Route::get('/actualizar-destacado/{id}', function ($id) {
+    $tiendas=App\Tienda::all();
+    $destacado=App\Top::find($id);
+    
+      return view('admin.destacado', ['tiendas'=>$tiendas,'destacado'=>$destacado]);
+      
+  });
+  Route::post('actualizar-destacado', 'ProductoController@update');
+
+  Route::post('traerproducto', 'ProductoController@traerproducto');
+  Route::get('traerproducto', 'ProductoController@traerproducto');
 
 });

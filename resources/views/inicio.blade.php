@@ -162,7 +162,7 @@ $items=Cart::content();
 
         <div class="row">
           <div class="col-md-12">
-            <h5 style="margin: 0;">Los más buscados</h5>
+            <h5 style="margin: 0;">Productos destacados</h5>
             <hr>
           </div>
         </div>
@@ -174,7 +174,7 @@ $items=Cart::content();
               @foreach($tops as $producto)
 
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$topscount}}" style="display: none;">
+                      <form action="{{url('/producto')}}" method="post" id="tendenciat{{$topscount}}" style="display: none;">
                         {{ csrf_field() }}
                         @php
                           $nombre = $producto['nombre'];
@@ -238,7 +238,7 @@ $items=Cart::content();
                           
                               
                         </div>
-                        <a style="cursor: pointer;" onclick="document.getElementById('tendencia{{$topscount}}').submit()">
+                        <a style="cursor: pointer;" onclick="document.getElementById('tendenciat{{$topscount}}').submit()">
                           <div class="img-container text-center">
                             
                             <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
@@ -268,7 +268,7 @@ $items=Cart::content();
         </div>
       </div> 
 
-      <div class="main-stores">
+      <!--div class="main-stores">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
@@ -483,7 +483,7 @@ $items=Cart::content();
             </div>
           </div>
         </div>
-      </div>
+      </div-->
 
 
 

@@ -1183,3 +1183,8 @@ iframe:last-child {
         color: #fff;
     font-weight: 600;
 }
+
+.materialboxed {
+    opacity: .8;
+    width: 100% !important;
+}

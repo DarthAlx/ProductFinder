@@ -59,13 +59,18 @@ class SearchController extends Controller
 			      	$agregar=false;
 			      }
 
-			      
+			      if(str_contains($enlace, $tienda->url)){
+		              $enlacecompleto=$enlace;
+		            }else{
+		              $enlacecompleto=$tienda->url.$enlace;
+		            }
+
 
 			 	if ($agregar) {
 			 		$precio=$this->precio($precio, $tienda->nombre);
 			 		$productos[]=array(
 			    	'nombre'=>trim($nombre),
-			    	'enlace'=>$tienda->url.$enlace,
+			    	'enlace'=>$enlacecompleto,
 			    	'imagen'=>$imagen,
 			    	'precio'=>$precio,
 			    	'tienda'=>$tienda->nombre,
@@ -293,12 +298,17 @@ class SearchController extends Controller
 			      }
 
 			      
+if(str_contains($enlace, $tienda->url)){
+		              $enlacecompleto=$enlace;
+		            }else{
+		              $enlacecompleto=$tienda->url.$enlace;
+		            }
 
 			 	if ($agregar) {
 			 		$precio=$this->precio($precio, $tienda->nombre);
 			 		$productos[]=array(
 			    	'nombre'=>trim($nombre),
-			    	'enlace'=>$tienda->url.$enlace,
+			    	'enlace'=>$enlacecompleto,
 			    	'imagen'=>$imagen,
 			    	'precio'=>$precio,
 			    	'tienda'=>$tienda->nombre,
@@ -375,6 +385,7 @@ class SearchController extends Controller
 
 
 	public function producto(Request $request){
+	
 
 		$tienda=Tienda::where('nombre',$request->tienda)->first();
 		$crawler = Goutte::request('GET', $request->enlace);
@@ -450,13 +461,18 @@ class SearchController extends Controller
 			      	$agregar=false;
 			      }
 
-			      
+			      if(str_contains($enlace, $tiendax->url)){
+		              $enlacecompleto=$enlace;
+		            }else{
+		              $enlacecompleto=$tiendax->url.$enlace;
+		            }
+
 
 			 	if ($agregar) {
 			 		$precio=$this->precio($precio, $tiendax->nombre);
 			 		$productos[]=array(
 			    	'nombre'=>trim($nombre),
-			    	'enlace'=>$tiendax->url.$enlace,
+			    	'enlace'=>$enlacecompleto,
 			    	'imagen'=>$imagen,
 			    	'precio'=>$precio,
 			    	'tienda'=>$tiendax->nombre,
@@ -501,6 +517,22 @@ class SearchController extends Controller
 			$precio=str_replace(',', '', $precio);
 			$precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
 
+    	}
+    	if ($tienda=="Best Buy") {
+    		$precio=$precio.".00";
+			$precio=str_replace('$', '',$precio);
+			$precio=str_replace(' ', '',$precio);
+			$precio=ltrim($precio, "\n");
+			$precio=str_replace(',', '', $precio);
+			$precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
+
+    	}
+    	else{
+    		$precio=str_replace('$', '',$precio);
+			$precio=str_replace(' ', '',$precio);
+			$precio=ltrim($precio, "\n");
+			$precio=str_replace(',', '', $precio);
+			$precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
     	}
 
     	return $precio;
