@@ -27,8 +27,9 @@
                   <li><a href="{{url('/tendencias')}}" class="waves-effect"><i class="fa fa-line-chart" aria-hidden="true"></i> Tendencias</a></li>
                   <li><a href="{{url('/categorias')}}" class="waves-effect"><i class="fa fa-bookmark" aria-hidden="true"></i> Categorías</a></li>
                   <li><a href="{{url('/ads')}}" class="waves-effect"><i class="fa fa-tag" aria-hidden="true"></i> Anuncios</a></li>
-                
-                <li><a href="{{url('/crm')}}" class="waves-effect"><i class="fa fa-user" aria-hidden="true"></i> CRM</a></li>
+                  <li><a href="{{url('/destacados')}}" class="waves-effect"><i class="fa fa-star" aria-hidden="true"></i> Destacados</a></li>
+
+                  <li><a href="{{url('/crm')}}" class="waves-effect"><i class="fa fa-user" aria-hidden="true"></i> CRM</a></li>
             </ul>
         </nav>
 
@@ -47,7 +48,7 @@
                         </div>
 
                         <ul id='dropdown1' class='dropdown-content'>
-                            <li><a class="dropdown-item" href="{{url('/salir')}}">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item" href="{{url('/salir')}}">Salir</a></li>
                             
                           </ul>
                     </div>

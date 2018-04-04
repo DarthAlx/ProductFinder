@@ -189,7 +189,14 @@ $items=Cart::content();
                         <p>lo encuentras desde</p>
                         <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
                       </div>
-                     <p>{{$producto['descripcion']}}</p>
+
+                     <p><b>Descripción:</b><br>
+                      @if($producto['descripcion']=="No hay datos disponibles.")
+                      <a href="{{$producto['enlace']}}" target="_blank">Ver en la web</a>
+                      @else
+                     {{$producto['descripcion']}}
+                     @endif
+                      </p>
                      <a href="{{$producto['enlacetienda']}}" target="_blank">
                         <div class="from">
                           <p>{{$producto['tienda']}}</p>

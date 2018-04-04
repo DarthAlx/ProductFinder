@@ -29,13 +29,13 @@ class TiendaSeeder extends Seeder
             'productprecioespecial'=>'#price .precio-promocion span',
             'productimagen'=>'#img-viewer',
             'productgaleria'=>'#listBeforeEtalage',
-            'productpoplet'=>'li img',
+            'productpoplet'=>'.grid-container div div div div div ul li img',
             'productdesc'=>'#intro p',
         ]);
 
 
         DB::table('tiendas')->insert([
-            'nombre'=> 'Palacio de hierro',
+            'nombre'=> 'Palacio de Hierro',
             'url'=> 'https://www.elpalaciodehierro.com',
             'urlbusqueda'=> 'https://www.elpalaciodehierro.com/catalogsearch/result/?q=',
             'selectenlace'=> '.enlace-mobile',
@@ -121,6 +121,27 @@ class TiendaSeeder extends Seeder
             'productpoplet'=>'.gallery-trigger.ch-zoom-trigger.ch-shownby-pointerenter img',
             'productdesc'=>'.item-description__text',
         ]);*/
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Sanborns',
+            'url'=> 'http://www.sanborns.com.mx',
+            'urlbusqueda'=> 'http://buscador.sanborns.com.mx/search?client=Sanborns&output=xml_no_dtd&proxystylesheet=Sanborns&sort=date:D:L:d1&oe=UTF-8&ie=UTF-8&ud=1&exclude_apps=1&site=Sanborns&ulang=es&access=p&entqr=3&entqrm=0&filter=0&getfields=*&q=',
+            'selectenlace'=> 'a[ctype="c"]',
+            'selectitem'=> 'table',
+            'selectnombre'=> '.Pay_pal',
+            'selectimagen'=> 'a[ctype="c"] img',
+            'attrimagen'=> 'src',
+            'selectprecio'=> '.Pay_pal1',
+            'selectprecio_especial'=>'.Pay_pal1',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'#verCompleto',
+            'productnombre'=>'.productMainTitle h1',
+            'productprecio'=>'.total',
+            'productprecioespecial'=>'.total',
+            'productimagen'=>'.zoomOut',
+            'productgaleria'=>'.bx-slide',
+            'productpoplet'=>'.outborder img',
+            'productdesc'=>'#verCompleto',
+        ]);
 
 
 

@@ -498,6 +498,33 @@ if(str_contains($enlace, $tienda->url)){
 	}
 
 
+
+
+    public function addtofavorite(Request $request){
+    	if (Auth::guest()) {
+    		echo "guest";
+
+    	}
+    	else{
+    		$id = $request->id;
+    		Cart::restore(Auth::user()->id);
+	    	$item=Cart::add($id,$request->nombre,1,$request->precio, ['imagen'=>$request->imagen, 'enlace'=>$request->enlace, 'tienda' => $request->tienda,'url' => $request->url]);
+	    	Cart::store(Auth::user()->id);
+	    	echo $id.",".$item->rowId;
+
+    	}
+    	
+    }
+
+    public function removefromfavorite(Request $request){
+    	$id = $request->id;
+    	Cart::restore(Auth::user()->id);
+    	Cart::remove($request->rowId);
+    	Cart::store(Auth::user()->id);
+    	echo $id;
+    }
+
+
     public static function precio($precio, $tienda){
 
     	if ($tienda=="Liverpool") {
@@ -510,7 +537,7 @@ if(str_contains($enlace, $tienda->url)){
 			
     	}
 
-    	if ($tienda=="Palacio de hierro") {
+    	if ($tienda=="Palacio de Hierro") {
 			$precio=str_replace('$', '',$precio);
 			$precio=str_replace(' ', '',$precio);
 			$precio=ltrim($precio, "\n");
@@ -537,29 +564,5 @@ if(str_contains($enlace, $tienda->url)){
 
     	return $precio;
 
-    }
-
-    public function addtofavorite(Request $request){
-    	if (Auth::guest()) {
-    		echo "guest";
-
-    	}
-    	else{
-    		$id = $request->id;
-    		Cart::restore(Auth::user()->id);
-	    	$item=Cart::add($id,$request->nombre,1,$request->precio, ['imagen'=>$request->imagen, 'enlace'=>$request->enlace, 'tienda' => $request->tienda,'url' => $request->url]);
-	    	Cart::store(Auth::user()->id);
-	    	echo $id.",".$item->rowId;
-
-    	}
-    	
-    }
-
-    public function removefromfavorite(Request $request){
-    	$id = $request->id;
-    	Cart::restore(Auth::user()->id);
-    	Cart::remove($request->rowId);
-    	Cart::store(Auth::user()->id);
-    	echo $id;
     }
 }

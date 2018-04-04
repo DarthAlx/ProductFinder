@@ -27,11 +27,11 @@
 							{!! csrf_field() !!}
 							<div class="row">
 								<div class="input-field col-md-5">
-						          <input id="enlace" name="enlace" type="text" class="validate" value="{{old('enlace')}}" required>
+						          <input name="enlace" type="text" class="validate" value="{{old('enlace')}}" required>
 						          <label for="enlace">Dirección de producto</label>
 						        </div>
 						        <div class="input-field col-md-4">
-						          <select id="tienda" name="tienda" class="browser-default select-default" required>
+						          <select name="tienda" class="browser-default select-default" required>
 						          	<option value="">Tienda</option>
 			                        @foreach($tiendas as $tienda)
 										<option value="{{$tienda->id}}">{{$tienda->nombre}}</option>
