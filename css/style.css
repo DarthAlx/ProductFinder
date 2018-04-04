@@ -1174,7 +1174,7 @@ iframe:last-child {
 .favorito{
         position: absolute;
     right: 0;
-        z-index: 99999999;
+        z-index: 1;
 }
 .favorito a{
     color: #C42854 !important;
@@ -1187,4 +1187,11 @@ iframe:last-child {
 .materialboxed {
     opacity: .8;
     width: 100% !important;
+}
+.navbar-header{
+    z-index: 1;
+}
+.logomain{
+    z-index: 9;
+        position: relative;
 }

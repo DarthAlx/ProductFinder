@@ -116,7 +116,7 @@ $items=Cart::content();
 
                    <div class="col-md-5">
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-4 col-xs-4">
                         @php
                         $crawler = Goutte::request('GET', $enlace);
                         $crawler->filter($tiendax->productpoplet)->each(function ($node) {
@@ -129,7 +129,7 @@ $items=Cart::content();
 
                         @endphp
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-8 col-xs-8">
                         <img src="{{$producto['imagen']}}" class="img-responsive" alt="">
                       </div>
                     </div>
@@ -357,7 +357,7 @@ $items=Cart::content();
     {
       breakpoint: 768,
       settings: {
-        arrows: false,
+        arrows: true,
         centerMode: true,
         centerPadding: '40px',
         slidesToShow: 3
@@ -366,7 +366,7 @@ $items=Cart::content();
     {
       breakpoint: 480,
       settings: {
-        arrows: false,
+        arrows: true,
         centerMode: true,
         centerPadding: '40px',
         slidesToShow: 1

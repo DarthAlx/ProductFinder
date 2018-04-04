@@ -45,6 +45,7 @@ $items=Cart::content();
                   <h4>Aún no has agregado favoritos.</h4>
           </div>
         </div>
+      </div>
 
 
 

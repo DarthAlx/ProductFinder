@@ -215,7 +215,7 @@ $items=Cart::content();
                   </div><!--/row-fluid-->
           </div>
         </div>
-
+</div>
 
 
 

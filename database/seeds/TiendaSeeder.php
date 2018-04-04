@@ -100,7 +100,7 @@ class TiendaSeeder extends Seeder
             'productdesc'=>'.descriptionContainer',
         ]);
 
-        DB::table('tiendas')->insert([
+        /*DB::table('tiendas')->insert([
             'nombre'=> 'Mercadolibre',
             'url'=> 'https://mercadolibre.com.mx/',
             'urlbusqueda'=> 'https://listado.mercadolibre.com.mx/',
@@ -120,7 +120,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'.gallery-trigger.ch-zoom-trigger.ch-shownby-pointerenter img',
             'productpoplet'=>'.gallery-trigger.ch-zoom-trigger.ch-shownby-pointerenter img',
             'productdesc'=>'.item-description__text',
-        ]);
+        ]);*/
 
 
 

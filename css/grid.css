@@ -63,6 +63,9 @@
     	position: relative;
     	width: 1rem;
 	}
+	.favorito{
+		    margin-top: -20px;
+	}
 
 
 
@@ -82,6 +85,15 @@
 	}
 	.titleinner h1{
 		font-size: 3rem;
+	}
+	.price {
+		font-size: 2rem;
+	}
+	.name {
+    	font-size: 1.3rem;
+	}
+	.from {
+    font-size: 1.3rem;
 	}
 
 	
@@ -112,6 +124,15 @@
  	}
  	.titleinner h1{
 		font-size: 4.2rem;
+	}
+	.price {
+		font-size: 1.3rem;
+	}
+	.name {
+    	font-size: 0.9rem;
+	}
+	.from {
+    	font-size: 1rem;
 	}
 }
 @media (min-width: 1200px) {

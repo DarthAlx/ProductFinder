@@ -21,7 +21,7 @@ $items=Cart::content();
 
 
       <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-4">
             <nav class="navbar navbar-default navbar-static hidden-xs" style="background: transparent; border: 0; margin-top: 1rem;">
               <div class="navbar-header">
               <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
@@ -96,7 +96,7 @@ $items=Cart::content();
 
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-4">
                 <form action="{{url('/buscar')}}" method="post" style="width: 100%;">
                   {{ csrf_field() }}
 
@@ -107,7 +107,7 @@ $items=Cart::content();
                   </form>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-4">
                   <form id="ordenformmini" action="{{url('/buscar')}}" method="post" style="width: 100%;">
                     {{ csrf_field() }}
                     <input name="busqueda" type="hidden" value="{{$busqueda}}">
@@ -215,7 +215,7 @@ $items=Cart::content();
                             </div>
                           </div>
                           <div class="name">
-                            <b>{{str_limit($producto['nombre'], $limit = 22, $end = '...')}}</b>
+                            <b>{{str_limit($producto['nombre'], $limit = 17, $end = '...')}}</b>
                           </div>
                           <div class="pricefrom">
                             <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
