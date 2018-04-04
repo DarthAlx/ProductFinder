@@ -47,6 +47,7 @@
 	}
 	.logomain{
 		    max-width: 150px;
+		        margin: 0 auto;
 	}
 	.collapsible {
 	    border: 0;
@@ -68,6 +69,20 @@
 	}
 	#search form{
 		    margin-top: 100px;
+	}
+	.button-collapse{
+		background: #C42854;
+	    color: #fff;
+	    padding: 10px;
+	    line-height: 1 !important;
+	    position: absolute !important;
+    	left: 0;
+	}
+	.fa-bars{
+		    line-height: 1.4;
+	}
+	nav a.button-collapse {
+    	max-height: 80px;
 	}
 
 

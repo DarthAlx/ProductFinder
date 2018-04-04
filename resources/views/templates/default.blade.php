@@ -54,11 +54,11 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
         <header>
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-2 col-xs-6 col-sm-3">
+              <div class="col-md-2 col-xs-6 col-xs-offset-3 col-sm-offset-0 col-sm-3">
                 <a href="{{url('/')}}"><img src="{{url('img/product-finder.png')}}" alt="logo" class="img-responsive logomain"></a>
               </div>
               <div class="col-md-10">
-                <nav class="navbar navbar-default navbar-static navegacion" style="background: transparent; border: 0; margin-top: 1rem;">
+                <nav class="navbar navbar-default navbar-static navegacion hidden-xs" style="background: transparent; border: 0; margin-top: 1rem;">
               <div class="navbar-header">
               <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -108,12 +108,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
                         <li><a href="{{url('/entrar')}}">Entrar</a></li>
                         <li><a href="{{url('/registro')}}">Registrar</a></li>
                       @else
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle dropdown-button" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi cuenta <span class="caret"></span></a>
-                        <ul class="dropdown-menu"> 
-                          <li><a href="{{url('/salir')}}">Salir</a></li>
-                        </ul>
-                      </li>
+                      <li><a href="{{url('/salir')}}">Salir</a></li>
                       @endif
               </ul>
             
@@ -125,6 +120,33 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
               
             </div><!-- /.nav-collapse -->
           </nav>
+
+
+          <ul id="categorias" class="dropdown-content">
+              @for ($i=0; $i < count($arraycat) ; $i++)
+                  <li><a href="{{url('/buscar/')}}/{{$arrayslug[$i] or ''}}">{{$arraycat[$i] or ''}}</a></li>
+              @endfor
+          </ul>
+
+          <nav class="visible-xs">
+            <div class="nav-wrapper">
+              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars" aria-hidden="true" style="line-height: 1.4"></i></a>
+              <ul class="side-nav" id="mobile-demo">
+                <li><a href="{{url('/')}}">Inicio</a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="categorias">Categorías</a></li>
+                <li><a href="{{url('/favoritos')}}">Favoritos</a></li>
+                @if (Auth::guest())
+                  <li><a href="{{url('/entrar')}}">Entrar</a></li>
+                  <li><a href="{{url('/registro')}}">Registrar</a></li>
+                @else
+                  <li><a href="{{url('/salir')}}">Salir</a></li>
+                @endif
+              </ul>
+            </div>
+          </nav>
+
+
+
               </div>
             </div>
 
