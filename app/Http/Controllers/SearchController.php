@@ -35,7 +35,7 @@ if($contador<10){
 
 
 			      if($node->filter($tienda->selectnombre)->count() > 0){
-			        if($nombre=$node->filter($tienda->selectnombre)->text()!=""){
+			        if($node->filter($tienda->selectnombre)->text()!=""){
 		                $nombre=$node->filter($tienda->selectnombre)->text();
 		              }
 		              else{
@@ -280,7 +280,7 @@ if($contador<10){
 
 
 			      if($node->filter($tienda->selectnombre)->count() > 0){
-			        if($nombre=$node->filter($tienda->selectnombre)->text()!=""){
+			        if($node->filter($tienda->selectnombre)->text()!=""){
 		                $nombre=$node->filter($tienda->selectnombre)->text();
 		              }
 		              else{
@@ -450,8 +450,8 @@ if($contador<5){
 
 
 			      if($node->filter($tiendax->selectnombre)->count() > 0){
-			        if($nombre=$node->filter($tienda->selectnombre)->text()!=""){
-		                $nombre=$node->filter($tienda->selectnombre)->text();
+			        if($node->filter($tiendax->selectnombre)->text()!=""){
+		                $nombre=$node->filter($tiendax->selectnombre)->text();
 		              }
 		              else{
 				      	$agregar=false;

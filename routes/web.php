@@ -109,7 +109,7 @@ Route::get('/', function () {
 
 
             if($node->filter($tienda->selectnombre)->count() > 0){
-              if($nombre=$node->filter($tienda->selectnombre)->text()!=""){
+              if($node->filter($tienda->selectnombre)->text()!=""){
                     $nombre=$node->filter($tienda->selectnombre)->text();
                   }
                   else{
