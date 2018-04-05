@@ -11,6 +11,7 @@ use App\Categoria;
 use Input;
 use Cart;
 use Auth;
+use App\Favorito;
 
 class SearchController extends Controller
 {
@@ -29,12 +30,17 @@ class SearchController extends Controller
 
 			$contador=1;
 			$crawler->filter($tienda->selectitem)->each(function ($node) use (&$tienda,&$productos,&$contador) {
-
+if($contador<10){
 			$agregar=true;
 
 
 			      if($node->filter($tienda->selectnombre)->count() > 0){
-			        $nombre=$node->filter($tienda->selectnombre)->text();
+			        if($nombre=$node->filter($tienda->selectnombre)->text()!=""){
+		                $nombre=$node->filter($tienda->selectnombre)->text();
+		              }
+		              else{
+				      	$agregar=false;
+				      }
 			      }
 			      else{
 			      	$agregar=false;
@@ -82,7 +88,7 @@ class SearchController extends Controller
 			 	}
 			    
 
-
+}//contador
 
 
 			    });
@@ -170,6 +176,7 @@ class SearchController extends Controller
     	$productos=array();
   		$contador=1;
   		Cart::restore(Auth::user()->id);
+  		Cart::store(Auth::user()->id);
   		$items=Cart::content();
   		if (Cart::content()->count()>0){
 
@@ -268,12 +275,17 @@ class SearchController extends Controller
 
 			$contador=1;
 			$crawler->filter($tienda->selectitem)->each(function ($node) use (&$tienda,&$productos,&$contador) {
-
+if($contador<10){
 			$agregar=true;
 
 
 			      if($node->filter($tienda->selectnombre)->count() > 0){
-			        $nombre=$node->filter($tienda->selectnombre)->text();
+			        if($nombre=$node->filter($tienda->selectnombre)->text()!=""){
+		                $nombre=$node->filter($tienda->selectnombre)->text();
+		              }
+		              else{
+				      	$agregar=false;
+				      }
 			      }
 			      else{
 			      	$agregar=false;
@@ -320,7 +332,7 @@ if(str_contains($enlace, $tienda->url)){
 				    $contador++;
 			 	}
 			    
-
+}//contador
 
 
 
@@ -433,12 +445,17 @@ if(str_contains($enlace, $tienda->url)){
 
 			$contador=1;
 			$crawler->filter($tiendax->selectitem)->each(function ($node) use (&$tiendax,&$productos,&$contador) {
-
+if($contador<5){
 			$agregar=true;
 
 
 			      if($node->filter($tiendax->selectnombre)->count() > 0){
-			        $nombre=$node->filter($tiendax->selectnombre)->text();
+			        if($nombre=$node->filter($tienda->selectnombre)->text()!=""){
+		                $nombre=$node->filter($tienda->selectnombre)->text();
+		              }
+		              else{
+				      	$agregar=false;
+				      }
 			      }
 			      else{
 			      	$agregar=false;
@@ -487,7 +504,7 @@ if(str_contains($enlace, $tienda->url)){
 			    
 
 
-
+}//contador
 
 			    });
 		}
@@ -512,6 +529,10 @@ if(str_contains($enlace, $tienda->url)){
     		$id = $request->id;
     		Cart::restore(Auth::user()->id);
 	    	$item=Cart::add($id,$request->nombre,1,$request->precio, ['imagen'=>$request->imagen, 'enlace'=>$request->enlace, 'tienda' => $request->tienda,'url' => $request->url]);
+	    	$favorito=new Favorito($request->all());
+	    	$favorito->user_id=Auth::user()->id;
+	    	$favorito->rowId=$item->rowId;
+	    	$favorito->save();
 	    	Cart::store(Auth::user()->id);
 	    	echo $id.",".$item->rowId;
 
@@ -523,6 +544,8 @@ if(str_contains($enlace, $tienda->url)){
     	$id = $request->id;
     	Cart::restore(Auth::user()->id);
     	Cart::remove($request->rowId);
+    	$favorito=Favorito::where('rowId',$request->rowId)->first();
+    	$favorito->delete();
     	Cart::store(Auth::user()->id);
     	echo $id;
     }
@@ -563,14 +586,46 @@ if(str_contains($enlace, $tienda->url)){
 
     	}
     	if ($tienda=="Best Buy") {
+    		
     		$precio=$precio.".00";
 			$precio=str_replace('$', '',$precio);
 			$precio=str_replace(' ', '',$precio);
 			$precio=ltrim($precio, "\n");
 			$precio=str_replace(',', '', $precio);
 			$precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
+			
 
     	}
+    	if ($tienda=="Coppel") {
+    		
+    		$precio=$precio.".00";
+			$precio=str_replace('$', '',$precio);
+			$precio=str_replace(' ', '',$precio);
+			$precio=ltrim($precio, "\n");
+			$precio=str_replace(',', '', $precio);
+			$precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
+			
+
+    	}
+    	if ($tienda=="Amazon") {
+
+    		if(str_contains($precio, " - ")){
+              $preciod=explode('-',$precio);
+              $precio=$preciod[0];
+            }else{
+              $precio=$precio;
+            }
+    		
+    		$precio=str_replace('$', '',$precio);
+			$precio=str_replace(' ', '',$precio);
+			$precio=ltrim($precio, "\n");
+			$precio=str_replace(',', '', $precio);
+			$precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
+			
+
+    	}
+
+    	
     	else{
     		$precio=str_replace('$', '',$precio);
 			$precio=str_replace(' ', '',$precio);

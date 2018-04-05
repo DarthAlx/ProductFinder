@@ -103,12 +103,18 @@ Route::get('/', function () {
 
       $contador=1;
       $crawler->filter($tienda->selectitem)->each(function ($node) use (&$tienda,&$productos,&$contador) {
+        if($contador<2){
 
       $agregar=true;
 
 
             if($node->filter($tienda->selectnombre)->count() > 0){
-              $nombre=$node->filter($tienda->selectnombre)->text();
+              if($nombre=$node->filter($tienda->selectnombre)->text()!=""){
+                    $nombre=$node->filter($tienda->selectnombre)->text();
+                  }
+                  else{
+                $agregar=false;
+              }
             }
             else{
               $agregar=false;
@@ -156,7 +162,7 @@ Route::get('/', function () {
          
 
 
-
+}//contador
 
 
           });
@@ -236,8 +242,8 @@ Route::get('/productos', function () {
     return view('admin.productos');
 })->middleware('admin');
 
-Route::get('favoritos', 'SearchController@favoritos')->middleware('auth');;
-Route::post('favoritos', 'SearchController@favoritos')->middleware('auth');;
+Route::get('favoritos', 'SearchController@favoritos')->middleware('auth');
+Route::post('favoritos', 'SearchController@favoritos')->middleware('auth');
 
 
 

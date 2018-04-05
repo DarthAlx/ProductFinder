@@ -642,7 +642,7 @@ function addtofavorite(nombre,enlace,precio,imagen,tienda,url,id){
               $('.'+datos[0]+"1").show();
             }
             if (datos[1]!=""){
-              script="<script>$(document).ready(function(){$( '.'+datos[0]+'1' ).click(function() {removefromfavorite(datos[1],datos[0]);});});";
+              script="<script>$(document).ready(function(){$( '."+datos[0]+"1' ).click(function() {removefromfavorite('"+datos[1]+"','"+datos[0]+"');});});";
               $('#'+datos[0]).html(script);
             }
           }

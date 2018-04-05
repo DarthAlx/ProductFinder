@@ -165,6 +165,49 @@ class TiendaSeeder extends Seeder
             'productdesc'=>'.descripcion_larga',
         ]);
 
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Coppel',
+            'url'=> 'https://www.coppel.com',
+            'urlbusqueda'=> 'https://www.coppel.com/SearchDisplay?categoryId=&storeId=12759&catalogId=10001&langId=-5&sType=SimpleSearch&resultCatEntryType=2&showResultsPage=true&searchSource=Q&pageView=&beginIndex=0&pageSize=18&searchTerm=',
+            'selectenlace'=> '.product_name a',
+            'selectitem'=> '.product',
+            'selectnombre'=> '.product_name h2',
+            'selectimagen'=> '.image a img',
+            'attrimagen'=> 'data-original',
+            'selectprecio'=> '.pcontado span[itemprop="price"]',
+            'selectprecio_especial'=>'.pcontado span[itemprop="price"]',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'#desc p',
+            'productnombre'=>'.main_header',
+            'productprecio'=>'.pcontado',
+            'productprecioespecial'=>'.pcontado',
+            'productimagen'=>'.image_container img',
+            'productgaleria'=>'#ProductAngleImagesAreaList',
+            'productpoplet'=>'#ProductAngleImagesAreaList li a img',
+            'productdesc'=>'#desc p',
+        ]);
+
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Elektra',
+            'url'=> 'https://www.elektra.com.mx',
+            'urlbusqueda'=> 'https://www.elektra.com.mx/',
+            'selectenlace'=> '.j-procut-item a',
+            'selectitem'=> '.j-procut-item',
+            'selectnombre'=> '.product-name',
+            'selectimagen'=> '.product-image img',
+            'attrimagen'=> 'src',
+            'selectprecio'=> '.price-new',
+            'selectprecio_especial'=>'.price-new',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'.productDescription',
+            'productnombre'=>'.productName',
+            'productprecio'=>'.skuBestPrice',
+            'productprecioespecial'=>'.skuBestPrice',
+            'productimagen'=>'.image_container img',
+            'productgaleria'=>'.slick-track',
+            'productpoplet'=>'.product-detail__gallery-picture',
+            'productdesc'=>'.productDescription',
+        ]);
 
 
         DB::table('categorias')->insert([

@@ -2,6 +2,8 @@
 
 
 @section('header')
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Expires" content="-1">
 @endsection
 @section('pagecontent')
 @php
@@ -121,7 +123,7 @@ $items=Cart::content();
                     <?php $productocount=0; $esfav=false;?>
               @foreach($productos as $producto)
 
-                    <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="col-md-2 col-sm-4 col-xs-6" id="productofav{{$productocount}}">
                       <form action="{{url('/producto')}}" method="post" id="tendencia{{$productocount}}" style="display: none;">
                         {{ csrf_field() }}
                         @php
@@ -261,7 +263,7 @@ function addtofavorite(nombre,enlace,precio,imagen,tienda,url,id){
               $('.'+datos[0]+"1").show();
             }
             if (datos[1]!=""){
-              script="<script>$(document).ready(function(){$( '.'+datos[0]+'1' ).click(function() {removefromfavorite(datos[1],datos[0]);});});";
+              script="<script>$(document).ready(function(){$( '."+datos[0]+"1' ).click(function() {removefromfavorite('"+datos[1]+"','"+datos[0]+"');});});";
               $('#'+datos[0]).html(script);
             }
           }
@@ -282,7 +284,8 @@ function removefromfavorite(rowId,id){
             
           }
         });
-    location.reload();
+    $('#producto'+id).fadeOut();
+    //window.location.href = "{{url('/perfil')}}";
 }
 </script>
 
