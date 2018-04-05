@@ -251,7 +251,7 @@ $items=Cart::content();
                         <input type="hidden" name="url" value="{{$url}}">
                       </form>
                       <div class="product-small">
-                        <div class="favorito">
+                        <div class="favorito favgrande">
                           @foreach ($items as $product)
                              @if($product->name==$nombre)
                               <?php $esfav=true;
