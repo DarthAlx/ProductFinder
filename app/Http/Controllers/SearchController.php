@@ -47,6 +47,7 @@ class SearchController extends Controller
 			      }
 			      if($node->filter($tienda->selectimagen)->count() > 0){
 			        $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
+			        $imagen=$this->imagen($imagen, $tienda->nombre);
 			      }
 			      else{
 			      	$agregar=false;
@@ -285,6 +286,7 @@ class SearchController extends Controller
 			      }
 			      if($node->filter($tienda->selectimagen)->count() > 0){
 			        $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
+			        $imagen=$this->imagen($imagen, $tienda->nombre);
 			      }
 			      else{
 			      	$agregar=false;
@@ -449,6 +451,7 @@ if(str_contains($enlace, $tienda->url)){
 			      }
 			      if($node->filter($tiendax->selectimagen)->count() > 0){
 			        $imagen=$node->filter($tiendax->selectimagen)->attr($tiendax->attrimagen);
+			        $imagen=$this->imagen($imagen, $tiendax->nombre);
 			      }
 			      else{
 			      	$agregar=false;
@@ -522,6 +525,20 @@ if(str_contains($enlace, $tienda->url)){
     	Cart::remove($request->rowId);
     	Cart::store(Auth::user()->id);
     	echo $id;
+    }
+
+    public static function imagen($imagen, $tienda){
+
+    	if ($tienda=="Sears") {
+    		$imagen=str_replace("background-image: url('", '',$imagen);
+    		$imagen=str_replace("')", '',$imagen);
+    	}
+    	else{
+    		$imagen=$imagen;
+    	}
+
+    	return $imagen;
+
     }
 
 

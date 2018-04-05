@@ -143,6 +143,27 @@ class TiendaSeeder extends Seeder
             'productdesc'=>'#verCompleto',
         ]);
 
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Sears',
+            'url'=> 'http://www.sears.com.mx',
+            'urlbusqueda'=> 'http://www.sears.com.mx/buscar/?c=',
+            'selectenlace'=> '.producto_nombre',
+            'selectitem'=> '.caja_producto',
+            'selectnombre'=> '.producto_nombre',
+            'selectimagen'=> '.foto',
+            'attrimagen'=> 'style',
+            'selectprecio'=> '.producto_precio',
+            'selectprecio_especial'=>'.producto_precio',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'.descripcion_larga',
+            'productnombre'=>'.col_producto_oracle h1',
+            'productprecio'=>'.precio',
+            'productprecioespecial'=>'.precio',
+            'productimagen'=>'.foto_enlace img',
+            'productgaleria'=>'.fotitos',
+            'productpoplet'=>'.fotito',
+            'productdesc'=>'.descripcion_larga',
+        ]);
 
 
 

@@ -121,6 +121,7 @@ Route::get('/', function () {
             }
             if($node->filter($tienda->selectimagen)->count() > 0){
               $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
+              $imagen=App\Http\Controllers\SearchController::imagen($imagen, $tienda->nombre);
             }
             else{
               $agregar=false;
