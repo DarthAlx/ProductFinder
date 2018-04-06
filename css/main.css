@@ -266,3 +266,10 @@ i.fa.fa-search.prefix{
         height: 32px;
             line-height: 1;
 }
+.popup{
+    overflow-y: initial !important; background: transparent !important; box-shadow: none !important;
+}
+.modal-overlay{
+    background: #f7f7f7;
+    cursor: url(../img/cross.svg),auto;
+}

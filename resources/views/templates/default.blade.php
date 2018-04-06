@@ -209,7 +209,72 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
           </div>
         </footer>
 
-      @if(!Auth::guest())
+      
+
+
+
+      <script type="text/javascript" src="{{ url('js/vendor/bootstrap.min.js') }}"></script>
+      <script type="text/javascript" src="{{ url('js/vendor/materialize.js') }}"></script>
+      <script type="text/javascript" src="{{ url('css/slick/slick.js') }}"></script>
+
+      <script type="text/javascript" src="{{ url('js/main.js') }}"></script>
+      <script>
+          $(document).ready(function() {  
+            $('.collapsible').collapsible();
+            $(".button-collapse").sideNav();
+            $('.collapsible').collapsible();
+            $('.modal').modal();
+            $('.materialboxed').materialbox();
+            $('.tooltipped').tooltip({delay: 50});
+            $('.select').material_select();
+            $('.datepicker').pickadate({
+              selectMonths: true, // Creates a dropdown to control month
+              selectYears: 100, // Creates a dropdown of 15 years to control year,
+              today: 'Hoy',
+              clear: 'Limpiar',
+              close: 'Ok',
+              closeOnSelect: false // Close upon selecting a date,
+            });
+
+
+            $('.timepicker').pickatime({
+                    default: 'now', 
+                    fromnow: 0,       
+                    twelvehour: false, 
+                    donetext: 'OK', 
+                    cleartext: 'Limpiar', 
+                    canceltext: 'Cancelar', 
+                    autoclose: false, 
+                    ampmclickable: true
+                    
+                  });
+
+            
+
+            
+            
+@if (Session::get('toast'))
+
+  var url="{{url('/carrito')}}"
+  var $toastContent = $('<span>{{ Session::get('toast') }}</span>').add($('<a href="'+url+'" class="btn-flat toast-action">Ir a carrito</a>'));
+  Materialize.toast($toastContent, 10000);
+
+@endif
+         
+
+
+          });
+        </script>
+
+
+
+
+
+@yield('scripts')
+
+
+
+@if(!Auth::guest())
       @php 
         $user=App\User::find(Auth::user()->id);
       @endphp
@@ -311,61 +376,28 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Cerrar</a> &nbsp; 
           </div>
         </div>
+
+        @else
+          <?php $popup = Cookie::get('popup'); ?>
+          @if(!$popup)
+
+            <div id="popup" class="modal popup">
+              <div class="modal-content">
+                <a href="{{url('/entrar')}}">
+                  <img src="{{url('/img/popup.png')}}" class="img-responsive" alt="">
+                </a>
+              </div>
+            </div>
+            <script type='text/javascript'>
+              $('#popup').modal();
+              $( document ).ready(function() {
+                $('#popup').modal('open');
+              });
+            </script>
+            <?php 
+              $cookie = Cookie::queue(Cookie::make('popup', 'visto', 5));
+            ?>
+          @endif
         @endif
-
-
-      <script type="text/javascript" src="{{ url('js/vendor/bootstrap.min.js') }}"></script>
-      <script type="text/javascript" src="{{ url('js/vendor/materialize.js') }}"></script>
-      <script type="text/javascript" src="{{ url('css/slick/slick.js') }}"></script>
-
-      <script type="text/javascript" src="{{ url('js/main.js') }}"></script>
-      <script>
-          $(document).ready(function() {  
-            $('.collapsible').collapsible();
-            $(".button-collapse").sideNav();
-            $('.collapsible').collapsible();
-            $('.modal').modal();
-            $('.materialboxed').materialbox();
-            $('.tooltipped').tooltip({delay: 50});
-            $('.select').material_select();
-            $('.datepicker').pickadate({
-              selectMonths: true, // Creates a dropdown to control month
-              selectYears: 100, // Creates a dropdown of 15 years to control year,
-              today: 'Hoy',
-              clear: 'Limpiar',
-              close: 'Ok',
-              closeOnSelect: false // Close upon selecting a date,
-            });
-
-
-            $('.timepicker').pickatime({
-                    default: 'now', 
-                    fromnow: 0,       
-                    twelvehour: false, 
-                    donetext: 'OK', 
-                    cleartext: 'Limpiar', 
-                    canceltext: 'Cancelar', 
-                    autoclose: false, 
-                    ampmclickable: true
-                    
-                  });
-
-            
-
-            
-            
-@if (Session::get('toast'))
-
-  var url="{{url('/carrito')}}"
-  var $toastContent = $('<span>{{ Session::get('toast') }}</span>').add($('<a href="'+url+'" class="btn-flat toast-action">Ir a carrito</a>'));
-  Materialize.toast($toastContent, 10000);
-
-@endif
-         
-
-
-          });
-        </script>
-@yield('scripts')
     </body>
 </html>
