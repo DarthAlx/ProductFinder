@@ -272,4 +272,9 @@ i.fa.fa-search.prefix{
 .modal-overlay{
     background: #f7f7f7;
     cursor: url(../img/cross.svg),auto;
+    z-index: 999999999 !important;
+}
+.modal.popup.open{
+    z-index: 9999999999 !important;
+    max-width: 600px;
 }

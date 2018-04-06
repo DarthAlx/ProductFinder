@@ -37,6 +37,8 @@ if($contador<10){
 			      if($node->filter($tienda->selectnombre)->count() > 0){
 			        if($node->filter($tienda->selectnombre)->text()!=""){
 		                $nombre=$node->filter($tienda->selectnombre)->text();
+		                $nombre=str_replace('\'', '',$nombre);
+		                $nombre=str_replace(',', '',$nombre);
 		              }
 		              else{
 				      	$agregar=false;
@@ -54,6 +56,11 @@ if($contador<10){
 			      if($node->filter($tienda->selectimagen)->count() > 0){
 			        $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
 			        $imagen=$this->imagen($imagen, $tienda->nombre);
+			        if(str_contains($imagen, "http")){
+		              $imagencompleta=$imagen;
+		            }else{
+		              $imagencompleta=$tienda->url.$imagen;
+		            }
 			      }
 			      else{
 			      	$agregar=false;
@@ -72,13 +79,15 @@ if($contador<10){
 		              $enlacecompleto=$tienda->url.$enlace;
 		            }
 
+		            
+
 
 			 	if ($agregar) {
 			 		$precio=$this->precio($precio, $tienda->nombre);
 			 		$productos[]=array(
 			    	'nombre'=>trim($nombre),
 			    	'enlace'=>$enlacecompleto,
-			    	'imagen'=>$imagen,
+			    	'imagen'=>$imagencompleta,
 			    	'precio'=>$precio,
 			    	'tienda'=>$tienda->nombre,
 			    	'enlacetienda'=>$tienda->url,
@@ -282,6 +291,8 @@ if($contador<10){
 			      if($node->filter($tienda->selectnombre)->count() > 0){
 			        if($node->filter($tienda->selectnombre)->text()!=""){
 		                $nombre=$node->filter($tienda->selectnombre)->text();
+		                $nombre=str_replace('\'', '',$nombre);
+                    	$nombre=str_replace(',', '',$nombre);
 		              }
 		              else{
 				      	$agregar=false;
@@ -299,6 +310,11 @@ if($contador<10){
 			      if($node->filter($tienda->selectimagen)->count() > 0){
 			        $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
 			        $imagen=$this->imagen($imagen, $tienda->nombre);
+			        if(str_contains($imagen, "http")){
+		              $imagencompleta=$imagen;
+		            }else{
+		              $imagencompleta=$tienda->url.$imagen;
+		            }
 			      }
 			      else{
 			      	$agregar=false;
@@ -317,13 +333,14 @@ if(str_contains($enlace, $tienda->url)){
 		            }else{
 		              $enlacecompleto=$tienda->url.$enlace;
 		            }
+		            
 
 			 	if ($agregar) {
 			 		$precio=$this->precio($precio, $tienda->nombre);
 			 		$productos[]=array(
 			    	'nombre'=>trim($nombre),
 			    	'enlace'=>$enlacecompleto,
-			    	'imagen'=>$imagen,
+			    	'imagen'=>$imagencompleta,
 			    	'precio'=>$precio,
 			    	'tienda'=>$tienda->nombre,
 			    	'enlacetienda'=>$tienda->url,
@@ -409,12 +426,33 @@ if(str_contains($enlace, $tienda->url)){
 		else{
 			$descripcion="No hay datos disponibles.";
 		}
+
+
+		if ($crawler->filter($tienda->productimagen)->count() >0) {
+			$imagen= $crawler->filter($tienda->productimagen)->attr($tienda->productattrimagen);
+			if ($imagen!="") {
+				$imagen=$imagen;
+				if(str_contains($imagen, "http")||str_contains($imagen, "data:")){
+		          $imagencompleta=$imagen;
+		        }else{
+		          $imagencompleta=$tienda->url.$imagen;
+		        }
+			}
+			else{
+				$imagencompleta=$request->imagen;
+			}
+		}
+		else{
+			$imagencompleta=$request->imagen;
+		}
+
+
     	
 
     	$producto=array(
 			    	'nombre'=>$request->nombre,
 			    	'enlace'=>$request->enlace,
-			    	'imagen'=>$request->imagen,
+			    	'imagen'=>$imagencompleta,
 			    	'precio'=>$request->precio,
 			    	'tienda'=>$request->tienda,
 			    	'enlacetienda'=>$tienda->url,
@@ -452,6 +490,8 @@ if($contador<5){
 			      if($node->filter($tiendax->selectnombre)->count() > 0){
 			        if($node->filter($tiendax->selectnombre)->text()!=""){
 		                $nombre=$node->filter($tiendax->selectnombre)->text();
+		                $nombre=str_replace('\'', '',$nombre);
+                    	$nombre=str_replace(',', '',$nombre);
 		              }
 		              else{
 				      	$agregar=false;
@@ -469,6 +509,11 @@ if($contador<5){
 			      if($node->filter($tiendax->selectimagen)->count() > 0){
 			        $imagen=$node->filter($tiendax->selectimagen)->attr($tiendax->attrimagen);
 			        $imagen=$this->imagen($imagen, $tiendax->nombre);
+			        if(str_contains($imagen, "http")){
+		              $imagencompleta=$imagen;
+		            }else{
+		              $imagencompleta=$tiendax->url.$imagen;
+		            }
 			      }
 			      else{
 			      	$agregar=false;
@@ -487,13 +532,15 @@ if($contador<5){
 		              $enlacecompleto=$tiendax->url.$enlace;
 		            }
 
+		            
+
 
 			 	if ($agregar) {
 			 		$precio=$this->precio($precio, $tiendax->nombre);
 			 		$productos[]=array(
 			    	'nombre'=>trim($nombre),
 			    	'enlace'=>$enlacecompleto,
-			    	'imagen'=>$imagen,
+			    	'imagen'=>$imagencompleta,
 			    	'precio'=>$precio,
 			    	'tienda'=>$tiendax->nombre,
 			    	'enlacetienda'=>$tiendax->url,

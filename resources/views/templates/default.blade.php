@@ -383,7 +383,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
             <div id="popup" class="modal popup">
               <div class="modal-content">
-                <a href="{{url('/entrar')}}">
+                <a href="{{url('/registro')}}">
                   <img src="{{url('/img/popup.png')}}" class="img-responsive" alt="">
                 </a>
               </div>

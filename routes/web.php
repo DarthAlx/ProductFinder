@@ -111,6 +111,8 @@ Route::get('/', function () {
             if($node->filter($tienda->selectnombre)->count() > 0){
               if($node->filter($tienda->selectnombre)->text()!=""){
                     $nombre=$node->filter($tienda->selectnombre)->text();
+                    $nombre=str_replace('\'', '',$nombre);
+                    $nombre=str_replace(',', '',$nombre);
                   }
                   else{
                 $agregar=false;
@@ -128,6 +130,11 @@ Route::get('/', function () {
             if($node->filter($tienda->selectimagen)->count() > 0){
               $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
               $imagen=App\Http\Controllers\SearchController::imagen($imagen, $tienda->nombre);
+              if(str_contains($imagen, "http")){
+                $imagencompleta=$imagen;
+              }else{
+                $imagencompleta=$tienda->url.$imagen;
+              }
             }
             else{
               $agregar=false;
@@ -146,12 +153,13 @@ Route::get('/', function () {
               $enlacecompleto=$tienda->url.$enlace;
             }
 
+
         if ($agregar) {
           $precio=App\Http\Controllers\SearchController::precio($precio, $tienda->nombre);
           $productos[]=array(
             'nombre'=>trim($nombre),
             'enlace'=>$enlacecompleto,
-            'imagen'=>$imagen,
+            'imagen'=>$imagencompleta,
             'precio'=>$precio,
             'tienda'=>$tienda->nombre,
             'enlacetienda'=>$tienda->url,
@@ -163,6 +171,9 @@ Route::get('/', function () {
 
 
 }//contador
+else{
+  return false;
+}
 
 
           });

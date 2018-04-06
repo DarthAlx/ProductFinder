@@ -32,6 +32,7 @@ class CreateTiendasTable extends Migration
             $table->string('productprecio');
             $table->string('productprecioespecial');
             $table->string('productimagen');
+            $table->string('productattrimagen');
             $table->string('productgaleria');
             $table->string('productpoplet');
             $table->string('productdesc');
