@@ -11,10 +11,10 @@ class UserController extends Controller
 {
     public function store(Request $request)
     {
-    	$usuario = new Categoria($request->all());
-    	$usuario->nombre=ucfirst($request->nombre);
+        $usuario = new Categoria($request->all());
+        $usuario->nombre=ucfirst($request->nombre);
 
-		//guardar
+        //guardar
         if ($usuario->save()) {
             Session::flash('mensaje', 'Catálogo publicado con exito.');
             Session::flash('class', 'success');
@@ -42,7 +42,7 @@ class UserController extends Controller
 
 
     public function update(Request $request){
-    	 $usuario = Categoria::find($request->id);
+         $usuario = Categoria::find($request->id);
         $usuario->nombre=ucfirst($request->nombre);
 //guardar
         if ($usuario->save()) {
@@ -106,4 +106,26 @@ class UserController extends Controller
 
 
     }
+
+    public function updatedetails(Request $request){
+        $usuario = User::find(Auth::user()->id);
+        $usuario->name=ucwords($request->name);
+        $usuario->email=$request->email;
+        $usuario->dob=$request->dob;
+        $usuario->tel=$request->tel;
+        $usuario->genero=$request->genero;
+        //guardar
+        if ($usuario->save()) {
+            Session::flash('mensaje', 'Detalles actualizados con exito.');
+            Session::flash('class', 'success');
+            return redirect(url()->previous());
+        }
+        else{
+            Session::flash('mensaje', 'Hubo un error, por favor, verifica la información.');
+            Session::flash('class', 'danger');
+            return redirect(url()->previous())->withInput();
+        }
+    }
+
+
 }

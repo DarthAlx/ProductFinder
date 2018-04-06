@@ -34,7 +34,12 @@ $items=Cart::content();
             
             
         </form>
-      </div> 
+      </div>
+      <div class="row">
+            <div class="col-md-12">
+              @include('snip.notificaciones')
+            </div>
+          </div> 
       <p>&nbsp;</p>
       <div class="anuncio">
         <img src="{{url('/uploads/ads')}}/{{$ad->imagen}}"  class="img-responsive">

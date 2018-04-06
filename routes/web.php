@@ -245,6 +245,8 @@ Route::get('/productos', function () {
 Route::get('favoritos', 'SearchController@favoritos')->middleware('auth');
 Route::post('favoritos', 'SearchController@favoritos')->middleware('auth');
 
+Route::post('cambiar-contrasena-user', 'UserController@changepassuser')->middleware('auth');
+Route::post('actualizar-datos', 'UserController@updatedetails')->middleware('auth');
 
 
 
