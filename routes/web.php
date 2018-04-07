@@ -72,6 +72,7 @@ Route::get('/z', function() {
 
 
 Route::get('/', function () {
+  set_time_limit(0);
 
 
  /* $item=Cart::add(1,"test",1,2500);
