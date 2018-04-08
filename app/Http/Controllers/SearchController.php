@@ -419,6 +419,7 @@ if(str_contains($enlace, $tienda->url)){
 	
 
 		$tienda=Tienda::where('nombre',$request->tienda)->first();
+
 		$crawler = Goutte::request('GET', $request->enlace);
 		if ($crawler->filter($tienda->selectdesc)->count() >0) {
 			$descripcion= $crawler->filter($tienda->selectdesc)->text();
@@ -458,6 +459,9 @@ if(str_contains($enlace, $tienda->url)){
 			    	'enlacetienda'=>$tienda->url,
 			    	'descripcion'=>$descripcion
 				    );
+
+    	$tienda->clicks++;
+    	$tienda->save();
     	$productos=array();
     	$tiendas=Tienda::all();
 		foreach ($tiendas as $tiendax) {

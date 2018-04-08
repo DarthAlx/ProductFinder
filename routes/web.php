@@ -69,6 +69,39 @@ Route::get('/z', function() {
 
 
 
+Route::get('/revisarfavorito', function () {
+  $favoritos=App\Favorito::all();
+
+
+  foreach ($favoritos as $favorito) {
+    $tienda=App\Tienda::where('nombre',$favorito->tienda)->first();
+    $user=$favorito->user;
+
+    $crawler = Goutte::request('GET', $favorito->enlace);
+    $agregar=true;
+
+    if($crawler->filter($tienda->productprecioespecial)->count() > 0){
+      $precio=$crawler->filter($tienda->productprecioespecial)->html();
+    }else if($crawler->filter($tienda->productprecio)->count() > 0){
+      $precio=$crawler->filter($tienda->productprecio)->text();
+    }else{
+      $agregar=false;
+    }
+
+
+    if ($agregar) {
+      $precio=App\Http\Controllers\SearchController::precio($precio, $tienda->nombre);
+      if ($precio<$favorito->precio) {
+        Mail::send('emails.precio', ['user'=>$user,'favorito'=>$favorito, 'precio'=>$precio], function ($m) use ($user,$favorito) {
+            $m->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            $m->to($user->email, $user->name)->subject("¡Tu favorito bajó de precio!");
+        });
+      }
+    }
+  }
+
+});
+
 
 
 Route::get('/', function () {
@@ -299,6 +332,13 @@ Route::group(['middleware' => 'admin'], function(){
 			$busquedastotales=App\Busqueda::whereBetween('created_at', array($from, $to))->sum('contador');
       $categoriac=App\Categoria::whereBetween('created_at', array($from, $to))->max('contador');
       $categoria=App\Categoria::whereBetween('created_at', array($from, $to))->where('contador',$categoriac)->first();
+      $tienda=App\Tienda::whereBetween('created_at', array($from, $to))->orderBy('clicks','desc')->first();
+      if ($tienda) {
+        $tienda=$tienda->nombre;
+      }
+      else{
+        $tienda="";
+      }
       
       if ($categoriac&&$categoria){
       $categoria=$categoria->nombre;
@@ -319,7 +359,7 @@ Route::group(['middleware' => 'admin'], function(){
 			
 				
 		
-	    	return view('admin', ['usuarios'=>$usuarios,'mujeres'=>$mujeres,'hombres'=>$hombres,'from'=>$from,'to'=>$to,'categoria'=>$categoria,'categoriac'=>$categoriac,'busquedas'=>$busquedas,'busquedastotales'=>$busquedastotales]);
+	    	return view('admin', ['usuarios'=>$usuarios,'mujeres'=>$mujeres,'hombres'=>$hombres,'from'=>$from,'to'=>$to,'categoria'=>$categoria,'categoriac'=>$categoriac,'busquedas'=>$busquedas,'busquedastotales'=>$busquedastotales,'tienda'=>$tienda]);
 		});
 
 	Route::post('admin', 'HomeController@admin');

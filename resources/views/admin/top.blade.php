@@ -23,7 +23,7 @@
 			<h4>Añadir nuevo</h4>
 			<div class="col-md-12 card">
 
-				<form action="{{url('/traerproducto')}}" method="post" style="width: 100%;">
+				<!--form action="{{url('/traerproducto')}}" method="post" style="width: 100%;">
 							{!! csrf_field() !!}
 							<div class="row">
 								<div class="input-field col-md-5">
@@ -42,7 +42,7 @@
 						        	<button class="btn btn-primary waves-effect waves-light" type="submit">Traer datos</button>
 						        </div>
 							</div>
-						</form>
+						</form-->
 
 
 				      <form action="{{url('/agregar-destacado')}}" method="post" style="width: 100%;">
@@ -79,7 +79,7 @@
 							<div class="row">
 								<div class="input-field col-md-12">
 						          <input id="precio" name="precio" type="text" class="validate" value="{{old('precio')}}" required>
-						          <label for="precio">Precio</label>
+						          <label for="precio">Precio (en centavos)</label>
 						        </div>
 							</div>
 							<div class="row">
@@ -137,7 +137,7 @@
 	        _token : _token
 	        }, function(data) {
 
-	        	datos=data.split(",");
+	        	datos=data.split(";;");
 	          	nombre=datos[0];
 	          	descripcion=datos[1];
 	          	imagen=datos[2];
@@ -150,7 +150,7 @@
 	          	$('#descripcion').val(descripcion);
 	          	$('#imagen').val(imagen);
 	          	$('#precio').val(precio);
-	          	$('#url').val(url);
+	          	$('#url').val(enlace);
 	          
 	        });
 

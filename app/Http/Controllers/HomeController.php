@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Busqueda;
 use App\Categoria;
+use App\Tienda;
 
 class HomeController extends Controller
 {
@@ -37,15 +38,33 @@ class HomeController extends Controller
       $from = date ( 'Y-m-d' , $from_n );
       $to = date ( 'Y-m-d' , $to_n );
         $busquedastotales=Busqueda::whereBetween('created_at', array($from, $to))->sum('contador');
-        $categoriac=App\Categoria::whereBetween('created_at', array($from, $to))->max('contador');
-        $categoria=App\Categoria::whereBetween('created_at', array($from, $to))->where('contador',$categoriac)->first();
+        $categoriac=Categoria::whereBetween('created_at', array($from, $to))->max('contador');
+        $categoria=Categoria::whereBetween('created_at', array($from, $to))->where('contador',$categoriac)->first();
+        $tienda=Tienda::whereBetween('created_at', array($from, $to))->orderBy('clicks','desc')->first();
+          if ($tienda) {
+            $tienda=$tienda->nombre;
+          }
+          else{
+            $tienda="";
+          }
+          
+          if ($categoriac&&$categoria){
+          $categoria=$categoria->nombre;
+          }
+
+           else{
+            $categoriac="";
+            $categoria="";
+          }
+
+
         $usuarios=User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->count();
         $mujeres=User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->where('genero','Femenino')->count();
         $hombres=User::whereBetween('created_at', array($from, $to))->where('is_admin',0)->where('status','Activo')->where('genero','Masculino')->count();
         $busquedas=Busqueda::whereBetween('created_at', array($from, $to))->orderBy('contador','desc')->get();
         
     
-        return view('admin', ['usuarios'=>$usuarios,'mujeres'=>$mujeres,'hombres'=>$hombres,'from'=>$from,'to'=>$to,'categoria'=>$categoria->nombre,'categoriac'=>$categoriac,'busquedas'=>$busquedas,'busquedastotales'=>$busquedastotales]);
+        return view('admin', ['usuarios'=>$usuarios,'mujeres'=>$mujeres,'hombres'=>$hombres,'from'=>$from,'to'=>$to,'categoria'=>$categoria,'categoriac'=>$categoriac,'busquedas'=>$busquedas,'busquedastotales'=>$busquedastotales,'tienda'=>$tienda]);
     }
 
 

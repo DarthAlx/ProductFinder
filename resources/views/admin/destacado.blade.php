@@ -118,8 +118,7 @@
 	        tienda : tienda,
 	        _token : _token
 	        }, function(data) {
-	        	alert(data);
-	        	datos=data.split(",");
+	        	datos=data.split(";;");
 	          	nombre=datos[0];
 	          	descripcion=datos[1];
 	          	imagen=datos[2];
@@ -132,7 +131,7 @@
 	          	$('#descripcion').val(descripcion);
 	          	$('#imagen').val(imagen);
 	          	$('#precio').val(precio);
-	          	$('#url').val(url);
+	          	$('#url').val(enlace);
 	          
 	        });
 

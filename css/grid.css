@@ -113,7 +113,9 @@
 	.from {
     font-size: 1.3rem;
 	}
-
+	.modal.popup.open{
+	    max-width: 700px;
+	}
 	
 }
 @media (min-width: 992px) {

@@ -276,5 +276,4 @@ i.fa.fa-search.prefix{
 }
 .modal.popup.open{
     z-index: 9999999999 !important;
-    max-width: 600px;
 }

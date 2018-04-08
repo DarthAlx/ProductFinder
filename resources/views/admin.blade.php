@@ -53,6 +53,16 @@
                 
             </div>
       </div>
+      <div class="col-md-4">
+        <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">Tienda más popular</span>
+
+                  <h5 style="font-weight: 700">{{$tienda}}</h5>
+                </div>
+                
+            </div>
+      </div>
       
       
     </div>

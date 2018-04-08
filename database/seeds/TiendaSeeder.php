@@ -32,6 +32,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'#listBeforeEtalage',
             'productpoplet'=>'.grid-container div div div div div ul li img',
             'productdesc'=>'#intro p',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
 
@@ -56,6 +57,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'.slider',
             'productpoplet'=>'.iwd_product_image_thumbnail img',
             'productdesc'=>'.std',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('tiendas')->insert([
@@ -79,6 +81,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'#altImages',
             'productpoplet'=>'.a-spacing-small .a-button-text img',
             'productdesc'=>'#featurebullets_feature_div',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('tiendas')->insert([
@@ -102,6 +105,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'.image-carousel-wrapper',
             'productpoplet'=>'.carousel-trigger img',
             'productdesc'=>'.descriptionContainer',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         /*DB::table('tiendas')->insert([
@@ -146,6 +150,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'.bx-slide',
             'productpoplet'=>'.outborder img',
             'productdesc'=>'#verCompleto',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('tiendas')->insert([
@@ -169,6 +174,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'.fotitos',
             'productpoplet'=>'.fotito',
             'productdesc'=>'.descripcion_larga',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('tiendas')->insert([
@@ -192,6 +198,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'#ProductAngleImagesAreaList',
             'productpoplet'=>'#ProductAngleImagesAreaList li a img',
             'productdesc'=>'#desc p',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('tiendas')->insert([
@@ -215,6 +222,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'.slick-track',
             'productpoplet'=>'.product-detail__gallery-picture',
             'productdesc'=>'.productDescription',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('tiendas')->insert([
@@ -238,6 +246,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'.image-gallery.js-gallery',
             'productpoplet'=>'.image-gallery__image .item div img',
             'productdesc'=>'.tab-details p',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('tiendas')->insert([
@@ -261,6 +270,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'.ql_product_thumbnails.cf',
             'productpoplet'=>'.ql_product_thumbnail left a img',
             'productdesc'=>'#productDetail_tab2 p',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('tiendas')->insert([
@@ -284,6 +294,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'.jcarousel-list.jcarousel-list-vertical',
             'productpoplet'=>'.jcarousel-item.jcarousel-item-vertical.jcarousel-item-2.jcarousel-item-2-vertical img',
             'productdesc'=>'.tab-details',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('tiendas')->insert([
@@ -307,6 +318,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'.thumbs',
             'productpoplet'=>'.thumbs li a img',
             'productdesc'=>'.productDescription',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
         DB::table('tiendas')->insert([
@@ -330,6 +342,7 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'.image-gallery',
             'productpoplet'=>'.u-photo',
             'productdesc'=>'#prfLongDescription',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
 
