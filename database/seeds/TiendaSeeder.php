@@ -309,6 +309,29 @@ class TiendaSeeder extends Seeder
             'productdesc'=>'.productDescription',
         ]);
 
+        DB::table('tiendas')->insert([
+            'nombre'=> 'OfficeDepot',
+            'url'=> 'https://www.officedepot.com.mx',
+            'urlbusqueda'=> 'https://www.officedepot.com.mx/officedepot/en/search/?text=',
+            'selectenlace'=> '.name.description-style',
+            'selectitem'=> '.product-item',
+            'selectnombre'=> '.name.description-style',
+            'selectimagen'=> '.thumb img',
+            'attrimagen'=> 'src',
+            'selectprecio'=> '.price',
+            'selectprecio_especial'=>'.price',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'#prfLongDescription',
+            'productnombre'=>'.p-name',
+            'productprecio'=>'.big-price .priceData',
+            'productprecioespecial'=>'.big-price .priceData',
+            'productimagen'=>'#image a img',
+            'productattrimagen'=> 'src',
+            'productgaleria'=>'.image-gallery',
+            'productpoplet'=>'.u-photo',
+            'productdesc'=>'#prfLongDescription',
+        ]);
+
 
         DB::table('categorias')->insert([
             'nombre'=> 'Mascotas',

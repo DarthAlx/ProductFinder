@@ -166,7 +166,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
             <h1>Compara y ahorra con nosotros</h1>
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="margin:0; padding: 0">
             <div class="col-md-12">
               @include('snip.notificaciones')
             </div>
@@ -182,7 +182,8 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
               <div class="col l4 s12 text-center">
                 <h5 class="white-text">Product Finder </h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Todas las tiendas</a></li>
+                  <li><a class="grey-text text-lighten-3" href="{{url('/tiendas')}}">Todas las tiendas</a></li>
+                  <li><a class="grey-text text-lighten-3" href="{{url('/contacto')}}">Contacto</a></li>
                 </ul>
               </div>
               <div class="col l4 s12 text-center">

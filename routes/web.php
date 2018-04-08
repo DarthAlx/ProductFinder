@@ -260,7 +260,27 @@ Route::post('favoritos', 'SearchController@favoritos')->middleware('auth');
 Route::post('cambiar-contrasena-user', 'UserController@changepassuser')->middleware('auth');
 Route::post('actualizar-datos', 'UserController@updatedetails')->middleware('auth');
 
+Route::get('/tiendas', function () {
+    return view('tiendas');
+});
+Route::get('/contacto', function () {
+    return view('contacto');
+});
 
+Route::post('/contacto', function (Illuminate\Http\Request $request) {
+    $datos=$request;
+
+    Mail::send('emails.contacto', ['datos'=>$datos], function ($m) use ($datos) {
+        $m->from($datos->email, $datos->nombre);
+        $m->to(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Contacto');
+
+
+    });
+
+    Illuminate\Support\Facades\Session::flash('mensaje', '¡Mensaje enviado!');
+    Illuminate\Support\Facades\Session::flash('class', 'success');
+    return redirect()->intended(url('/contacto'));
+});
 
 Route::group(['middleware' => 'admin'], function(){
 	Route::get('/crm', function () {

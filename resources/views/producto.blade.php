@@ -24,8 +24,8 @@ $items=Cart::content();
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 <div class="container-fluid">
   <div class="row" style="border-bottom: 5px solid #C42854;">
-          <div class="col-md-4">
-            <nav class="navbar navbar-default navbar-static" style="background: transparent; border: 0; margin-top: 1rem;">
+          <div class="col-md-4 col-sm-4">
+            <nav class="navbar navbar-default navbar-static hidden-xs" style="background: transparent; border: 0; margin-top: 1rem;">
               <div class="navbar-header">
               <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -45,6 +45,8 @@ $items=Cart::content();
                   <?php
                   $arraycat=array();
                   $arrayslug=array();
+                  $countcat=$categorias->count();
+                  $division=round($countcat/5, 0, PHP_ROUND_HALF_UP);
                   foreach($categorias as $categoria){
                      
                       $arraycat[]=$categoria->nombre;
@@ -54,7 +56,7 @@ $items=Cart::content();
 
                    ?>
                   <ul class="dropdown-menu dropdown-menu-large row">
-                    @for ($i=0; $i < 4 ; $i++)
+                    @for ($i=0; $i < $division ; $i++)
                     <li class="col-sm-3">
                       <ul>
                         <!--li class="dropdown-header">Glyphicons</li-->
@@ -77,6 +79,24 @@ $items=Cart::content();
               
             </div><!-- /.nav-collapse -->
           </nav>
+
+          <ul class="collapsible visible-xs">
+            <li>
+              <div class="collapsible-header"><i class="fa fa-bars prefix"></i> Categorías <b class="caret"></b></div>
+              <div class="collapsible-body">
+                <div class="collection">
+                  @for ($i=0; $i < count($arraycat) ; $i++)
+                  <a href="{{url('/buscar/')}}/{{$arrayslug[$i] or ''}}" class="collection-item">{{$arraycat[$i] or ''}}</a>
+                  @endfor
+
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          
+
+
         </div>
 
         <div class="col-md-4">

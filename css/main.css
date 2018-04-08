@@ -210,7 +210,7 @@ hr {
 
 }
 .store-name{
-    padding: 20px 0;
+        padding: 40px 0 0 0;
 }
 .logo{
     
@@ -219,7 +219,7 @@ hr {
 }
 .logo img, .store-product-image img{
     border-radius: 5px;
-    max-width: 50px; margin: 0 auto;
+    max-width: 70px; margin: 0 auto;
     border: 1px solid #ccc;
 
 }
