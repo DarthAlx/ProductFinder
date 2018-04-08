@@ -588,7 +588,7 @@
                                                                         <tbody><tr>
 
                                                                                 <td align="center" valign="middle" width="24" class="mcnFollowIconContent">
-                                                                                    <a href="https://www.rifaweb.com" target="_blank"><img src="https://cdn-images.mailchimp.com/icons/social-block-v2/color-link-48.png" style="display:block;" height="24" width="24" class=""></a>
+                                                                                    <a href="https://www.productfinder.com" target="_blank"><img src="https://cdn-images.mailchimp.com/icons/social-block-v2/color-link-48.png" style="display:block;" height="24" width="24" class=""></a>
                                                                                 </td>
 
 
@@ -611,7 +611,7 @@
                                                                         <tbody><tr>
 
                                                                                 <td align="center" valign="middle" width="24" class="mcnFollowIconContent">
-                                                                                    <a href="mailto:contacto@rifaweb.com" target="_blank"><img src="https://cdn-images.mailchimp.com/icons/social-block-v2/color-forwardtofriend-48.png" style="display:block;" height="24" width="24" class=""></a>
+                                                                                    <a href="mailto:contacto@productfinder.com" target="_blank"><img src="https://cdn-images.mailchimp.com/icons/social-block-v2/color-forwardtofriend-48.png" style="display:block;" height="24" width="24" class=""></a>
                                                                                 </td>
 
 
@@ -648,7 +648,7 @@
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
                             <strong>Si tienes dudas o comentarios escríbenos:</strong><br>
-<a href="mailto:contacto@rifaweb.com" target="_blank">contacto@rifaweb.com</a>
+<a href="mailto:contacto@productfinder.com" target="_blank">contacto@productfinder.com</a>
                         </td>
                     </tr>
                 </tbody></table>

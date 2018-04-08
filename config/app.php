@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'RifaWeb'),
+    'name' => env('APP_NAME', 'ProductFinder'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/RifaWeb'),
+    'url' => env('APP_URL', 'http://localhost/ProductFinder'),
 
     /*
     |--------------------------------------------------------------------------
