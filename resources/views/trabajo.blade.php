@@ -21,7 +21,7 @@
 															<label>¡Queremos trabajar contigo! Déjanos tus datos y nos pondremos en contacto contigo.</label>
 														</div>
 													</div>
-												<form method="post" enctype="multipart/form-data" action="{{ url('/contacto') }}">
+												<form method="post" enctype="multipart/form-data" action="{{ url('/bolsa-de-trabajo') }}">
 													<input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                 <input name="nombre" class="form-control" placeholder="Nombre" type="text"> </div>
@@ -43,7 +43,7 @@
                             <div class="clearfix">&nbsp;</div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 input-field">
 
-                                <div class="input-field col s12">
+                                <div class="input-field">
                                   <textarea class="materialize-textarea" name="msg" rows="6"></textarea>
                                   <label for="textarea1">Mensaje</label>
                                 </div>
