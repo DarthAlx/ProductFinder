@@ -400,7 +400,7 @@ class TiendaSeeder extends Seeder
             'selectenlace'=> 'a',
             'selectitem'=> '.col-md-3.col-sm-4',
             'selectnombre'=> 'h5',
-            'selectimagen'=> '.ribbon-wrapper img',
+            'selectimagen'=> 'img',
             'attrimagen'=> 'src',
             'selectprecio'=> 'h5 strong',
             'selectprecio_especial'=>'h5 strong',
@@ -414,6 +414,31 @@ class TiendaSeeder extends Seeder
             'productgaleria'=>'.none',
             'productpoplet'=>'.none',
             'productdesc'=>'.panel-body col-md-12.col-sm-12.text-justify.text-muted',
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+
+
+        DB::table('tiendas')->insert([
+            'nombre'=> 'La casa del libro',
+            'url'=> 'https://latam.casadellibro.com',
+            'urlbusqueda'=> 'https://latam.casadellibro.com/busqueda-generica?busqueda=',
+            'selectenlace'=> '.title-link',
+            'selectitem'=> '.mod-list-item',
+            'selectnombre'=> '.title-link',
+            'selectimagen'=> '.product-item span img',
+            'attrimagen'=> 'data-src',
+            'selectprecio'=> '.priceOriginal',
+            'selectprecio_especial'=>'.priceOriginal',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'.acortar',
+            'productnombre'=>'.book-header-2-title',
+            'productprecio'=>'.priceOriginal',
+            'productprecioespecial'=>'.priceOriginal',
+            'productimagen'=>'#imgPrincipal',
+            'productattrimagen'=> 'src',
+            'productgaleria'=>'.none',
+            'productpoplet'=>'.none',
+            'productdesc'=>'.acortar',
             'created_at' => date("Y-m-d H:i:s")
         ]);
 

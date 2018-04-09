@@ -647,7 +647,7 @@ if($contador<5){
 			$precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
 
     	}
-    	if ($tienda=="Best Buy"||$tienda=="Costco") {
+    	if ($tienda=="Best Buy"||$tienda=="Costco"||$tienda=="Porrua") {
     		
     		$precio=$precio.".00";
 			$precio=str_replace('$', '',$precio);

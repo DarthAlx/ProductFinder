@@ -24,16 +24,16 @@
 												<form method="post" enctype="multipart/form-data" action="{{ url('/bolsa-de-trabajo') }}">
 													<input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <input name="nombre" class="form-control" placeholder="Nombre" type="text"> </div>
+                                <input name="nombre" class="form-control" placeholder="Nombre" type="text" required> </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <input name="email" class="form-control" placeholder="Email" type="text"> </div>
+                                <input name="email" class="form-control" placeholder="Email" type="text" required> </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <input name="tel" class="form-control" placeholder="Teléfono" type="text"> </div>
+                                <input name="tel" class="form-control" placeholder="Teléfono" type="text" required> </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="file-field input-field">
                                   <div class="btn">
                                     <span>Curriculum vitae</span>
-                                    <input name="cv" type="file">
+                                    <input name="cv" type="file" required>
                                   </div>
                                   <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text">
