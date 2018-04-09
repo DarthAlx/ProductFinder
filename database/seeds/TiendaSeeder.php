@@ -345,6 +345,78 @@ class TiendaSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s")
         ]);
 
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Linio',
+            'url'=> 'https://www.linio.com.mx',
+            'urlbusqueda'=> 'https://www.linio.com.mx/search?q=',
+            'selectenlace'=> '.detail-container h2 a',
+            'selectitem'=> '.catalogue-product',
+            'selectnombre'=> '.detail-container h2',
+            'selectimagen'=> '.image-container picture img',
+            'attrimagen'=> 'data-lazy',
+            'selectprecio'=> '.price-secondary',
+            'selectprecio_especial'=>'.price-secondary',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'.product-feature',
+            'productnombre'=>'.product-title h1',
+            'productprecio'=>'.price-main',
+            'productprecioespecial'=>'.price-main',
+            'productimagen'=>'#image-product figure img',
+            'productattrimagen'=> 'data-lazy',
+            'productgaleria'=>'.gallery-container',
+            'productpoplet'=>'.gallery-container .product-image img',
+            'productdesc'=>'.product-feature',
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Ebay',
+            'url'=> 'https://www.ebay.com',
+            'urlbusqueda'=> 'https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR0.TRC0.H0.Xxbox.TRS0&_nkw=',
+            'selectenlace'=> '.lvtitle a',
+            'selectitem'=> '#ListViewInner li',
+            'selectnombre'=> '.lvtitle',
+            'selectimagen'=> '.lvpicinner a img',
+            'attrimagen'=> 'src',
+            'selectprecio'=> '.lvprice.prc .bold',
+            'selectprecio_especial'=>'.lvprice.prc .bold',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'#desc_div p',
+            'productnombre'=>'#vi-lkhdr-itmTitl',
+            'productprecio'=>'#convbinPrice',
+            'productprecioespecial'=>'#convbinPrice',
+            'productimagen'=>'#icImg',
+            'productattrimagen'=> 'src',
+            'productgaleria'=>'.lst.icon',
+            'productpoplet'=>'.tdThumb img',
+            'productdesc'=>'#desc_div p',
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Porrua',
+            'url'=> 'https://www.porrua.mx',
+            'urlbusqueda'=> 'https://www.porrua.mx/busqueda/todos/',
+            'selectenlace'=> 'a',
+            'selectitem'=> '.col-md-3.col-sm-4',
+            'selectnombre'=> 'h5',
+            'selectimagen'=> '.ribbon-wrapper img',
+            'attrimagen'=> 'src',
+            'selectprecio'=> 'h5 strong',
+            'selectprecio_especial'=>'h5 strong',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'.panel-body col-md-12.col-sm-12.text-justify.text-muted',
+            'productnombre'=>'.col-md-4.col-sm-4.text-left strong',
+            'productprecio'=>'.comprar_precio strong',
+            'productprecioespecial'=>'.comprar_precio strong',
+            'productimagen'=>'.fancybox img',
+            'productattrimagen'=> 'src',
+            'productgaleria'=>'.none',
+            'productpoplet'=>'.none',
+            'productdesc'=>'.panel-body col-md-12.col-sm-12.text-justify.text-muted',
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+
 
         DB::table('categorias')->insert([
             'nombre'=> 'Mascotas',

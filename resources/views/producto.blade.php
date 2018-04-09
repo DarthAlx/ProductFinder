@@ -136,20 +136,24 @@ $items=Cart::content();
 
                    <div class="col-md-5">
                     <div class="row">
-                      <div class="col-md-4 col-xs-4">
+                      <div class="col-md-3 col-xs-4 poplets">
                         @php
                         $crawler = Goutte::request('GET', $enlace);
-                        $crawler->filter($tiendax->productpoplet)->each(function ($node) {
+                        $contador=0;
+                        $crawler->filter($tiendax->productpoplet)->each(function ($node) use (&$contador) {
+                        if($contador<4){
                         if(trim($node->attr('src'))!=""){
                         @endphp
-                          <img src="{{$node->attr('src')}}" class="img-responsive"><br>
+                          <img src="{{$node->attr('src')}}" class="img-responsive" style="max-width: 90px;"><br>
                         @php
+                        }
+                        $contador++;
                         }
                         });
 
                         @endphp
                       </div>
-                      <div class="col-md-8 col-xs-8">
+                      <div class="col-md-9 col-xs-8">
                         <img src="{{$producto['imagen']}}" class="img-responsive" alt="">
                       </div>
                     </div>
@@ -218,7 +222,8 @@ $items=Cart::content();
                         @if($producto['descripcion']=="No hay datos disponibles."||$producto['descripcion']=="")
                           <a href="{{$producto['enlace']}}" target="_blank">Ver en la web</a>
                         @else
-                          {{$producto['descripcion']}}
+                        {{str_limit($producto['descripcion'], $limit = 300, $end = '...')}}
+                          
                         @endif
                       @endif
                       </p>

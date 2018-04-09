@@ -164,7 +164,7 @@ Route::get('/', function () {
             if($node->filter($tienda->selectimagen)->count() > 0){
               $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
               $imagen=App\Http\Controllers\SearchController::imagen($imagen, $tienda->nombre);
-              if(str_contains($imagen, "http")){
+              if(str_contains($imagen, "//")||str_contains($imagen, "data:")){
                 $imagencompleta=$imagen;
               }else{
                 $imagencompleta=$tienda->url.$imagen;
@@ -314,6 +314,38 @@ Route::post('/contacto', function (Illuminate\Http\Request $request) {
     Illuminate\Support\Facades\Session::flash('class', 'success');
     return redirect()->intended(url('/contacto'));
 });
+
+
+Route::get('/bolsa-de-trabajo', function () {
+    return view('trabajo');
+});
+Route::post('/bolsa-de-trabajo', function (Illuminate\Http\Request $request) {
+    $datos[]=$request;
+
+    if ($datos[0]->hasFile('cv')) {
+      $file = $datos[0]->file('cv');
+      $name = "cv-". time(). "." . $file->getClientOriginalExtension();
+      $path = base_path('uploads/temp/');
+      $file-> move($path, $name);
+    }
+    $datos[]=$name;
+    Mail::send('emails.bolsa', ['datos'=>$datos[0]], function ($m) use ($datos) {
+        $m->from($datos[0]->email, $datos[0]->nombre);
+        $m->attach(url('/uploads/temp/'.$datos[1]), ['as' => $datos[1]]);
+        $m->to(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Bolsa de trabajo');
+    });
+    Illuminate\Support\Facades\File::delete($path . $name);
+    Illuminate\Support\Facades\Session::flash('mensaje', '¡Mensaje enviado!');
+    Illuminate\Support\Facades\Session::flash('class', 'success');
+    return redirect()->intended(url('/bolsa-de-trabajo'));
+});
+
+
+
+
+
+
+
 
 Route::group(['middleware' => 'admin'], function(){
 	Route::get('/crm', function () {

@@ -17,6 +17,7 @@ class SearchController extends Controller
 {
     public function index(Request $request)
     {
+    	set_time_limit(0);
     	$tiendas=Tienda::all();
     	$productos=array();
   
@@ -56,7 +57,7 @@ if($contador<10){
 			      if($node->filter($tienda->selectimagen)->count() > 0){
 			        $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
 			        $imagen=$this->imagen($imagen, $tienda->nombre);
-			        if(str_contains($imagen, "http")){
+			        if(str_contains($imagen, "//")||str_contains($imagen, "data:")){
 		              $imagencompleta=$imagen;
 		            }else{
 		              $imagencompleta=$tienda->url.$imagen;
@@ -181,6 +182,7 @@ if($contador<10){
 
     public function favoritos(Request $request)
     {
+    	set_time_limit(0);
     	$tiendas=Tienda::all();
     	$productos=array();
   		$contador=1;
@@ -264,6 +266,7 @@ if($contador<10){
 
     public function categoria(Request $request, $slug)
     {
+    	set_time_limit(0);
     	$tiendas=Tienda::all();
     	$productos=array();
     	if ($slug) {
@@ -310,7 +313,7 @@ if($contador<10){
 			      if($node->filter($tienda->selectimagen)->count() > 0){
 			        $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
 			        $imagen=$this->imagen($imagen, $tienda->nombre);
-			        if(str_contains($imagen, "http")){
+			        if(str_contains($imagen, "//")||str_contains($imagen, "data:")){
 		              $imagencompleta=$imagen;
 		            }else{
 		              $imagencompleta=$tienda->url.$imagen;
@@ -416,7 +419,7 @@ if(str_contains($enlace, $tienda->url)){
 
 
 	public function producto(Request $request){
-	
+	set_time_limit(0);
 
 		$tienda=Tienda::where('nombre',$request->tienda)->first();
 
@@ -433,7 +436,7 @@ if(str_contains($enlace, $tienda->url)){
 			$imagen= $crawler->filter($tienda->productimagen)->attr($tienda->productattrimagen);
 			if ($imagen!="") {
 				$imagen=$imagen;
-				if(str_contains($imagen, "http")||str_contains($imagen, "data:")){
+				if(str_contains($imagen, "//")||str_contains($imagen, "data:")){
 		          $imagencompleta=$imagen;
 		        }else{
 		          $imagencompleta=$tienda->url.$imagen;
@@ -521,7 +524,7 @@ if($contador<5){
 			      if($node->filter($tiendax->selectimagen)->count() > 0){
 			        $imagen=$node->filter($tiendax->selectimagen)->attr($tiendax->attrimagen);
 			        $imagen=$this->imagen($imagen, $tiendax->nombre);
-			        if(str_contains($imagen, "http")){
+			        if(str_contains($imagen, "//")||str_contains($imagen, "data:")){
 		              $imagencompleta=$imagen;
 		            }else{
 		              $imagencompleta=$tiendax->url.$imagen;

@@ -105,8 +105,15 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
                 </li>
                 <li><a href="{{url('/favoritos')}}">Favoritos</a></li>
                     @if (Auth::guest())
-                        <li><a href="{{url('/entrar')}}">Entrar</a></li>
-                        <li><a href="{{url('/registro')}}">Registrar</a></li>
+
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle dropdown-button" data-toggle="dropdown">Mi cuenta <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{{url('/entrar')}}">Entrar</a></li>
+                      <li><a href="{{url('/registro')}}">Registrar</a></li>
+                    </ul>
+                    </li>
+                        
                       @else
                       <li><a href="{{url('/salir')}}">Salir</a></li>
                       @endif
