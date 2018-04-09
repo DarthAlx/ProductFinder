@@ -211,11 +211,16 @@ $items=Cart::content();
                       </div>
 
                      <p><b>Descripción:</b><br>
-                      @if($producto['descripcion']=="No hay datos disponibles.")
-                      <a href="{{$producto['enlace']}}" target="_blank">Ver en la web</a>
+                      <?php $top=App\Top::where('nombre',$producto['nombre'])->first(); ?>
+                      @if($top)
+                        {{$top->descripcion}}
                       @else
-                     {{$producto['descripcion']}}
-                     @endif
+                        @if($producto['descripcion']=="No hay datos disponibles."||$producto['descripcion']=="")
+                          <a href="{{$producto['enlace']}}" target="_blank">Ver en la web</a>
+                        @else
+                          {{$producto['descripcion']}}
+                        @endif
+                      @endif
                       </p>
                      <a href="{{$producto['enlacetienda']}}" target="_blank">
                         <div class="from">
@@ -224,6 +229,7 @@ $items=Cart::content();
                       </a>
                      <div class="buttons">
                        <a href="{{$producto['enlace']}}" target="_blank" class="btn btn-primary">Comprar</a>
+                       <a href="{{$producto['enlace']}}" target="_blank" class="btn btn-primary green">Ver más detalles</a>
                        <div id="shareBtn" class="btn btn-success clearfix" style="background-color: #3B5999;"><i class="fa fa-facebook" aria-hidden="true"></i> Compartir</div>
                      </div>
 

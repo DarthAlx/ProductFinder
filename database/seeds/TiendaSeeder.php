@@ -349,22 +349,27 @@ class TiendaSeeder extends Seeder
         DB::table('categorias')->insert([
             'nombre'=> 'Mascotas',
             'slug'=> 'mascotas',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('categorias')->insert([
             'nombre'=> 'Casa y jardín',
             'slug'=> 'casa-y-jardin',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('categorias')->insert([
             'nombre'=> 'Electrónica',
             'slug'=> 'electronica',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('categorias')->insert([
             'nombre'=> 'Videojuegos',
             'slug'=> 'videojuegos',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('categorias')->insert([
             'nombre'=> 'Vestidos',
             'slug'=> 'vestidos',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
 
@@ -372,9 +377,11 @@ class TiendaSeeder extends Seeder
 
         DB::table('tendencias')->insert([
             'nombre'=> 'xbox',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('tendencias')->insert([
             'nombre'=> 'iphone',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
 
@@ -386,13 +393,15 @@ class TiendaSeeder extends Seeder
             'precio'=> '1106910',
             'descripcion'=> 'Los juegos son mejores en Xbox One X. Con 40 % más de potencia que cualquier otra consola, disfruta de los juegos en un verdadero 4K envolvente. Los grandes títulos de lanzamiento tienen un aspecto genial, funcionan sin problemas y cargan rápido, y puedes llevar todos tus juegos y accesorios de Xbox One contigo',
             'imagen'=> 'https://ss423.liverpool.com.mx/lg/1063763108.jpg',
-            'orden'=> 1
+            'orden'=> 1,
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
 
         DB::table('ads')->insert([
             'imagen'=> 'ad1.jpg',
-            'lugar'=> 'inicio'
+            'lugar'=> 'inicio',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
 
     }
