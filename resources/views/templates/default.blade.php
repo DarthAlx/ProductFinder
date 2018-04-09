@@ -197,8 +197,8 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
                 <h5 class="white-text">Empresa</h5>
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="#!">Acerca de Product Finder</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Trabaja con nosotros</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Contáctanos</a></li>
+                  <li><a class="grey-text text-lighten-3" href="{{url('/bolsa-de-trabajo')}}">Trabaja con nosotros</a></li>
+                  <li><a class="grey-text text-lighten-3" href="{{url('/registra-tu-marca')}}">Registra Tu Marca</a></li>
                 </ul>
               </div>
               <div class="col l4 s12 text-center">

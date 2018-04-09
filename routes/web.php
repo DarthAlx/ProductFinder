@@ -341,6 +341,25 @@ Route::post('/bolsa-de-trabajo', function (Illuminate\Http\Request $request) {
 });
 
 
+Route::get('/registra-tu-marca', function () {
+    return view('marca');
+});
+
+Route::post('/registra-tu-marca', function (Illuminate\Http\Request $request) {
+    $datos=$request;
+
+    Mail::send('emails.marca', ['datos'=>$datos], function ($m) use ($datos) {
+        $m->from($datos->email, $datos->nombre);
+        $m->to(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))->subject('Nueva marca');
+
+
+    });
+
+    Illuminate\Support\Facades\Session::flash('mensaje', '¡Mensaje enviado!');
+    Illuminate\Support\Facades\Session::flash('class', 'success');
+    return redirect()->intended(url('/registra-tu-marca'));
+});
+
 
 
 
