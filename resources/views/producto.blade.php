@@ -136,7 +136,7 @@ $items=Cart::content();
 
                    <div class="col-md-5">
                     <div class="row">
-                      <div class="col-md-3 col-xs-4 poplets">
+                      <!--div class="col-md-3 col-xs-4 poplets">
                         @php
                         $crawler = Goutte::request('GET', $enlace);
                         $contador=0;
@@ -152,8 +152,8 @@ $items=Cart::content();
                         });
 
                         @endphp
-                      </div>
-                      <div class="col-md-9 col-xs-8">
+                      </div-->
+                      <div class="col-md-offset-3 col-md-9 col-xs-12">
                         <img src="{{$producto['imagen']}}" class="img-responsive" alt="">
                       </div>
                     </div>

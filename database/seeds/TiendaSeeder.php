@@ -331,7 +331,7 @@ class TiendaSeeder extends Seeder
             'selectimagen'=> '.thumb img',
             'attrimagen'=> 'src',
             'selectprecio'=> '.price',
-            'selectprecio_especial'=>'.price',
+            'selectprecio_especial'=>'.discountedPrice-grid',
             'selectvaloracion'=> '',
             'selectdesc'=>'#prfLongDescription',
             'productnombre'=>'.p-name',

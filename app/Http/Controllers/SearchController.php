@@ -66,6 +66,9 @@ if($contador<10){
 			      else{
 			      	$agregar=false;
 			      }
+			      if($node->filter(".prRange")->count() > 0){
+		              $agregar=false;
+		            }
 			      if($node->filter($tienda->selectprecio_especial)->count() > 0){
 			        $precio=$node->filter($tienda->selectprecio_especial)->html();
 			      }else if($node->filter($tienda->selectprecio)->count() > 0){
@@ -322,6 +325,9 @@ if($contador<10){
 			      else{
 			      	$agregar=false;
 			      }
+			      if($node->filter(".prRange")->count() > 0){
+              $agregar=false;
+            }
 			      if($node->filter($tienda->selectprecio_especial)->count() > 0){
 			        $precio=$node->filter($tienda->selectprecio_especial)->html();
 			      }else if($node->filter($tienda->selectprecio)->count() > 0){
@@ -533,6 +539,9 @@ if($contador<5){
 			      else{
 			      	$agregar=false;
 			      }
+			      if($node->filter(".prRange")->count() > 0){
+              $agregar=false;
+            }
 			      if($node->filter($tiendax->selectprecio_especial)->count() > 0){
 			        $precio=$node->filter($tiendax->selectprecio_especial)->html();
 			      }else if($node->filter($tiendax->selectprecio)->count() > 0){

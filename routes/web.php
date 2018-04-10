@@ -173,6 +173,10 @@ Route::get('/', function () {
             else{
               $agregar=false;
             }
+
+            if($node->filter(".prRange")->count() > 0){
+              $agregar=false;
+            }
             if($node->filter($tienda->selectprecio_especial)->count() > 0){
               $precio=$node->filter($tienda->selectprecio_especial)->html();
             }else if($node->filter($tienda->selectprecio)->count() > 0){
