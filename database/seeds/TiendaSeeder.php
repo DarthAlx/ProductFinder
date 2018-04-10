@@ -442,6 +442,30 @@ class TiendaSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s")
         ]);
 
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Gandhi',
+            'url'=> 'http://gandhi.com.mx',
+            'urlbusqueda'=> 'http://busqueda.gandhi.com.mx/busca?q=',
+            'selectenlace'=> '.product-name a',
+            'selectitem'=> '.item',
+            'selectnombre'=> '.product-name',
+            'selectimagen'=> '.product-image img',
+            'attrimagen'=> 'src',
+            'selectprecio'=> '.price',
+            'selectprecio_especial'=>'.price',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'.short-description.std',
+            'productnombre'=>'.product-name',
+            'productprecio'=>'.price',
+            'productprecioespecial'=>'.price',
+            'productimagen'=>'.product-img-box',
+            'productattrimagen'=> 'src',
+            'productgaleria'=>'.none',
+            'productpoplet'=>'.none',
+            'productdesc'=>'.short-description.std',
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+
 
         DB::table('categorias')->insert([
             'nombre'=> 'Mascotas',

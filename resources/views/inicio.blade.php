@@ -42,7 +42,7 @@ $items=Cart::content();
           </div> 
       <p>&nbsp;</p>
       <div class="anuncio">
-        <img src="{{url('/uploads/ads')}}/{{$ad->imagen}}"  class="img-responsive">
+        <img src="{{url('/uploads/ads')}}/{{$ad->imagen}}"  class="img-responsive" style="width: 100%">
       </div>
       <p>&nbsp;</p>
       <div class="container-fluid">

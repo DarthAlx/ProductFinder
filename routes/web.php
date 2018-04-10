@@ -157,6 +157,11 @@ Route::get('/', function () {
             }
             if ($enlace=$node->filter($tienda->selectenlace)->count() > 0) {
               $enlace=$node->filter($tienda->selectenlace)->attr('href');
+              if(str_contains($enlace, "//")){
+                $enlace=$enlace;
+              }else{
+                $enlace=$tienda->url.$enlace;
+              }
             }
             else{
               $agregar=false;

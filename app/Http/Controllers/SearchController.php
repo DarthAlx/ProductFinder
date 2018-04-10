@@ -50,6 +50,11 @@ if($contador<10){
 			      }
 			      if ($enlace=$node->filter($tienda->selectenlace)->count() > 0) {
 			      	$enlace=$node->filter($tienda->selectenlace)->attr('href');
+			      	if(str_contains($enlace, "//")){
+                $enlace=$enlace;
+              }else{
+                $enlace=$tienda->url.$enlace;
+              }
 			      }
 			      else{
 			      	$agregar=false;
@@ -309,6 +314,11 @@ if($contador<10){
 			      }
 			      if ($enlace=$node->filter($tienda->selectenlace)->count() > 0) {
 			      	$enlace=$node->filter($tienda->selectenlace)->attr('href');
+			      	if(str_contains($enlace, "//")){
+                $enlace=$enlace;
+              }else{
+                $enlace=$tienda->url.$enlace;
+              }
 			      }
 			      else{
 			      	$agregar=false;
@@ -523,6 +533,11 @@ if($contador<5){
 			      }
 			      if ($enlace=$node->filter($tiendax->selectenlace)->count() > 0) {
 			      	$enlace=$node->filter($tiendax->selectenlace)->attr('href');
+			      	if(str_contains($enlace, "//")){
+                $enlace=$enlace;
+              }else{
+                $enlace=$tiendax->url.$enlace;
+              }
 			      }
 			      else{
 			      	$agregar=false;
@@ -656,7 +671,7 @@ if($contador<5){
 			$precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
 
     	}
-    	if ($tienda=="Best Buy"||$tienda=="Costco"||$tienda=="Porrua") {
+    	if ($tienda=="Best Buy"||$tienda=="Costco"||$tienda=="Porrua"||$tienda=="Gandhi") {
     		
     		$precio=$precio.".00";
 			$precio=str_replace('$', '',$precio);
