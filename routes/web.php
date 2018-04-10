@@ -103,6 +103,51 @@ Route::get('/revisarfavorito', function () {
 });
 
 
+Route::get('/1', function () {
+  set_time_limit(0);
+
+
+ /* $item=Cart::add(1,"test",1,2500);
+  dd($item->rowId);*/
+  $busquedas=App\Busqueda::orderBy('keywords','asc')->get();
+
+    if ($busquedas) {
+      $string = "{";
+      foreach ($busquedas as $busqueda) {
+        $string .="'".$busqueda->keywords."'".":"."'"."',";
+          }
+          $string.="}";
+          $busquedasjson=json_encode($string);
+    }
+        
+
+
+
+
+        $tops=App\Top::orderBy('orden')->get();
+        foreach ($tops as $top) {
+          $destacados[]=array(
+            'nombre'=>$top->nombre,
+            'enlace'=>$top->enlace,
+            'imagen'=>$top->imagen,
+            'precio'=>$top->precio,
+            'tienda'=>$top->tienda->nombre,
+            'enlacetienda'=>$top->tienda->url,
+            'orden'=>$top->orden
+            );
+        }
+        $categorias=App\Categoria::orderBy('nombre','asc')->get();
+        $ad=App\Ad::where('lugar','inicio')->first();
+
+    return view('inicio2', ['busquedas'=>$busquedasjson,'tops'=>$destacados,'categorias'=>$categorias,'ad'=>$ad]);
+});
+
+
+
+
+
+
+
 
 Route::get('/', function () {
   set_time_limit(0);
@@ -137,7 +182,7 @@ Route::get('/', function () {
 
       $contador=1;
       $crawler->filter($tienda->selectitem)->each(function ($node) use (&$tienda,&$productos,&$contador) {
-        if($contador<2){
+        if($contador==1){
 
       $agregar=true;
 
