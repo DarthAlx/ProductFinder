@@ -73,7 +73,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
               
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{url('/')}}">Inicio</a></li>
-                <li class="dropdown dropdown-large">
+                <!--li class="dropdown dropdown-large">
                    <a href="#" class="dropdown-toggle dropdown-button" data-toggle="dropdown">Categorías <b class="caret"></b></a>
 
                   <?php
@@ -93,7 +93,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
                     @for ($i=0; $i < $division ; $i++)
                     <li class="col-sm-3">
                       <ul>
-                        <!--li class="dropdown-header">Glyphicons</li-->
+                        
                         @for ($x=$i*5; $x < ($i+1)*5 ; $x++)
                         <li style="width: 100%;"><a href="{{url('/buscar/')}}/{{$arrayslug[$x] or ''}}">{{$arraycat[$x] or ''}}</a></li>
                         @endfor
@@ -102,7 +102,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
                     @endfor
                   </ul>
                   
-                </li>
+                </li-->
                 <li><a href="{{url('/favoritos')}}">Favoritos</a></li>
                     @if (Auth::guest())
 

@@ -167,12 +167,14 @@ Route::get('/', function () {
     }
 
     $tendencias=App\Tendencia::all();
-    $tiendas=App\Tienda::all();
+    $tiendas=App\Tienda::orderByRaw("RAND()")->get();
     $productos=array();
   
 
-
+$conttienda=1;
         foreach ($tiendas as $tienda) {
+          if ($conttienda<=5) {
+            
           foreach ($tendencias as $tendencia) {
 
 
@@ -266,12 +268,14 @@ else{
 
           });
           }//tendencia
+          $conttienda++;
+          }
         }//tienda
 
         $tendenciasarray = array_values(array_sort($productos, function ($value) {
-            return $value['orden'];
+            return $value['precio'];
         }));
-
+        $tendenciasarray=array_reverse($tendenciasarray);
 
 
 

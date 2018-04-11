@@ -252,7 +252,7 @@ $items=Cart::content();
                             </div>
                           </div>
                           <div class="name">
-                            <b>{{str_limit($producto['nombre'], $limit = 17, $end = '...')}}</b>
+                            <b>{{str_limit($producto['nombre'], $limit = 30, $end = '...')}}</b>
                           </div>
                           <div class="pricefrom">
                             <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
