@@ -21,7 +21,7 @@ $items=Cart::content();
 
 
       <div class="row">
-          <div class="col-md-4 col-sm-4">
+          <!--div class="col-md-4 col-sm-4">
             <nav class="navbar navbar-default navbar-static hidden-xs" style="background: transparent; border: 0; margin-top: 1rem;">
               <div class="navbar-header">
               <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
@@ -56,7 +56,7 @@ $items=Cart::content();
                     @for ($i=0; $i < $division ; $i++)
                     <li class="col-sm-3">
                       <ul>
-                        <!--li class="dropdown-header">Glyphicons</li-->
+
                         @for ($x=$i*5; $x < ($i+1)*5 ; $x++)
                         <li style="width: 100%;"><a href="{{url('/buscar/')}}/{{$arrayslug[$x] or ''}}">{{$arraycat[$x] or ''}}</a></li>
                         @endfor
@@ -74,7 +74,11 @@ $items=Cart::content();
 
 
               
-            </div><!-- /.nav-collapse -->
+            </div>
+
+
+
+
           </nav>
 
           <ul class="collapsible visible-xs">
@@ -94,7 +98,34 @@ $items=Cart::content();
           
 
 
-        </div>
+        </div-->
+
+        <div class="col-md-4 col-sm-4" style="padding-top: 31px">
+            <form action="{{url()->current()}}" method="post" id="precioformmini">
+                          {!! csrf_field() !!}
+
+
+                        <div class="input-group-append browser-default">
+                          <div class="row">
+                            <div class="col-xs-4" style="padding-right: 0">
+                              <input type="text" class="form-control browser-default" name="minimo" placeholder="Minimo" aria-describedby="basic-addon2">
+                            </div>
+                            <div class="col-xs-1 text-center valign-wrapper" style="max-width: inherit; height: 33px">
+                              <span class="guion"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="col-xs-4" style="padding-left: 0">
+                              <input type="text" class="form-control browser-default" name="maximo" placeholder="Maximo" aria-describedby="basic-addon2">
+                            </div>
+                            <div class="col-xs-1 valign-wrapper" style="height: 33px">
+                              <a href="#" id="searchpricemini"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+                              
+                            </div>
+                          </div>
+                          
+                        </div>
+
+                        </form>
+                      </div>
 
         <div class="col-md-4 col-sm-4">
                 <form action="{{url('/buscar')}}" method="post" style="width: 100%;">
