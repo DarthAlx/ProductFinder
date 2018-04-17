@@ -13,117 +13,44 @@ $items=Cart::content();
      <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
       
       <p>&nbsp;</p>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <h5 style="margin: 0;">Tus favoritos</h5>
-            <hr>
+<section class="perfil">
+
+  <p>&nbsp;</p>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+          <div class="">
+            <div class="card-content">
+              <h3 class="card-title">Tu perfil <i class="fa fa-user-o" aria-hidden="true"></i></h3>
+              <div class="collection">
+                <a href="{{url('/perfil')}}" class="collection-item">Detalles</a>
+                <a href="{{url('/favoritos')}}" class="collection-item active">Tus Favoritos</a>
+                <a href="{{url('/notificaciones')}}" class="collection-item">Notificaciones</a>
+                <a href="{{url('/Comentarios')}}" class="collection-item">Comentarios</a>
+              </div>
+            </div>      
           </div>
         </div>
+        <div class="col-md-9">
+          
+          <?php $user=App\User::find(Auth::user()->id); ?>
+          
+          
 
-
-      <div class="row">
-          <!--div class="col-md-4">
-            <nav class="navbar navbar-default navbar-static" style="background: transparent; border: 0; margin-top: 1rem;">
-              <div class="navbar-header">
-              <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              
+          <div class="favoritos">
+            <div class="row">
+              <div class="col-md-12">
+                <h5 style="margin: 0;">Tus favoritos</h5>
+                <hr>
               </div>
-
-            <div class="collapse navbar-collapse js-navbar-collapse">
-              
-              <ul class="nav navbar-nav" style="width:100%">
-                <li class="dropdown dropdown-large" style="width:100%">
-                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #777777;"><i class="fa fa-bars prefix"></i> Categorías <b class="caret"></b></a>
-
-                  <?php
-                  $arraycat=array();
-                  $arrayslug=array();
-                  foreach($categorias as $categoria){
-                     
-                      $arraycat[]=$categoria->nombre;
-                      $arrayslug[]=$categoria->slug;
-                    
-                  }
-
-                   ?>
-                  <ul class="dropdown-menu dropdown-menu-large row">
-                    @for ($i=0; $i < 4 ; $i++)
-                    <li class="col-sm-3">
-                      <ul>
-
-                        @for ($x=$i*5; $x < ($i+1)*5 ; $x++)
-                        <li style="width: 100%;"><a href="{{url('/buscar/')}}/{{$arrayslug[$x] or ''}}">{{$arraycat[$x] or ''}}</a></li>
-                        @endfor
-                      </ul>
-                    </li>
-                    @endfor
-                  </ul>
-                  
-                </li>
-              </ul>
-            
-
-
-              
-
-
-              
             </div>
-          </nav>
-        </div-->
-
-        <div class="col-md-4 col-md-offset-4">
-                <form action="{{url('/buscar')}}" method="post" style="width: 100%;">
-                  {{ csrf_field() }}
-
-                  <div class="input-field valign-wrapper">
-                    <i class="fa fa-search prefix"></i>
-                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;">
-                  </div>
-                  </form>
-                </div>
-
-                <!--div class="col-md-4">
-                  <form id="ordenformmini" action="{{url('/favoritos')}}" method="post" style="width: 100%;">
-                    {{ csrf_field() }}
-                    <input name="busqueda" type="hidden" value="{{$busqueda}}">
-                  <div class="input-field valign-wrapper selectorden">
-                      <select id="ordenmini" name="sort" class="select" required>
-                        <option value="Popularidad">Popularidad</option>
-                        <option value="A - Z">A - Z</option>
-                        <option value="Menor precio">Menor precio</option>
-                        <option value="Mayor precio">Mayor precio</option>
-                      </select>
-                  </div>
-                  </form>
-                  <script>
-                    document.getElementById('ordenmini').value="{!!$sorting!!}";
-                    $('#ordenmini').change(function(){
-                      $('#ordenformmini').submit();
-
-                    });
-                  </script>
-
-                </div-->
-      </div>
-
-
-        <div class="row">
-
-          <div class="col-md-12">
-
-                  <div class="row-fluid">
+            <div class="row-fluid">
 
                     <?php $productocount=0; $esfav=false;?>
+              @if($productos)
               @foreach($productos as $producto)
 
-                    <div class="col-md-2 col-sm-4 col-xs-6" id="productofav{{$productocount}}">
+                    <div class="col-md-3 col-sm-4 col-xs-6" id="productofav{{$productocount}}">
                       <form action="{{url('/producto')}}" method="post" id="tendencia{{$productocount}}" style="display: none;">
                         {{ csrf_field() }}
                         @php
@@ -214,10 +141,24 @@ $items=Cart::content();
                     
                     <?php $productocount++;?>
               @endforeach
+              @else
+              <div class="row">
+                <div class="col-md-12 text-center">
+                        <h4>Aún no has agregado favoritos.</h4>
+                </div>
+              </div>
+              @endif 
                   </div><!--/row-fluid-->
+            
+
           </div>
+
+          
         </div>
-</div>
+      </div>
+  </div>
+
+</section>
 
 
 
@@ -293,3 +234,9 @@ function removefromfavorite(rowId,id){
 
 
 @endsection
+
+
+
+
+
+<p>&nbsp;</p>

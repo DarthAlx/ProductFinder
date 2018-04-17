@@ -548,9 +548,9 @@ right: 0;
     margin-left: 20px;
 }
 .perfiltext h2{
-    color: #fff;
+    color: #000;
     font-family: "Lato", sans-serif;
-    text-shadow: 1px 1px #000;
+    text-shadow: 1px 1px #ccc;
     font-weight: bold;
 }
 .fixed-action-btn {

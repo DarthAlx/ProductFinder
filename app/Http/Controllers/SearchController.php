@@ -200,7 +200,7 @@ else{
   		Cart::restore(Auth::user()->id);
   		Cart::store(Auth::user()->id);
   		$items=Cart::content();
-  		if (Cart::content()->count()>0){
+  		
 
 
 
@@ -260,10 +260,8 @@ else{
 			$categorias=Categoria::orderBy('nombre','asc')->get();
 			return view('favoritos', ['productos'=>$productos,'busqueda'=>'','sorting'=>$request->sort,'categorias'=>$categorias]);
 
-	  	}
-		else{
-			return view('favoritosvacio', ['busqueda'=>'']);
-		}
+	  	
+		
 		
 
         

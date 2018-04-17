@@ -354,6 +354,9 @@ Route::post('actualizar-datos', 'UserController@updatedetails')->middleware('aut
 Route::get('/tiendas', function () {
     return view('tiendas');
 });
+Route::get('/acercade', function () {
+    return view('acercade');
+});
 Route::get('/contacto', function () {
     return view('contacto');
 });
@@ -420,6 +423,9 @@ Route::post('/registra-tu-marca', function (Illuminate\Http\Request $request) {
 
 
 
+Route::get('/perfil', function () {
+    return view('perfil');
+})->middleware('auth');
 
 
 
