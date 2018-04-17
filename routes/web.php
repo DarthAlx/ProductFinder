@@ -164,22 +164,26 @@ Route::get('/', function () {
           }
           $string.="}";
           $busquedasjson=json_encode($string);
+          $tendencias=App\Busqueda::orderBy('contador','desc')->get();
     }
-
-    $tendencias=App\Tendencia::all();
+    else{
+      $tendencias=App\Tendencia::all();
+    }
+    
     $tiendas=App\Tienda::orderByRaw("RAND()")->get();
     $productos=array();
   
 
 $conttienda=1;
+$conttendencia=1;
         foreach ($tiendas as $tienda) {
           if ($conttienda<=5) {
             
           foreach ($tendencias as $tendencia) {
+            //if ($conttendencia<=5) {
 
 
-
-      $crawler = Goutte::request('GET', $tienda->urlbusqueda.$tendencia->nombre);
+      $crawler = Goutte::request('GET', $tienda->urlbusqueda.$tendencia->keywords);
       
 
       $contador=1;
@@ -267,6 +271,8 @@ else{
 
 
           });
+     // $conttendencia++;
+    //}
           }//tendencia
           $conttienda++;
           }
@@ -430,6 +436,11 @@ Route::get('/perfil', function () {
 Route::get('/comentarios', function () {
     return view('comentarios');
 })->middleware('auth');
+
+Route::get('/mensajes', function () {
+    return view('mensajes');
+})->middleware('auth');
+Route::post('leermensaje', 'MensajeController@read')->middleware('auth');
 
 
 Route::group(['middleware' => 'admin'], function(){

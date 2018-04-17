@@ -24,7 +24,7 @@ $items=Cart::content();
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 <div class="container-fluid">
   <div class="row" style="border-bottom: 5px solid #C42854;">
-          <div class="col-md-4 col-sm-4">
+          <!--div class="col-md-4 col-sm-4">
             <nav class="navbar navbar-default navbar-static hidden-xs" style="background: transparent; border: 0; margin-top: 1rem;">
               <div class="navbar-header">
               <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
@@ -59,7 +59,7 @@ $items=Cart::content();
                     @for ($i=0; $i < $division ; $i++)
                     <li class="col-sm-3">
                       <ul>
-                        <!--li class="dropdown-header">Glyphicons</li-->
+                        
                         @for ($x=$i*5; $x < ($i+1)*5 ; $x++)
                         <li style="width: 100%;"><a href="{{url('/buscar/')}}/{{$arrayslug[$x] or ''}}">{{$arraycat[$x] or ''}}</a></li>
                         @endfor
@@ -77,7 +77,7 @@ $items=Cart::content();
 
 
               
-            </div><!-- /.nav-collapse -->
+            </div>
           </nav>
 
           <ul class="collapsible visible-xs">
@@ -97,9 +97,9 @@ $items=Cart::content();
           
 
 
-        </div>
+        </div-->
 
-        <div class="col-md-4">
+        <div class="col-md-4 col-md-offset-4">
                 <form action="{{url('/buscar')}}" method="post" style="width: 100%;">
                   {{ csrf_field() }}
 

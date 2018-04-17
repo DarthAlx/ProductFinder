@@ -109,13 +109,20 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
                     <li class="dropdown">
                     <a href="#" class="dropdown-toggle dropdown-button" data-toggle="dropdown">Mi cuenta <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                      <li><a href="{{url('/entrar')}}">Entrar</a></li>
-                      <li><a href="{{url('/registro')}}">Registrar</a></li>
+                      <li style="width: 100%;"><a href="{{url('/entrar')}}">Entrar</a></li>
+                      <li style="width: 100%;"><a href="{{url('/registro')}}">Registrar</a></li>
                     </ul>
                     </li>
                         
                       @else
-                      <li><a href="{{url('/salir')}}">Salir</a></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle dropdown-button" data-toggle="dropdown">Mi cuenta <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li style="width: 100%;"><a href="{{url('/perfil')}}">Perfil</a></li>
+                          <li style="width: 100%;"><a href="{{url('/salir')}}">Salir</a></li>
+                        </ul>
+                      </li>
+                      
                       @endif
               </ul>
             
@@ -282,110 +289,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
 
 
-@if(!Auth::guest())
-      @php 
-        $user=App\User::find(Auth::user()->id);
-      @endphp
-      <div class="fixed-action-btn horizontal">
-          <a class="btn-floating btn-large red pulse tooltipped"  data-position="bottom" data-delay="50" data-tooltip="Gestión de cuenta">
-            <i class="fa fa-user fa2x"></i>
-          </a>
-          <ul>
-            <li><a class="btn-floating blue tooltipped modal-trigger " href="#detalles" data-position="bottom" data-delay="50" data-tooltip="Detalles"><i class="fa fa-id-card-o" aria-hidden="true"></i></a></li>
-            <li><a class="btn-floating green tooltipped modal-trigger " href="#passwordmodal" data-position="bottom" data-delay="50" data-tooltip="Cambiar contraseña"><i class="fa fa-lock"></i></a></li>
-            <!--li><a class="btn-floating red tooltipped" data-position="bottom" data-delay="50" data-tooltip="Editar perfil"><i class="fa fa-pencil"></i></a></li-->
-
-          </ul>
-        </div><!--gestion-->
-
-
-        <div id="passwordmodal" class="modal modal-fixed-footer" style="display: none;">
-          <div class="modal-content" style="height: 100%;">
-            <div class="row">
-              <div class="col-md-12">
-                <h5>Contraseña</h5>
-
-                        <form action="{{ url('/cambiar-contrasena-user') }}" method="post" enctype="multipart/form-data">
-                          {!! csrf_field() !!}
-                        <div class="row">
-                          <div class="input-field col s6">
-                            <input id="password" type="password" name="password" class="validate" required>
-                            <label for="password">Nueva contraseña</label>
-                          </div>
-                          <div class="input-field col s6">
-                            <input id="password_confirmation" name="password_confirmation" type="password" class="validate" required>
-                            <label for="password_confirmation">Confirmar nueva contraseña</label>
-                          </div>
-                        </div>
-                        
-                        <div class="row">
-                          <div class="col s12">
-                            <input type="submit" value="Cambiar" class="btn btn-primary right waves-effect waves-light">
-                          </div>
-                        </div>
-                      </form>
-            
-              </div>
-            </div>
-             
-          </div>
-       <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Cerrar</a> &nbsp;
-          </div>
-        </div>
-
-        <div id="detalles" class="modal">
-          <div class="modal-content">
-            <h5>Detalles</h5>
-              <div>
-                <form action="{{url('/actualizar-datos')}}" method="post" enctype="multipart/form-data">
-                  {!! csrf_field() !!}
-
-                  <div class="input-field">
-                            <input type="text" name="name" id="nombre" class="form-control" value="{{$user->name or old('name')}}" required>
-                            <label for="nombre"><i class="fa fa-user-o grey-text fa-lg"></i> Nombre completo</label>
-                        </div>
-                        <div class="input-field">
-                            
-                            <input type="email" name="email" id="email" class="form-control" value="{{$user->email or old('email')}}" required>
-                            <label for="email"><i class="fa fa-envelope-o grey-text fa-lg"></i> Email</label>
-                        </div>
-                        <div class="input-field">
-                            
-                            <input type="text" name="dob" id="dob" class="form-control datepicker" value="{{$user->dob or old('dob')}}">
-                            <label for="dob"><i class="fa fa-calendar grey-text fa-lg"></i> Fecha de nacimiento (opcional)</label>
-                        </div>
-                        <div class="input-field">
-                            
-                            <input type="text" name="tel" id="tel" class="form-control" value="{{$user->tel or old('tel')}}">
-                            <label for="tel"><i class="fa fa-phone grey-text fa-lg"></i> Teléfono (opcional)</label>
-                        </div>
-                        <label for="defaultForm-email"><i class="fa fa-venus-mars grey-text fa-lg"></i> Genero</label>
-                        <div class="">
-                            
-                        <p><input name="genero" id="masculino" type="radio" value="Masculino"  required/><label for="masculino">Masculino</label>  &nbsp;   &nbsp;   &nbsp; 
-                            <input name="genero" id="femenino" type="radio" value="Femenino"  required/><label for="femenino">Femenino</label></p>
-                           
-                            
-                        </div>
-                        <script>
-                          $("input[name=genero][value=" + "{{$user->genero or old('genero')}}" + "]").attr('checked', 'checked');
-                        </script>
-
-                        <div class="row">
-                          <div class="col s12">
-                            <input type="submit" value="Guardar" class="btn btn-primary right waves-effect waves-light">
-                          </div>
-                        </div>
-                </form> &nbsp; &nbsp;
-              </div>
-          </div>
-          <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Cerrar</a> &nbsp; 
-          </div>
-        </div>
-
-        @else
+@if(Auth::guest())
           <?php $popup = Cookie::get('popup'); ?>
           @if(!$popup)
 

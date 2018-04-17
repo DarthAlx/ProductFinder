@@ -27,12 +27,17 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="adv-table table-responsive">
+					<form action="{{ url('/enviar-mensaje') }}" method="post" enctype="multipart/form-data">
+					{!! csrf_field() !!}
+					<input type="hidden" name="tipo" value="Multi">
 					
 					
 			  <table class="display table table-bordered table-striped table-hover" id="dynamic-table">
 			  <thead>
 			  	<tr>
-			      	
+			      	<th class="sorting">
+			      		<i class="fa fa-envelope-square" aria-hidden="true"></i>
+                    </th>
 			      	<th><i class="fa fa-picture-o"></i></th>
 					<th class="sorting_desc">Nombre</th>
 			      	<th>Email</th>
@@ -47,7 +52,12 @@
 			  		@foreach($usuarios as $usuario)
 
 						<tr>
-							
+							<td>
+								<p>
+		                          <input type="checkbox" id="mensajeuser{{$usuario->id}}" name="mensajeuser[]" value="{{$usuario->id}}" required/>
+		                          <label for="mensajeuser{{$usuario->id}}"></label>
+		                        </p>
+							</td>
 							<td><img src="{{$usuario->avatar}}" alt="" style="max-width: 50px;"></td>
 							<td>{{$usuario->name}}</td>
 							<td>{{$usuario->email}}</td>
@@ -58,6 +68,13 @@
 								<a class="waves-effect waves-light btn" href="{{url('/usuario')}}/{{$usuario->id}}"><i class="fa fa-search-plus"></i></a>
 								<a class="waves-effect waves-light btn  modal-trigger " href="#mensaje{{$usuario->id}}"><i class="fa fa-envelope"></i></a>
 								<a class="waves-effect waves-light btn  modal-trigger red" href="#delete{{$usuario->id}}"><i class="fa fa-times-circle"></i></a>
+								<div style="display: none;">
+									@if($usuario->busquedas)
+										@foreach($usuario->busquedas as $busqueda)
+										{{$busqueda->keywords}} &nbsp;
+										@endforeach
+									@endif
+								</div>
 									
 							</td>	
 						</tr>
@@ -82,7 +99,9 @@
 			  </tbody>
 			  <tfoot>
 			  	<tr>
-			  		
+			  		<th class="sorting">
+			      		<i class="fa fa-envelope-square" aria-hidden="true"></i>
+                    </th>
 			      	<th class="sorting"><i class="fa fa-picture-o"></i></th>
 					<th class="sorting_desc">Nombre</th>
 			      	<th>Email</th>
@@ -90,9 +109,34 @@
 					<th>Genero</th>
 			      	<th></th>
 			  	</tr>
+			  	<tr>
+			  		<td colspan="11">
+			  			<ul class="collapsible" data-collapsible="accordion">
+						    <li>
+						      <div class="collapsible-header">Enviar mensaje</div>
+						      <div class="collapsible-body">
+							        <div class="input-field">
+							          <input type="text" name="asunto" id="asunto">
+							          
+							          <label for="asunto">Asunto</label>
+							        </div>
+							  
+						      	<div class="input-field">
+						          <textarea id="msg" name="msg" class="materialize-textarea" required>{{old('msg')}}</textarea>
+						          <label for="msg">Mensaje</label>
+						        </div>
+								<button type="submit" class="btn waves-effect waves-light">Enviar</button>
+						      </div>
+						    </li>
+						  </ul>
+			  			
+
+			  		</td>
+			  	</tr>
 
 			  </tfoot>
 			  </table>
+			  </form>
 			  
 
 			  </div>

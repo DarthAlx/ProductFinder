@@ -496,12 +496,14 @@ class TiendaSeeder extends Seeder
 
 
 
-        DB::table('tendencias')->insert([
-            'nombre'=> 'xbox',
+        DB::table('busquedas')->insert([
+            'keywords'=> 'xbox',
+            'contador'=>1,
             'created_at' => date("Y-m-d H:i:s")
         ]);
-        DB::table('tendencias')->insert([
-            'nombre'=> 'iphone',
+        DB::table('busquedas')->insert([
+            'keywords'=> 'iphone',
+            'contador'=>1,
             'created_at' => date("Y-m-d H:i:s")
         ]);
 

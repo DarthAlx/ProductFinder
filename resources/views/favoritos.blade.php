@@ -14,6 +14,11 @@ $items=Cart::content();
       
       <p>&nbsp;</p>
 <section class="perfil">
+  <?php $user=App\User::find(Auth::user()->id); 
+          if ($user->mensajes) {
+            $nuevos=App\Mensaje::where('user_id',$user->id)->where('leido',0)->count();
+          }
+                        ?>
 
   <p>&nbsp;</p>
   <div class="container">
@@ -25,7 +30,7 @@ $items=Cart::content();
               <div class="collection">
                 <a href="{{url('/perfil')}}" class="collection-item">Detalles</a>
                 <a href="{{url('/favoritos')}}" class="collection-item active">Tus Favoritos</a>
-                <a href="{{url('/notificaciones')}}" class="collection-item">Notificaciones</a>
+                <a href="{{url('/mensajes')}}" class="collection-item">Mensajes @if($nuevos>0)<span class="new badge" data-badge-caption="">{{$nuevos}}</span>@endif</a>
                 <a href="{{url('/comentarios')}}" class="collection-item">Comentarios</a>
               </div>
             </div>      
@@ -33,7 +38,7 @@ $items=Cart::content();
         </div>
         <div class="col-md-9">
           
-          <?php $user=App\User::find(Auth::user()->id); ?>
+          
           
           
 

@@ -2,7 +2,11 @@
 
 @section('pagecontent')
 <section class="perfil">
-
+<?php $user=App\User::find(Auth::user()->id); 
+          if ($user->mensajes) {
+            $nuevos=App\Mensaje::where('user_id',$user->id)->where('leido',0)->count();
+          }
+                        ?>
 	<p>&nbsp;</p>
 	<div class="container">
 		<div class="row">
@@ -11,10 +15,10 @@
             <div class="card-content">
             	<h3 class="card-title">Tu perfil <i class="fa fa-user-o" aria-hidden="true"></i></h3>
             	<div class="collection">
-                <a href="{{url('/perfil')}}" class="collection-item active">Detalles</a>
+                <a href="{{url('/perfil')}}" class="collection-item">Detalles</a>
                 <a href="{{url('/favoritos')}}" class="collection-item">Tus Favoritos</a>
-                <a href="{{url('/notificaciones')}}" class="collection-item">Notificaciones</a>
-                <a href="{{url('/comentarios')}}" class="collection-item">Comentarios</a>
+                <a href="{{url('/mensajes')}}" class="collection-item">Mensajes @if($nuevos>0)<span class="new badge" data-badge-caption="">{{$nuevos}}</span>@endif</a>
+                <a href="{{url('/comentarios')}}" class="collection-item active">Comentarios</a>
               </div>
             </div>      
           </div>
@@ -26,7 +30,7 @@
                 <hr>
               </div>
             </div>
-          <?php $user=App\User::find(Auth::user()->id); ?>
+
 
           <div class="detalles">
             <form method="post" enctype="multipart/form-data" action="{{ url('/contacto') }}">

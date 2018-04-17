@@ -2,7 +2,11 @@
 
 @section('pagecontent')
 <section class="perfil">
-
+<?php $user=App\User::find(Auth::user()->id); 
+          if ($user->mensajes) {
+            $nuevos=App\Mensaje::where('user_id',$user->id)->where('leido',0)->count();
+          }
+                        ?>
 	<p>&nbsp;</p>
 	<div class="container">
 		<div class="row">
@@ -13,7 +17,7 @@
             	<div class="collection">
                 <a href="{{url('/perfil')}}" class="collection-item active">Detalles</a>
                 <a href="{{url('/favoritos')}}" class="collection-item">Tus Favoritos</a>
-                <a href="{{url('/notificaciones')}}" class="collection-item">Notificaciones</a>
+                <a href="{{url('/mensajes')}}" class="collection-item">Mensajes @if($nuevos>0)<span class="new badge" data-badge-caption="">{{$nuevos}}</span>@endif</a>
                 <a href="{{url('/comentarios')}}" class="collection-item">Comentarios</a>
               </div>
             </div>      
@@ -31,7 +35,7 @@
             </div>
             
           </div>
-          <?php $user=App\User::find(Auth::user()->id); ?>
+
           <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
           <div class="detalles">
             <form action="{{url('/actualizar-datos')}}" method="post" enctype="multipart/form-data">
