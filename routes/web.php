@@ -373,7 +373,7 @@ Route::post('/contacto', function (Illuminate\Http\Request $request) {
 
     Illuminate\Support\Facades\Session::flash('mensaje', '¡Mensaje enviado!');
     Illuminate\Support\Facades\Session::flash('class', 'success');
-    return redirect()->intended(url('/contacto'));
+    return redirect()->intended(url()->previous());
 });
 
 
@@ -427,7 +427,9 @@ Route::get('/perfil', function () {
     return view('perfil');
 })->middleware('auth');
 
-
+Route::get('/comentarios', function () {
+    return view('comentarios');
+})->middleware('auth');
 
 
 Route::group(['middleware' => 'admin'], function(){

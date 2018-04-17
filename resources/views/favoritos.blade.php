@@ -26,7 +26,7 @@ $items=Cart::content();
                 <a href="{{url('/perfil')}}" class="collection-item">Detalles</a>
                 <a href="{{url('/favoritos')}}" class="collection-item active">Tus Favoritos</a>
                 <a href="{{url('/notificaciones')}}" class="collection-item">Notificaciones</a>
-                <a href="{{url('/Comentarios')}}" class="collection-item">Comentarios</a>
+                <a href="{{url('/comentarios')}}" class="collection-item">Comentarios</a>
               </div>
             </div>      
           </div>
