@@ -78,6 +78,7 @@ if($contador<=10){
 			      }else if($node->filter($tienda->selectprecio)->count() > 0){
 			        $precio=$node->filter($tienda->selectprecio)->text();
 			      }else{
+			      	$precio=0;
 			      	$agregar=false;
 			      }
 			      if(str_contains($enlace, $tienda->url)){
@@ -86,8 +87,12 @@ if($contador<=10){
 		              $enlacecompleto=$tienda->url.$enlace;
 		            }
 		            
+		            $precio=$this->precio($precio, $tienda->nombre);
+			 		if($precio==0){
+			 			$agregar=false;
+			 		}
 			 	if ($agregar) {
-			 		$precio=$this->precio($precio, $tienda->nombre);
+
 			 		$productos[]=array(
 			    	'nombre'=>trim($nombre),
 			    	'enlace'=>$enlacecompleto,
@@ -329,6 +334,7 @@ if($contador<10){
 			      }else if($node->filter($tienda->selectprecio)->count() > 0){
 			        $precio=$node->filter($tienda->selectprecio)->text();
 			      }else{
+			      	$precio=0;
 			      	$agregar=false;
 			      }
 
@@ -563,6 +569,7 @@ if($contador<5){
 			      }else if($node->filter($tiendax->selectprecio)->count() > 0){
 			        $precio=$node->filter($tiendax->selectprecio)->text();
 			      }else{
+			      	$precio=0;
 			      	$agregar=false;
 			      }
 
@@ -572,11 +579,14 @@ if($contador<5){
 		              $enlacecompleto=$tiendax->url.$enlace;
 		            }
 
-		            
+		            $precio=$this->precio($precio, $tiendax->nombre);
+			 		if($precio==0){
+			 			$agregar=false;
+			 		}
 
 
 			 	if ($agregar) {
-			 		$precio=$this->precio($precio, $tiendax->nombre);
+			 		
 			 		$productos[]=array(
 			    	'nombre'=>trim($nombre),
 			    	'enlace'=>$enlacecompleto,
@@ -686,6 +696,17 @@ $conttienda++;
 			$precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
 			
 
+    	}
+
+    	if ($tienda=="Ebay"){
+    		$precio=str_replace('$', '',$precio);
+			$precio=str_replace(' ', '',$precio);
+			$precio=ltrim($precio, "\n");
+			$precio=str_replace(',', '', $precio);
+			if (!str_contains($precio,'MXN')||str_contains($precio,'USD')) {
+				$precio=0;
+			}
+			$precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
     	}
 
     	if ($tienda=="Coppel") {

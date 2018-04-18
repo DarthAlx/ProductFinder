@@ -244,6 +244,7 @@ $conttendencia=1;
             }else if($node->filter($tienda->selectprecio)->count() > 0){
               $precio=$node->filter($tienda->selectprecio)->text();
             }else{
+              $precio=0;
               $agregar=false;
             }
 
@@ -253,9 +254,12 @@ $conttendencia=1;
               $enlacecompleto=$tienda->url.$enlace;
             }
 
-
-        if ($agregar) {
           $precio=App\Http\Controllers\SearchController::precio($precio, $tienda->nombre);
+          if($precio==0){
+            $agregar=false;
+          }
+        if ($agregar) {
+          
           $productos[]=array(
             'nombre'=>trim($nombre),
             'enlace'=>$enlacecompleto,
