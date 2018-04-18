@@ -28,7 +28,7 @@
             <div class="perfilimg left">
               <img class="circle" src="{{Auth::user()->avatar}}" alt="">
             </div>
-            <div class="perfiltext right">
+            <div class="perfiltext left">
               <h2>
                 {{Auth::user()->name}}
               </h2>
@@ -36,7 +36,7 @@
             
           </div>
 
-          <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+          <p>&nbsp;</p><p class="hidden-xs">&nbsp;</p><p class="hidden-xs">&nbsp;</p><p class="hidden-xs">&nbsp;</p><p class="hidden-xs">&nbsp;</p>
           <div class="detalles">
             <form action="{{url('/actualizar-datos')}}" method="post" enctype="multipart/form-data">
                   {!! csrf_field() !!}
@@ -79,38 +79,50 @@
                         </div>
                 </form>
                 @if($user->socialProvider->first)
-                  <a href="{{url('auth/facebook')}}" class="btn btn-lg omb_btn-facebook">
+                  <a href="#" class="btn btn-lg omb_btn-facebook">
                       <i class="fa fa-facebook"></i>
-                      <span class="hidden-xs"> Cuenta vinculada con facebook</span>
-                  </a>
+                      
+                  </a><span class="hidden-xs"> Cuenta vinculada con facebook</span>
                 @else
-                  <a href="{{url('auth/facebook')}}" class="btn btn-lg omb_btn-facebook">
+                  <a href="#" class="btn btn-lg omb_btn-facebook">
                       <i class="fa fa-facebook"></i>
-                      <span class="hidden-xs"> Cuenta no vinculada con facebook</span>
-                  </a>
+                      
+                  </a> <span class="hidden-xs"> Cuenta no vinculada con facebook</span>
                 @endif
 
                 <p>&nbsp;</p>
 
-                <form action="{{ url('/cambiar-contrasena-user') }}" method="post" enctype="multipart/form-data">
-                  {!! csrf_field() !!}
-                  <div class="row">
-                    <div class="input-field col s6">
-                      <input id="password" type="password" name="password" class="validate" required>
-                      <label for="password">Nueva contraseña</label>
+                <ul class="collapsible" data-collapsible="accordion">
+                  <li>
+                    <div class="collapsible-header"><b>Cambiar Contraseña</b> </div>
+                    <div class="collapsible-body">
+                      <form action="{{ url('/cambiar-contrasena-user') }}" method="post" enctype="multipart/form-data">
+                        {!! csrf_field() !!}
+                          <div class="row">
+                            <div class="input-field col s6">
+                              <input id="password" type="password" name="password" class="validate" required>
+                              <label for="password">Nueva contraseña</label>
+                            </div>
+                            <div class="input-field col s6">
+                              <input id="password_confirmation" name="password_confirmation" type="password" class="validate" required>
+                              <label for="password_confirmation">Confirmar nueva contraseña</label>
+                            </div>
+                          </div>
+                          
+                          <div class="row">
+                            <div class="col s12">
+                              <input type="submit" value="Cambiar" class="btn btn-primary right waves-effect waves-light">
+                            </div>
+                          </div>
+                      </form>
                     </div>
-                    <div class="input-field col s6">
-                      <input id="password_confirmation" name="password_confirmation" type="password" class="validate" required>
-                      <label for="password_confirmation">Confirmar nueva contraseña</label>
-                    </div>
-                  </div>
-                  
-                  <div class="row">
-                    <div class="col s12">
-                      <input type="submit" value="Cambiar" class="btn btn-primary right waves-effect waves-light">
-                    </div>
-                  </div>
-              </form>
+                  </li>
+
+                </ul>
+
+
+
+                
           </div>
 
         	

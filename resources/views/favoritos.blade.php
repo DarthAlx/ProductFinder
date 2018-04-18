@@ -45,7 +45,7 @@ $items=Cart::content();
           <div class="favoritos">
             <div class="row">
               <div class="col-md-12">
-                <h5 style="margin: 0;">Tus favoritos</h5>
+                <h5 style="margin: 0; text-align: center;">Tus Favoritos</h5>
                 <hr>
               </div>
             </div>
@@ -129,7 +129,7 @@ $items=Cart::content();
                             </div>
                           </div>
                           <div class="name">
-                            <b>{{str_limit($producto['nombre'], $limit = 22, $end = '...')}}</b>
+                            <b>{{str_limit($producto['nombre'], $limit = 35, $end = '...')}}</b>
                           </div>
                           <div class="pricefrom">
                             <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>

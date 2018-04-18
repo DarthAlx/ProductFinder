@@ -182,8 +182,14 @@ $conttendencia=1;
           foreach ($tendencias as $tendencia) {
             //if ($conttendencia<=5) {
 
+            if ($tienda->nombre=="Sanborns") {
+            $busquedakey=base64_encode($tendencia->keywords)."/1/";
+          }
+          else{
+            $busquedakey=$tendencia->keywords;
+          }
+      $crawler = Goutte::request('GET', $tienda->urlbusqueda.$busquedakey);
 
-      $crawler = Goutte::request('GET', $tienda->urlbusqueda.$tendencia->keywords);
       
 
       $contador=1;
@@ -304,9 +310,7 @@ else{
 });
 
 
-Route::get('/perfil', function () {
-	return redirect()->intended(url('/favoritos'));
-})->middleware('auth');
+
 
 Route::post('buscar', 'SearchController@index');
 Route::get('/buscar', function () {
@@ -555,4 +559,5 @@ Route::group(['middleware' => 'admin'], function(){
   Route::post('traerproducto', 'ProductoController@traerproducto');
   Route::get('traerproducto', 'ProductoController@traerproducto');
 
+  Route::get('exportarusuarios', 'UserController@export');
 });

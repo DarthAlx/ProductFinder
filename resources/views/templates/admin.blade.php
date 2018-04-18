@@ -116,7 +116,7 @@
         @yield('scripts')
 
         <?php
-          App\Http\Controllers\ProductoController::revisarfavorito();
+          //App\Http\Controllers\ProductoController::revisarfavorito();
         ?>
 
     </body>

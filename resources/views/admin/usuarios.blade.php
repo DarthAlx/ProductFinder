@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<p>&nbsp;</p>
-
+		
 
 		<div class="row">
 			<div class="col-md-12">
@@ -142,6 +142,13 @@
 			  </div>
 			</div>
 				
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="text-right">
+					<a href="{{url('/exportarusuarios')}}" class="btn green darken-4"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Exportar usuarios</a>
+				</div>
+			</div>
 		</div>
 		
 		

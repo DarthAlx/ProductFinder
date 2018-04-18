@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Excel;
 
 class UserController extends Controller
 {
@@ -125,6 +126,18 @@ class UserController extends Controller
             Session::flash('class', 'danger');
             return redirect(url()->previous())->withInput();
         }
+    }
+
+
+    public function export(){
+        
+        Excel::create('UsuariosPF', function($excel){
+            $excel->sheet("Datos", function($sheet){
+                $usuarios=User::where('is_admin',0)->get();
+                $sheet->fromArray($usuarios);
+            });
+        })->export('xls');
+
     }
 
 

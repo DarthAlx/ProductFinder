@@ -84,6 +84,9 @@
 	nav a.button-collapse {
     	max-height: 80px;
 	}
+	.perfilimg,.perfiltext{
+		text-align: center;
+	}
 
 
 

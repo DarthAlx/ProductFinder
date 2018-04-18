@@ -14,7 +14,7 @@ $items=Cart::content();
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h5 style="margin: 0;">Resultados de busqueda</h5>
+            <h5 style="margin: 0;">Resultados de Búsqueda</h5>
             <hr>
           </div>
         </div>
@@ -246,7 +246,7 @@ $items=Cart::content();
                             </div>
                           </div>
                           <div class="name">
-                            <b>{{str_limit($producto['nombre'], $limit = 17, $end = '...')}}</b>
+                            <b>{{str_limit($producto['nombre'], $limit = 35, $end = '...')}}</b>
                           </div>
                           <div class="pricefrom">
                             <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>

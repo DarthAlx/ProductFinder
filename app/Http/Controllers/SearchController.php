@@ -21,20 +21,19 @@ class SearchController extends Controller
     	$tiendas=Tienda::all();
     	$productos=array();
   
-
-
         foreach ($tiendas as $tienda) {
-
-
-			$crawler = Goutte::request('GET', $tienda->urlbusqueda.$request->busqueda);
+        	if ($tienda->nombre=="Sanborns") {
+        		$busquedakey=base64_encode($request->busqueda)."/1/";
+        	}
+        	else{
+        		$busquedakey=$request->busqueda;
+        	}
+			$crawler = Goutte::request('GET', $tienda->urlbusqueda.$busquedakey);
 			
-
 			$contador=1;
 			$crawler->filter($tienda->selectitem)->each(function ($node) use (&$tienda,&$productos,&$contador) {
 if($contador<=10){
 			$agregar=true;
-
-
 			      if($node->filter($tienda->selectnombre)->count() > 0){
 			        if($node->filter($tienda->selectnombre)->text()!=""){
 		                $nombre=$node->filter($tienda->selectnombre)->text();
@@ -81,16 +80,12 @@ if($contador<=10){
 			      }else{
 			      	$agregar=false;
 			      }
-
 			      if(str_contains($enlace, $tienda->url)){
 		              $enlacecompleto=$enlace;
 		            }else{
 		              $enlacecompleto=$tienda->url.$enlace;
 		            }
-
 		            
-
-
 			 	if ($agregar) {
 			 		$precio=$this->precio($precio, $tienda->nombre);
 			 		$productos[]=array(
@@ -105,18 +100,14 @@ if($contador<=10){
 				    $contador++;
 			 	}
 			    
-
 }//contador
 else{
   return false;
 }
-
-
 			    });
         	
         }
 		$busqueda=Busqueda::where('keywords',$request->busqueda)->first();
-
 		if ($busqueda) {
 			$busqueda->contador=$busqueda->contador+1;
 			$busqueda->save();
@@ -126,13 +117,8 @@ else{
 		    $busqueda->contador=1;
 		    $busqueda->save();
 		}
-
-
-
-
 		if (!Auth::guest()) {
 			$busqueda=Busquedauser::where('keywords',$request->busqueda)->where('user_id',Auth::user()->id)->first();
-
 			if ($busqueda) {
 				$busqueda->contador=$busqueda->contador+1;
 				$busqueda->save();
@@ -144,8 +130,6 @@ else{
 			    $busqueda->save();
 			}
 		}
-
-
 		if ($request->sort) {
 			if ($request->sort=="Menor precio") {
 				$productos = array_values(array_sort($productos, function ($value) {
@@ -172,7 +156,6 @@ else{
 				$productos = array_values(array_sort($productos, function ($value) {
 				    return $value['orden'];
 				}));
-
 			}
 		}
 		else{
@@ -180,13 +163,11 @@ else{
 				$productos = array_values(array_sort($productos, function ($value) {
 				    return $value['orden'];
 				}));
-
 			}
 //dd($productos);
 			$categorias=Categoria::orderBy('nombre','asc')->get();
 		return view('buscar', ['productos'=>$productos,'busqueda'=>$request->busqueda,'sorting'=>$request->sort,'categorias'=>$categorias]);
         
-
       
     }
 
@@ -289,9 +270,13 @@ else{
 
 
         foreach ($tiendas as $tienda) {
-
-
-			$crawler = Goutte::request('GET', $tienda->urlbusqueda.$request->busqueda);
+        	if ($tienda->nombre=="Sanborns") {
+        		$busquedakey=base64_encode($request->busqueda)."/1/";
+        	}
+        	else{
+        		$busquedakey=$request->busqueda;
+        	}
+			$crawler = Goutte::request('GET', $tienda->urlbusqueda.$busquedakey);
 			
 
 			$contador=1;
@@ -484,7 +469,17 @@ if(str_contains($enlace, $tienda->url)){
     	$tienda->save();
     	$productos=array();
     	$tiendas=Tienda::all();
+
+
+
+
+    	
+
+
+
+        	$conttienda=1;
 		foreach ($tiendas as $tiendax) {
+			if ($conttienda<=5) {
 
     	$key=explode(" ", $request->nombre);
 
@@ -509,8 +504,13 @@ if(str_contains($enlace, $tienda->url)){
 
 
     	
-
-    	$crawler = Goutte::request('GET', $tiendax->urlbusqueda.$keywords);
+    	if ($tiendax->nombre=="Sanborns") {
+        		$busquedakey=base64_encode($keywords)."/1/";
+        	}
+        	else{
+        		$busquedakey=$keywords;
+        	}
+			$crawler = Goutte::request('GET', $tiendax->urlbusqueda.$busquedakey);
 			
 
 			$contador=1;
@@ -594,7 +594,11 @@ if($contador<5){
 }//contador
 
 			    });
-		}
+
+
+$conttienda++;
+        	}
+		}//tienda
     	$productos = array_values(array_sort($productos, function ($value) {
 				    return $value['orden'];
 				}));
@@ -672,7 +676,7 @@ if($contador<5){
 			$precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
 
     	}
-    	if ($tienda=="Best Buy"||$tienda=="Costco"||$tienda=="Porrua"||$tienda=="Gandhi") {
+    	if ($tienda=="Best Buy"||$tienda=="Costco"||$tienda=="Sanborns"||$tienda=="Porrua"||$tienda=="Gandhi") {
     		
     		$precio=$precio.".00";
 			$precio=str_replace('$', '',$precio);
@@ -683,6 +687,7 @@ if($contador<5){
 			
 
     	}
+
     	if ($tienda=="Coppel") {
     		
     		$precio=$precio.".00";
