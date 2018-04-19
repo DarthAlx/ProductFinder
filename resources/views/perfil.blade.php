@@ -26,7 +26,7 @@
         <div class="col-md-9">
           <div class="profilecard">
             <div class="perfilimg left">
-              <img class="circle" src="{{Auth::user()->avatar}}" alt="">
+              <img class="circle" src="{{Auth::user()->avatar}}" style="width: 100px; height: 100px;" alt="">
             </div>
             <div class="perfiltext left">
               <h2>
