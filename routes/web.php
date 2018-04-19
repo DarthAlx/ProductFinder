@@ -164,7 +164,19 @@ Route::get('/', function () {
           }
           $string.="}";
           $busquedasjson=json_encode($string);
-          $tendencias=App\Busqueda::orderByRaw("RAND()")->get();
+          if (Auth::guest()) {
+            $tendencias=App\Busqueda::orderByRaw("RAND()")->get();
+          }
+          else{
+            $user=App\User::find(Auth::user()->id);
+            if ($user->busquedas->count()>0) {
+              $tendencias=App\Busquedauser::where('user_id',Auth::user()->id)->orderByRaw("RAND()")->get();
+            }
+            else{
+              $tendencias=App\Busqueda::orderByRaw("RAND()")->get();
+            }
+          }
+          
     }
     else{
       $tendencias=App\Tendencia::all();
@@ -178,7 +190,7 @@ $conttienda=1;
 
         foreach ($tiendas as $tienda) {
           $conttendencia=1;
-          if ($conttienda<=5) {
+          if ($conttienda<=4) {
             
           foreach ($tendencias as $tendencia) {
             if ($conttendencia<=3) {
