@@ -164,7 +164,7 @@ Route::get('/', function () {
           }
           $string.="}";
           $busquedasjson=json_encode($string);
-          $tendencias=App\Busqueda::orderBy('contador','desc')->get();
+          $tendencias=App\Busqueda::orderByRaw("RAND()")->get();
     }
     else{
       $tendencias=App\Tendencia::all();
@@ -175,12 +175,13 @@ Route::get('/', function () {
   
 
 $conttienda=1;
-$conttendencia=1;
+
         foreach ($tiendas as $tienda) {
+          $conttendencia=1;
           if ($conttienda<=5) {
             
           foreach ($tendencias as $tendencia) {
-            //if ($conttendencia<=5) {
+            if ($conttendencia<=3) {
 
             if ($tienda->nombre=="Sanborns") {
             $busquedakey=base64_encode($tendencia->keywords)."/1/";
@@ -281,8 +282,8 @@ else{
 
 
           });
-     // $conttendencia++;
-    //}
+      $conttendencia++;
+    }
           }//tendencia
           $conttienda++;
           }
