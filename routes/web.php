@@ -318,13 +318,14 @@ else{
 
 Route::post('buscar', 'SearchController@index');
 Route::get('/buscar', function () {
-  $productos=array();
-  $categorias=App\Categoria::orderBy('nombre','asc')->get();
-    return view('buscar', ['productos'=>$productos,'categorias'=>$categorias]);
+    return view('noturl');
 });
 Route::get('/buscar/{slug}', 'SearchController@categoria');
 
 Route::post('producto', 'SearchController@producto');
+Route::get('/producto', function () {
+    return view('noturl');
+});
 
 Route::post('addtofavorite', 'SearchController@addtofavorite');
 Route::post('removefromfavorite', 'SearchController@removefromfavorite');
