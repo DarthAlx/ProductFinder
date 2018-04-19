@@ -134,7 +134,27 @@ class UserController extends Controller
         Excel::create('UsuariosPF', function($excel){
             $excel->sheet("Datos", function($sheet){
                 $usuarios=User::where('is_admin',0)->get();
-                $sheet->fromArray($usuarios);
+                $array=array();
+                foreach ($usuarios as $usuario) {
+                    $busquedas=array();
+                    foreach($usuario->busquedas as $busqueda){
+                        $busquedas[]=$busqueda->keywords;
+                    }
+                    $array[]=array(
+                        'id'=>$usuario->id,
+                        'nombre'=>$usuario->name,
+                        'email'=>$usuario->email,
+                        'fechadenacimiento'=>$usuario->dob,
+                        'tel'=>$usuario->tel,
+                        'genero'=>$usuario->genero,
+                        'avatar'=>$usuario->avatar,
+                        'status'=>$usuario->status,
+                        'creado'=>$usuario->created_at,
+                        'actualizado'=>$usuario->updated_at,
+                        'busquedas'=>implode(", ", $busquedas),
+                    );
+                }
+                $sheet->fromArray($array);
             });
         })->export('xls');
 
