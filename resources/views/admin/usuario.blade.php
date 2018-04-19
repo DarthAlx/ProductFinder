@@ -7,7 +7,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class=""><img class="circle" src="{{$usuario->avatar}}" alt=""> {{$usuario->name}}</h3>
+				<h3 class=""><img class="circle" src="{{$usuario->avatar}}" style="width: 100px; height: 100px;" alt=""> {{$usuario->name}}</h3>
 			</div>
 			
 		</div>
