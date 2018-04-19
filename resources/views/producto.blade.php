@@ -425,12 +425,15 @@ $items=Cart::content();
     FB.ui({
       method: 'share',
       display: 'popup',
-      href: "{{$producto['enlace']}}",
+      href: "{{url('/')}}",
+      title: "{{$producto['nombre']}}",
+      description: "Usa Product Finder para comparar los precios de diferentes productos. <br> Encuentra la mejor tienda y ahorra. <br> Yo, ya encontré un mejor precio."
     }, function(response){
 
     });
   }
 </script>
+
 
 
 
