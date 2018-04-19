@@ -427,7 +427,9 @@ $items=Cart::content();
       display: 'popup',
       href: "{{url('/')}}",
       title: "{{$producto['nombre']}}",
-      description: "Usa Product Finder para comparar los precios de diferentes productos. <br> Encuentra la mejor tienda y ahorra. <br> Yo, ya encontré un mejor precio."
+      description: "Usa Product Finder para comparar los precios de diferentes productos. <br> Encuentra la mejor tienda y ahorra. <br> Yo, ya encontré un mejor precio.",
+      picture: '{{$producto['imagen']}}',  
+      caption: '{{$producto['nombre']}}', 
     }, function(response){
 
     });
