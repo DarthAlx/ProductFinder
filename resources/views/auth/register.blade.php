@@ -19,7 +19,7 @@
                             </a>
                         </div>
                         @else
-                            <div  class="text-center" style="width: 100%;"><img src="{{$userinfo->getAvatar()}}" class="circle" alt=""></div>
+                            <div  class="text-center" style="width: 100%;"><img src="{{$userinfo->getAvatar()}}" class="circle" style="width: 100px; height: 100px;" alt=""></div>
                             <h5><strong>Por favor complete su perfil.</strong></h5>
                         @endif
                     </div>
