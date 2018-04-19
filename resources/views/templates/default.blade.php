@@ -141,6 +141,15 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
                   <li><a href="{{url('/buscar/')}}/{{$arrayslug[$i] or ''}}">{{$arraycat[$i] or ''}}</a></li>
               @endfor
           </ul-->
+          <ul id="cuenta" class="dropdown-content">
+              <li><a href="{{url('/entrar')}}">Entrar</a></li>
+              <li><a href="{{url('/registro')}}">Registrar</a></li>
+          </ul>
+
+          <ul id="perfil" class="dropdown-content">
+              <li><a href="{{url('/perfil')}}">Perfil</a></li>
+              <li><a href="{{url('/salir')}}">Salir</a></li>
+          </ul>
 
           <nav class="visible-xs">
             <div class="nav-wrapper">
@@ -150,10 +159,10 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
                 <!--li><a class="dropdown-button" href="#!" data-activates="categorias">Categorías</a></li-->
                 <li><a href="{{url('/favoritos')}}">Favoritos</a></li>
                 @if (Auth::guest())
-                  <li><a href="{{url('/entrar')}}">Entrar</a></li>
-                  <li><a href="{{url('/registro')}}">Registrar</a></li>
+                  <li><a class="dropdown-button" href="#!" data-activates="cuenta">Mi cuenta</a></li>
                 @else
-                  <li><a href="{{url('/salir')}}">Salir</a></li>
+                  <li><a class="dropdown-button" href="#!" data-activates="perfil">Mi cuenta</a></li>
+                  
                 @endif
               </ul>
             </div>
