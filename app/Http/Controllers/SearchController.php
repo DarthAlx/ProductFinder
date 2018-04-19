@@ -22,7 +22,7 @@ class SearchController extends Controller
     	$productos=array();
   
         foreach ($tiendas as $tienda) {
-        	if ($tienda->nombre=="Sanborns") {
+        	if ($tienda->nombre=="Sanborns"||$tienda->nombre=="Claroshop") {
         		$busquedakey=base64_encode($request->busqueda)."/1/";
         	}
         	else{
@@ -31,7 +31,7 @@ class SearchController extends Controller
 			$crawler = Goutte::request('GET', $tienda->urlbusqueda.$busquedakey);
 			
 			$contador=1;
-			$crawler->filter($tienda->selectitem)->each(function ($node) use (&$tienda,&$productos,&$contador) {
+			$crawler->filter($tienda->selectitem)->each(function ($node) use (&$tienda,&$productos,&$contador,&$request) {
 if($contador<=10){
 			$agregar=true;
 			      if($node->filter($tienda->selectnombre)->count() > 0){
@@ -91,6 +91,31 @@ if($contador<=10){
 			 		if($precio==0){
 			 			$agregar=false;
 			 		}
+
+			 		if ($request->minimo||$request->maximo) {
+				        if ($request->minimo&&$request->maximo) {
+				            if (!($precio>=($request->minimo*100)&&$precio<=($request->maximo*100))) {
+				            	$agregar=false;
+				            }
+				        }
+				        if ($request->minimo&&!$request->maximo) {
+				            if (!($precio>=($request->minimo*100))) {
+				            	$agregar=false;
+				            }
+				        }
+				        if (!$request->minimo&&$request->maximo) {
+				            if (!($precio<=($request->maximo*100))) {
+				            	$agregar=false;
+				            }
+				        }
+				        
+				        
+				    }
+				   
+
+
+
+
 			 	if ($agregar) {
 
 			 		$productos[]=array(
@@ -171,7 +196,7 @@ else{
 			}
 //dd($productos);
 			$categorias=Categoria::orderBy('nombre','asc')->get();
-		return view('buscar', ['productos'=>$productos,'busqueda'=>$request->busqueda,'sorting'=>$request->sort,'categorias'=>$categorias]);
+		return view('buscar', ['productos'=>$productos,'busqueda'=>$request->busqueda,'sorting'=>$request->sort,'categorias'=>$categorias,'minimo'=>$request->minimo,'maximo'=>$request->maximo]);
         
       
     }
@@ -562,8 +587,8 @@ if($contador<5){
 			      	$agregar=false;
 			      }
 			      if($node->filter(".prRange")->count() > 0){
-              $agregar=false;
-            }
+		              $agregar=false;
+		            }
 			      if($node->filter($tiendax->selectprecio_especial)->count() > 0){
 			        $precio=$node->filter($tiendax->selectprecio_especial)->html();
 			      }else if($node->filter($tiendax->selectprecio)->count() > 0){
@@ -686,7 +711,7 @@ $conttienda++;
 			$precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
 
     	}
-    	if ($tienda=="Best Buy"||$tienda=="Costco"||$tienda=="Sanborns"||$tienda=="Porrua"||$tienda=="Gandhi") {
+    	if ($tienda=="Best Buy"||$tienda=="Costco"||$tienda=="Sanborns"||$tienda=="Claroshop"||$tienda=="Porrua"||$tienda=="Gandhi"||$tienda=="Dormimundo") {
     		
     		$precio=$precio.".00";
 			$precio=str_replace('$', '',$precio);

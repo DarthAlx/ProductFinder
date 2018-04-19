@@ -393,7 +393,7 @@ class TiendaSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s")
         ]);
 
-        DB::table('tiendas')->insert([
+        /*DB::table('tiendas')->insert([
             'nombre'=> 'Porrua',
             'url'=> 'https://www.porrua.mx',
             'urlbusqueda'=> 'https://www.porrua.mx/busqueda/todos/',
@@ -415,10 +415,10 @@ class TiendaSeeder extends Seeder
             'productpoplet'=>'.none',
             'productdesc'=>'.panel-body col-md-12.col-sm-12.text-justify.text-muted',
             'created_at' => date("Y-m-d H:i:s")
-        ]);
+        ]);*/
 
 
-        DB::table('tiendas')->insert([
+        /*DB::table('tiendas')->insert([
             'nombre'=> 'La casa del libro',
             'url'=> 'https://latam.casadellibro.com',
             'urlbusqueda'=> 'https://latam.casadellibro.com/busqueda-generica?busqueda=',
@@ -440,9 +440,9 @@ class TiendaSeeder extends Seeder
             'productpoplet'=>'.none',
             'productdesc'=>'.acortar',
             'created_at' => date("Y-m-d H:i:s")
-        ]);
+        ]);*/
 
-        DB::table('tiendas')->insert([
+        /*DB::table('tiendas')->insert([
             'nombre'=> 'Gandhi',
             'url'=> 'http://gandhi.com.mx',
             'urlbusqueda'=> 'http://busqueda.gandhi.com.mx/busca?q=',
@@ -464,7 +464,104 @@ class TiendaSeeder extends Seeder
             'productpoplet'=>'.none',
             'productdesc'=>'.short-description.std',
             'created_at' => date("Y-m-d H:i:s")
+        ]);*/
+
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Sunglass Hut',
+            'url'=> 'http://www.sunglasshut.com',
+            'urlbusqueda'=> 'http://www.sunglasshut.com/mx/search/',
+            'selectenlace'=> '.shelf-url',
+            'selectitem'=> '.box-product',
+            'selectnombre'=> '.shelf-item-name',
+            'selectimagen'=> '.image img',
+            'attrimagen'=> 'src',
+            'selectprecio'=> '.bestPrice .val',
+            'selectprecio_especial'=>'.bestPrice .val',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'.align-info',
+            'productnombre'=>'.nameProduct',
+            'productprecio'=>'.bestPrice .val',
+            'productprecioespecial'=>'.bestPrice .val',
+            'productimagen'=>'.showcase-image img',
+            'productattrimagen'=> 'src',
+            'productgaleria'=>'.none',
+            'productpoplet'=>'.none',
+            'productdesc'=>'.align-info',
+            'created_at' => date("Y-m-d H:i:s")
         ]);
+
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Dormimundo',
+            'url'=> 'http://dormimundo.com.mx',
+            'urlbusqueda'=> 'http://dormimundo.com.mx/catalogsearch/result/?q=',
+            'selectenlace'=> '.product-name a',
+            'selectitem'=> '.item',
+            'selectnombre'=> '.product-name',
+            'selectimagen'=> '.product-image img',
+            'attrimagen'=> 'src',
+            'selectprecio'=> '.regular-price .price',
+            'selectprecio_especial'=>'.regular-price .price',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'.short-description',
+            'productnombre'=>'.product-name',
+            'productprecio'=>'.regular-price .price',
+            'productprecioespecial'=>'.regular-price .price',
+            'productimagen'=>'#image-main',
+            'productattrimagen'=> 'src',
+            'productgaleria'=>'.none',
+            'productpoplet'=>'.none',
+            'productdesc'=>'.short-description',
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Claroshop',
+            'url'=> 'https://www.claroshop.com',
+            'urlbusqueda'=> 'https://www.claroshop.com/buscador/',
+            'selectenlace'=> '.descrip',
+            'selectitem'=> '.productbox',
+            'selectnombre'=> '.descrip p',
+            'selectimagen'=> '.contImgProd img',
+            'attrimagen'=> 'data-src',
+            'selectprecio'=> '.preciodesc',
+            'selectprecio_especial'=>'.preciodesc',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'#verCompleto',
+            'productnombre'=>'.productMainTitle h1',
+            'productprecio'=>'.total',
+            'productprecioespecial'=>'.total',
+            'productimagen'=>'.carrusel-producto li img',
+            'productattrimagen'=> 'src',
+            'productgaleria'=>'.nada',
+            'productpoplet'=>'.nada',
+            'productdesc'=>'#verCompleto',
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+
+        DB::table('tiendas')->insert([
+            'nombre'=> 'Radioshack',
+            'url'=> 'https://www.radioshack.com.mx',
+            'urlbusqueda'=> 'https://www.radioshack.com.mx/store/radioshack/en/search/?text=',
+            'selectenlace'=> '.name',
+            'selectitem'=> '.product-item',
+            'selectnombre'=> '.name',
+            'selectimagen'=> '.thumb img',
+            'attrimagen'=> 'src',
+            'selectprecio'=> '.price div',
+            'selectprecio_especial'=>'.price div',
+            'selectvaloracion'=> '',
+            'selectdesc'=>'#parrafo p',
+            'productnombre'=>'.p-name',
+            'productprecio'=>'#priceFormato',
+            'productprecioespecial'=>'#priceFormato',
+            'productimagen'=>'.carousel .item img',
+            'productattrimagen'=> 'data-src',
+            'productgaleria'=>'.nada',
+            'productpoplet'=>'.nada',
+            'productdesc'=>'#parrafo p',
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+
 
 
         DB::table('categorias')->insert([

@@ -4,10 +4,14 @@
 @section('header')
 
 
-  <meta property="og:url"           content="{{$producto['enlace']}}" />
+  <meta property="og:url"           content="{{url('/')}}" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="{{$producto['nombre']}}" />
-  <meta property="og:description"   content="{{$producto['descripcion']}}" />
+  <meta property="og:description"   content="Usa Product Finder para comparar los precios de diferentes productos. <br>
+
+Encuentra la mejor tienda y ahorra. <br>
+
+Yo, ya encontré un mejor precio." />
   <meta property="og:image"         content="{{$producto['imagen']}}" />
 
 
@@ -219,7 +223,7 @@ $items=Cart::content();
                       @if($top)
                         {{$top->descripcion}}
                       @else
-                        @if($producto['descripcion']=="No hay datos disponibles."||$producto['descripcion']=="")
+                        @if($producto['descripcion']=="No hay datos disponibles."||trim($producto['descripcion'])=="")
                           <a href="{{$producto['enlace']}}" target="_blank">Ver en la web</a>
                         @else
                         {{str_limit($producto['descripcion'], $limit = 300, $end = '...')}}

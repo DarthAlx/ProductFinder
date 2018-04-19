@@ -99,22 +99,23 @@ $items=Cart::content();
 
 
         </div-->
-
+<form action="{{url()->current()}}" method="post" id="formmini">
         <div class="col-md-4 col-sm-4" style="padding-top: 31px">
-            <form action="{{url()->current()}}" method="post" id="precioformmini">
+            
                           {!! csrf_field() !!}
+
 
 
                         <div class="input-group-append browser-default">
                           <div class="row">
                             <div class="col-xs-4" style="padding-right: 0">
-                              <input type="text" class="form-control browser-default" name="minimo" placeholder="Minimo" aria-describedby="basic-addon2">
+                              <input type="text" class="form-control browser-default" name="minimo" placeholder="Minimo" value="{{$minimo or ''}}" aria-describedby="basic-addon2">
                             </div>
                             <div class="col-xs-1 text-center valign-wrapper" style="max-width: inherit; height: 33px">
                               <span class="guion"><i class="fa fa-minus" aria-hidden="true"></i></span>
                             </div>
                             <div class="col-xs-4" style="padding-left: 0">
-                              <input type="text" class="form-control browser-default" name="maximo" placeholder="Maximo" aria-describedby="basic-addon2">
+                              <input type="text" class="form-control browser-default" name="maximo" placeholder="Maximo" value="{{$maximo or ''}}" aria-describedby="basic-addon2">
                             </div>
                             <div class="col-xs-1 valign-wrapper" style="height: 33px">
                               <a href="#" id="searchpricemini"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
@@ -124,24 +125,28 @@ $items=Cart::content();
                           
                         </div>
 
-                        </form>
+                       
+                        <script>
+                          $('#searchpricemini').click(function(){
+                            $('#formmini').submit();
+
+                          });
+                        </script>
                       </div>
 
         <div class="col-md-4 col-sm-4">
-                <form action="{{url('/buscar')}}" method="post" style="width: 100%;">
-                  {{ csrf_field() }}
+                
 
                   <div class="input-field valign-wrapper">
                     <i class="fa fa-search prefix"></i>
                     <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;">
                   </div>
-                  </form>
+                 
                 </div>
 
                 <div class="col-md-4 col-sm-4">
-                  <form id="ordenformmini" action="{{url('/buscar')}}" method="post" style="width: 100%;">
+                  <div style="width: 100%;">
                     {{ csrf_field() }}
-                    <input name="busqueda" type="hidden" value="{{$busqueda}}">
                   <div class="input-field valign-wrapper selectorden">
                       <select id="ordenmini" name="sort" class="select" required>
                         <option value="Popularidad">Popularidad</option>
@@ -150,16 +155,18 @@ $items=Cart::content();
                         <option value="Mayor precio">Mayor precio</option>
                       </select>
                   </div>
-                  </form>
+                  </div>
                   <script>
                     document.getElementById('ordenmini').value="{!!$sorting!!}";
                     $('#ordenmini').change(function(){
-                      $('#ordenformmini').submit();
+                      $('#formmini').submit();
 
                     });
                   </script>
 
                 </div>
+                <input type="submit" style="display: none;">
+              </form>
       </div>
 
 
