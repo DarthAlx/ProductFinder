@@ -136,18 +136,18 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
           </nav>
 
 
-          <ul id="categorias" class="dropdown-content">
+          <!--ul id="categorias" class="dropdown-content">
               @for ($i=0; $i < count($arraycat) ; $i++)
                   <li><a href="{{url('/buscar/')}}/{{$arrayslug[$i] or ''}}">{{$arraycat[$i] or ''}}</a></li>
               @endfor
-          </ul>
+          </ul-->
 
           <nav class="visible-xs">
             <div class="nav-wrapper">
               <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars" aria-hidden="true" style="line-height: 1.4"></i></a>
               <ul class="side-nav" id="mobile-demo">
                 <li><a href="{{url('/')}}">Inicio</a></li>
-                <li><a class="dropdown-button" href="#!" data-activates="categorias">Categorías</a></li>
+                <!--li><a class="dropdown-button" href="#!" data-activates="categorias">Categorías</a></li-->
                 <li><a href="{{url('/favoritos')}}">Favoritos</a></li>
                 @if (Auth::guest())
                   <li><a href="{{url('/entrar')}}">Entrar</a></li>

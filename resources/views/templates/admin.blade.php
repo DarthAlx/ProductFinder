@@ -25,7 +25,7 @@
                   </li>
                   <li><a href="{{url('/admin')}}" class="waves-effect"><i class="fa fa-bar-chart" aria-hidden="true"></i> Escritorio</a></li>
                   <!--li><a href="{{url('/tendencias')}}" class="waves-effect"><i class="fa fa-line-chart" aria-hidden="true"></i> Tendencias</a></li-->
-                  <li><a href="{{url('/categorias')}}" class="waves-effect"><i class="fa fa-bookmark" aria-hidden="true"></i> Categorías</a></li>
+                  <!--li><a href="{{url('/categorias')}}" class="waves-effect"><i class="fa fa-bookmark" aria-hidden="true"></i> Categorías</a></li-->
                   <li><a href="{{url('/ads')}}" class="waves-effect"><i class="fa fa-tag" aria-hidden="true"></i> Anuncios</a></li>
                   <li><a href="{{url('/destacados')}}" class="waves-effect"><i class="fa fa-star" aria-hidden="true"></i> Destacados</a></li>
 
