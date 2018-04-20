@@ -201,6 +201,8 @@ $conttienda=1;
           else{
             $busquedakey=$tendencia->keywords;
           }
+
+          if(App\Http\Controllers\SearchController::is_working_url($tienda->urlbusqueda.$busquedakey)){
       $crawler = Goutte::request('GET', $tienda->urlbusqueda.$busquedakey);
 
       
@@ -294,11 +296,15 @@ else{
 
 
           });
-      $conttendencia++;
-    }
-          }//tendencia
+      
+    }//urlverf
+    $conttendencia++;
+          }//contador tendencia
+          
+          }// tendencia
           $conttienda++;
-          }
+}//contador tienda
+        
         }//tienda
 
         $tendenciasarray = array_values(array_sort($productos, function ($value) {

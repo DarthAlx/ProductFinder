@@ -28,6 +28,8 @@ class SearchController extends Controller
         	else{
         		$busquedakey=$request->busqueda;
         	}
+
+        	if($this->is_working_url($tienda->urlbusqueda.$busquedakey)){
 			$crawler = Goutte::request('GET', $tienda->urlbusqueda.$busquedakey);
 			
 			$contador=1;
@@ -135,8 +137,9 @@ else{
   return false;
 }
 			    });
+		}//urlverf
         	
-        }
+        }//tienda
 		$busqueda=Busqueda::where('keywords',$request->busqueda)->first();
 		if ($busqueda) {
 			$busqueda->contador=$busqueda->contador+1;
@@ -541,6 +544,8 @@ if(str_contains($enlace, $tienda->url)){
         	else{
         		$busquedakey=$keywords;
         	}
+
+        	if($this->is_working_url($tiendax->urlbusqueda.$busquedakey)){
 			$crawler = Goutte::request('GET', $tiendax->urlbusqueda.$busquedakey);
 			
 
@@ -633,6 +638,7 @@ if($contador<5){
 
 $conttienda++;
         	}
+        }//urlverf
 		}//tienda
     	$productos = array_values(array_sort($productos, function ($value) {
 				    return $value['orden'];
@@ -675,6 +681,24 @@ $conttienda++;
     	Cart::store(Auth::user()->id);
     	echo $id;
     }
+
+
+    public static function is_working_url($url) {
+	  $handle = curl_init($url);
+	  curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+	  curl_setopt($handle, CURLOPT_NOBODY, true);
+	  curl_exec($handle);
+	 
+	  $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+	  curl_close($handle);
+	 
+	  if ($httpCode >= 200 && $httpCode < 300) {
+	    return true;
+	  }
+	  else {
+	    return false;
+	  }
+	}
 
     public static function imagen($imagen, $tienda){
 

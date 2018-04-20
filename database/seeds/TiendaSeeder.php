@@ -490,7 +490,7 @@ class TiendaSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s")
         ]);
 
-        DB::table('tiendas')->insert([
+        /*DB::table('tiendas')->insert([
             'nombre'=> 'Dormimundo',
             'url'=> 'http://dormimundo.com.mx',
             'urlbusqueda'=> 'http://dormimundo.com.mx/catalogsearch/result/?q=',
@@ -512,7 +512,7 @@ class TiendaSeeder extends Seeder
             'productpoplet'=>'.none',
             'productdesc'=>'.short-description',
             'created_at' => date("Y-m-d H:i:s")
-        ]);
+        ]);*/
 
         DB::table('tiendas')->insert([
             'nombre'=> 'Claroshop',
