@@ -119,7 +119,7 @@ public static function revisarfavorito()
     if ($agregar) {
       $precio=SearchController::precio($precio, $tienda->nombre);
       $porcentaje=$favorito->precio-($favorito->precio*0.015);
-      if ($precio<=$porcentaje) {
+      if ($precio<=$porcentaje && $precio>0) {
         Mail::send('emails.precio', ['user'=>$user,'favorito'=>$favorito, 'precio'=>$precio], function ($m) use ($user,$favorito) {
             $m->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
             $m->to($user->email, $user->name)->subject("¡Tu favorito bajó de precio!");
