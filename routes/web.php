@@ -29,38 +29,44 @@ Route::get('readc', 'HomeController@readc');
 Route::get('/z', function() {
 
 
-
-  $crawler = Goutte::request('GET', 'https://www.liverpool.com.mx/tienda/?s=xbox');
-  $contador=0;
-  $productos=array();
-    $crawler->filter('.product-cell')->each(function ($node) {
-
-
-
-
-      if($node->filter('.product-name')->text()!=""){
-        $nombre=$node->filter('.product-name')->text();
-        $enlace=$node->filter('.product-name')->attr('href');
-      }
-      if($node->filter('.product-thumb')->attr('data-original')!=""){
-        $imagen=$node->filter('.product-thumb')->attr('data-original');
-      }
-      if($node->filter('.price-amount')->text()!=""){
-        $precio=$node->filter('.price-amount')->text();
-      }
-
-      $productos[]=array(
-          'nombre'=>$nombre,
-          'imagen'=>$imagen,
-          'precio'=>$precio
-        );
- 
-    echo "<a href='https://www.liverpool.com.mx".$enlace."'><p>".$nombre."</p>"."<br></a>";
-    echo "<a href='https://www.liverpool.com.mx".$enlace."'><img src='". $imagen."'><br></a>";
+        $id = "fav22";
+        Cart::restore(Auth::user()->id);
+        $item=Cart::add($id,"Consola Xbox One Quantum Break 500 GB",1,599900, ['imagen'=>"https://www.chedraui.com.mx/medias/88984209667-00-CH300Wx300H?context=bWFzdGVyfHJvb3R8MTQxMTh8aW1hZ2UvanBlZ3xoYzcvaDE5Lzg4MjU3NTU2NjQ0MTQuanBnfGViNjU3MTBhYjdmODkxMTRkN2EzYThkNjk5YzIxZjkxMDZiZTRjYjE3MzhhY2YzNWIzNmI4OGE3MTBhNWVhMjc", 'enlace'=>"https://www.chedraui.com.mx/Departamentos/Electr%C3%B3nica-y-Tecnolog%C3%ADa/Videojuegos/Consola/Consola-Xbox-One-Quantum-Break-500-GB/p/000000000003383766", 'tienda' => "Chedraui",'url' => "https://www.chedraui.com.mx"]);
+        $favorito=new App\Favorito();
+        $favorito->user_id=Auth::user()->id;
+        $favorito->rowId=$item->rowId;
+        $favorito->nombre="Consola Xbox One Quantum Break 500 GB";
+        $favorito->precio=599900;
+        $favorito->imagen="https://www.chedraui.com.mx/medias/88984209667-00-CH300Wx300H?context=bWFzdGVyfHJvb3R8MTQxMTh8aW1hZ2UvanBlZ3xoYzcvaDE5Lzg4MjU3NTU2NjQ0MTQuanBnfGViNjU3MTBhYjdmODkxMTRkN2EzYThkNjk5YzIxZjkxMDZiZTRjYjE3MzhhY2YzNWIzNmI4OGE3MTBhNWVhMjc";
+        $favorito->enlace="https://www.chedraui.com.mx/Departamentos/Electr%C3%B3nica-y-Tecnolog%C3%ADa/Videojuegos/Consola/Consola-Xbox-One-Quantum-Break-500-GB/p/000000000003383766";
+        $favorito->tienda="Chedraui";
+        $favorito->url="https://www.chedraui.com.mx";
+        $favorito->save();
+        Cart::store(Auth::user()->id);
+        echo $id.",".$item->rowId;
 
 
 
-    });
+
+});
+
+Route::get('/y', function() {
+
+
+    $handle = curl_init("https://www.chedraui.com.mx/search/?text=xbox");
+    curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($handle, CURLOPT_NOBODY, true);
+    curl_exec($handle);
+   
+    $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+    curl_close($handle);
+   
+    if ($httpCode >= 200 && $httpCode < 300 || $httpCode==405) {
+      dd("true ". $httpCode);
+    }
+    else {
+      dd("false ". $httpCode);
+    }
 
 
 

@@ -30,8 +30,8 @@ $items=Cart::content();
               <div class="collection">
                 <a href="{{url('/perfil')}}" class="collection-item">Detalles</a>
                 <a href="{{url('/favoritos')}}" class="collection-item active">Tus Favoritos</a>
-                <a href="{{url('/mensajes')}}" class="collection-item">Mensajes @if($nuevos>0)<span class="new badge" data-badge-caption="">{{$nuevos}}</span>@endif</a>
-                <a href="{{url('/comentarios')}}" class="collection-item">Comentarios</a>
+                <a href="{{url('/mensajes')}}" class="collection-item">Mensajes y Alertas @if($nuevos>0)<span class="new badge" data-badge-caption="">{{$nuevos}}</span>@endif</a>
+                <a href="{{url('/comentarios')}}" class="collection-item">Comentarios y Sugerencias</a>
               </div>
             </div>      
           </div>

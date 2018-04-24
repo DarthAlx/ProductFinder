@@ -13,8 +13,8 @@
             	<div class="collection">
                 <a href="{{url('/perfil')}}" class="collection-item">Detalles</a>
                 <a href="{{url('/favoritos')}}" class="collection-item">Tus Favoritos</a>
-                <a href="{{url('/mensajes')}}" class="collection-item active">Mensajes</a>
-                <a href="{{url('/comentarios')}}" class="collection-item">Comentarios</a>
+                <a href="{{url('/mensajes')}}" class="collection-item active">Mensajes y Alertas</a>
+                <a href="{{url('/comentarios')}}" class="collection-item">Comentarios y Sugerencias</a>
               </div>
             </div>      
           </div>

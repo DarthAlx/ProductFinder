@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Favorito extends Model
 {
     protected $table = 'favoritos';
-	protected $fillable = ['nombre','precio','imagen','enlace','tienda','url','user_id','rowId'];
+	protected $fillable = ['nombre','precio','imagen','enlace','tienda','url','user_id','rowId','enviado'];
 
 	public function user(){
         return $this->belongsTo('App\User');

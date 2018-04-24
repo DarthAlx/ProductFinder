@@ -17,12 +17,13 @@ class CreateFavoritosTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->bigInteger('precio');
-            $table->string('imagen');
-            $table->string('enlace');
+            $table->longText('imagen');
+            $table->longText('enlace');
             $table->string('tienda');
-            $table->string('url');
+            $table->longText('url');
             $table->bigInteger('user_id');
             $table->string('rowId');
+            $table->boolean('enviado')->default(false);
             $table->timestamps();
         });
     }
