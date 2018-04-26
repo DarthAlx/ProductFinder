@@ -14,7 +14,7 @@
 Auth::routes();
 
 
-Route::get('pruebacookie', function(){
+/*Route::get('pruebacookie', function(){
   $array=array(
     'nombre'=>'Alexis',
     'apellidos'=>'Morales'
@@ -24,9 +24,9 @@ Route::get('pruebacookie', function(){
   $response->withCookie($nueva_cookie);
   return $response;
 });
-Route::get('readc', 'HomeController@readc');
+Route::get('readc', 'HomeController@readc');*/
 
-Route::get('/z', function() {
+/*Route::get('/z', function() {
 
 
         $id = "fav22";
@@ -48,9 +48,9 @@ Route::get('/z', function() {
 
 
 
-});
+});*/
 
-Route::get('/y', function() {
+/*Route::get('/y', function() {
 
 
     $handle = curl_init("https://www.chedraui.com.mx/search/?text=xbox");
@@ -71,8 +71,23 @@ Route::get('/y', function() {
 
 
 
+});*/
+Route::get('/revisartiendas', function () {
+  set_time_limit(0);
+  $tiendas=App\Tienda::all();
+  foreach ($tiendas as $tienda) {
+  
+    $handle = curl_init($tienda->urlbusqueda."iphone");
+    curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($handle, CURLOPT_NOBODY, true);
+    curl_exec($handle);
+   
+    $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+    curl_close($handle);
+    echo $tienda->nombre." - ".$httpCode." \n";
+  
+  }
 });
-
 
 
 Route::get('/revisarfavorito', function () {
@@ -109,12 +124,11 @@ Route::get('/revisarfavorito', function () {
 });
 
 
-Route::get('/1', function () {
+/*Route::get('/1', function () {
   set_time_limit(0);
 
 
- /* $item=Cart::add(1,"test",1,2500);
-  dd($item->rowId);*/
+ 
   $busquedas=App\Busqueda::orderBy('keywords','asc')->get();
 
     if ($busquedas) {
@@ -146,7 +160,7 @@ Route::get('/1', function () {
         $ad=App\Ad::where('lugar','inicio')->first();
 
     return view('inicio2', ['busquedas'=>$busquedasjson,'tops'=>$destacados,'categorias'=>$categorias,'ad'=>$ad]);
-});
+});*/
 
 
 
