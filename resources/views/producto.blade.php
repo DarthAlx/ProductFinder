@@ -27,7 +27,7 @@ $items=Cart::content();
 
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 <div class="container-fluid">
-  <div class="row" style="border-bottom: 5px solid #C42854;">
+  <div class="row" style="border-bottom: 5px solid #303132;">
           <!--div class="col-md-4 col-sm-4">
             <nav class="navbar navbar-default navbar-static hidden-xs" style="background: transparent; border: 0; margin-top: 1rem;">
               <div class="navbar-header">
@@ -158,7 +158,7 @@ $items=Cart::content();
                         @endphp
                       </div-->
                       <div class="col-md-offset-3 col-md-9 col-xs-12">
-                        <img src="{{$producto['imagen']}}" class="img-responsive" alt="">
+                        <img src="{{$producto['imagen']}}" class="img-responsive materialboxed" alt="">
                       </div>
                     </div>
                      

@@ -51,9 +51,9 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 }
 
 @endphp
-        <header>
+        <header class="headerfixed">
           <div class="container-fluid">
-            <div class="row">
+            <div class="row valign-wrapper">
               <div class="col-md-2 col-xs-6 col-xs-offset-3 col-sm-offset-0 col-sm-3">
                 <a href="{{url('/')}}"><img src="{{url('img/product-finder.png')}}" alt="logo" class="img-responsive logomain"></a>
               </div>
@@ -181,7 +181,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
           </div>
         </header>
 
-        <section class="headermain">
+        <!--section class="headermain">
           <div class="titlemain">
             <p>&nbsp;</p>
             <p>&nbsp;</p>
@@ -194,8 +194,19 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
               @include('snip.notificaciones')
             </div>
           </div>
-        </section>
-        @yield('pagecontent')
+        </section-->
+
+        <div class="container">
+          <div class="row" style="margin:0; padding: 0">
+            <div class="col-md-12">
+              @include('snip.notificaciones')
+            </div>
+          </div>
+        </div>
+        <div class="maincontentwrapper">
+          @yield('pagecontent')
+        </div>
+        
        
 
 
@@ -203,32 +214,34 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
           <div class="container-fluid">
             <div class="row">
               <div class="col l4 s12 text-center">
-                <h5 class="white-text">Product Finder </h5>
+                
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="{{url('/tiendas')}}">Todas las tiendas</a></li>
                   <li><a class="grey-text text-lighten-3" href="{{url('/contacto')}}">Contacto</a></li>
-                </ul>
-              </div>
-              <div class="col l4 s12 text-center">
-                <h5 class="white-text">Empresa</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="{{url('/acercade')}}">Acerca de Product Finder</a></li>
-                  <li><a class="grey-text text-lighten-3" href="{{url('/bolsa-de-trabajo')}}">Trabaja con nosotros</a></li>
                   <li><a class="grey-text text-lighten-3" href="{{url('/registra-tu-marca')}}">Registra Tu Marca</a></li>
                 </ul>
               </div>
               <div class="col l4 s12 text-center">
-                <h5 class="white-text">Siguenos</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">SIGUE CONECTADO</a></li>
+                  <li><a href="#"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a> &nbsp; &nbsp; <a href="#"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a> &nbsp; &nbsp; <a href="#"><i class="fa fa-pinterest-p fa-lg" aria-hidden="true"></i></a> &nbsp; &nbsp; <a href="#"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a></li>
+                  
+                  
+                </ul>
+              </div>
+              <div class="col l4 s12 text-center">
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#">EMPRESA</a></li>
+                  <li><a class="grey-text text-lighten-3" href="{{url('/acercade')}}">Acerca de PF</a></li>
+                  <li><a class="grey-text text-lighten-3" href="{{url('/bolsa-de-trabajo')}}">Trabaja con nosotros</a></li>
+
                 </ul>
               </div>
             </div>
           </div>
           <div class="footer-copyright">
-            <div class="container">
-            Los precios se indican en Peso Mexicano e incluyen IVA, pero no los gastos de envío. Puede haber cambios en el precio, la clasificación, las condiciones de entrega y los gastos.
+            <div class="container text-center">
+            <a href="{{url('/legales')}}">TERMINOS, CONDICIONES Y AVISOS DE PRIVACIDAD</a>
             </div>
           </div>
         </footer>

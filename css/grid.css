@@ -71,7 +71,7 @@
 		    margin-top: 100px;
 	}
 	.button-collapse{
-		background: #C42854;
+		/*background: #303132;*/
 	    color: #fff;
 	    padding: 10px;
 	    line-height: 1 !important;
@@ -86,6 +86,9 @@
 	}
 	.perfilimg,.perfiltext{
 		text-align: center;
+	}
+	.headerfixed{
+    position: relative;
 	}
 
 
@@ -118,6 +121,12 @@
 	}
 	.modal.popup.open{
 	    max-width: 700px;
+	}
+	.headerfixed{
+    position: fixed;
+	}
+	.maincontentwrapper{
+		margin-top: 70px;
 	}
 	
 }

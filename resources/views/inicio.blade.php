@@ -2,11 +2,7 @@
 
 
 @section('header')
-<style>
-  .headermain{
-    display: none;
-  }
-</style>
+
 @endsection
 @section('pagecontent')
 @php
@@ -495,7 +491,7 @@ $items=Cart::content();
 
 
 
-      <div class="container info">
+      <!--div class="container info">
         <div class="row">
           <div class="col-md-3 col-sm-6 info-item">
             <div class="text-center">
@@ -524,7 +520,7 @@ $items=Cart::content();
         </div>
             
           
-      </div>
+      </div-->
 
 
 @endsection
@@ -666,6 +662,23 @@ function removefromfavorite(rowId,id){
           }
         });
 }
+
+
+    /*$(window).scroll(function()
+            {
+                if ($(this).scrollTop() > $('header').scrollTop()){
+                  $('header').addClass("headerfixed").fadeIn();
+
+        }
+                else {
+                  $('header').removeClass("headerfixed").fadeIn();
+
+
+        }
+      });*/
+
+
+
 </script>
 
 

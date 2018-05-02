@@ -74,7 +74,7 @@ h1{
     margin: 0;
 }
 .page-footer {
-    background-color: #C42854;
+    background-color: #303132;
 }
 
 .info .info-item{
@@ -135,7 +135,7 @@ h1{
 	font-family: Finder;
 
 
-    background-color: #C42854;
+    background-color: #303132;
     font-size: 30px;
 }
 
@@ -168,7 +168,7 @@ h1{
 }
 
 .price{
-    color: #C42854;
+    color: #303132;
     font-weight: 700;
     line-height: 1;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -279,4 +279,27 @@ i.fa.fa-search.prefix{
 }
 .logohover img{
     margin-bottom: 30px;
+}
+
+.headerfixed{
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    background: #535151;
+    color: #fff;
+}
+
+.headerfixed .row, .headerfixed .nav{
+    margin-bottom: 0;
+}
+footer, footer a, footer a:hover{
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+}
+footer li{
+    margin-bottom: 10px;
+}
+h5{
+    text-align: center;
 }

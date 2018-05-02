@@ -1177,7 +1177,7 @@ iframe:last-child {
         z-index: 1;
 }
 .favorito a{
-    color: #C42854 !important;
+    color: #303132 !important;
 }
 .nav a{
         color: #fff;
@@ -1192,6 +1192,7 @@ iframe:last-child {
     z-index: 1;
 }
 .logomain{
+    max-width: 150px;
     z-index: 9;
         position: relative;
 }
