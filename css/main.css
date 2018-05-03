@@ -303,3 +303,9 @@ footer li{
 h5{
     text-align: center;
 }
+.easyzoom {
+    display: inline-block;
+}
+.easyzoom img {
+    vertical-align: bottom;
+}

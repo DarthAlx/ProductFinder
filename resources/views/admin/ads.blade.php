@@ -29,7 +29,6 @@
 				<ul class="collapsible  popout" data-collapsible="accordion">
 			  	@if($ads)
 			  		@foreach($ads as $ad)
-				  		@if($ad->lugar=="inicio")
 					  		<li>
 						      <div class="collapsible-header">
 						      	<i class="fa fa-picture-o" aria-hidden="true"></i> &nbsp; {{$ad->imagen}}
@@ -45,7 +44,6 @@
 
 						      </div>
 						    </li>
-					    @endif
 					@endforeach
 				@else
 					<tr style="cursor: pointer;">
@@ -76,7 +74,7 @@
   <div id="update{{$ad->id}}" class="modal">
   	<form action="{{ url('/actualizar-ad') }}" method="post" enctype="multipart/form-data">
     <div class="modal-content">
-      <h4>Editar anuncio ({{$ad->lugar}})</h4>
+      <h4>Editar anuncio ({{$ad->id}})</h4>
 			{!! csrf_field() !!}
 			
 
@@ -84,14 +82,17 @@
 				<div class="file-field input-field">
 			      <div class="btn">
 			        <span>Subir imágen</span>
-			        <input type="file" name="imagen" required>
+			        <input type="file" name="imagen">
 			      </div>
 			      <div class="file-path-wrapper">
 			        <input class="file-path validate" type="text">
 			      </div>
 			    </div>
 			</div>
-			<input type="hidden" name="lugar" value="inicio">
+			<div class="input-field">
+	          <input id="enlace" name="enlace" type="text" class="validate" value="{{ $ad->enlace or '#'}}" required>
+	          <label for="enlace">Enlace</label>
+	        </div>
 
 			<input type="hidden" name="id" value="{{$ad->id}}">
 	        <div class="col m12">

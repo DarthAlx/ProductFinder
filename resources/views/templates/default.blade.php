@@ -252,6 +252,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
       <script type="text/javascript" src="{{ url('js/vendor/bootstrap.min.js') }}"></script>
       <script type="text/javascript" src="{{ url('js/vendor/materialize.js') }}"></script>
+      <script type="text/javascript" src="{{ url('js/jquery.elevatezoom.js') }}"></script>
       <script type="text/javascript" src="{{ url('css/slick/slick.js') }}"></script>
 
       <script type="text/javascript" src="{{ url('js/main.js') }}"></script>

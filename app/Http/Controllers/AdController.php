@@ -22,7 +22,7 @@ class AdController extends Controller
 		if ($request->hasFile('imagen')) {
           	$file = $request->file('imagen');
           	if ($file->getClientOriginalExtension()=="jpg" || $file->getClientOriginalExtension()=="png") {
-	            $name = "ad-inicio"."." . $file->getClientOriginalExtension();
+	            $name = "ad-".$request->id."." . $file->getClientOriginalExtension();
 	            $path = base_path('uploads/ads/');
 	            File::delete($path . $ad->imagen);
 	            $file-> move($path, $name);
@@ -37,12 +37,8 @@ class AdController extends Controller
 	        }
 
         }
-        else{
-          Session::flash('mensaje', 'El archivo no es una imagen valida.');
-          Session::flash('class', 'danger');
-          return redirect()->intended(url('/ads'))->withInput();
-        }
-            $ad->lugar="inicio";
+
+        $ad->enlace=$request->enlace;
     		$ad->save();
     		Session::flash('mensaje', 'Anuncio publicado con exito.');
             Session::flash('class', 'success');

@@ -39,9 +39,22 @@ $items=Cart::content();
             </div>
           </div> 
       <p>&nbsp;</p>
-      <div class="anuncio">
-        <img src="{{url('/uploads/ads')}}/{{$ad->imagen}}"  class="img-responsive" style="width: 100%">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="anuncios">
+              @foreach($ads as $ad)
+                <div>
+                  <a href="{{$ad->enlace}}">
+                    <img src="{{url('/uploads/ads')}}/{{$ad->imagen}}"  class="img-responsive" style="width: 100%">
+                  </a>
+                </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
       </div>
+      
       <p>&nbsp;</p>
       <div class="container-fluid">
         <div class="row">
@@ -615,6 +628,13 @@ $(document).ready(function() {
     }
   ]
 });
+
+
+    $('.anuncios').slick({
+      arrows: false,
+      autoplay: true,
+      autoplaySpeed: 4000,
+    });
 });
 
 

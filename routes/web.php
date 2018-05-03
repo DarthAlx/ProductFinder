@@ -347,9 +347,9 @@ else{
             );
         }
         $categorias=App\Categoria::orderBy('nombre','asc')->get();
-        $ad=App\Ad::where('lugar','inicio')->first();
+        $ads=App\Ad::all();
 
-    return view('inicio', ['busquedas'=>$busquedasjson,'tendencias'=>$tendenciasarray,'tops'=>$destacados,'categorias'=>$categorias,'ad'=>$ad]);
+    return view('inicio', ['busquedas'=>$busquedasjson,'tendencias'=>$tendenciasarray,'tops'=>$destacados,'categorias'=>$categorias,'ads'=>$ads]);
 });
 
 

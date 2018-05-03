@@ -158,7 +158,7 @@ $items=Cart::content();
                         @endphp
                       </div-->
                       <div class="col-md-offset-3 col-md-9 col-xs-12">
-                        <img src="{{$producto['imagen']}}" class="img-responsive materialboxed" alt="">
+                          <img src="{{$producto['imagen']}}" class="img-responsive" id="zoom_01"  data-zoom-image="{{$producto['imagen']}}" alt="">
                       </div>
                     </div>
                      
@@ -486,6 +486,10 @@ function removefromfavorite(rowId,id){
 }
 </script>
 
+
+<script>
+$("#zoom_01").elevateZoom();
+</script>
 
 
 

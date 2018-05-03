@@ -671,7 +671,32 @@ class TiendaSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s")
         ]);
         DB::table('busquedas')->insert([
-            'keywords'=> 'iphone',
+            'keywords'=> 'iPhone 8 256 GB',
+            'contador'=>1,
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+        DB::table('busquedas')->insert([
+            'keywords'=> 'Jersey Selección Mexicana',
+            'contador'=>1,
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+        DB::table('busquedas')->insert([
+            'keywords'=> 'PES 2018',
+            'contador'=>1,
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+        DB::table('busquedas')->insert([
+            'keywords'=> 'Lenovo Moto G5',
+            'contador'=>1,
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+        DB::table('busquedas')->insert([
+            'keywords'=> 'GoPro Hero 5',
+            'contador'=>1,
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+        DB::table('busquedas')->insert([
+            'keywords'=> 'AirPods Apple',
             'contador'=>1,
             'created_at' => date("Y-m-d H:i:s")
         ]);
@@ -692,7 +717,22 @@ class TiendaSeeder extends Seeder
 
         DB::table('ads')->insert([
             'imagen'=> 'ad1.jpg',
-            'lugar'=> 'inicio',
+            'enlace'=> '',
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+        DB::table('ads')->insert([
+            'imagen'=> 'ad1.jpg',
+            'enlace'=> '',
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+        DB::table('ads')->insert([
+            'imagen'=> 'ad1.jpg',
+            'enlace'=> '',
+            'created_at' => date("Y-m-d H:i:s")
+        ]);
+        DB::table('ads')->insert([
+            'imagen'=> 'ad1.jpg',
+            'enlace'=> '',
             'created_at' => date("Y-m-d H:i:s")
         ]);
 
