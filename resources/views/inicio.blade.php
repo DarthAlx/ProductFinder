@@ -27,6 +27,11 @@ $items=Cart::content();
                 </button>
             </div>
           </div>
+          <div class="row visible-xs">
+            <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-large">Buscar <i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+          </div>
             
             
         </form>
