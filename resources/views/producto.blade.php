@@ -2,6 +2,7 @@
 
 
 @section('header')
+<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5aeca1c7fe77a300116314bc&product=inline-share-buttons"></script>
 
 
   <meta property="og:url"           content="{{url('/')}}" />
@@ -27,6 +28,7 @@ $items=Cart::content();
 
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 <div class="container-fluid">
+  <p class="hidden-xs">&nbsp;</p>
   <div class="row" style="border-bottom: 5px solid #303132;">
           <!--div class="col-md-4 col-sm-4">
             <nav class="navbar navbar-default navbar-static hidden-xs" style="background: transparent; border: 0; margin-top: 1rem;">
@@ -138,7 +140,7 @@ $items=Cart::content();
 
                   <div class="row-fluid">
 
-                   <div class="col-md-5">
+                   <div class="col-md-7">
                     <div class="row">
                       <!--div class="col-md-3 col-xs-4 poplets">
                         @php
@@ -163,7 +165,7 @@ $items=Cart::content();
                     </div>
                      
                    </div> 
-                   <div class="col-md-7">
+                   <div class="col-md-5">
                     <div class="favorito">
                           @foreach ($items as $product)
                              @if($product->name==$nombre)
@@ -218,7 +220,19 @@ $items=Cart::content();
                         <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
                       </div>
 
-                     <p><b>Descripción:</b><br>
+                     
+                     <a href="{{$producto['enlacetienda']}}" target="_blank">
+                        <div class="from">
+                          <p>{{$producto['tienda']}}</p>
+                        </div>
+                      </a>
+                     <div class="buttons">
+                       <a href="{{$producto['enlace']}}" target="_blank" class="btn btn-primary" style="width: 100%">Ir a la tienda</a>
+                       <!--a href="{{$producto['enlace']}}" target="_blank" class="btn btn-primary green">Ver más detalles</a>
+                       <div id="shareBtn" class="btn btn-success clearfix" style="background-color: #3B5999;"><i class="fa fa-facebook" aria-hidden="true"></i> Compartir</div-->
+                     </div>
+                      <hr>
+                     <p><b>Información del producto:</b><br>
                       <?php $top=App\Top::where('nombre',$producto['nombre'])->first(); ?>
                       @if($top)
                         {{$top->descripcion}}
@@ -231,16 +245,14 @@ $items=Cart::content();
                         @endif
                       @endif
                       </p>
-                     <a href="{{$producto['enlacetienda']}}" target="_blank">
-                        <div class="from">
-                          <p>{{$producto['tienda']}}</p>
-                        </div>
-                      </a>
-                     <div class="buttons">
-                       <a href="{{$producto['enlace']}}" target="_blank" class="btn btn-primary">Comprar</a>
-                       <a href="{{$producto['enlace']}}" target="_blank" class="btn btn-primary green">Ver más detalles</a>
-                       <div id="shareBtn" class="btn btn-success clearfix" style="background-color: #3B5999;"><i class="fa fa-facebook" aria-hidden="true"></i> Compartir</div>
-                     </div>
+                      <hr>
+                      <a href="#" id="shareBtn" style="color: #3a5897;"><i class="fa fa-facebook fa-lg"></i></a> &nbsp; &nbsp;
+                      <a href="{{Share::load(url('/'), 'Usa Product Finder para comparar los precios de diferentes productos. <br> Encuentra la mejor tienda y ahorra. <br> Yo, ya encontré un mejor precio.')->twitter()}}" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" style="color: #2fc7f2;"><i class="fa fa-twitter fa-lg"></i></a> &nbsp; &nbsp;
+                      <a href="{{Share::load(url('/'), 'Usa Product Finder para comparar los precios de diferentes productos. <br> Encuentra la mejor tienda y ahorra. <br> Yo, ya encontré un mejor precio.')->gplus()}}" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" style="color: #f95c38;"><i class="fa fa-google-plus fa-lg"></i></a> &nbsp; &nbsp;
+                      <a href="{{Share::load(url('/'), 'Usa Product Finder para comparar los precios de diferentes productos. <br> Encuentra la mejor tienda y ahorra. <br> Yo, ya encontré un mejor precio.')->pinterest()}}" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" style="color: #f01951;"><i class="fa fa-pinterest fa-lg"></i></a> &nbsp; &nbsp;
 
                    </div>
                   </div><!--/row-fluid-->

@@ -21,12 +21,10 @@ $items=Cart::content();
               <p>Compara y ahorra con nosotros</p>
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
-              <input type="search" name="busqueda" value="" placeholder="¿qué estás buscando?" class="browser-default autocomplete" id="autocomplete" autocomplete="off" autofocus/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 text-center">
-              <button type="submit" class="btn btn-large">Buscar <i class="fa fa-search" aria-hidden="true"></i></button>
+              <input type="search" name="busqueda" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
+                <button class="btn btn-danger" type="submit">
+                  <span class="fa fa-search"></span>
+                </button>
             </div>
           </div>
             

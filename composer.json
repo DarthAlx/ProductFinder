@@ -6,14 +6,15 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "chencha/share": "^5.2",
         "christiankuri/laravel-favorite": "^1.2",
         "fideloper/proxy": "~3.3",
         "gloudemans/shoppingcart": "^2.5",
         "laravel/framework": "5.5.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
-        "weidner/goutte": "^1.0",
-        "maatwebsite/excel": "~2.1.0"
+        "maatwebsite/excel": "~2.1.0",
+        "weidner/goutte": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

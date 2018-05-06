@@ -181,6 +181,7 @@ return [
         ChristianKuri\LaravelFavorite\FavoriteServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Chencha\Share\ShareServiceProvider::class,
 
     ],
 
@@ -234,6 +235,7 @@ return [
         'Goutte' => Weidner\Goutte\GoutteFacade::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Share' => Chencha\Share\ShareFacade::class,
 
     ],
 

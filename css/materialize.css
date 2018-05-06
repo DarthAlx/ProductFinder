@@ -5216,7 +5216,7 @@ small {
 }
 
 .btn:hover, .btn-large:hover {
-  background-color: #e0416e;
+  background-color: #858586;
 }
 
 .btn-floating {
@@ -7415,7 +7415,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .side-nav li > a.btn:hover, .side-nav li > a.btn-large:hover, .side-nav li > a.btn-large:hover {
-  background-color: #e0416e;
+  background-color: #858586;
 }
 
 .side-nav li > a.btn-floating:hover {

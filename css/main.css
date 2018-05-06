@@ -168,7 +168,7 @@ h1{
 }
 
 .price{
-    color: #303132;
+    color: #777;
     font-weight: 700;
     line-height: 1;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -309,3 +309,9 @@ h5{
 .easyzoom img {
     vertical-align: bottom;
 }
+
+#search button{
+        padding: 0;
+        background: transparent !important;
+        box-shadow: none;
+    }
