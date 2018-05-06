@@ -310,7 +310,7 @@ h5{
     vertical-align: bottom;
 }
 
-#search button{
+#search button.small{
         padding: 0;
         background: transparent !important;
         box-shadow: none;
