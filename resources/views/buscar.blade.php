@@ -20,8 +20,8 @@ $items=Cart::content();
         </div>
 
   
-      <div class="row">
-        <p class="hidden-xs">&nbsp;</p>
+      <div class="row" style="margin-bottom: 0">
+        
           <!--div class="col-md-4 col-sm-4">
             <nav class="navbar navbar-default navbar-static hidden-xs" style="background: transparent; border: 0; margin-top: 1rem;">
               <div class="navbar-header">

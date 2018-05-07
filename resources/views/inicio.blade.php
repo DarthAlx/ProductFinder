@@ -18,7 +18,7 @@ $items=Cart::content();
           {{ csrf_field() }}
           <div class="row">
             <div class="col-md-12 text-center">
-              <p>Compara y ahorra con nosotros</p>
+              <!--p>Compara y ahorra con nosotros</p-->
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
               <input type="search" name="busqueda" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
