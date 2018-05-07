@@ -39,6 +39,12 @@ class AdController extends Controller
         }
 
         $ad->enlace=$request->enlace;
+        if (isset($request->habilitado)) {
+            $ad->habilitado=true;
+        }
+        else{
+            $ad->habilitado=false;
+        }
     		$ad->save();
     		Session::flash('mensaje', 'Anuncio publicado con exito.');
             Session::flash('class', 'success');

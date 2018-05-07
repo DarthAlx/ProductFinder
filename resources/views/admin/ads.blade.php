@@ -90,9 +90,28 @@
 			    </div>
 			</div>
 			<div class="input-field">
-	          <input id="enlace" name="enlace" type="text" class="validate" value="{{ $ad->enlace or '#'}}" required>
+	          <input id="enlace" name="enlace" type="text" class="validate" value="@if($ad->enlace=='')#@else{{$ad->enlace}}@endif" required>
 	          <label for="enlace">Enlace</label>
 	        </div>
+
+	        <div class="switch">
+			    <label>
+			      
+			      <input type="checkbox" id="habilitado{{$ad->id}}" name="habilitado" >
+			      <span class="lever"></span>
+			      Habilitado
+			    </label>
+			  </div>
+
+			@if($ad->habilitado==1)
+				<script>
+					document.getElementById("habilitado{{$ad->id}}").checked = true;
+				</script>
+			@else
+				<script>
+					document.getElementById("habilitado{{$ad->id}}").checked = false;
+				</script>
+		    @endif
 
 			<input type="hidden" name="id" value="{{$ad->id}}">
 	        <div class="col m12">

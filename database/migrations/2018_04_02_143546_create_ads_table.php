@@ -17,6 +17,7 @@ class CreateAdsTable extends Migration
             $table->increments('id');
             $table->string('imagen');
             $table->string('enlace');
+            $table->boolean('habilitado')->default(true);
             $table->timestamps();
         });
     }

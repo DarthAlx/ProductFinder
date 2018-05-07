@@ -347,7 +347,7 @@ else{
             );
         }
         $categorias=App\Categoria::orderBy('nombre','asc')->get();
-        $ads=App\Ad::all();
+        $ads=App\Ad::where('habilitado',1)->get();
 
     return view('inicio', ['busquedas'=>$busquedasjson,'tendencias'=>$tendenciasarray,'tops'=>$destacados,'categorias'=>$categorias,'ads'=>$ads]);
 });
