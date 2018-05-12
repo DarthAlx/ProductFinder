@@ -54,10 +54,10 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
         <header class="headerfixed">
           <div class="container-fluid">
             <div class="row valign-wrapper">
-              <div class="col-md-2 col-xs-6 col-xs-offset-3 col-sm-offset-0 col-sm-3">
+              <div class="col-md-2 col-xs-9 col-sm-offset-0 col-sm-3">
                 <a href="{{url('/')}}"><img src="{{url('img/product-finder.png')}}" alt="logo" class="img-responsive logomain"></a>
               </div>
-              <div class="col-md-10">
+              <div class="col-md-10 col-xs-2">
                 <nav class="navbar navbar-default navbar-static navegacion hidden-xs" style="background: transparent; border: 0; margin-top: 1rem;">
               <div class="navbar-header">
               <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
@@ -316,7 +316,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
           <?php $popup = Cookie::get('popup'); ?>
           @if(!$popup)
 
-            <div id="popup" class="modal popup">
+            <!--div id="popup" class="modal popup">
               <div class="modal-content">
                 <a href="{{url('/registro')}}">
                   <img src="{{url('/img/popup.png')}}" class="img-responsive" alt="">
@@ -328,9 +328,9 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
               $( document ).ready(function() {
                 $('#popup').modal('open');
               });
-            </script>
+            </script-->
             <?php 
-              $cookie = Cookie::queue(Cookie::make('popup', 'visto', 5));
+              //$cookie = Cookie::queue(Cookie::make('popup', 'visto', 5));
             ?>
           @endif
         @endif

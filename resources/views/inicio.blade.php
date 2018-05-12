@@ -13,7 +13,7 @@ $items=Cart::content();
 
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
-    <div id="search" class=" valign-wrapper">
+    <div id="search" class="bottom-wrapper">
         <form action="{{url('/buscar')}}" method="post" style="width: 100%;">
           {{ csrf_field() }}
           <div class="row">

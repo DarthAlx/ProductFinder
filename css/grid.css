@@ -6,7 +6,7 @@
     font-size: 2rem;
 	}
 	#search{
-		height: 60vh !important;
+		height: 30vh !important;
 	}
 	#search input[type="search"] {
 	    width: 80vw;
@@ -94,6 +94,10 @@
 	    margin-left: -40px;
 	    margin-top: -10px;
 	}
+	.logomain {
+	    max-width: 100px;
+	    margin: 0;
+	}
 
 
 
@@ -103,7 +107,7 @@
     font-size: 2.5rem;
 	}
 	#search{
-		height: 60vh !important;
+		height: 50vh !important;
 	}
 	.navbar-collapse ul li a{
 		font-size: 1.3rem
@@ -154,7 +158,7 @@
     font-size: 3rem;
 	}
 	#search{
-		height: 100vh !important;
+		height: 50vh !important;
 	}
 	.navbar-collapse ul li a{
 		font-size: 1rem
