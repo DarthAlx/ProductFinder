@@ -7,7 +7,7 @@
             $nuevos=App\Mensaje::where('user_id',$user->id)->where('leido',0)->count();
           }
                         ?>
-	<p>&nbsp;</p>
+	<p>&nbsp;</p><p>&nbsp;</p>
 	<div class="container">
 		<div class="row">
         <div class="col-md-3">

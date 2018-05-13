@@ -10,7 +10,7 @@ $items=Cart::content();
 
      <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
       
-      <p>&nbsp;</p>
+      <p>&nbsp;</p><p>&nbsp;</p>
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12 text-center">

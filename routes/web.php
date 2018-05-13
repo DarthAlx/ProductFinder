@@ -213,7 +213,7 @@ $conttienda=1;
           if ($conttienda<=4) {
             
           foreach ($tendencias as $tendencia) {
-            if ($conttendencia<=3) {
+            if ($conttendencia<=7) {
 
             if ($tienda->nombre=="Sanborns") {
             $busquedakey=base64_encode($tendencia->keywords)."/1/";
@@ -591,6 +591,7 @@ Route::group(['middleware' => 'admin'], function(){
   });
 
   Route::post('agregar-destacado', 'ProductoController@store');
+    Route::delete('eliminar-destacado', 'ProductoController@destroy');
   Route::get('/actualizar-destacado/{id}', function ($id) {
     $tiendas=App\Tienda::all();
     $destacado=App\Top::find($id);

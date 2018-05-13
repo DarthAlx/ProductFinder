@@ -6,7 +6,7 @@
 @endsection
 @section('pagecontent')
 
-       
+       <p>&nbsp;</p><p>&nbsp;</p>
 
 
       <div class="stores">
@@ -39,9 +39,6 @@
             </div>
             <div class="col-md-2 col-sm-3 col-xs-4 logohover">
               <a href="https://www.costco.com.mx" target="_blank"><img src="{{url('/img/tiendas/costco.jpg')}}" class="img-responsive  "></a>
-            </div>
-            <div class="col-md-2 col-sm-3 col-xs-4 logohover">
-              <a href="http://dormimundo.com.mx" target="_blank"><img src="{{url('/img/tiendas/dormimundo.jpg')}}" class="img-responsive  "></a>
             </div>
             <div class="col-md-2 col-sm-3 col-xs-4 logohover">
               <a href="https://www.ebay.com" target="_blank"><img src="{{url('/img/tiendas/ebay.jpg')}}" class="img-responsive  "></a>

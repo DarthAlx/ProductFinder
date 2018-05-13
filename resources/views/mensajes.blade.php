@@ -3,7 +3,7 @@
 @section('pagecontent')
 <section class="perfil">
 
-	<p>&nbsp;</p>
+	<p>&nbsp;</p><p>&nbsp;</p>
 	<div class="container">
 		<div class="row">
         <div class="col-md-3">

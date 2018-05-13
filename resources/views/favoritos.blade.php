@@ -12,7 +12,7 @@ $items=Cart::content();
 
      <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
       
-      <p>&nbsp;</p>
+      <p>&nbsp;</p><p>&nbsp;</p>
 <section class="perfil">
   <?php $user=App\User::find(Auth::user()->id); 
           if ($user->mensajes) {

@@ -18,7 +18,7 @@ class CreateTableMensajes extends Migration
             $table->integer('user_id');
             $table->integer('sender_id');
             $table->string('asunto');
-            $table->string('msg');
+            $table->longText('msg');
             $table->date('fecha');
             $table->boolean('leido')->default(false);
             $table->timestamps();

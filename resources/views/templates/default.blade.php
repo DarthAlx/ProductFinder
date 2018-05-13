@@ -209,6 +209,13 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
         
        
 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="visible-md visible-lg">&nbsp;</p>
+<p class="visible-md visible-lg">&nbsp;</p>
+<p class="visible-md visible-lg">&nbsp;</p>
 
       <footer class="page-footer">
           <div class="container-fluid">
@@ -231,7 +238,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
               </div>
               <div class="col l4 s12 text-center">
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#">EMPRESA</a></li>
+                  <li><a class="grey-text text-lighten-3" href="{{url('/acercade')}}">EMPRESA</a></li>
                   <li><a class="grey-text text-lighten-3" href="{{url('/acercade')}}">Acerca de PF</a></li>
                   <li><a class="grey-text text-lighten-3" href="{{url('/bolsa-de-trabajo')}}">Trabaja con nosotros</a></li>
 

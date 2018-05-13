@@ -31,6 +31,15 @@ class ProductoController extends Controller
             return redirect()->intended(url('/agregar-destacado'))->withInput();
         }
     }
+    public function destroy(Request $request)
+    {
+        $destacado=Top::find($request->eliminar);
+        $destacado->delete();
+        Session::flash('mensaje', 'Destacado eliminado con exito.');
+        Session::flash('class', 'success');
+        return redirect()->intended(url('/destacados'));
+    }
+
 
 	public function traerproducto(Request $request)
     {

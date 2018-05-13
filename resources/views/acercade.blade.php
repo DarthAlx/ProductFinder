@@ -20,7 +20,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 text-justify">
               <p>Product Finder es uno de los comparadores de precios más destacados de México con millones de productos a comparar. El gran número de tiendas y ofertas que consideramos aumenta las posibilidades de que encuentres el precio más barato del producto que buscas. </p>
               <p>En Product Finder contamos con cientos de análisis de productos y opiniones de usuarios. Con ello, podrás encontrar no solo el mejor precio, sino también útiles consejos que te ayudarán a decidirte por el mejor producto. </p>
               <p>Contamos con una amplia gama de trabajadores que se encargan de actualizar la información acerca de los productos y notificar a los usuarios cuando sus productos favoritos alcanzan un menor precio.</p>

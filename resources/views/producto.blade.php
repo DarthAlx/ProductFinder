@@ -25,7 +25,7 @@ $items=Cart::content();
 @endphp
 
 
-
+<p>&nbsp;</p><p>&nbsp;</p>
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 <div class="container-fluid">
   <p class="hidden-xs">&nbsp;</p>
