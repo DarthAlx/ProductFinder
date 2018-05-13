@@ -209,13 +209,6 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
         
        
 
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p class="visible-md visible-lg">&nbsp;</p>
-<p class="visible-md visible-lg">&nbsp;</p>
-<p class="visible-md visible-lg">&nbsp;</p>
 
       <footer class="page-footer">
           <div class="container-fluid">

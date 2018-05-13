@@ -113,12 +113,7 @@
 
 }
 @media (min-width: 768px) {
-	.page-footer {
-        position: fixed;
-	    left: 0;
-	    bottom: 0;
-	    right: 0;
-	}
+
 	#search p {
     font-size: 2.5rem;
 	}
@@ -184,7 +179,7 @@
     font-size: 3rem;
 	}
 	#search{
-		height: 60vh !important;
+		height: 70vh !important;
 	}
 	.navbar-collapse ul li a{
 		font-size: 1rem
