@@ -562,7 +562,7 @@ class TiendaSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s")
         ]);
 
-        DB::table('tiendas')->insert([
+        /*DB::table('tiendas')->insert([
             'nombre'=> 'AT&T',
             'url'=> 'https://www.att.com.mx',
             'urlbusqueda'=> 'https://www.att.com.mx/tienda/catalogsearch/result/?q=',
@@ -584,7 +584,7 @@ class TiendaSeeder extends Seeder
             'productpoplet'=>'.nada',
             'productdesc'=>'.std',
             'created_at' => date("Y-m-d H:i:s")
-        ]);
+        ]);*/
 
         DB::table('tiendas')->insert([
             'nombre'=> 'Steren',
