@@ -308,6 +308,14 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
 
           });
+
+
+
+
+
+          $('.product-small a').click(function(){
+            $('.se-pre-con').fadeIn();
+          });
         </script>
 
 
