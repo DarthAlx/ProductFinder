@@ -2,7 +2,8 @@
 
 
 @section('header')
-
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Expires" content="-1">
 @endsection
 @section('pagecontent')
 @php
@@ -242,4 +243,3 @@ function removefromfavorite(rowId,id){
 
 
 
-<p>&nbsp;</p>
