@@ -20,7 +20,6 @@ $items=Cart::content();
           }
                         ?>
 
-  <p>&nbsp;</p>
   <div class="container">
     <div class="row">
         <div class="col-md-3">

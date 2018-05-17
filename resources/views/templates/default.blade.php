@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>JabPrice</title>
+        <title>Jab Price</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -248,7 +248,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
               <div class="col l4 s12 text-center">
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="{{url('/acercade')}}">EMPRESA</a></li>
-                  <li><a class="grey-text text-lighten-3" href="{{url('/acercade')}}">Acerca de JabPrice</a></li>
+                  <li><a class="grey-text text-lighten-3" href="{{url('/acercade')}}">Acerca de Jab Price</a></li>
                   <li><a class="grey-text text-lighten-3" href="{{url('/bolsa-de-trabajo')}}">Trabaja con nosotros</a></li>
 
                 </ul>
