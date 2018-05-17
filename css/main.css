@@ -320,3 +320,42 @@ h5{
 .picker{
     z-index: 999999999999999999999999999999999999999 !important;
 }
+
+
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999999999;
+    background: rgba(255,255,255,0.9);
+}
+.se-pre-con .gif1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 5vh auto;
+}
+.se-pre-con .gif2{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 30vh auto;
+}
+.loadingt1{
+    font-family: Finder;
+    margin-top: 40vh;
+    font-size: 1.5rem;
+}
+.loadingt2{
+    font-family: Lato;
+    font-size: 1.2rem;
+}
+strong{
+    font-weight: 600;
+}
