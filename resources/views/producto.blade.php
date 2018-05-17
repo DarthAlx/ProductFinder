@@ -106,7 +106,7 @@ $items=Cart::content();
         </div-->
 
         <div class="col-md-4 col-md-offset-4">
-                <form action="{{url('/buscar')}}" method="post" style="width: 100%;">
+                <form action="{{url('/buscar')}}" method="post" id="formmini" style="width: 100%;">
                   {{ csrf_field() }}
 
                   <div class="input-field valign-wrapper">
@@ -496,6 +496,10 @@ function removefromfavorite(rowId,id){
           }
         });
 }
+
+$('#formmini').submit(function(){
+  $('.se-pre-con').fadeIn();
+});
 </script>
 
 

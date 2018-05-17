@@ -65,7 +65,11 @@
 
 @section('scripts')
 
-
+<script>
+  $('#formmini').submit(function(){
+  $('.se-pre-con').fadeIn();
+});
+</script>
 
 
 
