@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'ProductFinder'),
+    'name' => env('APP_NAME', 'JabPrice'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/ProductFinder'),
+    'url' => env('APP_URL', 'http://jabprice.com'),
 
     /*
     |--------------------------------------------------------------------------

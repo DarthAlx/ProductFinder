@@ -341,6 +341,11 @@ function removefromfavorite(rowId,id){
           }
         });
 }
+
+
+$('#formmini').submit(function(){
+  $('.se-pre-con').fadeIn();
+});
 </script>
 
 
