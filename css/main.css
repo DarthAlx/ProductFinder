@@ -322,7 +322,7 @@ h5{
 }
 
 
-.se-pre-con {
+.se-pre-con, .se-pro-con {
     position: fixed;
     left: 0px;
     top: 0px;
@@ -331,7 +331,7 @@ h5{
     z-index: 9999999999999;
     background: rgba(255,255,255,0.9);
 }
-.se-pre-con .gif1{
+.gif1{
     position: absolute;
     top: 0;
     left: 0;
@@ -339,7 +339,7 @@ h5{
     bottom: 0;
     margin: 5vh auto;
 }
-.se-pre-con .gif2{
+.gif2{
     position: absolute;
     top: 0;
     left: 0;

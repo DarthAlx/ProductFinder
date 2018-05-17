@@ -42,6 +42,11 @@
         <p class="text-center loadingt1">mientras esperas:</p>
         <p class="text-center loadingt2"><strong>¿Sabías que…?</strong> <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
       </div>
+
+      <div class="se-pro-con" style="display: none;">
+        <img src="{{ url('img/loading.gif') }}" class="img-responsive gif1"><br>
+        <img src="{{ url('img/producto.gif') }}" class="img-responsive gif2">
+      </div>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -314,7 +319,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
 
           $('.product-small a').click(function(){
-            $('.se-pre-con').fadeIn();
+            $('.se-pro-con').fadeIn();
           });
         </script>
 
