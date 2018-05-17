@@ -36,16 +36,21 @@
         <![endif]-->
     </head>
     <body>
+      <?php 
+          $frase=App\Frases::orderByRaw("RAND()")->first();
+      ?>
       <div class="se-pre-con" style="display: none;">
         <img src="{{ url('img/lupa.gif') }}" class="img-responsive gif1"><br>
         <img src="{{ url('img/buscando.gif') }}" class="img-responsive gif2">
         <p class="text-center loadingt1">mientras esperas:</p>
-        <p class="text-center loadingt2"><strong>¿Sabías que…?</strong> <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+        <p class="text-center loadingt2"><strong>¿Sabías que…?</strong> <br> {{$frase->frase}} </p>
       </div>
 
       <div class="se-pro-con" style="display: none;">
         <img src="{{ url('img/loading.gif') }}" class="img-responsive gif1"><br>
         <img src="{{ url('img/producto.gif') }}" class="img-responsive gif2">
+        <p class="text-center loadingt1">mientras esperas:</p>
+        <p class="text-center loadingt2"><strong>¿Sabías que…?</strong> <br> {{$frase->frase}} </p>
       </div>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
