@@ -209,11 +209,12 @@ Route::get('/', function () {
 $conttienda=1;
 
         foreach ($tiendas as $tienda) {
+          if($tienda->nombre=="Palacio de Hierro"||$tienda->nombre=="Chedraui"||$tienda->nombre=="Amazon"||$tienda->nombre=="HP"){
           $conttendencia=1;
           if ($conttienda<=4) {
             
           foreach ($tendencias as $tendencia) {
-            if ($conttendencia<=7) {
+            if ($conttendencia<=3) {
 
             if ($tienda->nombre=="Sanborns") {
             $busquedakey=base64_encode($tendencia->keywords)."/1/";
@@ -324,6 +325,8 @@ else{
           }// tendencia
           $conttienda++;
 }//contador tienda
+
+}//tiendas especificas
         
         }//tienda
 

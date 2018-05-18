@@ -40,7 +40,6 @@
           $frase=App\Frases::orderByRaw("RAND()")->first();
       ?>
       <div class="se-pre-con" style="display: none;">
-        <img src="{{ url('img/spinner.gif') }}" class="img-responsive gif1"><br>
 
       </div>
 

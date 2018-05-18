@@ -23,9 +23,6 @@
               <a href="https://www.amazon.com.mx" target="_blank"><img src="{{url('/img/tiendas/amazon.jpg')}}" class="img-responsive  "></a>
             </div>
             <div class="col-md-2 col-sm-3 col-xs-4 logohover">
-              <a href="https://www.att.com.mx" target="_blank"><img src="{{url('/img/tiendas/att.jpg')}}" class="img-responsive  "></a>
-            </div>
-            <div class="col-md-2 col-sm-3 col-xs-4 logohover">
               <a href="https://www.bestbuy.com.mx" target="_blank"><img src="{{url('/img/tiendas/bestbuy.jpg')}}" class="img-responsive  "></a>
             </div>
             <div class="col-md-2 col-sm-3 col-xs-4 logohover">
@@ -79,9 +76,6 @@
             </div>
             <div class="col-md-2 col-sm-3 col-xs-4 logohover">
               <a href="http://www.steren.com.mx" target="_blank"><img src="{{url('/img/tiendas/steren.jpg')}}" class="img-responsive  "></a>
-            </div>
-            <div class="col-md-2 col-sm-3 col-xs-4 logohover">
-              <a href="http://www.sunglasshut.com" target="_blank"><img src="{{url('/img/tiendas/sunglasshut.jpg')}}" class="img-responsive  "></a>
             </div>
           </div>
 
