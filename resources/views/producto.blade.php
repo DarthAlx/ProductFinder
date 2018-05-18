@@ -28,7 +28,7 @@ $items=Cart::content();
 <p>&nbsp;</p><p>&nbsp;</p>
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 <div class="container-fluid">
-  <p class="hidden-xs">&nbsp;</p>
+
   <div class="row" style="border-bottom: 5px solid #303132;">
           <!--div class="col-md-4 col-sm-4">
             <nav class="navbar navbar-default navbar-static hidden-xs" style="background: transparent; border: 0; margin-top: 1rem;">

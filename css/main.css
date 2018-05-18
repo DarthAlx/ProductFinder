@@ -329,7 +329,7 @@ h5{
     width: 100%;
     height: 100%;
     z-index: 9999999999999;
-    background: rgba(255,255,255,0.9);
+
 }
 .gif1{
     position: absolute;
@@ -337,7 +337,7 @@ h5{
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 5vh auto;
+    margin: 48vh auto;
 }
 .gif2{
     position: absolute;
