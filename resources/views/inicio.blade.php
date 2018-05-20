@@ -700,9 +700,10 @@ function removefromfavorite(rowId,id){
         }
       });*/
 
-
+$(document).ready(function() {
 $('#formbuscar').submit(function(){
   $('.se-pre-con').fadeIn();
+});
 });
 </script>
 

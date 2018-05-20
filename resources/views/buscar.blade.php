@@ -128,9 +128,11 @@ $items=Cart::content();
 
                        
                         <script>
-                          $('#searchpricemini').click(function(){
-                            $('#formmini').submit();
+                          $(document).ready(function() {
+                            $('#searchpricemini').click(function(){
+                              $('#formmini').submit();
 
+                            });
                           });
                         </script>
                       </div>
@@ -158,10 +160,12 @@ $items=Cart::content();
                   </div>
                   </div>
                   <script>
+                  $(document).ready(function() {
                     document.getElementById('ordenmini').value="{!!$sorting!!}";
                     $('#ordenmini').change(function(){
                       $('#formmini').submit();
 
+                    });
                     });
                   </script>
 
@@ -342,9 +346,11 @@ function removefromfavorite(rowId,id){
         });
 }
 
+$(document).ready(function() {
+$('#formmini').on('submit', function(e){
 
-$('#formmini').submit(function(){
   $('.se-pre-con').fadeIn();
+});
 });
 </script>
 
