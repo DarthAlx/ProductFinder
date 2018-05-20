@@ -22,14 +22,14 @@ $items=Cart::content();
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
               <input type="search" name="busqueda" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
-                <button class="btn btn-danger hidden-xs small" type="submit">
+                <button class="btn btn-danger hidden-xs small" type="submit" onclick="document.getElementsByClassName('se-pre-con')[0].style.display = 'block';">
                   <span class="fa fa-search"></span>
                 </button>
             </div>
           </div>
           <div class="row visible-xs">
             <div class="col-md-12 text-center">
-              <button type="submit" class="btn btn-large">Buscar <i class="fa fa-search" aria-hidden="true"></i></button>
+              <button type="submit" class="btn btn-large" onclick="document.getElementsByClassName('se-pre-con')[0].style.display = 'block';">Buscar <i class="fa fa-search" aria-hidden="true"></i></button>
             </div>
           </div>
             

@@ -40,7 +40,7 @@
           $frase=App\Frases::orderByRaw("RAND()")->first();
       ?>
       <div class="se-pre-con" style="display: none;">
-
+            <img src="{{url('img/spinner.gif')}}" class="gif1">
       </div>
 
         <!--[if lt IE 8]>
@@ -315,6 +315,10 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
 
           $('.product-small a').click(function(){
+            $('.se-pre-con').fadeIn();
+          });
+
+          $('#formbuscar').submit(function(){
             $('.se-pre-con').fadeIn();
           });
         </script>
