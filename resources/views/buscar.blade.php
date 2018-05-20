@@ -119,7 +119,7 @@ $items=Cart::content();
                               <input type="text" class="form-control browser-default" name="maximo" placeholder="Maximo" value="{{$maximo or ''}}" aria-describedby="basic-addon2">
                             </div>
                             <div class="col-xs-1 valign-wrapper" style="height: 33px">
-                              <a href="#" id="searchpricemini"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+                              <a href="#" id="searchpricemini" onclick="document.getElementsByClassName('se-pre-con')[0].style.display = 'block'; document.getElementById('formmini').submit();"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
                               
                             </div>
                           </div>
@@ -142,7 +142,7 @@ $items=Cart::content();
 
                   <div class="input-field valign-wrapper">
                     <i class="fa fa-search prefix"></i>
-                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;">
+                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;" onchange="document.getElementsByClassName('se-pre-con')[0].style.display = 'block'; document.getElementById('formmini').submit();">
                   </div>
                  
                 </div>
@@ -151,7 +151,7 @@ $items=Cart::content();
                   <div style="width: 100%;">
                     {{ csrf_field() }}
                   <div class="input-field valign-wrapper selectorden">
-                      <select id="ordenmini" name="sort" class="select" required>
+                      <select id="ordenmini" name="sort" class="select" onchange="document.getElementsByClassName('se-pre-con')[0].style.display = 'block'; document.getElementById('formmini').submit();" required>
                         <option value="Popularidad">Popularidad</option>
                         <option value="A - Z">A - Z</option>
                         <option value="Menor precio">Menor precio</option>
@@ -160,12 +160,23 @@ $items=Cart::content();
                   </div>
                   </div>
                   <script>
+
+                    var input = document.getElementById("formmini");
+
+                      // Execute a function when the user releases a key on the keyboard
+                    input.addEventListener("keyup", function(event) {
+                      // Cancel the default action, if needed
+                      event.preventDefault();
+                      // Number 13 is the "Enter" key on the keyboard
+                      if (event.keyCode === 13) {
+                        // Trigger the button element with a click
+                        document.getElementsByClassName('se-pre-con')[0].style.display = "block";
+                        document.getElementById('formmini').submit();
+                      }
+                    });
                   $(document).ready(function() {
                     document.getElementById('ordenmini').value="{!!$sorting!!}";
-                    $('#ordenmini').change(function(){
-                      $('#formmini').submit();
-
-                    });
+                    
                     });
                   </script>
 

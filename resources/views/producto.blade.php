@@ -111,9 +111,27 @@ $items=Cart::content();
 
                   <div class="input-field valign-wrapper">
                     <i class="fa fa-search prefix"></i>
-                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda or ''}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;">
+                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda or ''}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;" onchange="document.getElementsByClassName('se-pre-con')[0].style.display = 'block'; document.getElementById('formmini').submit();">
                   </div>
                   </form>
+
+                  <script>
+
+                    var input = document.getElementById("formmini");
+
+                      // Execute a function when the user releases a key on the keyboard
+                    input.addEventListener("keyup", function(event) {
+                      // Cancel the default action, if needed
+                      event.preventDefault();
+                      // Number 13 is the "Enter" key on the keyboard
+                      if (event.keyCode === 13) {
+                        // Trigger the button element with a click
+                        document.getElementsByClassName('se-pre-con')[0].style.display = "block";
+                        document.getElementById('formmini').submit();
+                      }
+                    });
+    
+                  </script>
                 </div>
 
                 <div class="col-md-4" style="padding-top: 2rem;">
