@@ -14,7 +14,7 @@ $items=Cart::content();
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
     <div id="search" class="bottom-wrapper">
-        <form action="{{url('/buscar')}}" id="formbuscar" method="post" style="width: 100%;"  onsubmit="javascript: alert('enviando...');">
+        <form action="{{url('/buscar')}}" id="formbuscar" method="post" style="width: 100%;"  onsubmit="javascript: loading();">
           {{ csrf_field() }}
           <div class="row">
             <div class="col-md-12 text-center">
@@ -22,7 +22,7 @@ $items=Cart::content();
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
               <input type="search" name="busqueda" id="buscador" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
-                <button class="btn btn-danger hidden-xs small" type="submit" onclick="document.getElementById('se-pre-con').style.visibility = 'visible';">
+                <button class="btn btn-danger hidden-xs small" type="submit">
                   <span class="fa fa-search"></span>
                 </button>
             </div>
@@ -36,22 +36,7 @@ $items=Cart::content();
             
         </form>
 
-        <script>
 
-                    var input = document.getElementById("buscador");
-
-                      // Execute a function when the user releases a key on the keyboard
-                    input.addEventListener("keyup", function(event) {
-                      // Cancel the default action, if needed
-                      event.preventDefault();
-                      // Number 13 is the "Enter" key on the keyboard
-                      if (event.keyCode === 13) {
-                        // Trigger the button element with a click
-                        document.getElementById('se-pre-con').style.visibility = 'visible'; 
-                        document.getElementById('botonenviar').click();
-                      }
-                    });
-                  </script>
       </div>
 
 

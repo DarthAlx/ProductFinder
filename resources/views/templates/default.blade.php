@@ -307,6 +307,11 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
             document.getElementById("se-pre-con").style.visibility = "visible";
           });
 
+
+
+          function loading(){
+            document.getElementById("se-pre-con").style.visibility = "visible";
+          }
       
         </script>
 
