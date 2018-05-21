@@ -119,7 +119,7 @@ $items=Cart::content();
                               <input type="text" class="form-control browser-default" name="maximo" placeholder="Maximo" value="{{$maximo or ''}}" aria-describedby="basic-addon2">
                             </div>
                             <div class="col-xs-1 valign-wrapper" style="height: 33px">
-                              <a href="#" id="searchpricemini" onclick="document.getElementsByClassName('se-pre-con')[0].style.display = 'block'; document.getElementById('formmini').submit();"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+                              <a href="#" id="searchpricemini" onclick="javascript: document.getElementById('se-pre-con').style.display = 'block'; document.getElementById('formmini').submit();"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
                               
                             </div>
                           </div>
@@ -142,7 +142,7 @@ $items=Cart::content();
 
                   <div class="input-field valign-wrapper">
                     <i class="fa fa-search prefix"></i>
-                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;" onchange="document.getElementsByClassName('se-pre-con')[0].style.display = 'block'; document.getElementById('formmini').submit();">
+                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;" onchange="javascript:document.getElementById('se-pre-con').style.display = 'block'; document.getElementById('formmini').submit();">
                   </div>
                  
                 </div>
@@ -161,7 +161,7 @@ $items=Cart::content();
                   </div>
                   <script>
 
-                    var input = document.getElementById("formmini");
+                    var input = document.getElementById("buscador");
 
                       // Execute a function when the user releases a key on the keyboard
                     input.addEventListener("keyup", function(event) {
@@ -170,7 +170,7 @@ $items=Cart::content();
                       // Number 13 is the "Enter" key on the keyboard
                       if (event.keyCode === 13) {
                         // Trigger the button element with a click
-                        document.getElementsByClassName('se-pre-con')[0].style.display = "block";
+                        document.getElementById('se-pre-con').style.display = 'block';
                         document.getElementById('formmini').submit();
                       }
                     });

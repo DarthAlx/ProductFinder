@@ -119,7 +119,7 @@ $items=Cart::content();
                           
                               
                         </div>
-                        <a style="cursor: pointer;" onclick="document.getElementById('tendencia{{$productocount}}').submit()">
+                        <a style="cursor: pointer;" onclick="javascript: document.getElementById('se-pre-con').style.display = 'block'; document.getElementById('tendencia{{$productocount}}').submit();">
                           <div class="img-container text-center">
                             
                             <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
