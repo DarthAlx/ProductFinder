@@ -310,7 +310,9 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
 
           function loading(){
+
             document.getElementById("se-pre-con").style.visibility = "visible";
+            return true;
           }
       
         </script>

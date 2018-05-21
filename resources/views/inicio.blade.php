@@ -14,7 +14,7 @@ $items=Cart::content();
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
     <div id="search" class="bottom-wrapper">
-        <form action="{{url('/buscar')}}" id="formbuscar" method="post" style="width: 100%;"  onsubmit="return false;">
+        <form action="{{url('/buscar')}}" id="formbuscar" method="post" style="width: 100%;"  onsubmit="return loading();">
           {{ csrf_field() }}
           <div class="row">
             <div class="col-md-12 text-center">
