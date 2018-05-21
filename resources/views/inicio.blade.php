@@ -22,7 +22,7 @@ $items=Cart::content();
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
               <input type="search" name="busqueda" id="buscador" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
-                <button class="btn btn-danger hidden-xs small" type="submit" onclick="document.getElementsByClassName('se-pre-con')[0].style.display = 'block';">
+                <button class="btn btn-danger hidden-xs small" type="submit" onclick="javascript:document.getElementById('se-pre-con').style.display = 'block';">
                   <span class="fa fa-search"></span>
                 </button>
             </div>
