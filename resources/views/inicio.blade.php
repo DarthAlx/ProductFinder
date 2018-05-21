@@ -22,21 +22,36 @@ $items=Cart::content();
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
               <input type="search" name="busqueda" id="buscador" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
-                <button class="btn btn-danger hidden-xs small" type="submit">
+                <button class="btn btn-danger hidden-xs small" type="submit" onclick="javascript:document.getElementById('se-pre-con').style.display = 'block';">
                   <span class="fa fa-search"></span>
                 </button>
             </div>
           </div>
           <div class="row visible-xs">
             <div class="col-md-12 text-center">
-              <button type="submit" class="btn btn-large">Buscar <i class="fa fa-search" aria-hidden="true"></i></button>
+              <button type="submit" class="btn btn-large" onclick="document.getElementsByClassName('se-pre-con')[0].style.display = 'block';">Buscar <i class="fa fa-search" aria-hidden="true"></i></button>
             </div>
           </div>
             
             
         </form>
 
-   
+        <script>
+
+                    var input = document.getElementById("buscador");
+
+                      // Execute a function when the user releases a key on the keyboard
+                    input.addEventListener("keyup", function(event) {
+                      // Cancel the default action, if needed
+                      event.preventDefault();
+                      // Number 13 is the "Enter" key on the keyboard
+                      if (event.keyCode === 13) {
+                        // Trigger the button element with a click
+                        document.getElementById('se-pre-con').style.display = "block";
+                        document.getElementById('formbuscar').submit();
+                      }
+                    });
+                  </script>
       </div>
       <div class="row">
             <div class="col-md-12">
@@ -140,7 +155,7 @@ $items=Cart::content();
                           
                               
                         </div>
-                        <a style="cursor: pointer;">
+                        <a style="cursor: pointer;" onclick="document.getElementById('tendencia{{$tendenciacount}}').submit()">
                           <div class="img-container text-center">
                             
                             <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
@@ -259,7 +274,7 @@ $items=Cart::content();
                           
                               
                         </div>
-                        <a style="cursor: pointer;" >
+                        <a style="cursor: pointer;" onclick="document.getElementById('tendenciat{{$topscount}}').submit()">
                           <div class="img-container text-center">
                             
                             <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
