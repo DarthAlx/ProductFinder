@@ -302,12 +302,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
           });
 
 
-          document.getElementById("formbuscar").addEventListener('submit', functSubmit);
 
-          function functSubmit(event) {
-            document.getElementById("se-pre-con").style.visibility = "visible";
-            alert('submit')
-          }
           $('.product-small a').click(function(){
             document.getElementById("se-pre-con").style.visibility = "visible";
           });
