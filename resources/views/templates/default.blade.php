@@ -34,7 +34,7 @@
 
       <div class="se-pre-con" id="se-pre-con" style="display: none;">
             <img src="{{url('img/spinner.gif')}}" class="gif1">
-            <p><strong class="loadingt1">Cargando...</strong></p>
+            <p class="text-center loadingt1">Cargando...</p>
       </div>
 
 @php
@@ -303,7 +303,13 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
 
 
+          $('.product-small a').click(function(){
+            $('.se-pre-con').fadeIn();
+          });
 
+          $('#formbuscar').submit(function(){
+            $('.se-pre-con').fadeIn();
+          });
 
       
         </script>

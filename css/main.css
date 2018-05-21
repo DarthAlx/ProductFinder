@@ -338,7 +338,7 @@ h5{
     left: 0;
     right: 0;
     bottom: 0;
-    margin: 48vh auto;
+    margin: 40vh auto;
     z-index: 9999999999999999999999999;
 }
 .gif2{
@@ -356,7 +356,7 @@ h5{
     right: 0;
     bottom: 0;
     font-family: Finder;
-    margin-top: 52vh;
+    margin-top: 53vh;
     font-size: 1.5rem;
     z-index: 9999999999999999999999999;
 }
