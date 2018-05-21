@@ -91,7 +91,7 @@ $items=Cart::content();
               @foreach($tendencias as $producto)
 
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$tendenciacount}}" style="display: none;">
+                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$tendenciacount}}" style="display: none;" onsubmit="javascript:document.getElementById('se-pre-con').style.display = 'block';">
                         {{ csrf_field() }}
                         @php
                           $nombre = $producto['nombre'];
@@ -210,7 +210,7 @@ $items=Cart::content();
               @foreach($tops as $producto)
 
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                      <form action="{{url('/producto')}}" method="post" id="tendenciat{{$topscount}}" style="display: none;">
+                      <form action="{{url('/producto')}}" method="post" id="tendenciat{{$topscount}}" style="display: none;" onsubmit="javascript:document.getElementById('se-pre-con').style.display = 'block';">
                         {{ csrf_field() }}
                         @php
                           $nombre = $producto['nombre'];
