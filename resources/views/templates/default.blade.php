@@ -311,9 +311,9 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
           $(function() {
               $('#formbuscar').submit(function(e) {
-                e.preventDefault();
+                  e.preventDefault();
                   document.getElementById("se-pre-con").style.visibility = "visible";
-                  $('#formbuscar').submit();
+                  document.getElementById("formbuscar").submit();
                   
               });             
           });
