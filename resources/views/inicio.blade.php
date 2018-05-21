@@ -14,7 +14,7 @@ $items=Cart::content();
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
     <div id="search" class="bottom-wrapper">
-        <form action="{{url('/buscar')}}" id="formbuscar" method="post" style="width: 100%;" onsubmit="document.getElementById('se-pre-con').style.visibility = 'visible';">
+        <form action="{{url('/buscar')}}" id="formbuscar" method="post" style="width: 100%;" >
           {{ csrf_field() }}
           <div class="row">
             <div class="col-md-12 text-center">
@@ -22,7 +22,7 @@ $items=Cart::content();
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
               <input type="search" name="busqueda" id="buscador" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
-                <button class="btn btn-danger hidden-xs small" type="submit" >
+                <button class="btn btn-danger hidden-xs small" type="submit" onclick="document.getElementById('se-pre-con').style.visibility = 'visible';">
                   <span class="fa fa-search"></span>
                 </button>
             </div>
