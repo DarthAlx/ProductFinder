@@ -14,7 +14,7 @@ $items=Cart::content();
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
     <div id="search" class="bottom-wrapper">
-        <form action="{{url('/buscar')}}" id="formbuscar" method="post" style="width: 100%;" onsubmit="javascript:document.getElementById('se-pre-con').style.display = 'block';">
+        <form action="{{url('/buscar')}}" id="formbuscar" method="post" style="width: 100%;">
           {{ csrf_field() }}
           <div class="row">
             <div class="col-md-12 text-center">
@@ -22,14 +22,14 @@ $items=Cart::content();
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
               <input type="search" name="busqueda" id="buscador" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
-                <button class="btn btn-danger hidden-xs small" type="submit" onclick="javascript:document.getElementById('se-pre-con').style.display = 'block';">
+                <button class="btn btn-danger hidden-xs small" type="submit" >
                   <span class="fa fa-search"></span>
                 </button>
             </div>
           </div>
           <div class="row visible-xs">
             <div class="col-md-12 text-center">
-              <button type="submit" class="btn btn-large" onclick="document.getElementsByClassName('se-pre-con')[0].style.display = 'block';">Buscar <i class="fa fa-search" aria-hidden="true"></i></button>
+              <button type="submit" class="btn btn-large">Buscar <i class="fa fa-search" aria-hidden="true"></i></button>
             </div>
           </div>
             
@@ -91,7 +91,7 @@ $items=Cart::content();
               @foreach($tendencias as $producto)
 
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$tendenciacount}}" style="display: none;" onsubmit="javascript:document.getElementById('se-pre-con').style.display = 'block';">
+                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$tendenciacount}}" style="display: none;">
                         {{ csrf_field() }}
                         @php
                           $nombre = $producto['nombre'];
@@ -210,7 +210,7 @@ $items=Cart::content();
               @foreach($tops as $producto)
 
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                      <form action="{{url('/producto')}}" method="post" id="tendenciat{{$topscount}}" style="display: none;" onsubmit="javascript:document.getElementById('se-pre-con').style.display = 'block';">
+                      <form action="{{url('/producto')}}" method="post" id="tendenciat{{$topscount}}" style="display: none;">
                         {{ csrf_field() }}
                         @php
                           $nombre = $producto['nombre'];
@@ -719,7 +719,7 @@ function removefromfavorite(rowId,id){
 
 $(document).ready(function() {
 $('#formbuscar').submit(function(){
-  $('.se-pre-con').fadeIn();
+  document.getElementById('se-pre-con').style.display = 'block';
 });
 });
 </script>
