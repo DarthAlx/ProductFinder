@@ -308,15 +308,18 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
           });
 
 
+          var input = document.getElementById("formbuscar");
 
-          $(function() {
-              $('#formbuscar').submit(function(e) {
-                  e.preventDefault();
-                  document.getElementById("se-pre-con").style.visibility = "visible";
-                  document.getElementById("formbuscar").submit();
-                  
-              });             
+            // Execute a function when the user releases a key on the keyboard
+          input.addEventListener("submit", function(event) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            
+            document.getElementById("se-pre-con").style.visibility = "visible";
+            document.getElementById("formbuscar").submit();
+            
           });
+
 
       
         </script>
