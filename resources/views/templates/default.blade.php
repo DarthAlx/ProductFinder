@@ -1,8 +1,5 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<!DOCTYPE html>
+ <html> 
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -31,20 +28,15 @@
         }(document, 'script', 'facebook-jssdk'));</script>
         @yield('header')
 
-        <!--[if lt IE 9]>
-            <script src="js/vendor/html5-3.6-respond-1.4.2.min.js"></script>
-        <![endif]-->
+
     </head>
     <body>
 
       <div class="se-pre-con" id="se-pre-con" style="display: none;">
             <img src="{{url('img/spinner.gif')}}" class="gif1">
-            <strong class="loadingt1">Cargando...</strong>
+            <p><strong class="loadingt1">Cargando...</strong></p>
       </div>
 
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
 @php
 
 $categorias=App\Categoria::orderBy('nombre','asc')->get();
@@ -313,13 +305,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
 
 
-          $('.product-small a').click(function(){
-            $('.se-pre-con').fadeIn();
-          });
-
-          $('#formbuscar').submit(function(){
-            $('.se-pre-con').fadeIn();
-          });
+      
         </script>
 
 
