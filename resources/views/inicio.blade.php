@@ -14,7 +14,7 @@ $items=Cart::content();
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
     <div id="search" class="bottom-wrapper">
-        <form action="{{url('/buscar')}}" id="formbuscar" method="post" style="width: 100%;" >
+        <form action="{{url('/buscar')}}" id="formbuscar" method="post" style="width: 100%;"  onsubmit="javascript: alert('enviando...');">
           {{ csrf_field() }}
           <div class="row">
             <div class="col-md-12 text-center">
@@ -22,10 +22,9 @@ $items=Cart::content();
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
               <input type="search" name="busqueda" id="buscador" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
-              <input type="submit" id="botonenviar" style="display: none;">
-                <a class="btn btn-danger hidden-xs small" style="cursor: pointer;" onclick="document.getElementById('se-pre-con').style.visibility = 'visible'; document.getElementById('botonenviar').click();">
+                <button class="btn btn-danger hidden-xs small" type="submit" onclick="document.getElementById('se-pre-con').style.visibility = 'visible';">
                   <span class="fa fa-search"></span>
-                </a>
+                </button>
             </div>
           </div>
           <div class="row visible-xs">
@@ -48,12 +47,13 @@ $items=Cart::content();
                       // Number 13 is the "Enter" key on the keyboard
                       if (event.keyCode === 13) {
                         // Trigger the button element with a click
-                        document.getElementById('se-pre-con').style.visibility = 'visible';
-                        document.getElementById('formbuscar').submit();
+                        document.getElementById('se-pre-con').style.visibility = 'visible'; 
+                        document.getElementById('botonenviar').click();
                       }
                     });
                   </script>
       </div>
+
 
 
       <div class="row">
