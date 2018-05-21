@@ -38,7 +38,7 @@ $items=Cart::content();
 
         <script>
 
-                    var input = document.getElementById("buscador");
+                    var input = document.getElementById("formbuscar");
 
                       // Execute a function when the user releases a key on the keyboard
                     input.addEventListener("keyup", function(event) {
