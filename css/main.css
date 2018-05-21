@@ -364,3 +364,5 @@ h5{
 strong{
     font-weight: 600;
 }
+
+img{transform: none !important; -webkit-transform:none !important;}
