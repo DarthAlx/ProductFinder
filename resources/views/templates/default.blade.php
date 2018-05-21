@@ -36,10 +36,8 @@
         <![endif]-->
     </head>
     <body>
-      <?php 
-          $frase=App\Frases::orderByRaw("RAND()")->first();
-      ?>
-      <div class="se-pre-con" style="display: none;">
+
+      <div class="se-pre-con" id="se-pre-con" style="display: none;">
             <img src="{{url('img/spinner.gif')}}" class="gif1">
       </div>
 

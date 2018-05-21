@@ -21,7 +21,7 @@ $items=Cart::content();
               <!--p>Compara y ahorra con nosotros</p-->
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
-              <input type="search" name="busqueda" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
+              <input type="search" name="busqueda" id="buscador" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
                 <button class="btn btn-danger hidden-xs small" type="submit" onclick="document.getElementsByClassName('se-pre-con')[0].style.display = 'block';">
                   <span class="fa fa-search"></span>
                 </button>
@@ -35,6 +35,23 @@ $items=Cart::content();
             
             
         </form>
+
+        <script>
+
+                    var input = document.getElementById("buscador");
+
+                      // Execute a function when the user releases a key on the keyboard
+                    input.addEventListener("keyup", function(event) {
+                      // Cancel the default action, if needed
+                      event.preventDefault();
+                      // Number 13 is the "Enter" key on the keyboard
+                      if (event.keyCode === 13) {
+                        // Trigger the button element with a click
+                        document.getElementById('se-pre-con').style.display = "block";
+                        document.getElementById('formbuscar').submit();
+                      }
+                    });
+                  </script>
       </div>
       <div class="row">
             <div class="col-md-12">
