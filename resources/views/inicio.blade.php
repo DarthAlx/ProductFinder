@@ -53,6 +53,11 @@ $items=Cart::content();
                     });
                   </script>
       </div>
+
+
+      <button class="btn btn-danger small" type="button" onclick="document.getElementById('se-pre-con').style.visibility = 'visible';">
+                  <span class="fa fa-search"></span> prueba
+                </button>
       <div class="row">
             <div class="col-md-12">
               @include('snip.notificaciones')
