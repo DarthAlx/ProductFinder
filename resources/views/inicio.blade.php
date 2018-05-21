@@ -39,8 +39,12 @@ $items=Cart::content();
         $(document).ready(function() {
           $("#formbuscar").submit(function(event){
                event.preventDefault();  
-               document.getElementById('se-pre-con').style.visibility = 'visible';            
-               document.getElementById('botonformbuscar').click();  
+               document.getElementById('se-pre-con').style.visibility = 'visible';      
+
+               setTimeout(function () {
+                   document.getElementById('formbuscar').submit();  
+                }, 1000);      
+               
           });
         });
         </script>
