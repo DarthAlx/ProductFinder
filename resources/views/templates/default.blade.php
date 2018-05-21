@@ -39,7 +39,7 @@
 
       <div class="se-pre-con" id="se-pre-con" style="display: none;">
             <img src="{{url('img/spinner.gif')}}" class="gif1">
-            <strong style="font-family: Finder;">Cargando...</strong>
+            <strong class="loadingt1">Cargando...</strong>
       </div>
 
         <!--[if lt IE 8]>
