@@ -339,6 +339,7 @@ h5{
     right: 0;
     bottom: 0;
     margin: 48vh auto;
+    z-index: 9999999999999999999999999;
 }
 .gif2{
     position: absolute;
@@ -349,9 +350,15 @@ h5{
     margin: 30vh auto;
 }
 .loadingt1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     font-family: Finder;
     margin-top: 52vh;
     font-size: 1.5rem;
+    z-index: 9999999999999999999999999;
 }
 .loadingt2{
     font-family: Lato;
