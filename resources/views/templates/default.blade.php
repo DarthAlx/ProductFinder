@@ -309,11 +309,14 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
 
 
-          function loading(){
+          $(function() {
+              $('#formbuscar').submit(function(e) {
+                  document.getElementById("se-pre-con").style.visibility = "visible";
+                  $('#formbuscar').submit();
+                  e.preventDefault();
+              });             
+          });
 
-            document.getElementById("se-pre-con").style.visibility = "visible";
-            return true;
-          }
       
         </script>
 

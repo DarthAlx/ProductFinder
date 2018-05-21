@@ -14,7 +14,7 @@ $items=Cart::content();
  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
     <div id="search" class="bottom-wrapper">
-        <form action="{{url('/buscar')}}" id="formbuscar" method="post" style="width: 100%;"  onsubmit="return loading();">
+        <form action="{{url('/buscar')}}" id="formbuscar" method="post" style="width: 100%;" >
           {{ csrf_field() }}
           <div class="row">
             <div class="col-md-12 text-center">
@@ -36,22 +36,6 @@ $items=Cart::content();
             
         </form>
 
-        <script>
-
-                    var input = document.getElementById("buscador");
-
-                      // Execute a function when the user releases a key on the keyboard
-                    input.addEventListener("keyup", function(event) {
-                      // Cancel the default action, if needed
-                      event.preventDefault();
-                      // Number 13 is the "Enter" key on the keyboard
-                      if (event.keyCode === 13) {
-                        // Trigger the button element with a click
-                        document.getElementById('se-pre-con').style.visibility = 'visible'; 
-                        document.getElementById('formbuscar').submit();
-                      }
-                    });
-                  </script>
       </div>
 
 
