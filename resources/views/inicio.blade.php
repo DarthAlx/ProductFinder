@@ -39,7 +39,7 @@ $items=Cart::content();
         $(document).ready(function() {
           $("#formbuscar").submit(function(event){
                event.preventDefault();  
-               alert("envío en progreso...");               
+               document.getElementById('se-pre-con').style.visibility = 'visible';            
           
           });
         });
