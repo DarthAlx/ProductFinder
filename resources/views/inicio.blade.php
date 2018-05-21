@@ -22,7 +22,7 @@ $items=Cart::content();
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
               <input type="search" name="busqueda" id="buscador" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
-                <button class="btn btn-danger hidden-xs small" type="submit">
+                <button class="btn btn-danger hidden-xs small" type="submit" id="botonformbuscar">
                   <span class="fa fa-search"></span>
                 </button>
             </div>
@@ -40,7 +40,7 @@ $items=Cart::content();
           $("#formbuscar").submit(function(event){
                event.preventDefault();  
                document.getElementById('se-pre-con').style.visibility = 'visible';            
-               document.getElementById('formbuscar').submit();  
+               document.getElementById('botonformbuscar').click();  
           });
         });
         </script>
