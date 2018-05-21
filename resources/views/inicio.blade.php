@@ -717,11 +717,7 @@ function removefromfavorite(rowId,id){
         }
       });*/
 
-$(document).ready(function() {
-$('#formbuscar').submit(function(){
-  document.getElementById('se-pre-con').style.display = 'block';
-});
-});
+
 </script>
 
 

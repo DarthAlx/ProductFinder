@@ -302,12 +302,13 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
           });
 
 
+          document.getElementById("formbuscar").addEventListener('submit', functSubmit);
 
-          $('.product-small a').click(function(){
+          function functSubmit(event) {
             document.getElementById('se-pre-con').style.display = 'block';
-          });
-
-          $('#formbuscar').submit(function(){
+            alert('submit')
+          }
+          $('.product-small a').click(function(){
             document.getElementById('se-pre-con').style.display = 'block';
           });
 
