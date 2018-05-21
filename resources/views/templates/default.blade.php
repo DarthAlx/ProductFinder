@@ -38,7 +38,7 @@
     <body>
 
       <div class="se-pre-con" id="se-pre-con" style="display: none;">
-            <img src="{{url('img/spinner.gif')}}" class="gif1">
+            <img src="{{url('img/iphone.png')}}" class="gif1">
       </div>
 
         <!--[if lt IE 8]>
