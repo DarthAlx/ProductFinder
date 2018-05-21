@@ -22,9 +22,10 @@ $items=Cart::content();
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
               <input type="search" name="busqueda" id="buscador" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
-                <button class="btn btn-danger hidden-xs small" type="submit" onclick="document.getElementById('se-pre-con').style.visibility = 'visible';">
+              <input type="sumbit" id="botonenviar" style="display: none;">
+                <a class="btn btn-danger hidden-xs small" style="cursor: pointer;" onclick="document.getElementById('se-pre-con').style.visibility = 'visible'; document.getElementById('botonenviar').click();">
                   <span class="fa fa-search"></span>
-                </button>
+                </a>
             </div>
           </div>
           <div class="row visible-xs">
@@ -55,9 +56,6 @@ $items=Cart::content();
       </div>
 
 
-      <button class="btn btn-danger small" type="button" onclick="document.getElementById('se-pre-con').style.visibility = 'visible';">
-                  <span class="fa fa-search"></span> prueba
-                </button>
       <div class="row">
             <div class="col-md-12">
               @include('snip.notificaciones')
