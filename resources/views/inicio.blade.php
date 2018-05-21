@@ -109,6 +109,19 @@ $items=Cart::content();
                         <input type="hidden" name="tienda" value="{{$tienda}}">
                         <input type="hidden" name="url" value="{{$url}}">
                       </form>
+                      <script type="text/javascript">
+                      $(document).ready(function() {
+                        $("#tendencia{{$tendenciacount}}").submit(function(event){
+                             event.preventDefault();  
+                             document.getElementById('se-pre-con').style.visibility = 'visible';      
+
+                             setTimeout(function () {
+                                 document.getElementById('tendencia{{$tendenciacount}}').submit();  
+                              }, 1000);      
+                             
+                        });
+                      });
+                      </script>
                       <div class="product-small">
                         <div class="favorito">
                           @foreach ($items as $product)
@@ -228,6 +241,19 @@ $items=Cart::content();
                         <input type="hidden" name="tienda" value="{{$tienda}}">
                         <input type="hidden" name="url" value="{{$url}}">
                       </form>
+                      <script type="text/javascript">
+                      $(document).ready(function() {
+                        $("#tendenciat{{$topscount}}").submit(function(event){
+                             event.preventDefault();  
+                             document.getElementById('se-pre-con').style.visibility = 'visible';      
+
+                             setTimeout(function () {
+                                 document.getElementById('tendenciat{{$topscount}}').submit();  
+                              }, 1000);      
+                             
+                        });
+                      });
+                      </script>
                       <div class="product-small">
                         <div class="favorito">
                           @foreach ($items as $product)

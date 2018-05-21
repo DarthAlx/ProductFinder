@@ -36,6 +36,19 @@
                 
                 <input type="submit" style="display: none;">
               </form>
+              <script type="text/javascript">
+                      $(document).ready(function() {
+                        $("#formmini").submit(function(event){
+                             event.preventDefault();  
+                             document.getElementById('se-pre-con').style.visibility = 'visible';      
+
+                             setTimeout(function () {
+                                 document.getElementById('formmini').submit();  
+                              }, 1000);      
+                             
+                        });
+                      });
+                      </script>
       </div>
     </div>
 

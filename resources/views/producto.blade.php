@@ -106,7 +106,7 @@ $items=Cart::content();
         </div-->
 
         <div class="col-md-4 col-md-offset-4">
-                <form action="{{url('/buscar')}}" method="post" id="formmini" style="width: 100%;" onsubmit="javascript:document.getElementById('se-pre-con').style.display = 'block';">
+                <form action="{{url('/buscar')}}" method="post" id="formmini" style="width: 100%;">
                   {{ csrf_field() }}
 
                   <div class="input-field valign-wrapper">
@@ -114,6 +114,20 @@ $items=Cart::content();
                     <input id="buscador" name="busqueda" type="text" value="{{$busqueda or ''}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;" onchange="document.getElementsByClassName('se-pre-con')[0].style.display = 'block'; document.getElementById('formmini').submit();">
                   </div>
                   </form>
+
+                   <script type="text/javascript">
+                      $(document).ready(function() {
+                        $("#formmini").submit(function(event){
+                             event.preventDefault();  
+                             document.getElementById('se-pre-con').style.visibility = 'visible';      
+
+                             setTimeout(function () {
+                                 document.getElementById('formmini').submit();  
+                              }, 1000);      
+                             
+                        });
+                      });
+                      </script>
 
                   <script>
 
@@ -298,7 +312,7 @@ $items=Cart::content();
               @foreach($relacionados as $producto)
 
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$relacionadocount}}" style="display: none;" onsubmit="javascript:document.getElementById('se-pre-con').style.display = 'block';">
+                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$relacionadocount}}" style="display: none;" >
                         {{ csrf_field() }}
                         @php
                           $nombre = $producto['nombre'];
@@ -315,6 +329,20 @@ $items=Cart::content();
                         <input type="hidden" name="tienda" value="{{$tienda}}">
                         <input type="hidden" name="url" value="{{$url}}">
                       </form>
+
+                      <script type="text/javascript">
+                      $(document).ready(function() {
+                        $("#tendencia{{$relacionadocount}}").submit(function(event){
+                             event.preventDefault();  
+                             document.getElementById('se-pre-con').style.visibility = 'visible';      
+
+                             setTimeout(function () {
+                                 document.getElementById('tendencia{{$relacionadocount}}').submit();  
+                              }, 1000);      
+                             
+                        });
+                      });
+                      </script>
                       <div class="product-small">
                         <div class="favorito favgrande">
                           @foreach ($items as $product)

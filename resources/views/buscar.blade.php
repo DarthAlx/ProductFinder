@@ -100,7 +100,7 @@ $items=Cart::content();
 
 
         </div-->
-<form action="{{url()->current()}}" method="post" id="formmini" onsubmit="javascript:document.getElementById('se-pre-con').style.display = 'block';">
+<form action="{{url()->current()}}" method="post" id="formmini">
         <div class="col-md-4 col-sm-4" style="padding-top: 31px">
             
                           {!! csrf_field() !!}
@@ -142,7 +142,7 @@ $items=Cart::content();
 
                   <div class="input-field valign-wrapper">
                     <i class="fa fa-search prefix"></i>
-                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;" onchange="javascript:document.getElementById('se-pre-con').style.display = 'block'; document.getElementById('formmini').submit();">
+                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;" onchange="javascript: document.getElementById('formmini').submit();">
                   </div>
                  
                 </div>
@@ -170,7 +170,6 @@ $items=Cart::content();
                       // Number 13 is the "Enter" key on the keyboard
                       if (event.keyCode === 13) {
                         // Trigger the button element with a click
-                        document.getElementById('se-pre-con').style.display = 'block';
                         document.getElementById('formmini').submit();
                       }
                     });
@@ -183,6 +182,19 @@ $items=Cart::content();
                 </div>
                 <input type="submit" style="display: none;">
               </form>
+              <script type="text/javascript">
+                      $(document).ready(function() {
+                        $("#formmini").submit(function(event){
+                             event.preventDefault();  
+                             document.getElementById('se-pre-con').style.visibility = 'visible';      
+
+                             setTimeout(function () {
+                                 document.getElementById('formmini').submit();  
+                              }, 1000);      
+                             
+                        });
+                      });
+                      </script>
       </div>
 
 
