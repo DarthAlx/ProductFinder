@@ -40,7 +40,7 @@ $items=Cart::content();
           $("#formbuscar").submit(function(event){
                event.preventDefault();  
                document.getElementById('se-pre-con').style.visibility = 'visible';            
-          
+               document.getElementById('formbuscar').submit();  
           });
         });
         </script>
