@@ -47,7 +47,7 @@ $items=Cart::content();
                       // Number 13 is the "Enter" key on the keyboard
                       if (event.keyCode === 13) {
                         // Trigger the button element with a click
-                        document.getElementById('se-pre-con').style.display = "block";
+                        document.getElementById('se-pre-con').style.visibility = 'visible';
                         document.getElementById('formbuscar').submit();
                       }
                     });
@@ -564,7 +564,7 @@ $items=Cart::content();
 
 <script>
   
-  $(document).ready(function(){
+ /* $(document).ready(function(){
   $('input.autocomplete').autocomplete({
     data: {!!json_decode($busquedas)!!},
     limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
@@ -580,7 +580,7 @@ $(document).ready(function() {
   $("ul.autocomplete-content.dropdown-content").css({
     'width': ($("#autocomplete").width() + 'px')
   });
-});
+});*/
 
 </script>
 

@@ -25,7 +25,7 @@ header{
 @font-face {
     font-family: Lato;
     src: url('../fonts/Lato-Regular.ttf');
-    font-weight: normal
+    font-weight: normal;
     font-style: normal;
 }
 @font-face {
