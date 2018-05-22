@@ -142,7 +142,7 @@ $items=Cart::content();
 
                   <div class="input-field valign-wrapper">
                     <i class="fa fa-search prefix"></i>
-                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;" onchange="javascript: document.getElementById('formmini').submit();">
+                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;">
                   </div>
                  
                 </div>
@@ -151,7 +151,7 @@ $items=Cart::content();
                   <div style="width: 100%;">
                     {{ csrf_field() }}
                   <div class="input-field valign-wrapper selectorden">
-                      <select id="ordenmini" name="sort" class="select" onchange="document.getElementById('formmini').submit();" required>
+                      <select id="ordenmini" name="sort" class="select" onchange="document.getElementById('searchpricemini').click();" required>
                         <option value="Popularidad">Popularidad</option>
                         <option value="A - Z">A - Z</option>
                         <option value="Menor precio">Menor precio</option>
