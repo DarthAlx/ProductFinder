@@ -100,7 +100,7 @@ $items=Cart::content();
 
 
         </div-->
-<form action="{{url()->current()}}" method="post" id="formmini">
+<form action="{{url()->current()}}" method="post" id="formmini" enctype="multipart/form-data">
         <div class="col-md-4 col-sm-4" style="padding-top: 31px">
             
                           {!! csrf_field() !!}
@@ -208,7 +208,7 @@ $items=Cart::content();
               @foreach($productos as $producto)
 
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$productocount}}" style="display: none;" >
+                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$productocount}}"  enctype="multipart/form-data" style="display: none;" >
                         {{ csrf_field() }}
                         @php
                           $nombre = $producto['nombre'];

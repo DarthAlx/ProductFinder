@@ -55,7 +55,7 @@ $items=Cart::content();
               @foreach($productos as $producto)
 
                     <div class="col-md-3 col-sm-4 col-xs-6" id="productofav{{$productocount}}">
-                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$productocount}}" style="display: none;">
+                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$productocount}}" enctype="multipart/form-data" style="display: none;">
                         {{ csrf_field() }}
                         @php
                           $nombre = $producto['nombre'];

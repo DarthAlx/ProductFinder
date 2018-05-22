@@ -20,7 +20,7 @@
 
       <div class="row">
 
-<form action="{{url()->current()}}" method="post" id="formmini">
+<form action="{{url()->current()}}" method="post" id="formmini" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         <div class="col-md-4 col-sm-4 col-sm-offset-4">
