@@ -119,7 +119,7 @@ $items=Cart::content();
                               <input type="text" class="form-control browser-default" name="maximo" placeholder="Maximo" value="{{$maximo or ''}}" aria-describedby="basic-addon2">
                             </div>
                             <div class="col-xs-1 valign-wrapper" style="height: 33px">
-                              <a href="#" id="searchpricemini" onclick="javascript: document.getElementById('se-pre-con').style.display = 'block'; document.getElementById('formmini').submit();"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+                              <a href="#" id="searchpricemini" onclick="javascript: document.getElementById('formmini').submit();"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
                               
                             </div>
                           </div>
@@ -151,7 +151,7 @@ $items=Cart::content();
                   <div style="width: 100%;">
                     {{ csrf_field() }}
                   <div class="input-field valign-wrapper selectorden">
-                      <select id="ordenmini" name="sort" class="select" onchange="document.getElementsByClassName('se-pre-con')[0].style.display = 'block'; document.getElementById('formmini').submit();" required>
+                      <select id="ordenmini" name="sort" class="select" onchange="document.getElementById('formmini').submit();" required>
                         <option value="Popularidad">Popularidad</option>
                         <option value="A - Z">A - Z</option>
                         <option value="Menor precio">Menor precio</option>
@@ -382,11 +382,7 @@ function removefromfavorite(rowId,id){
         });
 }
 
-$(document).ready(function() {
-$('#formmini').on('submit', function(e){
 
-  $('.se-pre-con').fadeIn();
-});
 });
 </script>
 

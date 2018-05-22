@@ -306,9 +306,9 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
 
 
 
-          $('.product-small a').click(function(){
+          /*$('.product-small a').click(function(){
             document.getElementById("se-pre-con").style.visibility = "visible";
-          });
+          });*/
 
 
           
