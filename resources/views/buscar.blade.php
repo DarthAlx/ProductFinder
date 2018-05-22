@@ -208,7 +208,7 @@ $items=Cart::content();
               @foreach($productos as $producto)
 
                     <div class="col-md-2 col-sm-4 col-xs-6">
-                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$productocount}}" style="display: none;" onsubmit="javascript:document.getElementById('se-pre-con').style.display = 'block';">
+                      <form action="{{url('/producto')}}" method="post" id="tendencia{{$productocount}}" style="display: none;" >
                         {{ csrf_field() }}
                         @php
                           $nombre = $producto['nombre'];
@@ -225,6 +225,19 @@ $items=Cart::content();
                         <input type="hidden" name="tienda" value="{{$tienda}}">
                         <input type="hidden" name="url" value="{{$url}}">
                       </form>
+                      <script type="text/javascript">
+                      $(document).ready(function() {
+                        $("#tendencia{{$productocount}}").submit(function(event){
+                             event.preventDefault();  
+                             document.getElementById('se-pre-con').style.visibility = 'visible';      
+
+                             setTimeout(function () {
+                                 document.getElementById('tendencia{{$productocount}}').submit();  
+                              }, 1000);      
+                             
+                        });
+                      });
+                      </script>
                       <div class="product-small">
                         <div class="favorito">
                           @foreach ($items as $product)
