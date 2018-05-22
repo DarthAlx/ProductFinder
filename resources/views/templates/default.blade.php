@@ -33,8 +33,11 @@
     <body>
 
       <div class="se-pre-con" id="se-pre-con" style="visibility: hidden;">
-            <img src="{{url('img/spinner.gif')}}" class="gif1">
+        <div class="spinner">
+            <img src="{{url('img/spinner.gif')}}?v=1" class="gif1">
             <p class="text-center loadingt1">Cargando...</p>
+        </div>
+            
       </div>
 
 @php

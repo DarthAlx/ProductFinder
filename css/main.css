@@ -332,7 +332,7 @@ h5{
        /* background: url(../img/spinner.gif) center no-repeat transparent;*/
 
 }
-.gif1{
+.spinner{
     position: absolute;
     top: 0;
     left: 0;
@@ -340,6 +340,8 @@ h5{
     bottom: 0;
     margin: 40vh auto;
     z-index: 9999999999999999999999999;
+    text-align: center;
+
 }
 .gif2{
     position: absolute;
@@ -350,15 +352,11 @@ h5{
     margin: 30vh auto;
 }
 .loadingt1{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     font-family: Finder;
-    margin-top: 53vh;
+    margin-top: -40px;
     font-size: 1.5rem;
-    z-index: 9999999999999999999999999;
+    z-index: 99999999999999999999999999999999999999999999999999999999999999999;
+    color: #5f2a62;
 }
 .loadingt2{
     font-family: Lato;
