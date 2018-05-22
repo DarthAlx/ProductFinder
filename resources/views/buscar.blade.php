@@ -170,7 +170,11 @@ $items=Cart::content();
                       // Number 13 is the "Enter" key on the keyboard
                       if (event.keyCode === 13) {
                         // Trigger the button element with a click
-                        document.getElementById('formmini').submit();
+                        document.getElementById('se-pre-con').style.visibility = 'visible';      
+
+                             setTimeout(function () {
+                                 document.getElementById('formmini').submit();  
+                              }, 1000);  
                       }
                     });
                   $(document).ready(function() {
