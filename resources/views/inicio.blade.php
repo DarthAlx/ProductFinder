@@ -170,7 +170,7 @@ $items=Cart::content();
                           
                               
                         </div>
-                        <a style="cursor: pointer;" onclick="document.getElementById('tendenciabutton{{$topscount}}').click();">
+                        <a style="cursor: pointer;" onclick="document.getElementById('tendenciabutton{{$tendenciacount}}').click();">
                           <div class="img-container text-center">
                             
                             <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
