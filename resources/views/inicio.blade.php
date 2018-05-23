@@ -108,7 +108,7 @@ $items=Cart::content();
                         <input type="hidden" name="imagen" value="{{$imagen}}">
                         <input type="hidden" name="tienda" value="{{$tienda}}">
                         <input type="hidden" name="url" value="{{$url}}">
-                        <input type="sumbit" id="tendeciabutton{{$topscount}}" style="display: none;">
+                        <input type="submit" id="tendeciabutton{{$topscount}}" style="display: none;">
                       </form>
                       <script type="text/javascript">
                       $(document).ready(function() {
@@ -241,7 +241,7 @@ $items=Cart::content();
                         <input type="hidden" name="imagen" value="{{$imagen}}">
                         <input type="hidden" name="tienda" value="{{$tienda}}">
                         <input type="hidden" name="url" value="{{$url}}">
-                        <input type="sumbit" id="topbutton{{$topscount}}" style="display: none;">
+                        <input type="submit" id="topbutton{{$topscount}}" style="display: none;">
                       </form>
                       <script type="text/javascript">
                       $(document).ready(function() {
