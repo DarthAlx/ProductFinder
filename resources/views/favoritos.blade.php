@@ -71,6 +71,7 @@ $items=Cart::content();
                         <input type="hidden" name="imagen" value="{{$imagen}}">
                         <input type="hidden" name="tienda" value="{{$tienda}}">
                         <input type="hidden" name="url" value="{{$url}}">
+                        <input type="submit" id="tendenciabutton{{$productocount}}" style="display: none;">
                       </form>
                       <script type="text/javascript">
                       $(document).ready(function() {
@@ -132,7 +133,7 @@ $items=Cart::content();
                           
                               
                         </div>
-                        <a style="cursor: pointer;">
+                        <a style="cursor: pointer;" onclick="document.getElementById('tendenciabutton{{$productocount}}').click();">
                           <div class="img-container text-center">
                             
                             <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
