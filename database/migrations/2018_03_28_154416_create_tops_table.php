@@ -22,6 +22,7 @@ class CreateTopsTable extends Migration
             $table->string('precio');
             $table->longText('enlace');
             $table->integer('orden');
+            $table->string('tipo');
             $table->timestamps();
         });
     }

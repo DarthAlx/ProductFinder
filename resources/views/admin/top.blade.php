@@ -96,6 +96,15 @@
 							</div>
 							<div class="row">
 								<div class="input-field col-md-12">
+						          <select id="tipo" name="tipo" class="browser-default select-default" required>
+						          	<option value="">Tipo</option>
+										<option value="Interes">Interes</option>
+										<option value="Destacado">Destacado</option>
+			                      </select>
+						        </div>
+							</div>
+							<div class="row">
+								<div class="input-field col-md-12">
 						          <input id="orden" name="orden" type="number"  class="validate" value="{{old('orden')}}" required>
 						          <label for="orden">Orden</label>
 						        </div>

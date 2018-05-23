@@ -589,33 +589,13 @@ $items=Cart::content();
 
 @section('scripts')
 
-@if ($busquedas!= '')
-
-<script>
-  
- /* $(document).ready(function(){
-  $('input.autocomplete').autocomplete({
-    data: {!!json_decode($busquedas)!!},
-    limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
-    onAutocomplete: function(val) {
-      $('#autocomplete').val(val);
-    },
-    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-  });
-  });
-
-
-$(document).ready(function() {
-  $("ul.autocomplete-content.dropdown-content").css({
-    'width': ($("#autocomplete").width() + 'px')
-  });
-});*/
-
-</script>
 
 
 
-@endif
+
+
+
+
 
 
 <script>

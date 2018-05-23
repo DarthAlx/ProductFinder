@@ -32,6 +32,7 @@
 			  	<tr>
 					<th class="sorting_desc">Nombre</th>
 			      	<th>Tienda</th>
+			      	<th>Tipo</th>
 			      	<th></th>
 			  	</tr>
 			  </thead>
@@ -42,6 +43,7 @@
 						<tr style="cursor: pointer;">
 							<td>{{$destacado->nombre}}</td>
 							<td>{{$destacado->tienda->nombre}}</td>
+							<td>{{$destacado->tipo}}</td>
 							<td align="right" style="text-align: right;">
 								<a class="waves-effect waves-light btn  modal-trigger" href="{{url('/actualizar-destacado')}}/{{$destacado->id}}"><i class="fa fa-pencil"></i></a>
 								<a class="waves-effect waves-light btn  modal-trigger red" href="#delete{{$destacado->id}}"><i class="fa fa-trash"></i></a>
@@ -50,6 +52,8 @@
 					@endforeach
 				@else
 					<tr style="cursor: pointer;">
+						<td></td>
+						<td></td>	
 						<td></td>
 						<td></td>					
 					</tr>
@@ -64,6 +68,7 @@
 			  	<tr>
 					<th class="sorting_desc">Nombre</th>
 			      	<th>Tienda</th>
+			      	<th>Tipo</th>
 			      	<th></th>
 			  	</tr>
 			  </tfoot>

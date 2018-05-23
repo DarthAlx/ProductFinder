@@ -175,6 +175,7 @@ Route::get('/', function () {
 
  /* $item=Cart::add(1,"test",1,2500);
   dd($item->rowId);*/
+  /* 
   $busquedas=App\Busqueda::orderBy('keywords','asc')->get();
 
     if ($busquedas) {
@@ -208,7 +209,7 @@ Route::get('/', function () {
 
 $conttienda=1;
 
-        foreach ($tiendas as $tienda) {
+       foreach ($tiendas as $tienda) {
           if($tienda->nombre=="Palacio de Hierro"||$tienda->nombre=="Chedraui"||$tienda->nombre=="Amazon"||$tienda->nombre=="HP"){
           $conttendencia=1;
           if ($conttienda<=4) {
@@ -334,10 +335,23 @@ else{
             return $value['precio'];
         }));
         $tendenciasarray=array_reverse($tendenciasarray);
+*/
+        $intereses=array();
+        $tendencias=App\Top::where('tipo','Interes')->orderBy('orden')->get();
+        foreach ($tendencias as $tendencia) {
+          $intereses[]=array(
+            'nombre'=>$tendencia->nombre,
+            'enlace'=>$tendencia->enlace,
+            'imagen'=>$tendencia->imagen,
+            'precio'=>$tendencia->precio,
+            'tienda'=>$tendencia->tienda->nombre,
+            'enlacetienda'=>$tendencia->tienda->url,
+            'orden'=>$tendencia->orden
+            );
+        }
 
 
-
-        $tops=App\Top::orderBy('orden')->get();
+        $tops=App\Top::where('tipo','Destacado')->orderBy('orden')->get();
         foreach ($tops as $top) {
           $destacados[]=array(
             'nombre'=>$top->nombre,
@@ -352,7 +366,7 @@ else{
         $categorias=App\Categoria::orderBy('nombre','asc')->get();
         $ads=App\Ad::where('habilitado',1)->get();
 
-    return view('inicio', ['busquedas'=>$busquedasjson,'tendencias'=>$tendenciasarray,'tops'=>$destacados,'categorias'=>$categorias,'ads'=>$ads]);
+    return view('inicio', ['tendencias'=>$intereses,'tops'=>$destacados,'categorias'=>$categorias,'ads'=>$ads]);
 });
 
 
