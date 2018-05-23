@@ -111,7 +111,7 @@ $items=Cart::content();
 
                   <div class="input-field valign-wrapper">
                     <i class="fa fa-search prefix"></i>
-                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda or ''}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;" onchange="document.getElementsByClassName('se-pre-con')[0].style.display = 'block'; document.getElementById('formmini').submit();">
+                    <input id="buscador" name="busqueda" type="text" value="{{$busqueda or ''}}" placeholder="Busca otro producto" class="validate" style="    border-bottom: 1px solid #9e9e9e;">
                   </div>
                   </form>
 
@@ -390,7 +390,7 @@ $items=Cart::content();
                           
                               
                         </div>
-                        <a style="cursor: pointer;" onclick="javascript: document.getElementById('se-pre-con').style.display = 'block'; document.getElementById('tendencia{{$relacionadocount}}').submit();">
+                        <a style="cursor: pointer;" >
                           <div class="img-container text-center">
                             
                             <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
