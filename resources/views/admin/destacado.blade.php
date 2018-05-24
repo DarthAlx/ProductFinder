@@ -25,7 +25,9 @@
 
 
 				      <form action="{{url('/actualizar-destacado')}}" method="post" style="width: 100%;">
+
 							{!! csrf_field() !!}
+							<input type="hidden" name="destacado" value="{{$destacado->id}}">
 							<div class="row">
 								<div class="input-field col-md-5">
 						          <input id="enlace" name="enlace" type="text" class="validate" value="{{$destacado->enlace or old('enlace')}}" required>
@@ -76,6 +78,18 @@
 						          <label for="descripcion">Descripción</label>
 						        </div>
 							</div>
+							<div class="row">
+								<div class="input-field col-md-12">
+						          <select id="tipo" name="tipo" class="browser-default select-default" required>
+						          	<option value="">Tipo</option>
+										<option value="Interes">Interes</option>
+										<option value="Destacado">Destacado</option>
+			                      </select>
+						        </div>
+							</div>
+							<script>
+	                      		document.getElementById('tipo').value="{!!$destacado->tipo!!}";
+	                      	</script>
 							<div class="row">
 								<div class="input-field col-md-12">
 						          <input id="orden" name="orden" type="number"  class="validate" value="{{$destacado->orden or old('orden')}}" required>

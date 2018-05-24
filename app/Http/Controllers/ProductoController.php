@@ -31,6 +31,35 @@ class ProductoController extends Controller
             return redirect()->intended(url('/agregar-destacado'))->withInput();
         }
     }
+
+    public function update(Request $request)
+    {
+        $top = Top::find($request->destacado);
+
+        $top->nombre = $request->nombre;
+        $top->descripcion = $request->descripcion;
+        $top->imagen = $request->imagen;
+        $top->precio = $request->precio;
+        $top->enlace = $request->enlace;
+        $top->tienda_id = $request->tienda_id;
+        $top->orden = $request->orden;
+        $top->tipo = $request->tipo;
+
+        //guardar
+        if ($top->save()) {
+            Session::flash('mensaje', 'Destacado actualizado con exito.');
+            Session::flash('class', 'success');
+            return redirect()->intended(url()->previous());
+            
+        }
+        else{
+            Session::flash('mensaje', 'Hubó un error, por favor, verifica la información.');
+            Session::flash('class', 'danger');
+            return redirect()->intended(url()->previous())->withInput();
+        }
+    }
+
+
     public function destroy(Request $request)
     {
         $destacado=Top::find($request->eliminar);

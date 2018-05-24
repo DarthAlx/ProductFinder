@@ -37,7 +37,6 @@
             <img src="{{url('img/spinner.gif')}}?v=1" class="gif1">
             <p class="text-center loadingt1">Cargando...</p>
         </div>
-            
       </div>
 
 @php
