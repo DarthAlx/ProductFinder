@@ -72,6 +72,21 @@ Route::get('readc', 'HomeController@readc');*/
 
 
 });*/
+
+Route::get('/revisartienda', function () {
+  set_time_limit(0);
+
+    $handle = curl_init("https://www.amazon.com.mx/s/ref=nb_sb_noss?__mk_es_MX=ÅMÅŽÕÑ&url=search-alias%3Daps&field-keywords=juul");
+    curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($handle, CURLOPT_NOBODY, true);
+    curl_exec($handle);
+   
+    $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+    curl_close($handle);
+    echo $httpCode." \n";
+  
+
+});
 Route::get('/revisartiendas', function () {
   set_time_limit(0);
   $tiendas=App\Tienda::all();

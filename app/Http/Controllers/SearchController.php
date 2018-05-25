@@ -192,9 +192,9 @@ else{
 			}
 		}
 		else{
-			$request->sort="Popularidad";
+			$request->sort="Menor precio";
 				$productos = array_values(array_sort($productos, function ($value) {
-				    return $value['orden'];
+				    return $value['precio'];
 				}));
 			}
 //dd($productos);
