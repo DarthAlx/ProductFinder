@@ -70,7 +70,7 @@ class TiendaSeeder extends Seeder
             'selectimagen'=> '.s-access-image',
             'attrimagen'=> 'src',
             'selectprecio'=> '.a-size-base.a-color-price.s-price.a-text-bold',
-            'selectprecio_especial'=>'.a-size-base.a-color-price.s-price.a-text-bold',
+            'selectprecio_especial'=>'.a-size-base.a-color-price.a-text-bold',
             'selectvaloracion'=> '',
             'selectdesc'=>'#featurebullets_feature_div',
             'productnombre'=>'#productTitle',

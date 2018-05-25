@@ -34,7 +34,7 @@ class SearchController extends Controller
 			
 			$contador=1;
 			$crawler->filter($tienda->selectitem)->each(function ($node) use (&$tienda,&$productos,&$contador,&$request) {
-if($contador<=10){
+if($contador<=100){
 			$agregar=true;
 			      if($node->filter($tienda->selectnombre)->count() > 0){
 			        if($node->filter($tienda->selectnombre)->text()!=""){
