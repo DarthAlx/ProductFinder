@@ -152,7 +152,7 @@ $items=Cart::content();
                     {{ csrf_field() }}
                   <div class="input-field valign-wrapper selectorden">
                       <select id="ordenmini" name="sort" class="select" onchange="document.getElementById('searchpricemini').click();" required>
-                        <option value="Popularidad">Popularidad</option>
+                        <option value="Popularidad">Relevancia</option>
                         <option value="A - Z">A - Z</option>
                         <option value="Menor precio">Menor precio</option>
                         <option value="Mayor precio">Mayor precio</option>
