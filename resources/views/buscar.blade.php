@@ -388,7 +388,7 @@ function removefromfavorite(rowId,id){
 }
 
 
-});
+
 </script>
 
 
