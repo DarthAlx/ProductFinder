@@ -43,15 +43,11 @@
             <div class="col-md-2 col-sm-3 col-xs-4 logohover">
               <a href="https://www.elektra.com.mx" target="_blank"><img src="{{url('/img/tiendas/elektra.jpg')}}" class="img-responsive  "></a>
             </div>
-            <div class="col-md-2 col-sm-3 col-xs-4 logohover">
-              <a href="https://www.hponline.com.mx" target="_blank"><img src="{{url('/img/tiendas/hp.jpg')}}" class="img-responsive  "></a>
-            </div>
+       
             <div class="col-md-2 col-sm-3 col-xs-4 logohover">
               <a href="https://www.liverpool.com.mx/" target="_blank"><img src="{{url('/img/tiendas/liverpool.png')}}" class="img-responsive  "></a>
             </div>
-            <div class="col-md-2 col-sm-3 col-xs-4 logohover">
-              <a href="https://www.linio.com.mx/" target="_blank"><img src="{{url('/img/tiendas/linio.jpg')}}" class="img-responsive  "></a>
-            </div>
+  
             <div class="col-md-2 col-sm-3 col-xs-4 logohover">
               <a href="https://www.officedepot.com.mx" target="_blank"><img src="{{url('/img/tiendas/officedepot.jpg')}}" class="img-responsive  "></a>
             </div>
@@ -61,9 +57,7 @@
             <div class="col-md-2 col-sm-3 col-xs-4 logohover">
               <a href="https://www.elpalaciodehierro.com" target="_blank"><img src="{{url('/img/tiendas/palacio.jpg')}}" class="img-responsive  "></a>
             </div>
-            <div class="col-md-2 col-sm-3 col-xs-4 logohover">
-              <a href="https://www.radioshack.com.mx" target="_blank"><img src="{{url('/img/tiendas/radioshack.jpg')}}" class="img-responsive  "></a>
-            </div>
+ 
             <div class="col-md-2 col-sm-3 col-xs-4 logohover">
               <a href="http://www.sanborns.com.mx" target="_blank"><img src="{{url('/img/tiendas/sanborns.jpg')}}" class="img-responsive  "></a>
             </div>
@@ -74,9 +68,7 @@
             <div class="col-md-2 col-sm-3 col-xs-4 logohover">
               <a href="https://www.soriana.com" target="_blank"><img src="{{url('/img/tiendas/soriana.jpg')}}" class="img-responsive  "></a>
             </div>
-            <div class="col-md-2 col-sm-3 col-xs-4 logohover">
-              <a href="http://www.steren.com.mx" target="_blank"><img src="{{url('/img/tiendas/steren.jpg')}}" class="img-responsive  "></a>
-            </div>
+ 
           </div>
 
 
