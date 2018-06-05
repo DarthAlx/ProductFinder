@@ -76,7 +76,7 @@ Route::get('readc', 'HomeController@readc');*/
 Route::get('/revisartienda', function () {
   set_time_limit(0);
 
-    $handle = curl_init("https://www.amazon.com.mx/s/ref=nb_sb_noss?__mk_es_MX=ÅMÅŽÕÑ&url=search-alias%3Daps&field-keywords=juul");
+    $handle = curl_init("https://www.chedraui.com.mx/search/?text=aceite%20sintetico");
     curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($handle, CURLOPT_NOBODY, true);
     curl_exec($handle);
@@ -84,6 +84,117 @@ Route::get('/revisartienda', function () {
     $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
     curl_close($handle);
     echo $httpCode." \n";
+
+
+
+
+
+
+
+    set_time_limit(0);
+      $productos=array();
+  
+        
+      $tienda=App\Tienda::where('nombre','Chedraui')->first();
+      $crawler = Goutte::request('GET', "https://www.chedraui.com.mx/search/?text=aceite%20sintetico");
+      
+
+      $crawler->filter($tienda->selectitem)->each(function ($node) use (&$tienda,&$productos) {
+
+      $agregar=true;
+            if($node->filter($tienda->selectnombre)->count() > 0){
+              if($node->filter($tienda->selectnombre)->text()!=""){
+                    $nombre=$node->filter($tienda->selectnombre)->text();
+                    $nombre=str_replace('\'', '',$nombre);
+                    $nombre=str_replace(',', '',$nombre);
+                  }
+                  else{
+                $agregar=false;
+              }
+            }
+            else{
+              $agregar=false;
+            }
+            if ($enlace=$node->filter($tienda->selectenlace)->count() > 0) {
+              $enlace=$node->filter($tienda->selectenlace)->attr('href');
+              if(str_contains($enlace, "//")){
+                $enlace=$enlace;
+              }else{
+                $enlace=$tienda->url.$enlace;
+              }
+            }
+            else{
+              $agregar=false;
+            }
+            if($node->filter($tienda->selectimagen)->count() > 0){
+              $imagen=$node->filter($tienda->selectimagen)->attr($tienda->attrimagen);
+              //$imagen=$this->imagen($imagen, $tienda->nombre);
+              if(str_contains($imagen, "//")||str_contains($imagen, "data:")){
+                  $imagencompleta=$imagen;
+                }else{
+                  $imagencompleta=$tienda->url.$imagen;
+                }
+            }
+            else{
+              $agregar=false;
+            }
+            if($node->filter(".prRange")->count() > 0){
+                  $agregar=false;
+                }
+            if($node->filter($tienda->selectprecio_especial)->count() > 0){
+              $precio=$node->filter($tienda->selectprecio_especial)->html();
+            }else if($node->filter($tienda->selectprecio)->count() > 0){
+              $precio=$node->filter($tienda->selectprecio)->text();
+            }else{
+              $precio=0;
+              $agregar=false;
+            }
+            if(str_contains($enlace, $tienda->url)){
+                  $enlacecompleto=$enlace;
+                }else{
+                  $enlacecompleto=$tienda->url.$enlace;
+                }
+                
+                //$precio=$this->precio($precio, $tienda->nombre);
+
+                $precio=str_replace('$', '',$precio);
+      $precio=str_replace(' ', '',$precio);
+      $precio=ltrim($precio, "\n");
+      $precio=str_replace(',', '', $precio);
+      $precio=intval(preg_replace('/[^0-9]+/', '', $precio), 10);
+          if($precio==0){
+            $agregar=false;
+          }
+
+
+
+           
+
+
+
+
+        if ($agregar) {
+
+          $productos[]=array(
+            'nombre'=>trim($nombre),
+            'enlace'=>$enlacecompleto,
+            'imagen'=>$imagencompleta,
+            'precio'=>$precio,
+            'tienda'=>$tienda->nombre,
+            'enlacetienda'=>$tienda->url,
+            );
+
+        }
+          
+
+          });
+
+        $productos = array_values(array_sort($productos, function ($value) {
+            return $value['precio'];
+        }));
+      
+dd($productos);
+      
   
 
 });
