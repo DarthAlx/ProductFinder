@@ -241,7 +241,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
           </div>
           <div class="footer-copyright">
             <div class="container text-center">
-            <a href="{{url('/legales')}}">TERMINOS, CONDICIONES Y AVISOS DE PRIVACIDAD</a>
+            <a href="{{url('/terminos-condiciones')}}">TÉRMINOS, CONDICIONES</a> <a href="{{url('/aviso')}}">Y AVISOS DE PRIVACIDAD</a>
             </div>
           </div>
         </footer>

@@ -557,6 +557,12 @@ Route::get('/acercade', function () {
 Route::get('/contacto', function () {
     return view('contacto');
 });
+Route::get('/terminos-condiciones', function () {
+    return view('terminos');
+});
+Route::get('/aviso', function () {
+    return view('aviso');
+});
 
 Route::post('/contacto', function (Illuminate\Http\Request $request) {
     $datos=$request;

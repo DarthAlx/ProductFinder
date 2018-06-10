@@ -371,3 +371,6 @@ strong{
 }
 
 img{transform: none !important; -webkit-transform:none !important;}
+h5, h6{
+    font-weight: bold;
+}
