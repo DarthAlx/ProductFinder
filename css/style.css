@@ -1192,7 +1192,7 @@ iframe:last-child {
     z-index: 1;
 }
 .logomain{
-    max-width: 150px;
+    max-width: 250px;
     z-index: 9;
         position: relative;
 }
