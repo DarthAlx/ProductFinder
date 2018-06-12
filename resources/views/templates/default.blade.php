@@ -6,6 +6,7 @@
         <title>Jab Price</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google-site-verification" content="SZtHjj-HRtMn8wODsEYf5BS3LGG_2q14VTZ1oWE0vBE" />
 
         <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.css') }}" media="screen" />
         <link rel="stylesheet" type="text/css" href="{{ url('css/materialize.css') }}" media="screen" />
