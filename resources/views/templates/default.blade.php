@@ -196,7 +196,7 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
           </div>
         </section-->
 
-        <div class="container visible-xs">
+        <div class="container hidden-xs">
           <div class="row" style="margin:0; padding: 0">
             <div class="col-md-12">
               @include('snip.notificaciones')
