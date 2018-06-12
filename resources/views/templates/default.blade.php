@@ -196,13 +196,13 @@ $carrito=DB::table('shoppingcart')->where('identifier', Auth::user()->id)->first
           </div>
         </section-->
 
-        <!--div class="container">
+        <div class="container visible-xs">
           <div class="row" style="margin:0; padding: 0">
             <div class="col-md-12">
               @include('snip.notificaciones')
             </div>
           </div>
-        </div-->
+        </div>
         <div class="maincontentwrapper">
           @yield('pagecontent')
         </div>
