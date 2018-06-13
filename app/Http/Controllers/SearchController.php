@@ -692,7 +692,7 @@ $conttienda++;
 	  $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
 	  curl_close($handle);
 	 
-	  if ($httpCode >= 200 && $httpCode < 300 || $httpCode==405 || $httpCode==302 || $httpCode==400) {
+	  if ($httpCode >= 200 && $httpCode < 300 || $httpCode==405 || $httpCode==302 || $httpCode==400 || $httpCode==503) {
 	    return true;
 	  }
 	  else {
