@@ -76,7 +76,7 @@ Route::get('readc', 'HomeController@readc');*/
 Route::get('/revisartienda', function () {
   set_time_limit(0);
 
-    $handle = curl_init("https://www.bestbuy.com.mx/c/buscar-best-buy/buscar?query=beats");
+    $handle = curl_init("https://www.amazon.com.mx/s/ref=nb_sb_noss?__mk_es_MX=ÅMÅŽÕÑ&url=search-alias%3Daps&field-keywords=beats");
     curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($handle, CURLOPT_NOBODY, true);
     curl_exec($handle);
@@ -95,8 +95,8 @@ Route::get('/revisartienda', function () {
       $productos=array();
   
         
-      $tienda=App\Tienda::where('nombre','Best Buy')->first();
-      $crawler = Goutte::request('GET', "https://www.bestbuy.com.mx/c/buscar-best-buy/buscar?query=beats");
+      $tienda=App\Tienda::where('nombre','Amazon')->first();
+      $crawler = Goutte::request('GET', "https://www.amazon.com.mx/s/ref=nb_sb_noss?__mk_es_MX=ÅMÅŽÕÑ&url=search-alias%3Daps&field-keywords=beats");
       
 
       $crawler->filter($tienda->selectitem)->each(function ($node) use (&$tienda,&$productos) {
