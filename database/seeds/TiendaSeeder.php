@@ -66,7 +66,7 @@ class TiendaSeeder extends Seeder
             'urlbusqueda'=> 'https://www.amazon.com.mx/s/ref=nb_sb_noss?__mk_es_MX=ÅMÅŽÕÑ&url=search-alias%3Daps&field-keywords=',
             'selectenlace'=> '.a-link-normal.s-access-detail-page.s-color-twister-title-link.a-text-normal',
             'selectitem'=> '.s-result-item',
-            'selectnombre'=> '.a-size-medium.s-inline.s-access-title.a-text-normal',
+            'selectnombre'=> '.a-link-normal.s-access-detail-page.s-color-twister-title-link.a-text-normal',
             'selectimagen'=> '.s-access-image',
             'attrimagen'=> 'src',
             'selectprecio'=> '.a-size-base.a-color-price.s-price.a-text-bold',
