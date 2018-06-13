@@ -76,7 +76,7 @@ Route::get('readc', 'HomeController@readc');*/
 Route::get('/revisartienda', function () {
   set_time_limit(0);
 
-    $handle = curl_init("https://www.chedraui.com.mx/search/?text=aceite%20sintetico");
+    $handle = curl_init("https://www.bestbuy.com.mx/c/buscar-best-buy/buscar?query=beats");
     curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($handle, CURLOPT_NOBODY, true);
     curl_exec($handle);
@@ -95,18 +95,19 @@ Route::get('/revisartienda', function () {
       $productos=array();
   
         
-      $tienda=App\Tienda::where('nombre','Chedraui')->first();
-      $crawler = Goutte::request('GET', "https://www.chedraui.com.mx/search/?text=aceite%20sintetico");
+      $tienda=App\Tienda::where('nombre','Best Buy')->first();
+      $crawler = Goutte::request('GET', "https://www.bestbuy.com.mx/c/buscar-best-buy/buscar?query=beats");
       
 
       $crawler->filter($tienda->selectitem)->each(function ($node) use (&$tienda,&$productos) {
-
+        
       $agregar=true;
             if($node->filter($tienda->selectnombre)->count() > 0){
               if($node->filter($tienda->selectnombre)->text()!=""){
                     $nombre=$node->filter($tienda->selectnombre)->text();
                     $nombre=str_replace('\'', '',$nombre);
                     $nombre=str_replace(',', '',$nombre);
+
                   }
                   else{
                 $agregar=false;

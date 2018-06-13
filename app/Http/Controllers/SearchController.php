@@ -696,6 +696,9 @@ $conttienda++;
 	    return true;
 	  }
 	  else {
+	  	if (str_contains($url, 'bestbuy')) {
+	  		return true;
+	  	}
 	    return false;
 	  }
 	}
