@@ -163,7 +163,7 @@ $items=Cart::content();
   $imagen = $producto['imagen'];
   $tienda = $producto['tienda'];
   $url = $producto['enlacetienda'];
-
+  $tiendax=App\Tienda::where('nombre',$tienda)->first();
 @endphp
       <div class="container">
         <div class="row">
@@ -175,7 +175,21 @@ $items=Cart::content();
                    <div class="col-md-7">
                     <div class="row">
                       <!--div class="col-md-3 col-xs-4 poplets">
+                        @php
+                        $crawler = Goutte::request('GET', $enlace);
+                        $contador=0;
+                        $crawler->filter($tiendax->productpoplet)->each(function ($node) use (&$contador) {
+                        if($contador<4){
+                        if(trim($node->attr('src'))!=""){
+                        @endphp
+                          <img src="{{$node->attr('src')}}" class="img-responsive" style="max-width: 90px;"><br>
+                        @php
+                        }
+                        $contador++;
+                        }
+                        });
 
+                        @endphp
                       </div-->
                       <div class="col-md-offset-3 col-md-9 col-xs-12">
                           <img src="{{$producto['imagen']}}" class="img-responsive" id="zoom_01"  data-zoom-image="{{$producto['imagen']}}" alt="">
@@ -301,12 +315,12 @@ $items=Cart::content();
                       <form action="{{url('/producto')}}" method="post" id="tendencia{{$relacionadocount}}"  enctype="multipart/form-data" style="display: none;" >
                         {{ csrf_field() }}
                         @php
-                          $nombre = $producto['nombre_producto'];
-                          $enlace = $producto['url'];
+                          $nombre = $producto['nombre'];
+                          $enlace = $producto['enlace'];
                           $precio = $producto['precio'];
-                          $imagen = $producto['url_image'];
+                          $imagen = $producto['imagen'];
                           $tienda = $producto['tienda'];
-                          $url = $producto['url']
+                          $url = $producto['enlacetienda']
                         @endphp
                         <input type="hidden" name="nombre" value="{{$nombre}}">
                         <input type="hidden" name="enlace" value="{{$enlace}}">
@@ -380,13 +394,13 @@ $items=Cart::content();
                         <a style="cursor: pointer;"  onclick="document.getElementById('tendenciabutton{{$relacionadocount}}').click();">
                           <div class="img-container text-center">
                             
-                            <img src="{{$producto['url_image']}}" alt="" style="max-width: 100%; margin: 0 auto;">
+                            <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
                             <div class="ver-producto">
                               <p>Ver producto <i class="fa fa-search" aria-hidden="true"></i></p>
                             </div>
                           </div>
                           <div class="name">
-                            <b>{{str_limit($producto['nombre_producto'], $limit = 35, $end = '...')}}</b>
+                            <b>{{str_limit($producto['nombre'], $limit = 35, $end = '...')}}</b>
                           </div>
                           <p style="margin:0;">&nbsp;</p>
                           <div class="pricefrom">
@@ -394,7 +408,7 @@ $items=Cart::content();
                           </div>
                           
                         </a>
-                        <a href="{{$producto['url']}}" target="_blank">
+                        <a href="{{$producto['enlacetienda']}}" target="_blank">
                           <div class="from">
                             <p>{{$producto['tienda']}}</p>
                           </div>
