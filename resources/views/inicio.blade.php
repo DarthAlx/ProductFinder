@@ -183,7 +183,7 @@ $items=Cart::content();
                           </div>
                           <p style="margin:0;">&nbsp;</p>
                           <div class="pricefrom">
-                            <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
+                            <div class="price">$  {!!number_format(intval($producto['precio'])/100, 2, '.', ',')!!}</div>
                           </div>
                           
                         </a>
@@ -317,7 +317,7 @@ $items=Cart::content();
                           </div>
                           <p style="margin:0;">&nbsp;</p>
                           <div class="pricefrom">
-                            <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
+                            <div class="price">$  {!!number_format(intval($producto['precio'])/100, 2, '.', ',')!!}</div>
                           </div>
                         </a>
                         <a href="{{$producto['enlacetienda']}}" target="_blank">
