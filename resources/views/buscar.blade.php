@@ -7,7 +7,7 @@
 @php
 $items=Cart::content();
 @endphp
-{{dd($productos)}}
+
      <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
       
       <p>&nbsp;</p><p>&nbsp;</p>
