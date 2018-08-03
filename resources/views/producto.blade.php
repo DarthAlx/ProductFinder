@@ -163,7 +163,7 @@ $items=Cart::content();
   $imagen = $producto['imagen'];
   $tienda = $producto['tienda'];
   $url = $producto['enlacetienda'];
-
+  $tiendax=App\Tienda::where('nombre',$tienda)->first();
 @endphp
       <div class="container">
         <div class="row">
@@ -175,7 +175,21 @@ $items=Cart::content();
                    <div class="col-md-7">
                     <div class="row">
                       <!--div class="col-md-3 col-xs-4 poplets">
+                        @php
+                        $crawler = Goutte::request('GET', $enlace);
+                        $contador=0;
+                        $crawler->filter($tiendax->productpoplet)->each(function ($node) use (&$contador) {
+                        if($contador<4){
+                        if(trim($node->attr('src'))!=""){
+                        @endphp
+                          <img src="{{$node->attr('src')}}" class="img-responsive" style="max-width: 90px;"><br>
+                        @php
+                        }
+                        $contador++;
+                        }
+                        });
 
+                        @endphp
                       </div-->
                       <div class="col-md-offset-3 col-md-9 col-xs-12">
                           <img src="{{$producto['imagen']}}" class="img-responsive" id="zoom_01"  data-zoom-image="{{$producto['imagen']}}" alt="">
@@ -235,7 +249,7 @@ $items=Cart::content();
                      <h4>{{$producto['nombre']}}</h4>
                      <div class="pricefrom">
                         
-                        <div class="price">$  {!!number_format(intval($producto['precio'])/100, 2, '.', ',')!!}</div>
+                        <div class="price">$ {!!number_format($producto['precio'], 2, '.', ',')!!}</div>
                       </div>
 
                      
@@ -390,7 +404,7 @@ $items=Cart::content();
                           </div>
                           <p style="margin:0;">&nbsp;</p>
                           <div class="pricefrom">
-                            <div class="price">$  {!!number_format(intval($producto['precio'])/100, 2, '.', ',')!!}</div>
+                            <div class="price">$  {!!number_format($producto['precio']/100, 2, '.', ',')!!}</div>
                           </div>
                           
                         </a>

@@ -211,7 +211,7 @@ $items=Cart::content();
                     <?php $productocount=0; $esfav=false;?>
               @foreach($productos as $producto)
 
-                    <div class="col-md-2 col-sm-4 col-xs-6">
+                    <div class="col-md-2 col-sm-4 col-xs-6" style = 'display:none'>
                       <form action="{{url('/producto')}}" method="post" id="tendencia{{$productocount}}"  enctype="multipart/form-data" style="display: none;" >
                         {{ csrf_field() }}
                         @php
@@ -244,6 +244,10 @@ $items=Cart::content();
                       });
                       </script>
                       <div class="product-small">
+
+                        
+
+
                         <div class="favorito">
                           @foreach ($items as $product)
                              @if($product->name==$nombre)
@@ -293,7 +297,7 @@ $items=Cart::content();
                         <a style="cursor: pointer;" onclick="document.getElementById('tendenciabutton{{$productocount}}').click();">
                           <div class="img-container text-center">
                             
-                            <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;">
+                            <img src="{{$producto['imagen']}}" alt="" style="max-width: 100%; margin: 0 auto;"  onload="this.parentElement.parentElement.parentElement.parentElement.style.display='block'">
                             <div class="ver-producto">
                               <p>Ver producto <i class="fa fa-search" aria-hidden="true"></i></p>
                             </div>
@@ -303,13 +307,13 @@ $items=Cart::content();
                           </div>
                           <p style="margin:0;">&nbsp;</p>
                           <div class="pricefrom">
-                            <div class="price">$  {!!number_format(intval($producto['precio'])/100, 2, '.', ',')!!}</div>
+                            <div class="price">$  {{number_format($producto['precio'], 2)}}</div>
                           </div>
                           
                         </a>
                         <a href="{{$producto['enlacetienda']}}" target="_blank">
                           <div class="from">
-                            <p>{{$producto['tienda']}}</p>
+                            <p>{{ucfirst(strtolower($producto['tienda']))}}</p>
                           </div>
                         </a>
                       </div>

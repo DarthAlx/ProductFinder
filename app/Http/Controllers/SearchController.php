@@ -25,7 +25,7 @@ class SearchController extends Controller
         set_time_limit(0);
         ini_set('memory_limit', '-1');
 		//$tiendas=Tienda::all();
-
+        DB::connection()->enableQueryLog();
         
 
 		//$tiendas=Tienda::all()->where('id','=',3);
@@ -41,7 +41,7 @@ class SearchController extends Controller
 
         }
 
-        $productoss=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$busqueda.'%')->where('precio', '!=', 0)->where('precio', '!=', '')->where('precio', '!=', NULL)->get();
+        $productoss=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$busqueda.'%')->get();
 
 if(empty($productoss[0])){
 
@@ -72,16 +72,41 @@ $contador = 1;
 
         foreach($productoss as $producto){
 
-            $productos[]=array(
-                'nombre'=>trim($producto->nombre_producto),
-                'enlace'=>trim($producto->url),
-                'imagen'=>trim($producto->url_image),
-                'precio'=>trim($producto->precio),
-                'tienda'=>trim($producto->tienda),
-                'enlacetienda'=>trim($producto->url),
-                'orden'=>$contador
-                );
-                $contador++;
+        	$pos = strpos($producto->url_image, 'data:image/png;');
+
+        	if ($pos) {
+        		
+        		$imagen=$domain = strstr(strstr(trim($producto->url_image), ',data'), 'data');
+
+
+        	}else{
+
+        		$imagen= trim($producto->url_image);
+        	}
+
+        	if(trim($producto->tienda)=='sanborns' || trim($producto->tienda)=='bestbuy' || trim($producto->tienda)=='dormimundo' || trim($producto->tienda)=='claroshop' || trim($producto->tienda)=='solarismexico' || trim($producto->tienda)=='casapalacio' || trim($producto->tienda)=='homedepot' || trim($producto->tienda)=='porrua' || trim($producto->tienda)=='gandhi' ){
+
+        		$precioTemp=trim($producto->precio)/100;
+        	}else{
+        		$precioTemp=trim($producto->precio);
+
+
+        	}
+
+			    
+
+	            $productos[]=array(
+	                'nombre'=>trim($producto->nombre_producto),
+	                'enlace'=>trim($producto->url),
+	                'imagen'=>$imagen,
+	                'precio'=>$precioTemp,
+	                'tienda'=>trim($producto->tienda),
+	                'enlacetienda'=>trim($producto->url),
+	                'orden'=>$contador
+	                );
+	                $contador++;
+
+                
 
             }
 
@@ -152,16 +177,29 @@ $contador = 1;
 
 
   			foreach ($items as $producto) {
-			 		$productos[]=array(
-			    	'nombre'=>$producto->name,
-			    	'enlace'=>$producto->options->enlace,
-			    	'imagen'=>$producto->options->imagen,
-			    	'precio'=>$producto->price,
-			    	'tienda'=>$producto->options->tienda,
-			    	'enlacetienda'=>$producto->options->url,
-			    	'orden'=>$contador
-				    );
-				    $contador++;
+  				$url = $producto->options->imagen;
+			    $ch = curl_init();
+			    curl_setopt($ch, CURLOPT_URL, $url);
+			    curl_setopt($ch, CURLOPT_HEADER, 1);
+			    curl_setopt($ch , CURLOPT_RETURNTRANSFER, 1);
+			    $data = curl_exec($ch);
+			    $headers = curl_getinfo($ch);
+			    curl_close($ch);
+			   
+			    if( $headers['http_code']==200){
+			    
+
+				 		$productos[]=array(
+				    	'nombre'=>$producto->name,
+				    	'enlace'=>$producto->options->enlace,
+				    	'imagen'=>$producto->options->imagen,
+				    	'cprecio'=>$producto->price,
+				    	'tienda'=>$producto->options->tienda,
+				    	'enlaetienda'=>$producto->options->url,
+				    	'orden'=>$contador
+					    );
+					    $contador++;
+				    }
 			    }
         	
         
@@ -418,12 +456,12 @@ if(str_contains($enlace, $tienda->url)){
 			    	'imagen'=>$productoss->url_image,
 			    	'precio'=>$request->precio,
 			    	'tienda'=>$request->tienda,
-			    	'enlacetienda'=>$productoss->url,
+			    	'enlacetienda'=>$tienda->url,
 			    	'descripcion'=>$productoss->descripcion
 				    );
 
  
-        $productos=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$request->nombre.'%')->where('precio', '!=', 0)->where('precio', '!=', '')->where('precio', '!=', NULL)->get();
+        $productos=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$request->nombre.'%')->get();
 
 
 $categorias = '';
