@@ -84,7 +84,7 @@ $contador = 1;
         		$imagen= trim($producto->url_image);
         	}
 
-        	if(trim($producto->tienda)=='sanborns' || trim($producto->tienda)=='bestbuy' || trim($producto->tienda)=='dormimundo' || trim($producto->tienda)=='claroshop' || trim($producto->tienda)=='solarismexico' || trim($producto->tienda)=='casapalacio' || trim($producto->tienda)=='homedepot' || trim($producto->tienda)=='porrua' || trim($producto->tienda)=='gandhi' ){
+        	if(trim($producto->tienda)=='Sanborns' || trim($producto->tienda)=='Bestbuy' || trim($producto->tienda)=='dormimundo' || trim($producto->tienda)=='Claroshop' || trim($producto->tienda)=='solarismexico' || trim($producto->tienda)=='casapalacio' || trim($producto->tienda)=='homedepot' || trim($producto->tienda)=='Porrua' || trim($producto->tienda)=='gandhi' ){
 
         		$precioTemp=trim($producto->precio)/100;
         	}else{
