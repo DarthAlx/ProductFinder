@@ -161,7 +161,7 @@ $items=Cart::content();
                   </div>
                   <script>
 
-                    var input = document.getElementById("formmini");
+                    /*var input = document.getElementById("formmini");
 
                       // Execute a function when the user releases a key on the keyboard
                     input.addEventListener("keyup", function(event) {
@@ -176,7 +176,7 @@ $items=Cart::content();
                                  document.getElementById('formmini').submit();  
                               }, 1000);  
                       }
-                    });
+                    });*/
                   $(document).ready(function() {
                     document.getElementById('ordenmini').value="{!!$sorting!!}";
                     
@@ -187,7 +187,7 @@ $items=Cart::content();
                 <input type="submit" style="display: none;">
               </form>
               <script type="text/javascript">
-                      $(document).ready(function() {
+                     /* $(document).ready(function() {
                         $("#formmini").submit(function(event){
                              event.preventDefault();  
                              document.getElementById('se-pre-con').style.visibility = 'visible';      
@@ -197,7 +197,7 @@ $items=Cart::content();
                               }, 1000);      
                              
                         });
-                      });
+                      });*/
                       </script>
       </div>
 
@@ -231,7 +231,7 @@ $items=Cart::content();
                         <input type="submit" id="tendenciabutton{{$productocount}}" style="display: none;">
                       </form>
                       <script type="text/javascript">
-                      $(document).ready(function() {
+                      /*$(document).ready(function() {
                         $("#tendencia{{$productocount}}").submit(function(event){
                              event.preventDefault();  
                              document.getElementById('se-pre-con').style.visibility = 'visible';      
@@ -241,7 +241,7 @@ $items=Cart::content();
                               }, 1000);      
                              
                         });
-                      });
+                      });*/
                       </script>
                       <div class="product-small">
 

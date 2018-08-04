@@ -36,7 +36,7 @@ $items=Cart::content();
             
         </form>
         <script type="text/javascript">
-        $(document).ready(function() {
+        /*$(document).ready(function() {
           $("#formbuscar").submit(function(event){
                event.preventDefault();  
                document.getElementById('se-pre-con').style.visibility = 'visible';      
@@ -46,7 +46,7 @@ $items=Cart::content();
                 }, 1000);      
                
           });
-        });
+        });*/
         </script>
 
 
@@ -111,7 +111,7 @@ $items=Cart::content();
                         <input type="submit" id="tendenciabutton{{$tendenciacount}}" style="display: none;">
                       </form>
                       <script type="text/javascript">
-                      $(document).ready(function() {
+                      /*$(document).ready(function() {
                         $("#tendencia{{$tendenciacount}}").submit(function(event){
                              event.preventDefault();  
                              document.getElementById('se-pre-con').style.visibility = 'visible';      
@@ -121,7 +121,7 @@ $items=Cart::content();
                               }, 1000);      
                              
                         });
-                      });
+                      });*/
                       </script>
                       <div class="product-small">
                         <div class="favorito">
@@ -245,7 +245,7 @@ $items=Cart::content();
                         <input type="submit" id="topbutton{{$topscount}}" style="display: none;">
                       </form>
                       <script type="text/javascript">
-                      $(document).ready(function() {
+                      /*$(document).ready(function() {
                         $("#tendenciat{{$topscount}}").submit(function(event){
                              event.preventDefault();  
                              document.getElementById('se-pre-con').style.visibility = 'visible';      
@@ -255,7 +255,7 @@ $items=Cart::content();
                               }, 1000);      
                              
                         });
-                      });
+                      });*/
                       </script>
                       <div class="product-small">
                         <div class="favorito">

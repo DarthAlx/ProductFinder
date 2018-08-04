@@ -74,7 +74,7 @@ $items=Cart::content();
                         <input type="submit" id="tendenciabutton{{$productocount}}" style="display: none;">
                       </form>
                       <script type="text/javascript">
-                      $(document).ready(function() {
+                      /*$(document).ready(function() {
                         $("#productofav{{$productocount}}").submit(function(event){
                              event.preventDefault();  
                              document.getElementById('se-pre-con').style.visibility = 'visible';      
@@ -84,7 +84,7 @@ $items=Cart::content();
                               }, 1000);      
                              
                         });
-                      });
+                      });*/
                       </script>
                       <div class="product-small">
                         <div class="favorito">

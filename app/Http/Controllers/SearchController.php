@@ -447,7 +447,8 @@ if(str_contains($enlace, $tienda->url)){
         $productoss=DatosPrincipal::where('url', '=', $request->enlace)->first();
 
 
-		$tienda=Tienda::where('nombre',$request->tienda)->first();
+		//$tienda=Tienda::where('nombre',$request->tienda)->first();
+		//$tienda=DatosPrincipal::where('tienda', '=', $request->enlace)->first();
 
 
     	$producto=array(
@@ -456,7 +457,9 @@ if(str_contains($enlace, $tienda->url)){
 			    	'imagen'=>$productoss->url_image,
 			    	'precio'=>$request->precio,
 			    	'tienda'=>$request->tienda,
-			    	'enlacetienda'=>$tienda->url,
+			    	//'enlacetienda'=>$tienda->url,
+			    	//'descripcion'=>$productoss->descripcion
+			    	'enlacetienda'=>'',
 			    	'descripcion'=>$productoss->descripcion
 				    );
 

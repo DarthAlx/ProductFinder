@@ -37,7 +37,7 @@
                 <input type="submit" style="display: none;">
               </form>
               <script type="text/javascript">
-                      $(document).ready(function() {
+                      /*$(document).ready(function() {
                         $("#formmini").submit(function(event){
                              event.preventDefault();  
                              document.getElementById('se-pre-con').style.visibility = 'visible';      
@@ -47,7 +47,7 @@
                               }, 1000);      
                              
                         });
-                      });
+                      });*/
                       </script>
       </div>
     </div>
@@ -79,9 +79,9 @@
 @section('scripts')
 
 <script>
-  $('#formmini').submit(function(){
+  /*$('#formmini').submit(function(){
   $('.se-pre-con').fadeIn();
-});
+});*/
 </script>
 
 

@@ -116,7 +116,7 @@ $items=Cart::content();
                   </form>
 
                    <script type="text/javascript">
-                      $(document).ready(function() {
+                      /*$(document).ready(function() {
                         $("#formmini").submit(function(event){
                              event.preventDefault();  
                              document.getElementById('se-pre-con').style.visibility = 'visible';      
@@ -126,12 +126,12 @@ $items=Cart::content();
                               }, 1000);      
                              
                         });
-                      });
+                      });*/
                       </script>
 
                   <script>
 
-                    var input = document.getElementById("formmini");
+                    /*var input = document.getElementById("formmini");
 
                       // Execute a function when the user releases a key on the keyboard
                     input.addEventListener("keyup", function(event) {
@@ -143,7 +143,7 @@ $items=Cart::content();
                         document.getElementsByClassName('se-pre-con')[0].style.display = "block";
                         document.getElementById('formmini').submit();
                       }
-                    });
+                    });*/
     
                   </script>
                 </div>
@@ -174,23 +174,7 @@ $items=Cart::content();
 
                    <div class="col-md-7">
                     <div class="row">
-                      <!--div class="col-md-3 col-xs-4 poplets">
-                        @php
-                        $crawler = Goutte::request('GET', $enlace);
-                        $contador=0;
-                        $crawler->filter($tiendax->productpoplet)->each(function ($node) use (&$contador) {
-                        if($contador<4){
-                        if(trim($node->attr('src'))!=""){
-                        @endphp
-                          <img src="{{$node->attr('src')}}" class="img-responsive" style="max-width: 90px;"><br>
-                        @php
-                        }
-                        $contador++;
-                        }
-                        });
 
-                        @endphp
-                      </div-->
                       <div class="col-md-offset-3 col-md-9 col-xs-12">
                           <img src="{{$producto['imagen']}}" class="img-responsive" id="zoom_01"  data-zoom-image="{{$producto['imagen']}}" alt="">
                       </div>
@@ -332,7 +316,7 @@ $items=Cart::content();
                       </form>
 
                       <script type="text/javascript">
-                      $(document).ready(function() {
+                      /*$(document).ready(function() {
                         $("#tendencia{{$relacionadocount}}").submit(function(event){
                              event.preventDefault();  
                              document.getElementById('se-pre-con').style.visibility = 'visible';      
@@ -342,7 +326,7 @@ $items=Cart::content();
                               }, 1000);      
                              
                         });
-                      });
+                      });*/
                       </script>
                       <div class="product-small">
                         <div class="favorito favgrande">
@@ -545,9 +529,9 @@ function removefromfavorite(rowId,id){
         });
 }
 
-$('#formmini').submit(function(){
+/*$('#formmini').submit(function(){
   $('.se-pre-con').fadeIn();
-});
+});*/
 </script>
 
 
