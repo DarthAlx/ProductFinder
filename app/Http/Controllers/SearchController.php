@@ -465,9 +465,13 @@ if(str_contains($enlace, $tienda->url)){
 					
 					$key=explode(" ", $request->nombre);
 
-			
-			
-					if (array_key_exists(3, $key)) {
+					if (array_key_exists(5, $key)) {
+						$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3]. " ". $key[4]. " ". $key[5];
+					}
+					elseif (array_key_exists(4, $key)) {
+						$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3]. " ". $key[4];
+					}
+					elseif (array_key_exists(3, $key)) {
 						$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3];
 					}
 			
