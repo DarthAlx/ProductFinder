@@ -449,7 +449,7 @@ if(str_contains($enlace, $tienda->url)){
 
 		//$tienda=Tienda::where('nombre',$request->tienda)->first();
 		//$tienda=DatosPrincipal::where('tienda', '=', $request->enlace)->first();
-
+		
 
     	$producto=array(
 			    	'nombre'=>$request->nombre,
@@ -461,16 +461,35 @@ if(str_contains($enlace, $tienda->url)){
 			    	//'descripcion'=>$productoss->descripcion
 			    	'enlacetienda'=>'',
 			    	'descripcion'=>$productoss->descripcion
-				    );
+					);
+					
+					$key=explode(" ", $request->nombre);
+
+			
+			
+					if (array_key_exists(3, $key)) {
+						$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3];
+					}
+			
+					else if (array_key_exists(2, $key)) {
+						$keywords=$key[0]. " ". $key[1]. " ". $key[2];
+					}
+			
+					else if (array_key_exists(1, $key)) {
+						$keywords=$key[0]. " ". $key[1];
+					}
+					else{
+						$keywords=$key[0];
+					}
 
  
-        $productos=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$request->nombre.'%')->get();
+        $productos=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$keywords.'%')->orderBy('precio','asc')->get();
 
 
 $categorias = '';
 
     	$categorias=Categoria::orderBy('nombre','asc')->get();
-		return view('producto', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$productos]);
+		return view('detalle', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$productos]);
 
 	}
 
