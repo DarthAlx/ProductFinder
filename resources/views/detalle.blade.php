@@ -322,7 +322,7 @@ $items=Cart::content();
                                 <div class="col-md-3">
                                     <a href="{{$producto['url']}}" target="_blank">
                                         <div class="from">
-                                          <p>{{$producto['tienda']}}</p>
+                                          @include('snip.tienda', ['tienda' => $producto['tienda']])
                                         </div>
                                       </a>
                                 </div>
