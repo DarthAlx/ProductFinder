@@ -9,6 +9,7 @@ $items=Cart::content();
 @endphp
 
      <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+     
       
       <p>&nbsp;</p><p>&nbsp;</p>
       <div class="container-fluid">
@@ -211,7 +212,7 @@ $items=Cart::content();
                     <?php $productocount=0; $esfav=false;?>
               @foreach($productos as $producto)
 
-                    <div class="col-md-2 col-sm-4 col-xs-6" style = 'display:none'>
+                    <div class="col-md-2 col-sm-4 col-xs-6" style = 'display:block'>
                       <form action="{{url('/producto')}}" method="post" id="tendencia{{$productocount}}"  enctype="multipart/form-data" style="display: none;" >
                         {{ csrf_field() }}
                         @php

@@ -213,7 +213,7 @@ $items=Cart::content();
                         @php
                         if(trim($producto->tienda)=='Sanborns' || trim($producto->tienda)=='Bestbuy' || trim($producto->tienda)=='dormimundo' || trim($producto->tienda)=='Claroshop' || trim($producto->tienda)=='solarismexico' || trim($producto->tienda)=='casapalacio' || trim($producto->tienda)=='homedepot' || trim($producto->tienda)=='Porrua' || trim($producto->tienda)=='gandhi' ){
 
-                          $precioTemp=trim($producto->precio)/100;
+                          $precioTemp=trim($producto->precio);
                         }else{
                           $precioTemp=trim($producto->precio);
               

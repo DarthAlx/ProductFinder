@@ -70,23 +70,25 @@ if(empty($productoss[0])){
 
 $contador = 1;
 
+
         foreach($productoss as $producto){
 
-        	$pos = strpos($producto->url_image, 'data:image/png;');
+        	$pos = strpos($producto->image_url, 'data:image/png;');
 
         	if ($pos) {
         		
-        		$imagen=$domain = strstr(strstr(trim($producto->url_image), ',data'), 'data');
+        		$imagen=$domain = strstr(strstr(trim($producto->image_url), ',data'), 'data');
 
 
         	}else{
 
-        		$imagen= trim($producto->url_image);
+        		$imagen= trim($producto->image_url);
         	}
+
 
         	if(trim($producto->tienda)=='Sanborns' || trim($producto->tienda)=='Bestbuy' || trim($producto->tienda)=='dormimundo' || trim($producto->tienda)=='Claroshop' || trim($producto->tienda)=='solarismexico' || trim($producto->tienda)=='casapalacio' || trim($producto->tienda)=='homedepot' || trim($producto->tienda)=='Porrua' || trim($producto->tienda)=='gandhi' ){
 
-        		$precioTemp=trim($producto->precio)/100;
+        		$precioTemp=trim($producto->precio);
         	}else{
         		$precioTemp=trim($producto->precio);
 
@@ -445,6 +447,113 @@ if(str_contains($enlace, $tienda->url)){
 
 
         $productoss=DatosPrincipal::where('url', '=', $request->enlace)->first();
+       	$valorMax=$productoss['precio'] + $productoss['precio']*0.6;
+	  	$valorMin=$productoss['precio'] - $productoss['precio']*0.5;
+
+
+		$arraytemp = [];
+		$resultadosPermitidos =[];
+		//$titulo = 'Celular samsung galaxy s9 plus g9650 color gris r9 (telcel)';
+		$titulo = $request->nombre;
+		$cadenas = explode(' ', $titulo);
+		foreach ($cadenas as $caso_prueba) {
+		    if (!ctype_alpha($caso_prueba)) {
+		        if (!ctype_digit($caso_prueba)) {
+		            if (ctype_alnum($caso_prueba)) {
+
+		            	$existe= strpos($caso_prueba, '"');
+		              if($existe == false){
+		                $existe= strpos($caso_prueba, '4k');
+		                if(gettype($existe) != 'integer'){
+		                  $existe= strpos($caso_prueba, '4k');
+		                  if(true){
+		               
+		                array_push($arraytemp, $caso_prueba);
+		              }
+		              }
+
+		              }
+		        		//echo "La cadena $caso_prueba es solo alnumerico <br>";
+		        		array_push($arraytemp, $caso_prueba);
+
+		    }
+		    }
+		    } 
+		}
+
+
+//echo '--------------------------------------'.$arraytemp[0].'-------------------------------<br>';
+
+//$busqueda=DatosPrincipal::where('nombre_producto', '=', $request->enlace)->first();
+
+$search = ' '. $arraytemp[0];
+
+$busqueda = DatosPrincipal::where('nombre_producto','LIKE',"%{$search}%")->get();
+$i=0;
+$arraytemp = [];
+ $noPermitidas=['-----','Funko','caso','Caso','impermeable','Cinturon','FUNDA','Funda','funda','Protector','protector','MICA','Mica', 'mica', 'Visor', 'visor','Cargador','cargador','antipolvo','Antipolvo','Caida','caida','cubierta','Cubierta'];
+$validador=false;
+  foreach($busqueda as $row){
+
+
+    //$imagen=$row['imagen'];
+    
+	  	foreach ($noPermitidas as $palabra) {
+	 
+	    $nombre=$row['nombre_producto'];
+	    $modelo = $row['tienda'];
+	  // $pos = strpos($nombre, 'unda');
+	    if(false){
+
+	  
+	          
+	    }else{
+
+	   $pos = strpos($nombre, $palabra);
+	   $clave = array_search('uno', $noPermitidas);
+
+
+
+
+
+	    if(gettype($pos) == 'integer'){
+
+	    	$validador=true;
+
+	      $i=$i+1;
+
+	      
+	      //break;
+
+	    }
+
+
+	} 		
+
+
+	  	}
+
+
+
+	  	if(!$validador){
+	  		if(($row['precio']  < $valorMax) and ($row['precio']  > $valorMin)){
+
+	  			array_push($resultadosPermitidos, $row);
+
+
+	  		}
+
+	  		
+	  		
+	  	}
+	  	$validador=false;
+}
+$i=0;
+  foreach ($resultadosPermitidos as $lista) {
+
+  	$i= $i +1;
+
+  }
 
 
 		//$tienda=Tienda::where('nombre',$request->tienda)->first();
@@ -454,7 +563,7 @@ if(str_contains($enlace, $tienda->url)){
     	$producto=array(
 			    	'nombre'=>$request->nombre,
 			    	'enlace'=>$request->enlace,
-			    	'imagen'=>$productoss->url_image,
+			    	'imagen'=>$productoss->image_url,
 			    	'precio'=>$request->precio,
 			    	'tienda'=>$request->tienda,
 			    	//'enlacetienda'=>$tienda->url,
@@ -493,7 +602,7 @@ if(str_contains($enlace, $tienda->url)){
 $categorias = '';
 
     	$categorias=Categoria::orderBy('nombre','asc')->get();
-		return view('detalle', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$productos]);
+		return view('detalle', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$resultadosPermitidos]);
 
 	}
 
