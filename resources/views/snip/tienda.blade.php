@@ -1,1 +1,1 @@
-<img src="{{url('uploads/tiendas')}}/{{$tienda}}.jpg" style="max-width:100px;">
+<img src="{{url('uploads/tiendas')}}/{{$tienda}}.png" style="max-width:100px;">
