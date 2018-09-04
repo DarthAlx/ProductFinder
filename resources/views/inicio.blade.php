@@ -16,22 +16,22 @@ $items=Cart::content();
     <div id="search" class="bottom-wrapper">
         <form action="{{url('/buscar')}}" id="formbuscar" method="post" enctype="multipart/form-data" style="width: 100%;" >
           {{ csrf_field() }}
-          <div class="row">
+          <div class="row" style="margin:0">
             <div class="col-md-12 text-center">
               <!--p>Compara y ahorra con nosotros</p-->
               <input type="hidden" name="minimo">
               <input type="hidden" name="maximo">
               <input type="search" name="busqueda" id="buscador" value="" placeholder="Encuentra lo que buscas" class="browser-default" autocomplete="on" autofocus/>
-                <button class="btn btn-danger hidden-xs small" type="submit" id="botonformbuscar">
+                <button class="btn btn-danger small" type="submit" id="botonformbuscar">
                   <span class="fa fa-search"></span>
                 </button>
             </div>
           </div>
-          <div class="row visible-xs">
+          <!--div class="row visible-xs">
             <div class="col-md-12 text-center">
               <button type="submit" class="btn btn-large">Buscar <i class="fa fa-search" aria-hidden="true"></i></button>
             </div>
-          </div>
+          </div-->
             
             
         </form>
@@ -183,6 +183,7 @@ $items=Cart::content();
                           </div>
                           <p style="margin:0;">&nbsp;</p>
                           <div class="pricefrom">
+                            <p>lo encuentras desde</p>
                             <div class="price">$  {!!number_format(intval($producto['precio'])/100, 2, '.', ',')!!}</div>
                           </div>
                           
@@ -317,6 +318,7 @@ $items=Cart::content();
                           </div>
                           <p style="margin:0;">&nbsp;</p>
                           <div class="pricefrom">
+                            <p>lo encuentras desde</p>
                             <div class="price">$  {!!number_format(intval($producto['precio'])/100, 2, '.', ',')!!}</div>
                           </div>
                         </a>

@@ -146,6 +146,7 @@ $items=Cart::content();
                           </div>
                           <p style="margin:0;">&nbsp;</p>
                           <div class="pricefrom">
+                          <p>lo encuentras desde</p>
                             <div class="price">$  {!!number_format(intval($producto['precio'])/100, 2, '.', ',')!!}</div>
                           </div>
                           

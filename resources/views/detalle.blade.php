@@ -140,6 +140,7 @@ $items=Cart::content();
 
                      <h4>{{$producto['nombre']}}</h4>
                      <div class="pricefrom">
+                     <p>lo encuentras desde</p>
                         
                         <div class="price">$ {!!number_format($producto['precio'], 2, '.', ',')!!}</div>
                       </div>
@@ -315,6 +316,7 @@ $items=Cart::content();
                                     
                                       
                                       <div class="pricefrom">
+                                      <p>lo encuentras desde</p>
                                         <div class="price">$  {!!number_format($producto['precio'], 2, '.', ',')!!}</div>
                                       </div>
                                       

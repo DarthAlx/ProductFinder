@@ -6,11 +6,14 @@
     font-size: 2rem;
 	}
 	#search{
-		height: 60vh !important;
+		/*height: 60vh !important;*/
 	}
 	#search input[type="search"] {
 	    width: 80vw;
 	    font-size: 1.5rem;
+	}
+	#search .btn {
+		font-size: 22px !important;
 	}
 	.navbar-collapse.js-navbar-collapse.collapse.in{
 		background: #fff;
@@ -68,7 +71,7 @@
 		    margin-top: -20px;
 	}
 	#search form{
-		    margin-top: 100px;
+		    /*margin-top: 100px;*/
 	}
 	.button-collapse{
 		/*background: #303132;*/
@@ -91,7 +94,7 @@
     position: relative;
 	}
 	#search button.small{
-	    margin-left: -40px;
+	    margin-left: -65px;
 	    margin-top: -10px;
 	}
 	.logomain {
@@ -118,7 +121,8 @@
     font-size: 2.5rem;
 	}
 	#search{
-		height: 70vh !important;
+		margin-top: 99px;
+		/*height: 70vh !important;*/
 	}
 	.navbar-collapse ul li a{
 		font-size: 1.3rem
@@ -179,7 +183,7 @@
     font-size: 3rem;
 	}
 	#search{
-		height: 70vh !important;
+		/*height: 70vh !important;*/
 	}
 	.navbar-collapse ul li a{
 		font-size: 1rem
@@ -201,7 +205,7 @@
 	}
 
 	#search button.small{
-	    margin-left: -40px;
+		margin-left: -70px;
 	    margin-top: -17px;
 	}
 }

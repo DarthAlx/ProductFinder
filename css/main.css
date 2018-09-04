@@ -91,16 +91,25 @@ h1{
     top: 0px;
     left: 0px;
     width: 100%;
-    height: 100vh;
+    /*height: 100vh;*/
     background-color: #ccc;
-    background: url('../img/search.jpg');
+    /*background: url('../img/search.jpg');*/
 	background-size: cover;
 	background-position: center top;
 	background-attachment: fixed;
     
     opacity: 0.8;
 }
-
+.pricefrom p{
+    color: #959595;
+    font-family: Lato;
+    font-size: 1rem;
+    margin: 0;
+    font-weight: bold;
+}
+.product-small .from{
+    display: none;
+}
 #search.open {
     -webkit-transform: translate(0px, 0px) scale(1, 1);
     -moz-transform: translate(0px, 0px) scale(1, 1);
@@ -127,6 +136,7 @@ h1{
     outline: none;
     line-height: 1.4;
     text-align: center !important;
+    margin: 20px;
 }
 #search input[type="search"]::placeholder {
     color: #fff;
