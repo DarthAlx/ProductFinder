@@ -488,9 +488,10 @@ if(str_contains($enlace, $tienda->url)){
 
 $search = ' '. $arraytemp[0];
 
-$busqueda = DatosPrincipal::where('nombre_producto','LIKE',"%{$search}%")->get();
+$busqueda = DatosPrincipal::where('nombre_producto','LIKE',"%{$search}%")->get()->sortBy('precio');
 $i=0;
 $arraytemp = [];
+$tiendasExistente=[];
  $noPermitidas=['-----','Funko','caso','Caso','impermeable','Cinturon','FUNDA','Funda','funda','Protector','protector','MICA','Mica', 'mica', 'Visor', 'visor','Cargador','cargador','antipolvo','Antipolvo','Caida','caida','cubierta','Cubierta'];
 $validador=false;
   foreach($busqueda as $row){
@@ -538,7 +539,18 @@ $validador=false;
 	  	if(!$validador){
 	  		if(($row['precio']  < $valorMax) and ($row['precio']  > $valorMin)){
 
-	  			array_push($resultadosPermitidos, $row);
+	  			$d = array_search($row['tienda'], $tiendasExistente);
+
+	  			if(gettype($d) != 'integer'){
+
+		  			array_push($resultadosPermitidos, $row);
+		  			array_push($tiendasExistente, $row['tienda']);
+
+	  			}
+
+
+
+
 
 
 	  		}
