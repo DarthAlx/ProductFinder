@@ -10,6 +10,7 @@ use App\Busquedauser;
 use App\Categoria;
 
 use App\DatosPrincipal;
+use App\Modelos;
 
 use DB;
 
@@ -33,6 +34,19 @@ class SearchController extends Controller
 
         $busqueda = $request->busqueda;
 
+        $busquedaArray =explode(' ', $busqueda);
+        $arrayPrueba=[];
+
+        foreach ($busquedaArray as $palabra ) {
+
+        	$arrayPalabra=[];
+        	$arrayPalabra=['nombre_producto', 'LIKE'];
+        	$tempPalabra='%'.$palabra.'%';
+        	array_push($arrayPalabra, $tempPalabra);
+        	array_push($arrayPrueba, $arrayPalabra);
+
+        }
+
 
 
         if($busqueda == 'television'){
@@ -40,21 +54,34 @@ class SearchController extends Controller
             $busqueda = 'TV';
 
         }
+ 
+/*
+        $arrayPrueba=[
+        	['nombre_producto', 'LIKE', '%'.$busquedaArray[0].'%'],
+        	['nombre_producto', 'LIKE', '%'.$busquedaArray[1].'%'],
+        	['nombre_producto', 'LIKE', '%'.$busquedaArray[2].'%'] 
 
-        $productoss=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$busqueda.'%')->get();
 
-if(empty($productoss[0])){
+        	];*/
 
-    $productoss=DatosPrincipal::where('marca', 'LIKE', '%'.$busqueda.'%')->get();
+   
 
-    if(empty($productoss[0])){
+        //$productoss=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$busqueda.'%')->get();
+        $productoss=DatosPrincipal::where($arrayPrueba)->get();
+  
 
-        $productoss=DatosPrincipal::where('modelo', 'LIKE', '%'.$busqueda.'%')->get();
+		if(empty($productoss[0])){
 
-        if(empty($productoss[0])){
+    		$productoss=DatosPrincipal::where('marca', 'LIKE', '%'.$busqueda.'%')->get();
 
-            $productoss=DatosPrincipal::where('tienda', 'LIKE', '%'.$busqueda.'%')->get();
-    
+   			if(empty($productoss[0])){
+
+        		$productoss=DatosPrincipal::where('modelo', 'LIKE', '%'.$busqueda.'%')->get();
+
+        		if(empty($productoss[0])){
+
+           			$productoss=DatosPrincipal::where('tienda', 'LIKE', '%'.$busqueda.'%')->get();
+    	
         }
 
     }
@@ -82,7 +109,32 @@ $contador = 1;
 
         	}else{
 
-        		$imagen= trim($producto->image_url);
+        		if($producto->tienda == 'Claroshop' || $producto->tienda=='Sanborns'){
+
+        			$imagen= trim(explode('.jpg',$producto->image_url)[0]) . '.jpg';
+
+
+        		}elseif($producto->tienda == 'Costco' || $producto->tienda=='Officedepot'){
+
+        			if($producto->tienda == 'Costco'){ 
+
+        				$imagen = 'https://www.costco.com.mx' . $producto->image_url;
+
+
+        			}else{
+
+        				$imagen = 'https://www.officedepot.com.mx' . $producto->image_url;
+        			}
+
+
+
+        		}else{
+
+        			$imagen= trim(explode(',',$producto->image_url)[0]);
+
+        		}
+
+        		
         	}
 
 
@@ -95,7 +147,7 @@ $contador = 1;
 
         	}
 
-			    
+
 
 	            $productos[]=array(
 	                'nombre'=>trim($producto->nombre_producto),
@@ -111,6 +163,7 @@ $contador = 1;
                 
 
             }
+           
 
 
 
@@ -456,6 +509,188 @@ if(str_contains($enlace, $tienda->url)){
 		//$titulo = 'Celular samsung galaxy s9 plus g9650 color gris r9 (telcel)';
 		$titulo = $request->nombre;
 		$cadenas = explode(' ', $titulo);
+
+
+
+        
+        $arrayPrueba=[];
+        $i=0;
+        $j=0;
+        $results=[];
+        $lenCadenas=sizeof($cadenas);
+        $impar=false;
+        //$cadenas=[];
+        $ff=6;
+ 
+        
+        if (($lenCadenas%2) == 0){
+		    $impar=false;
+		   
+		}else{
+		   $impar=true;
+		
+		}
+		//$impar=false;
+
+        foreach ($cadenas as $palabra ) {
+
+        	if($lenCadenas==1){
+
+
+
+        		$result=modelos::where('modelo','LIKE','%'.$palabra . '%')->get();
+
+        		array_push($results, $result->modelo);
+
+        	}else{
+
+        		if($j==($lenCadenas-1) && $impar==true){
+
+
+
+
+		        		$result=modelos::where('modelo','LIKE','%'.$arrayPrueba[0]. '%')->orwhere('modelo','LIKE','%'.$arrayPrueba[1]. '%')->get();
+
+		        		foreach ($result as $key ) {
+
+
+				        	array_push($results, $key->modelo);
+
+		        		}
+
+
+
+
+
+
+
+        
+
+
+
+		        	$result=modelos::where('modelo','LIKE','%'.$palabra . '%')->get();
+		        		foreach ($result as $key ) {
+
+
+				        	array_push($results, $key->modelo);
+
+		        		}
+
+
+		        	$arrayPrueba=[];
+
+
+
+        		}else{
+
+		        	if($i<2){
+
+		        		array_push($arrayPrueba, $palabra);
+		        		$i+=1;
+		        		$j+=1;
+
+
+		        	}else{
+
+		        		$i=0;
+
+		        		$result=modelos::where('modelo','LIKE','%'.$arrayPrueba[0]. '%')->orwhere('modelo','LIKE','%'.$arrayPrueba[1]. '%')->get();
+
+		        		foreach ($result as $key ) {
+
+				        	array_push($results, $key->modelo);
+
+		        		}
+
+		        		
+
+		        		//print_r($result);
+		        		//print_r($arrayPrueba);
+		        		$arrayPrueba=[];
+
+		        		array_push($arrayPrueba, $palabra);
+		        		$i+=1;
+		        		$j+=1;		        				        	        		
+
+		        	}
+
+        		}
+
+        	}
+
+        }
+        $resultados = array_unique($results);
+
+
+		/* resultados tiene todos los modelos guardados en la tabla modelos que coinciden por lo menos con una de las palabras del titulo del producto */
+		/* Ahora toca buscar cual de estos modelos encaja 100% con el titulo */
+		$modeloEncaja=[];
+		foreach ($resultados as $modeloEncontrado) {
+			
+			$parteModelo = explode(' ', $modeloEncontrado);
+			$lenParteModelo = sizeof($parteModelo);
+			$contadorDeEncaje=0;
+			
+	
+			foreach ($parteModelo as $m ) {
+
+
+
+
+				$temp=stripos($titulo, $m);
+
+				if(gettype($temp)=='integer'){
+				
+
+					
+
+
+					$contadorDeEncaje+=1;
+
+
+				}
+				
+			}
+
+			if($contadorDeEncaje == $lenParteModelo){
+
+				//$modeloEncaja=$modeloEncontrado;
+		
+				array_push($modeloEncaja, $modeloEncontrado);
+				$contadorDeEncaje=0;
+
+			}
+
+			
+
+		}
+
+
+
+		$modeloEncajaFinal='';
+		$tt=[];
+		$tamInicial=0;
+
+		foreach ($modeloEncaja as $t) {
+
+			$tt=explode(' ', $t);
+			
+			if(sizeof($t)>$tamInicial){
+
+				$modeloEncajaFinal=$t;
+			}
+		}
+
+
+
+		///$result=DatosPrincipal::where($arrayPrueba)->get();
+/*
+		foreach ($result as $resultProduct) {
+
+			
+		}*/
+
+
 		foreach ($cadenas as $caso_prueba) {
 		    if (!ctype_alpha($caso_prueba)) {
 		        if (!ctype_digit($caso_prueba)) {
@@ -486,13 +721,61 @@ if(str_contains($enlace, $tienda->url)){
 
 //$busqueda=DatosPrincipal::where('nombre_producto', '=', $request->enlace)->first();
 
-$search = ' '. $arraytemp[0];
 
-$busqueda = DatosPrincipal::where('nombre_producto','LIKE',"%{$search}%")->get()->sortBy('precio');
+
+$search = explode(' ', $modeloEncajaFinal) ;
+$searchArray=[];
+foreach ($search as $t ){
+
+	$temp = ['nombre_producto','LIKE',"% $t %"];
+
+	array_push($searchArray, $temp);
+	
+}
+
+
+
+
+
+
+
+//$searchArray = [['nombre_producto','LIKE',"%{$search[0]}%"],['nombre_producto','LIKE',"%{$search[1]}%"],['nombre_producto','LIKE',"%{$search[2]}%"],['nombre_producto','LIKE',"%{$search[3]}%"]];
+
+$busqueda = DatosPrincipal::where($searchArray)->get()->sortBy('precio');
+
+//print_r($busqueda);
+//$busqueda = DatosPrincipal::where('nombre_producto','LIKE',"%galaxy s8%")->get()->sortBy('precio');
+
+if(sizeof($modeloEncaja)==0){
+	if(sizeof($arraytemp)!=0){
+
+		$search = ' '. $arraytemp[0];
+	}else{
+		$search = '*--*fdfdf786876kljfdhljdfyhfd--***';		
+	}
+
+	
+
+	$busqueda = DatosPrincipal::where('nombre_producto','LIKE',"% {$search} %")->get()->sortBy('precio');
+
+}
+
+
+
+
 $i=0;
 $arraytemp = [];
 $tiendasExistente=[];
  $noPermitidas=['-----','Funko','caso','Caso','impermeable','Cinturon','FUNDA','Funda','funda','Protector','protector','MICA','Mica', 'mica', 'Visor', 'visor','Cargador','cargador','antipolvo','Antipolvo','Caida','caida','cubierta','Cubierta'];
+if(gettype(strpos($modeloEncajaFinal, 'plus'))!='integer'){
+
+	array_push($noPermitidas, 'plus','Plus');
+}
+if(gettype(strpos($modeloEncajaFinal, '+'))!='integer'){
+
+	array_push($noPermitidas, '+');
+}
+
 $validador=false;
   foreach($busqueda as $row){
 
@@ -510,7 +793,7 @@ $validador=false;
 	          
 	    }else{
 
-	   $pos = strpos($nombre, $palabra);
+	   $pos = strpos(($nombre), ($palabra));
 	   $clave = array_search('uno', $noPermitidas);
 
 
