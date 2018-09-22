@@ -27,6 +27,7 @@ class SearchController extends Controller
         ini_set('memory_limit', '-1');
 		//$tiendas=Tienda::all();
         DB::connection()->enableQueryLog();
+
         
 
 		//$tiendas=Tienda::all()->where('id','=',3);
@@ -97,8 +98,85 @@ class SearchController extends Controller
 
 $contador = 1;
 
+		
+
+		$procesados=[];
+		$itemProduct=[];
+		$procesados2=[];
+		$i=0;
 
         foreach($productoss as $producto){
+        	$i=$i+1;
+        
+
+        	$existe = in_array($producto->url, $procesados);
+
+        	if(sizeof($procesados)>0){
+
+	        	foreach ($procesados2 as $temp) {
+	        	}
+
+        	}else{
+
+		        		
+        	}
+
+
+
+
+        	if($existe==false){
+
+
+	        
+	        	$idealos = idealo($producto->url);
+	        	if(sizeof($idealos)==0){
+
+	        		$existe = in_array($producto->url, $procesados);
+
+	        		if(!$existe){
+
+	        			array_push($itemProduct,$producto);
+
+	        		}
+
+	        		
+
+
+	        	}else{
+
+	        		$existe = in_array($idealos[0]->url, $procesados);
+
+	        		if(!$existe){
+
+	        			array_push($itemProduct,$idealos[0]);
+
+	        		}
+
+	        		
+
+
+	        	}
+	        	
+	        	foreach ($idealos as $temp) {
+
+	        		array_push($procesados,$temp->url);
+	        		array_push($procesados2,$temp->nombre_producto);
+
+
+	        	}
+	        	
+
+        	}
+
+
+        }
+
+
+
+
+        foreach($itemProduct as $producto){
+
+        	//array_push($procesados,idealo($producto->url));
 
         	$pos = strpos($producto->image_url, 'data:image/png;');
 
@@ -156,7 +234,8 @@ $contador = 1;
 	                'precio'=>$precioTemp,
 	                'tienda'=>trim($producto->tienda),
 	                'enlacetienda'=>trim($producto->url),
-	                'orden'=>$contador
+	                'orden'=>$contador,
+	                'id'=> $producto->id 
 	                );
 	                $contador++;
 
@@ -496,18 +575,100 @@ if(str_contains($enlace, $tienda->url)){
 
 	public function producto(Request $request){
 	set_time_limit(0);
+	$rs=DatosPrincipal::where([['id','=',385186]])->first();
+	$a=$rs['precio'];
+	$b=$a + 2000;
+	$rs->precio = $b;
+	$rs->save();
+	echo'<br>==================###################=============<br>';
+	print_r($a);
+	echo'<br>==================###################=============<br>';
+	print_r($b);
+	$r=DatosPrincipal::where([['id','=',$a],['id','=',$b]])->get();
+
+	echo '<br>-*-*-***-*-*-*-*-*-*-*-*-*-*-*-*-<br>';
+	//print_r($r[0]['nombre_producto']);
+	echo '<br>-*-*-***-*-*-*-*-*-*-*-*-*-*-*-*-<br>';
+	$productoFinalSinModelo='';
+
+foreach ($r as $datos) {
+
+	$titulo = $datos['nombre_producto'];
+	$validador=false;
+	$isNoPermitida=false;
+	$modeloPorTitulo=false;
+
+	/*SI ES ACESORIOS DE TELEFONOS***********************************************************************************************************************/
+
+	 $noPermitidas=['-----','Funko','caso','Caso','impermeable','Cinturon','FUNDA','Funda','funda','Protector','protector','MICA','Mica', 'mica', 'Visor', 'visor','Cargador','cargador','antipolvo','Antipolvo','Caida','caida','cubierta','Cubierta'];
+
+	  	foreach ($noPermitidas as $palabra) {
+	 
+	    $nombre = $titulo;
+
+	  // $pos = strpos($nombre, 'unda');
+	    if(false){
+
+	  
+	          
+	    }else{
+
+	   $pos = strpos(($titulo), ($palabra));
 
 
+	    if(gettype($pos) == 'integer'){
 
-        $productoss=DatosPrincipal::where('url', '=', $request->enlace)->first();
-       	$valorMax=$productoss['precio'] + $productoss['precio']*0.6;
+	    	$validador=true;
+
+	      
+
+	      
+	      //break;
+
+	    }
+
+
+	} 		
+
+
+	  	}
+
+
+	  	if($validador){
+
+	  		$isNoPermitida=true;
+	  	}
+/* FIN  SI ES ACESORIOS DE TELEFONOS***********************************************************************************************************************/
+
+
+$sinModelo=false;
+echo '************************';
+print_r($datos['url']);
+$urlFinal = $datos['url'];
+        $productoss=DatosPrincipal::where('url', '=', $datos['url'])->first();
+       	$valorMax=$productoss['precio'] + $productoss['precio']*0.5;
 	  	$valorMin=$productoss['precio'] - $productoss['precio']*0.5;
 
 
 		$arraytemp = [];
 		$resultadosPermitidos =[];
 		//$titulo = 'Celular samsung galaxy s9 plus g9650 color gris r9 (telcel)';
-		$titulo = $request->nombre;
+		//$titulo = $request->nombre;
+		$tituloFinal = $titulo;
+		$temp=strripos(strtoupper($titulo), 'GALAXY');
+		if(gettype($temp)=='integer'){
+
+			$temp=strripos(strtoupper($titulo), 'SAMSUNG');
+			if(gettype($temp)!='integer'){
+
+				$titulo= 'samsung ' . $titulo;
+
+			}
+
+
+		}
+
+
 		$cadenas = explode(' ', $titulo);
 
 
@@ -525,12 +686,13 @@ if(str_contains($enlace, $tienda->url)){
         
         if (($lenCadenas%2) == 0){
 		    $impar=false;
-		   
 		}else{
 		   $impar=true;
 		
 		}
 		//$impar=false;
+
+		/* ESTA PARTE ES BUSQUEDA DE MODELOS EN BASE DE DATOS*/
 
         foreach ($cadenas as $palabra ) {
 
@@ -540,7 +702,12 @@ if(str_contains($enlace, $tienda->url)){
 
         		$result=modelos::where('modelo','LIKE','%'.$palabra . '%')->get();
 
-        		array_push($results, $result->modelo);
+        		if(sizeof($result)>0){
+					array_push($results, $result->modelo);
+
+        		}
+
+        		
 
         	}else{
 
@@ -548,11 +715,9 @@ if(str_contains($enlace, $tienda->url)){
 
 
 
-
 		        		$result=modelos::where('modelo','LIKE','%'.$arrayPrueba[0]. '%')->orwhere('modelo','LIKE','%'.$arrayPrueba[1]. '%')->get();
 
 		        		foreach ($result as $key ) {
-
 
 				        	array_push($results, $key->modelo);
 
@@ -564,13 +729,11 @@ if(str_contains($enlace, $tienda->url)){
 
 
 
-        
 
 
 
 		        	$result=modelos::where('modelo','LIKE','%'.$palabra . '%')->get();
 		        		foreach ($result as $key ) {
-
 
 				        	array_push($results, $key->modelo);
 
@@ -594,7 +757,7 @@ if(str_contains($enlace, $tienda->url)){
 
 		        		$i=0;
 
-		        		$result=modelos::where('modelo','LIKE','%'.$arrayPrueba[0]. '%')->orwhere('modelo','LIKE','%'.$arrayPrueba[1]. '%')->get();
+		        		$result=modelos::where('modelo','LIKE','% '.$arrayPrueba[0]. '%')->orwhere('modelo','LIKE','%'.$arrayPrueba[1]. '%')->get();
 
 		        		foreach ($result as $key ) {
 
@@ -603,9 +766,6 @@ if(str_contains($enlace, $tienda->url)){
 		        		}
 
 		        		
-
-		        		//print_r($result);
-		        		//print_r($arrayPrueba);
 		        		$arrayPrueba=[];
 
 		        		array_push($arrayPrueba, $palabra);
@@ -621,7 +781,6 @@ if(str_contains($enlace, $tienda->url)){
         }
         $resultados = array_unique($results);
 
-
 		/* resultados tiene todos los modelos guardados en la tabla modelos que coinciden por lo menos con una de las palabras del titulo del producto */
 		/* Ahora toca buscar cual de estos modelos encaja 100% con el titulo */
 		$modeloEncaja=[];
@@ -631,16 +790,18 @@ if(str_contains($enlace, $tienda->url)){
 			$lenParteModelo = sizeof($parteModelo);
 			$contadorDeEncaje=0;
 			
-	
+			$x=0;
 			foreach ($parteModelo as $m ) {
 
 
+				if($x!=0){
 
-
+					$m=' '.$m;
+				}
+				$x=$x+1;
 				$temp=stripos($titulo, $m);
 
 				if(gettype($temp)=='integer'){
-				
 
 					
 
@@ -655,7 +816,6 @@ if(str_contains($enlace, $tienda->url)){
 			if($contadorDeEncaje == $lenParteModelo){
 
 				//$modeloEncaja=$modeloEncontrado;
-		
 				array_push($modeloEncaja, $modeloEncontrado);
 				$contadorDeEncaje=0;
 
@@ -666,19 +826,30 @@ if(str_contains($enlace, $tienda->url)){
 		}
 
 
-
 		$modeloEncajaFinal='';
 		$tt=[];
 		$tamInicial=0;
 
 		foreach ($modeloEncaja as $t) {
 
+			$t=trim($t);
+
 			$tt=explode(' ', $t);
+
 			
-			if(sizeof($t)>$tamInicial){
+			if(sizeof($tt)>$tamInicial){
 
 				$modeloEncajaFinal=$t;
+				$tamInicial=sizeof($tt);
+
 			}
+		}
+		
+
+		$temp=stripos(($modeloEncajaFinal) , 'Apple');
+		if(gettype($temp)=='integer'){
+
+			$modeloEncajaFinal = str_replace('Apple','',$modeloEncajaFinal);
 		}
 
 
@@ -690,7 +861,7 @@ if(str_contains($enlace, $tienda->url)){
 			
 		}*/
 
-
+		/* ESTE ES MODELO POR TITULO*/
 		foreach ($cadenas as $caso_prueba) {
 		    if (!ctype_alpha($caso_prueba)) {
 		        if (!ctype_digit($caso_prueba)) {
@@ -701,15 +872,14 @@ if(str_contains($enlace, $tienda->url)){
 		                $existe= strpos($caso_prueba, '4k');
 		                if(gettype($existe) != 'integer'){
 		                  $existe= strpos($caso_prueba, '4k');
-		                  if(true){
+		                  if(sizeof($caso_prueba)>2){
 		               
 		                array_push($arraytemp, $caso_prueba);
 		              }
 		              }
 
 		              }
-		        		//echo "La cadena $caso_prueba es solo alnumerico <br>";
-		        		array_push($arraytemp, $caso_prueba);
+		        		//array_push($arraytemp, $caso_prueba);
 
 		    }
 		    }
@@ -717,46 +887,81 @@ if(str_contains($enlace, $tienda->url)){
 		}
 
 
-//echo '--------------------------------------'.$arraytemp[0].'-------------------------------<br>';
 
 //$busqueda=DatosPrincipal::where('nombre_producto', '=', $request->enlace)->first();
 
 
 
-$search = explode(' ', $modeloEncajaFinal) ;
+$search = explode(' ',trim($modeloEncajaFinal));
+
 $searchArray=[];
-foreach ($search as $t ){
+$tempcount=0;
+if($modeloEncajaFinal!=''){
 
-	$temp = ['nombre_producto','LIKE',"% $t %"];
 
-	array_push($searchArray, $temp);
-	
+	foreach ($search as $t ){
+
+		
+
+
+
+		if($tempcount==0){
+
+			$temp = ['nombre_producto','LIKE',"%$t %"];
+
+			array_push($searchArray, $temp);
+					
+
+		}else{
+
+			$temp = ['nombre_producto','LIKE',"% $t%"];
+
+			array_push($searchArray, $temp);
+
+		}
+
+		$tempcount = $tempcount +1;
+
+		
+	}
+
+
+
+
+
+
+	//$searchArray = [['nombre_producto','LIKE',"%{$search[0]}%"],['nombre_producto','LIKE',"%{$search[1]}%"],['nombre_producto','LIKE',"%{$search[2]}%"],['nombre_producto','LIKE',"%{$search[3]}%"]];
+
+	$busqueda = DatosPrincipal::where($searchArray)->get()->sortBy('precio');
+	//$busqueda = DatosPrincipal::where('nombre_producto','LIKE',"%galaxy s8%")->get()->sortBy('precio');
+
 }
 
 
 
 
 
-
-
-//$searchArray = [['nombre_producto','LIKE',"%{$search[0]}%"],['nombre_producto','LIKE',"%{$search[1]}%"],['nombre_producto','LIKE',"%{$search[2]}%"],['nombre_producto','LIKE',"%{$search[3]}%"]];
-
-$busqueda = DatosPrincipal::where($searchArray)->get()->sortBy('precio');
-
-//print_r($busqueda);
-//$busqueda = DatosPrincipal::where('nombre_producto','LIKE',"%galaxy s8%")->get()->sortBy('precio');
-
 if(sizeof($modeloEncaja)==0){
-	if(sizeof($arraytemp)!=0){
+	if(sizeof($arraytemp)!=0){/* ESTE SIGNIFICA QUE NO ENCONTRO COINCIDENCIA EN TABLA DE MODELOS DE LA BD Y SI DETERMINO UN ALFANUMERICO EN EL TITULO*/
 
 		$search = ' '. $arraytemp[0];
+		echo '<br>11111111111111111111<br>2222222222222222222<br>3333333333333333333333<br>';
+		print_r($arraytemp[0]);
+		echo '<br>11111111111111111111<br>2222222222222222222<br>3333333333333333333333<br>';
+		$productoFinalSinModelo = $titulo;
+		$modeloPorTitulo=true;
 	}else{
-		$search = '*--*fdfdf786876kljfdhljdfyhfd--***';		
+		$search = '*--*fdfdf786876kljfdhljdfyhfd--***';
+		$productoFinal = $tituloFinal;
+		$sinModelo=true;	
 	}
 
 	
 
-	$busqueda = DatosPrincipal::where('nombre_producto','LIKE',"% {$search} %")->get()->sortBy('precio');
+	$busqueda = DatosPrincipal::where('nombre_producto','LIKE',"%{$search}%")->get()->sortBy('precio');
+	print_r(sizeof($busqueda));
+
+	echo '<br>11111111111111111111<br><br>';
 
 }
 
@@ -767,7 +972,7 @@ $i=0;
 $arraytemp = [];
 $tiendasExistente=[];
  $noPermitidas=['-----','Funko','caso','Caso','impermeable','Cinturon','FUNDA','Funda','funda','Protector','protector','MICA','Mica', 'mica', 'Visor', 'visor','Cargador','cargador','antipolvo','Antipolvo','Caida','caida','cubierta','Cubierta'];
-if(gettype(strpos($modeloEncajaFinal, 'plus'))!='integer'){
+if(gettype(strpos(strtoupper($modeloEncajaFinal) , 'PLUS'))!='integer'){
 
 	array_push($noPermitidas, 'plus','Plus');
 }
@@ -775,7 +980,6 @@ if(gettype(strpos($modeloEncajaFinal, '+'))!='integer'){
 
 	array_push($noPermitidas, '+');
 }
-
 $validador=false;
   foreach($busqueda as $row){
 
@@ -824,10 +1028,10 @@ $validador=false;
 
 	  			$d = array_search($row['tienda'], $tiendasExistente);
 
-	  			if(gettype($d) != 'integer'){
+	  			if((gettype($d) != 'integer') && true){
 
 		  			array_push($resultadosPermitidos, $row);
-		  			array_push($tiendasExistente, $row['tienda']);
+		  			//array_push($tiendasExistente, $row['tienda']);
 
 	  			}
 
@@ -847,8 +1051,133 @@ $i=0;
   foreach ($resultadosPermitidos as $lista) {
 
   	$i= $i +1;
+  	print_r($lista['nombre_producto']);
+  	echo '<br>';
+   	print_r($lista['url']);
+  	echo '<br>';
+/* en esta variable colocaremos el nombre del producto lo mas general posible
+	En el caso que se encuentre a traves de la tabla modelo sera $modeloEncajaFinal
+*/
+$productoFinal = $modeloEncajaFinal;
+
+
+
+
+
+
+	$probando = DatosPrincipal::find($lista['id']);	
+
+
+print_r($probando->id);
+echo '<br> °°°°°°°°°°°°°°°°°°°°° <br>';
+print_r($modeloEncajaFinal);
+echo "<br>/*/*/*/*/*/*<br>";
+
+if($modeloPorTitulo){
+
+	$probando->producto = $titulo;
+	
+	//print_r($probando->producto);
+	if($probando->activar != true){
+		$probando->activar =true;
+
+		$probando->save();
+		echo "<br>##############################################################<br";
+
+	}
+	
+
+}else{
+
+	$probando->producto =$productoFinal;
+	
+	//print_r($probando->producto);
+	if($probando->activar != true){
+		$probando->activar =true;
+		$probando->save();
+		echo "<br>##############################################################<br";
+
+	}
+	
+
+}
+
+
+
+
+
+
 
   }
+
+  if($sinModelo){
+echo '<br> °°°°°°°°°°°°°°°°°°°°° <br>';
+echo '<br> °°°°°°°°°°°°°°°°°°°°° <br>';
+echo '<br> °°°°°°°°°___________°°°°°°°°°°°° <br>';
+print_r($datos['id']);
+echo '<br> °°°°°°°°°°°°°°°°°°°°° <br>';
+	$probando = DatosPrincipal::find($datos['id']);
+
+	$probando->producto =$datos['nombre_producto'];
+	
+	//print_r($probando->producto);
+	if($probando->activar != true){
+		$probando->activar =true;
+		$probando->save();
+		echo "<br>##############################################################<br";
+
+	}
+	
+
+}
+if($isNoPermitida){
+		echo "<br>______________TTTTTTTTTTTTTTTTTTTTTTTTT__________<br>";
+	//print_r($request->url);
+    $idd = DatosPrincipal::where('url', '=' ,$datos['url'])->first();
+	
+print_r($idd['id']);
+
+	$probando = DatosPrincipal::find($idd['id']);//147358
+//print_r($probando);
+	echo "<br>______________TTTTTTTTTTTTTTTTTTTTTTTTT__________<br>";
+	$probando->producto = $titulo;
+
+	//print_r($probando->producto);
+	if($probando->activar != true){
+		$probando->activar =true;
+		$probando->save();
+		echo "<br>##############################################################<br";
+
+	}
+	
+	
+	
+}
+  echo '<br>*****-------------------------*****<br>';
+  if($sinModelo){
+  	echo "true ******@@@@@@@@@@@@@@@@@";
+  }else{
+  	echo "false**************@@@@@@@@@@@@@@@@@@";
+  }
+
+
+
+}
+//print_r($sinModelo);
+  echo '<br>*****-------------------------*****<br>';
+  echo "))))))))))))))))))))))<br>";
+
+//print_r($resultadosPermitidos[0]['id']);
+/*
+$probando = DatosPrincipal::find($resultadosPermitidos[0]['url']);
+print_r($probando->id);
+echo '<br> °°°°°°°°°°°°°°°°°°°°° <br>';
+$probando->producto ='samsungsss';
+//print_r($probando->producto);
+$probando->save();
+*/
+//$probando->update(['marca' => 'samsung']);
+
 
 
 		//$tienda=Tienda::where('nombre',$request->tienda)->first();
@@ -858,13 +1187,15 @@ $i=0;
     	$producto=array(
 			    	'nombre'=>$request->nombre,
 			    	'enlace'=>$request->enlace,
-			    	'imagen'=>$productoss->image_url,
+			    	'imagen'=>$request->imagen,
+			    	//'imagen'=>$productoss->image_url,
 			    	'precio'=>$request->precio,
 			    	'tienda'=>$request->tienda,
 			    	//'enlacetienda'=>$tienda->url,
 			    	//'descripcion'=>$productoss->descripcion
 			    	'enlacetienda'=>'',
-			    	'descripcion'=>$productoss->descripcion
+			    	'descripcion'=>$request->descripcion
+			    	//'descripcion'=>$productoss->descripcion
 					);
 					
 					$key=explode(" ", $request->nombre);
@@ -897,7 +1228,7 @@ $i=0;
 $categorias = '';
 
     	$categorias=Categoria::orderBy('nombre','asc')->get();
-		return view('detalle', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$resultadosPermitidos]);
+		//return view('detalle', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$resultadosPermitidos]);
 
 	}
 
@@ -906,7 +1237,6 @@ $categorias = '';
 
     public function addtofavorite(Request $request){
     	if (Auth::guest()) {
-    		echo "guest";
 
     	}
     	else{
@@ -918,7 +1248,6 @@ $categorias = '';
 	    	$favorito->rowId=$item->rowId;
 	    	$favorito->save();
 	    	Cart::store(Auth::user()->id);
-	    	echo $id.",".$item->rowId;
 
     	}
     	
@@ -931,7 +1260,6 @@ $categorias = '';
     	$favorito=Favorito::where('rowId',$request->rowId)->first();
     	$favorito->delete();
     	Cart::store(Auth::user()->id);
-    	echo $id;
     }
 
 
