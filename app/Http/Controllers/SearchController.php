@@ -584,7 +584,7 @@ if(str_contains($enlace, $tienda->url)){
 	print_r($a);
 	echo'<br>==================###################=============<br>';
 	print_r($b);
-	$r=DatosPrincipal::where([['id','=',$a],['id','=',$b]])->get();
+	$r=DatosPrincipal::where([['id','>',$a],['id','<',$b]])->get();
 
 	echo '<br>-*-*-***-*-*-*-*-*-*-*-*-*-*-*-*-<br>';
 	//print_r($r[0]['nombre_producto']);
