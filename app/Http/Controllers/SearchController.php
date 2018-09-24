@@ -872,7 +872,7 @@ $urlFinal = $datos['url'];
 		                $existe= strpos($caso_prueba, '4k');
 		                if(gettype($existe) != 'integer'){
 		                  $existe= strpos($caso_prueba, '4k');
-		                  if(sizeof($caso_prueba)>2){
+		                  if(strlen($caso_prueba)>2){ 
 		               
 		                array_push($arraytemp, $caso_prueba);
 		              }
