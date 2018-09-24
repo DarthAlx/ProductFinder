@@ -575,7 +575,7 @@ if(str_contains($enlace, $tienda->url)){
 
 	public function producto(Request $request){
 	set_time_limit(0);
-	$rs=DatosPrincipal::where([['id','=',385186]])->first();
+	$rs=DatosPrincipal::where([['id','=',417625]])->first();
 	$a=$rs['precio'];
 	$b=$a + 2000;
 	$rs->precio = $b;
@@ -584,7 +584,7 @@ if(str_contains($enlace, $tienda->url)){
 	print_r($a);
 	echo'<br>==================###################=============<br>';
 	print_r($b);
-	$r=DatosPrincipal::where([['id','>',$a],['id','<',$b]])->get();
+	$r=DatosPrincipal::where([['id','=',$a],['id','=',$b]])->get();
 
 	echo '<br>-*-*-***-*-*-*-*-*-*-*-*-*-*-*-*-<br>';
 	//print_r($r[0]['nombre_producto']);
@@ -872,7 +872,7 @@ $urlFinal = $datos['url'];
 		                $existe= strpos($caso_prueba, '4k');
 		                if(gettype($existe) != 'integer'){
 		                  $existe= strpos($caso_prueba, '4k');
-		                  if(strlen($caso_prueba)>2){
+		                  if(sizeof($caso_prueba)>2){
 		               
 		                array_push($arraytemp, $caso_prueba);
 		              }
