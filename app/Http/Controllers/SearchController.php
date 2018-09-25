@@ -41,7 +41,7 @@ class SearchController extends Controller
         foreach ($busquedaArray as $palabra ) {
 
         	$arrayPalabra=[];
-        	$arrayPalabra=['producto', 'LIKE'];
+        	$arrayPalabra=['nombre_producto', 'LIKE'];
         	$tempPalabra='%'.$palabra.'%';
         	array_push($arrayPalabra, $tempPalabra);
         	array_push($arrayPrueba, $arrayPalabra);
@@ -70,7 +70,7 @@ class SearchController extends Controller
         //$productoss=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$busqueda.'%')->get();
         $productoss=DatosPrincipal::where($arrayPrueba)->get();
   
-/*
+
 		if(empty($productoss[0])){
 
     		$productoss=DatosPrincipal::where('marca', 'LIKE', '%'.$busqueda.'%')->get();
@@ -88,7 +88,7 @@ class SearchController extends Controller
     }
 
 
-}*/
+}
 
 
 
@@ -104,7 +104,7 @@ $contador = 1;
 		$itemProduct=[];
 		$procesados2=[];
 		$i=0;
-/*
+
         foreach($productoss as $producto){
         	$i=$i+1;
         
@@ -169,40 +169,12 @@ $contador = 1;
         	}
 
 
-        }*/
-        $procesados = [];
-        $existe = false;
-        $productoFinal = [];
-        foreach ($productoss as $key) {
-
-        	$existe = in_array($key->producto, $procesados);
-        	/*
-
-        	if($existe){
-        		echo 'si--------------------';
-        	}else{
-        		echo 'no--------------------';
-        	}
-        	*/
-
-        	if(!$existe){
-
-
-				array_push($procesados,$key->producto);
-				array_push($productoFinal,$key);
-
-	
-
-        	}
-
-        	//print_r($productoFinal);
-
-        	
         }
 
 
 
-        foreach($productoFinal as $producto){
+
+        foreach($itemProduct as $producto){
 
         	//array_push($procesados,idealo($producto->url));
 
@@ -603,19 +575,16 @@ if(str_contains($enlace, $tienda->url)){
 
 	public function producto(Request $request){
 	set_time_limit(0);
-	/*
-	$rs=DatosPrincipal::where([['id','=',385186]])->first();
+	$rs=DatosPrincipal::where([['id','=',417625]])->first();
 	$a=$rs['precio'];
-	$b=$a + 2000;
+	$b=$a + 5000;
 	$rs->precio = $b;
 	$rs->save();
 	echo'<br>==================###################=============<br>';
 	print_r($a);
 	echo'<br>==================###################=============<br>';
 	print_r($b);
-
-	*/
-	$r=DatosPrincipal::where([['ligar','=',true],['id','>',139999],['id','<',150000]])->get();
+	$r=DatosPrincipal::where([['id','>',$a],['id','<',$b],['activar','=',false]])->get();
 
 	echo '<br>-*-*-***-*-*-*-*-*-*-*-*-*-*-*-*-<br>';
 	//print_r($r[0]['nombre_producto']);
@@ -903,7 +872,7 @@ $urlFinal = $datos['url'];
 		                $existe= strpos($caso_prueba, '4k');
 		                if(gettype($existe) != 'integer'){
 		                  $existe= strpos($caso_prueba, '4k');
-		                  if(strlen($caso_prueba)>2){
+		                  if(strlen($caso_prueba)>2){ 
 		               
 		                array_push($arraytemp, $caso_prueba);
 		              }
@@ -1259,7 +1228,7 @@ $probando->save();
 $categorias = '';
 
     	$categorias=Categoria::orderBy('nombre','asc')->get();
-		return view('detalle', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$resultadosPermitidos]);
+		//return view('detalle', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$resultadosPermitidos]);
 
 	}
 
