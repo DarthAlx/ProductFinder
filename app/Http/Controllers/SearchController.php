@@ -575,11 +575,14 @@ if(str_contains($enlace, $tienda->url)){
 
 	public function producto(Request $request){
 	set_time_limit(0);
-	$rs=DatosPrincipal::where([['id','=',417625]])->first();
+	$rs=DatosPrincipal::where([['id','=',417626]])->first();
+	$rs2=DatosPrincipal::where([['id','=',417627]])->first();
 	$a=$rs['precio'];
-	$b=$a + 5000;
-	$rs->precio = $b;
+	$b=$rs2['precio'];
+	$rs->precio = $b-1;
 	$rs->save();
+	$rs2->precio = $b+10;
+	$rs2->save();
 	echo'<br>==================###################=============<br>';
 	print_r($a);
 	echo'<br>==================###################=============<br>';
