@@ -41,7 +41,7 @@ class SearchController extends Controller
         foreach ($busquedaArray as $palabra ) {
 
         	$arrayPalabra=[];
-        	$arrayPalabra=['nombre_producto', 'LIKE'];
+        	$arrayPalabra=['producto', 'LIKE'];
         	$tempPalabra='%'.$palabra.'%';
         	array_push($arrayPalabra, $tempPalabra);
         	array_push($arrayPrueba, $arrayPalabra);
@@ -70,7 +70,7 @@ class SearchController extends Controller
         //$productoss=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$busqueda.'%')->get();
         $productoss=DatosPrincipal::where($arrayPrueba)->get();
   
-
+/*
 		if(empty($productoss[0])){
 
     		$productoss=DatosPrincipal::where('marca', 'LIKE', '%'.$busqueda.'%')->get();
@@ -88,7 +88,7 @@ class SearchController extends Controller
     }
 
 
-}
+}*/
 
 
 
@@ -104,7 +104,7 @@ $contador = 1;
 		$itemProduct=[];
 		$procesados2=[];
 		$i=0;
-
+/*
         foreach($productoss as $producto){
         	$i=$i+1;
         
@@ -169,12 +169,40 @@ $contador = 1;
         	}
 
 
+        }*/
+        $procesados = [];
+        $existe = false;
+        $productoFinal = [];
+        foreach ($productoss as $key) {
+
+        	$existe = in_array($key->producto, $procesados);
+        	/*
+
+        	if($existe){
+        		echo 'si--------------------';
+        	}else{
+        		echo 'no--------------------';
+        	}
+        	*/
+
+        	if(!$existe){
+
+
+				array_push($procesados,$key->producto);
+				array_push($productoFinal,$key);
+
+	
+
+        	}
+
+        	//print_r($productoFinal);
+
+        	
         }
 
 
 
-
-        foreach($itemProduct as $producto){
+        foreach($productoFinal as $producto){
 
         	//array_push($procesados,idealo($producto->url));
 
@@ -574,664 +602,73 @@ if(str_contains($enlace, $tienda->url)){
 
 
 	public function producto(Request $request){
-	set_time_limit(0);
-	$rs=DatosPrincipal::where([['id','=',417626]])->first();
-	$rs2=DatosPrincipal::where([['id','=',417627]])->first();
-	$a=$rs['precio'];
-	$b=$rs2['precio'];
-	$rs->precio = $b-1;
-	$rs->save();
-	$rs2->precio = $b+10;
-	$rs2->save();
-	echo'<br>==================###################=============<br>';
-	print_r($a);
-	echo'<br>==================###################=============<br>';
-	print_r($b);
-	$r=DatosPrincipal::where([['id','>',$a],['id','<',$b],['activar','=',false]])->get();
-
-	echo '<br>-*-*-***-*-*-*-*-*-*-*-*-*-*-*-*-<br>';
-	//print_r($r[0]['nombre_producto']);
-	echo '<br>-*-*-***-*-*-*-*-*-*-*-*-*-*-*-*-<br>';
-	$productoFinalSinModelo='';
-
-foreach ($r as $datos) {
-
-	$titulo = $datos['nombre_producto'];
-	$validador=false;
-	$isNoPermitida=false;
-	$modeloPorTitulo=false;
-
-	/*SI ES ACESORIOS DE TELEFONOS***********************************************************************************************************************/
-
-	 $noPermitidas=['-----','Funko','caso','Caso','impermeable','Cinturon','FUNDA','Funda','funda','Protector','protector','MICA','Mica', 'mica', 'Visor', 'visor','Cargador','cargador','antipolvo','Antipolvo','Caida','caida','cubierta','Cubierta'];
-
-	  	foreach ($noPermitidas as $palabra) {
-	 
-	    $nombre = $titulo;
-
-	  // $pos = strpos($nombre, 'unda');
-	    if(false){
-
-	  
-	          
-	    }else{
-
-	   $pos = strpos(($titulo), ($palabra));
 
 
-	    if(gettype($pos) == 'integer'){
+			$busqueda = DatosPrincipal::where('url','=',$request->enlace)->first();
+			$busqueda2 = DatosPrincipal::where('producto','=',$busqueda['producto'])->get()->sortBy('precio');
+			$resultadosPermitidos=[];
+			$tiendasExistente=[];
+			foreach ($busqueda2 as $product) {
 
-	    	$validador=true;
+			  			$d = array_search($product['tienda'], $tiendasExistente);
 
-	      
+			  			if(gettype($d) != 'integer'){
 
-	      
-	      //break;
+				  			array_push($resultadosPermitidos, $product);
+				  			array_push($tiendasExistente, $product['tienda']);
 
-	    }
-
-
-	} 		
-
-
-	  	}
-
-
-	  	if($validador){
-
-	  		$isNoPermitida=true;
-	  	}
-/* FIN  SI ES ACESORIOS DE TELEFONOS***********************************************************************************************************************/
-
-
-$sinModelo=false;
-echo '************************';
-print_r($datos['url']);
-$urlFinal = $datos['url'];
-        $productoss=DatosPrincipal::where('url', '=', $datos['url'])->first();
-       	$valorMax=$productoss['precio'] + $productoss['precio']*0.5;
-	  	$valorMin=$productoss['precio'] - $productoss['precio']*0.5;
-
-
-		$arraytemp = [];
-		$resultadosPermitidos =[];
-		//$titulo = 'Celular samsung galaxy s9 plus g9650 color gris r9 (telcel)';
-		//$titulo = $request->nombre;
-		$tituloFinal = $titulo;
-		$temp=strripos(strtoupper($titulo), 'GALAXY');
-		if(gettype($temp)=='integer'){
-
-			$temp=strripos(strtoupper($titulo), 'SAMSUNG');
-			if(gettype($temp)!='integer'){
-
-				$titulo= 'samsung ' . $titulo;
-
+			  			}
+  	
 			}
 
 
-		}
-
-
-		$cadenas = explode(' ', $titulo);
-
-
-
-        
-        $arrayPrueba=[];
-        $i=0;
-        $j=0;
-        $results=[];
-        $lenCadenas=sizeof($cadenas);
-        $impar=false;
-        //$cadenas=[];
-        $ff=6;
- 
-        
-        if (($lenCadenas%2) == 0){
-		    $impar=false;
-		}else{
-		   $impar=true;
-		
-		}
-		//$impar=false;
-
-		/* ESTA PARTE ES BUSQUEDA DE MODELOS EN BASE DE DATOS*/
-
-        foreach ($cadenas as $palabra ) {
-
-        	if($lenCadenas==1){
-
-
-
-        		$result=modelos::where('modelo','LIKE','%'.$palabra . '%')->get();
-
-        		if(sizeof($result)>0){
-					array_push($results, $result->modelo);
-
-        		}
-
-        		
-
-        	}else{
-
-        		if($j==($lenCadenas-1) && $impar==true){
-
-
-
-		        		$result=modelos::where('modelo','LIKE','%'.$arrayPrueba[0]. '%')->orwhere('modelo','LIKE','%'.$arrayPrueba[1]. '%')->get();
-
-		        		foreach ($result as $key ) {
-
-				        	array_push($results, $key->modelo);
-
-		        		}
-
-
-
-
-
-
-
-
-
-
-		        	$result=modelos::where('modelo','LIKE','%'.$palabra . '%')->get();
-		        		foreach ($result as $key ) {
-
-				        	array_push($results, $key->modelo);
-
-		        		}
-
-
-		        	$arrayPrueba=[];
-
-
-
-        		}else{
-
-		        	if($i<2){
-
-		        		array_push($arrayPrueba, $palabra);
-		        		$i+=1;
-		        		$j+=1;
-
-
-		        	}else{
-
-		        		$i=0;
-
-		        		$result=modelos::where('modelo','LIKE','% '.$arrayPrueba[0]. '%')->orwhere('modelo','LIKE','%'.$arrayPrueba[1]. '%')->get();
-
-		        		foreach ($result as $key ) {
-
-				        	array_push($results, $key->modelo);
-
-		        		}
-
-		        		
-		        		$arrayPrueba=[];
-
-		        		array_push($arrayPrueba, $palabra);
-		        		$i+=1;
-		        		$j+=1;		        				        	        		
-
-		        	}
-
-        		}
-
-        	}
-
-        }
-        $resultados = array_unique($results);
-
-		/* resultados tiene todos los modelos guardados en la tabla modelos que coinciden por lo menos con una de las palabras del titulo del producto */
-		/* Ahora toca buscar cual de estos modelos encaja 100% con el titulo */
-		$modeloEncaja=[];
-		foreach ($resultados as $modeloEncontrado) {
-			
-			$parteModelo = explode(' ', $modeloEncontrado);
-			$lenParteModelo = sizeof($parteModelo);
-			$contadorDeEncaje=0;
-			
-			$x=0;
-			foreach ($parteModelo as $m ) {
-
-
-				if($x!=0){
-
-					$m=' '.$m;
-				}
-				$x=$x+1;
-				$temp=stripos($titulo, $m);
-
-				if(gettype($temp)=='integer'){
-
-					
-
-
-					$contadorDeEncaje+=1;
-
-
-				}
+	    	$producto=array(
+				    	'nombre'=>$request->nombre,
+				    	'enlace'=>$request->enlace,
+				    	'imagen'=>$request->imagen,
+				    	//'imagen'=>$productoss->image_url,
+				    	'precio'=>$request->precio,
+				    	'tienda'=>$request->tienda,
+				    	//'enlacetienda'=>$tienda->url,
+				    	//'descripcion'=>$productoss->descripcion
+				    	'enlacetienda'=>'',
+				    	'descripcion'=>$request->descripcion
+				    	//'descripcion'=>$productoss->descripcion
+						);
+						
+						$key=explode(" ", $request->nombre);
+
+						if (array_key_exists(5, $key)) {
+							$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3]. " ". $key[4]. " ". $key[5];
+						}
+						elseif (array_key_exists(4, $key)) {
+							$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3]. " ". $key[4];
+						}
+						elseif (array_key_exists(3, $key)) {
+							$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3];
+						}
 				
-			}
+						else if (array_key_exists(2, $key)) {
+							$keywords=$key[0]. " ". $key[1]. " ". $key[2];
+						}
+				
+						else if (array_key_exists(1, $key)) {
+							$keywords=$key[0]. " ". $key[1];
+						}
+						else{
+							$keywords=$key[0];
+						}
 
-			if($contadorDeEncaje == $lenParteModelo){
-
-				//$modeloEncaja=$modeloEncontrado;
-				array_push($modeloEncaja, $modeloEncontrado);
-				$contadorDeEncaje=0;
-
-			}
-
-			
-
-		}
-
-
-		$modeloEncajaFinal='';
-		$tt=[];
-		$tamInicial=0;
-
-		foreach ($modeloEncaja as $t) {
-
-			$t=trim($t);
-
-			$tt=explode(' ', $t);
-
-			
-			if(sizeof($tt)>$tamInicial){
-
-				$modeloEncajaFinal=$t;
-				$tamInicial=sizeof($tt);
-
-			}
-		}
-		
-
-		$temp=stripos(($modeloEncajaFinal) , 'Apple');
-		if(gettype($temp)=='integer'){
-
-			$modeloEncajaFinal = str_replace('Apple','',$modeloEncajaFinal);
-		}
-
-
-
-		///$result=DatosPrincipal::where($arrayPrueba)->get();
-/*
-		foreach ($result as $resultProduct) {
-
-			
-		}*/
-
-		/* ESTE ES MODELO POR TITULO*/
-		foreach ($cadenas as $caso_prueba) {
-		    if (!ctype_alpha($caso_prueba)) {
-		        if (!ctype_digit($caso_prueba)) {
-		            if (ctype_alnum($caso_prueba)) {
-
-		            	$existe= strpos($caso_prueba, '"');
-		              if($existe == false){
-		                $existe= strpos($caso_prueba, '4k');
-		                if(gettype($existe) != 'integer'){
-		                  $existe= strpos($caso_prueba, '4k');
-		                  if(strlen($caso_prueba)>2){ 
-		               
-		                array_push($arraytemp, $caso_prueba);
-		              }
-		              }
-
-		              }
-		        		//array_push($arraytemp, $caso_prueba);
-
-		    }
-		    }
-		    } 
-		}
-
-
-
-//$busqueda=DatosPrincipal::where('nombre_producto', '=', $request->enlace)->first();
-
-
-
-$search = explode(' ',trim($modeloEncajaFinal));
-
-$searchArray=[];
-$tempcount=0;
-if($modeloEncajaFinal!=''){
-
-
-	foreach ($search as $t ){
-
-		
-
-
-
-		if($tempcount==0){
-
-			$temp = ['nombre_producto','LIKE',"%$t %"];
-
-			array_push($searchArray, $temp);
-					
-
-		}else{
-
-			$temp = ['nombre_producto','LIKE',"% $t%"];
-
-			array_push($searchArray, $temp);
-
-		}
-
-		$tempcount = $tempcount +1;
-
-		
-	}
-
-
-
-
-
-
-	//$searchArray = [['nombre_producto','LIKE',"%{$search[0]}%"],['nombre_producto','LIKE',"%{$search[1]}%"],['nombre_producto','LIKE',"%{$search[2]}%"],['nombre_producto','LIKE',"%{$search[3]}%"]];
-
-	$busqueda = DatosPrincipal::where($searchArray)->get()->sortBy('precio');
-	//$busqueda = DatosPrincipal::where('nombre_producto','LIKE',"%galaxy s8%")->get()->sortBy('precio');
-
-}
-
-
-
-
-
-if(sizeof($modeloEncaja)==0){
-	if(sizeof($arraytemp)!=0){/* ESTE SIGNIFICA QUE NO ENCONTRO COINCIDENCIA EN TABLA DE MODELOS DE LA BD Y SI DETERMINO UN ALFANUMERICO EN EL TITULO*/
-
-		$search = ' '. $arraytemp[0];
-		echo '<br>11111111111111111111<br>2222222222222222222<br>3333333333333333333333<br>';
-		print_r($arraytemp[0]);
-		echo '<br>11111111111111111111<br>2222222222222222222<br>3333333333333333333333<br>';
-		$productoFinalSinModelo = $titulo;
-		$modeloPorTitulo=true;
-	}else{
-		$search = '*--*fdfdf786876kljfdhljdfyhfd--***';
-		$productoFinal = $tituloFinal;
-		$sinModelo=true;	
-	}
-
-	
-
-	$busqueda = DatosPrincipal::where('nombre_producto','LIKE',"%{$search}%")->get()->sortBy('precio');
-	print_r(sizeof($busqueda));
-
-	echo '<br>11111111111111111111<br><br>';
-
-}
-
-
-
-
-$i=0;
-$arraytemp = [];
-$tiendasExistente=[];
- $noPermitidas=['-----','Funko','caso','Caso','impermeable','Cinturon','FUNDA','Funda','funda','Protector','protector','MICA','Mica', 'mica', 'Visor', 'visor','Cargador','cargador','antipolvo','Antipolvo','Caida','caida','cubierta','Cubierta'];
-if(gettype(strpos(strtoupper($modeloEncajaFinal) , 'PLUS'))!='integer'){
-
-	array_push($noPermitidas, 'plus','Plus');
-}
-if(gettype(strpos($modeloEncajaFinal, '+'))!='integer'){
-
-	array_push($noPermitidas, '+');
-}
-$validador=false;
-  foreach($busqueda as $row){
-
-
-    //$imagen=$row['imagen'];
-    
-	  	foreach ($noPermitidas as $palabra) {
 	 
-	    $nombre=$row['nombre_producto'];
-	    $modelo = $row['tienda'];
-	  // $pos = strpos($nombre, 'unda');
-	    if(false){
+	        $productos=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$keywords.'%')->orderBy('precio','asc')->get();
 
-	  
-	          
-	    }else{
 
-	   $pos = strpos(($nombre), ($palabra));
-	   $clave = array_search('uno', $noPermitidas);
+		$categorias = '';
 
+	    	$categorias=Categoria::orderBy('nombre','asc')->get();
+			return view('detalle', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$resultadosPermitidos]);		
 
 
-
-
-	    if(gettype($pos) == 'integer'){
-
-	    	$validador=true;
-
-	      $i=$i+1;
-
-	      
-	      //break;
-
-	    }
-
-
-	} 		
-
-
-	  	}
-
-
-
-	  	if(!$validador){
-	  		if(($row['precio']  < $valorMax) and ($row['precio']  > $valorMin)){
-
-	  			$d = array_search($row['tienda'], $tiendasExistente);
-
-	  			if((gettype($d) != 'integer') && true){
-
-		  			array_push($resultadosPermitidos, $row);
-		  			//array_push($tiendasExistente, $row['tienda']);
-
-	  			}
-
-
-
-
-
-
-	  		}
-
-	  		
-	  		
-	  	}
-	  	$validador=false;
-}
-$i=0;
-  foreach ($resultadosPermitidos as $lista) {
-
-  	$i= $i +1;
-  	print_r($lista['nombre_producto']);
-  	echo '<br>';
-   	print_r($lista['url']);
-  	echo '<br>';
-/* en esta variable colocaremos el nombre del producto lo mas general posible
-	En el caso que se encuentre a traves de la tabla modelo sera $modeloEncajaFinal
-*/
-$productoFinal = $modeloEncajaFinal;
-
-
-
-
-
-
-	$probando = DatosPrincipal::find($lista['id']);	
-
-
-print_r($probando->id);
-echo '<br> °°°°°°°°°°°°°°°°°°°°° <br>';
-print_r($modeloEncajaFinal);
-echo "<br>/*/*/*/*/*/*<br>";
-
-if($modeloPorTitulo){
-
-	$probando->producto = $titulo;
-	
-	//print_r($probando->producto);
-	if($probando->activar != true){
-		$probando->activar =true;
-
-		$probando->save();
-		echo "<br>##############################################################<br";
-
-	}
-	
-
-}else{
-
-	$probando->producto =$productoFinal;
-	
-	//print_r($probando->producto);
-	if($probando->activar != true){
-		$probando->activar =true;
-		$probando->save();
-		echo "<br>##############################################################<br";
-
-	}
-	
-
-}
-
-
-
-
-
-
-
-  }
-
-  if($sinModelo){
-echo '<br> °°°°°°°°°°°°°°°°°°°°° <br>';
-echo '<br> °°°°°°°°°°°°°°°°°°°°° <br>';
-echo '<br> °°°°°°°°°___________°°°°°°°°°°°° <br>';
-print_r($datos['id']);
-echo '<br> °°°°°°°°°°°°°°°°°°°°° <br>';
-	$probando = DatosPrincipal::find($datos['id']);
-
-	$probando->producto =$datos['nombre_producto'];
-	
-	//print_r($probando->producto);
-	if($probando->activar != true){
-		$probando->activar =true;
-		$probando->save();
-		echo "<br>##############################################################<br";
-
-	}
-	
-
-}
-if($isNoPermitida){
-		echo "<br>______________TTTTTTTTTTTTTTTTTTTTTTTTT__________<br>";
-	//print_r($request->url);
-    $idd = DatosPrincipal::where('url', '=' ,$datos['url'])->first();
-	
-print_r($idd['id']);
-
-	$probando = DatosPrincipal::find($idd['id']);//147358
-//print_r($probando);
-	echo "<br>______________TTTTTTTTTTTTTTTTTTTTTTTTT__________<br>";
-	$probando->producto = $titulo;
-
-	//print_r($probando->producto);
-	if($probando->activar != true){
-		$probando->activar =true;
-		$probando->save();
-		echo "<br>##############################################################<br";
-
-	}
-	
-	
-	
-}
-  echo '<br>*****-------------------------*****<br>';
-  if($sinModelo){
-  	echo "true ******@@@@@@@@@@@@@@@@@";
-  }else{
-  	echo "false**************@@@@@@@@@@@@@@@@@@";
-  }
-
-
-
-}
-//print_r($sinModelo);
-  echo '<br>*****-------------------------*****<br>';
-  echo "))))))))))))))))))))))<br>";
-
-//print_r($resultadosPermitidos[0]['id']);
-/*
-$probando = DatosPrincipal::find($resultadosPermitidos[0]['url']);
-print_r($probando->id);
-echo '<br> °°°°°°°°°°°°°°°°°°°°° <br>';
-$probando->producto ='samsungsss';
-//print_r($probando->producto);
-$probando->save();
-*/
-//$probando->update(['marca' => 'samsung']);
-
-
-
-		//$tienda=Tienda::where('nombre',$request->tienda)->first();
-		//$tienda=DatosPrincipal::where('tienda', '=', $request->enlace)->first();
-		
-
-    	$producto=array(
-			    	'nombre'=>$request->nombre,
-			    	'enlace'=>$request->enlace,
-			    	'imagen'=>$request->imagen,
-			    	//'imagen'=>$productoss->image_url,
-			    	'precio'=>$request->precio,
-			    	'tienda'=>$request->tienda,
-			    	//'enlacetienda'=>$tienda->url,
-			    	//'descripcion'=>$productoss->descripcion
-			    	'enlacetienda'=>'',
-			    	'descripcion'=>$request->descripcion
-			    	//'descripcion'=>$productoss->descripcion
-					);
-					
-					$key=explode(" ", $request->nombre);
-
-					if (array_key_exists(5, $key)) {
-						$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3]. " ". $key[4]. " ". $key[5];
-					}
-					elseif (array_key_exists(4, $key)) {
-						$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3]. " ". $key[4];
-					}
-					elseif (array_key_exists(3, $key)) {
-						$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3];
-					}
-			
-					else if (array_key_exists(2, $key)) {
-						$keywords=$key[0]. " ". $key[1]. " ". $key[2];
-					}
-			
-					else if (array_key_exists(1, $key)) {
-						$keywords=$key[0]. " ". $key[1];
-					}
-					else{
-						$keywords=$key[0];
-					}
-
- 
-        $productos=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$keywords.'%')->orderBy('precio','asc')->get();
-
-
-$categorias = '';
-
-    	$categorias=Categoria::orderBy('nombre','asc')->get();
-		//return view('detalle', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$resultadosPermitidos]);
 
 	}
 
