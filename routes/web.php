@@ -756,3 +756,8 @@ Route::group(['middleware' => 'admin'], function(){
 
   Route::get('exportarusuarios', 'UserController@export');
 });
+
+  Route::get('/sistema', 'SearchController@productoligar');
+
+
+Route::post('/ligue', 'SearchController@ligarmanual');

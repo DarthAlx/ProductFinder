@@ -11,6 +11,7 @@ use App\Categoria;
 
 use App\DatosPrincipal;
 use App\Modelos;
+use App\Configuracion;
 
 use DB;
 
@@ -599,29 +600,19 @@ if(str_contains($enlace, $tienda->url)){
       
     }
 
-
-
 	public function producto(Request $request){
-
-
 			$busqueda = DatosPrincipal::where('url','=',$request->enlace)->first();
-			$busqueda2 = DatosPrincipal::where('producto','=',$busqueda['producto'])->get()->sortBy('precio');
+			$busqueda2 = DatosPrincipal::where('cod_producto','=',$busqueda['cod_producto'])->get()->sortBy('precio');
 			$resultadosPermitidos=[];
 			$tiendasExistente=[];
 			foreach ($busqueda2 as $product) {
-
 			  			$d = array_search($product['tienda'], $tiendasExistente);
-
 			  			if(gettype($d) != 'integer'){
-
 				  			array_push($resultadosPermitidos, $product);
 				  			array_push($tiendasExistente, $product['tienda']);
-
 			  			}
   	
 			}
-
-
 	    	$producto=array(
 				    	'nombre'=>$request->nombre,
 				    	'enlace'=>$request->enlace,
@@ -637,7 +628,6 @@ if(str_contains($enlace, $tienda->url)){
 						);
 						
 						$key=explode(" ", $request->nombre);
-
 						if (array_key_exists(5, $key)) {
 							$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3]. " ". $key[4]. " ". $key[5];
 						}
@@ -658,17 +648,203 @@ if(str_contains($enlace, $tienda->url)){
 						else{
 							$keywords=$key[0];
 						}
-
 	 
 	        $productos=DatosPrincipal::where('nombre_producto', 'LIKE', '%'.$keywords.'%')->orderBy('precio','asc')->get();
-
-
 		$categorias = '';
-
 	    	$categorias=Categoria::orderBy('nombre','asc')->get();
 			return view('detalle', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$resultadosPermitidos]);		
+	}
+
+	public function productoligar(Request $request){
+	set_time_limit(0);
+	$configuracion = Configuracion::where('id','=',1)->first();
+	$estado = $configuracion['estado'];
+	//$estado = 20074;
+	$producto = DatosPrincipal::where('id','=',$estado)->first();
+
+	while(sizeof($producto)==0){
+
+		$estado += 1;
+		$producto = DatosPrincipal::where('id','=',$estado)->first();		
+
+	}
+	$NombreProducto = $producto['nombre_producto'];
+	$ArrayNombreProducto = explode(" ", $producto['nombre_producto']);
+	$buscar=[];
+	$busquedaArray=[];
+/*
+	foreach ($ArrayNombreProducto as $palabra) {
+
+		if(strlen($palabra) > 1){
+
+			array_push($buscar, 'nombre_producto','like');
+
+			$palabra = '%'.$palabra.'%';
+
+			array_push($buscar, $palabra);
+
+			
+			array_push($busquedaArray, $buscar);
 
 
+
+			$buscar=[];			
+		}
+
+
+	
+
+
+
+	}
+*/
+    $results=[];
+    $relacionadosF=[];
+    $lenCadenas=sizeof($ArrayNombreProducto);
+    $impar=false;
+    $palabraNoPermitida=['en','de', 'el'];                                                       
+	$resultadoTitulo = array_diff($ArrayNombreProducto, $palabraNoPermitida);
+ 	foreach ($resultadoTitulo as $palabra) {
+ 		
+ 		$result=DatosPrincipal::where('nombre_producto','LIKE','% '.$palabra.' %')->get();
+ 		foreach ($result as $key ) {
+ 			array_push($results, $key);
+ 		}
+ 		
+/*
+ */
+ 	}
+
+
+ 	foreach ($results as $key) {
+		similar_text($key['nombre_producto'], $NombreProducto, $percent); 
+	 	if($percent>50 && $key['ligar_manual']==false){
+	 		array_push($relacionadosF, $key);
+
+	 	}	
+		
+ 	}
+
+ /*   	$producto=array(
+			    	'nombre'=>$producto['nombre_producto'],
+			    	'enlace'=>$producto['url'],
+			    	'imagen'=>$producto['image_url'],
+			    	//'imagen'=>$productoss->image_url,
+			    	'precio'=>$producto['precio'],
+			    	'tienda'=>$producto['tienda'],
+			    	//'enlacetienda'=>$tienda->url,
+			    	//'descripcion'=>$productoss->descripcion
+			    	'enlacetienda'=>'',
+			    	'descripcion'=>$producto['descripcion']
+			    	//'descripcion'=>$productoss->descripcion
+					);
+
+*/
+
+    	$producto=array(
+			    	'nombre'=> $producto['nombre_producto'],
+			    	'enlace'=> $producto['url'],
+			    	'imagen'=> $producto['image_url'],
+			    	//'imagen'=>$productoss->image_url,
+			    	'precio'=> $producto['precio'],
+			    	'tienda'=> $producto['tienda'],
+			    	//'enlacetienda'=>$tienda->url,
+			    	//'descripcion'=>$productoss->descripcion
+			    	'enlacetienda'=> $producto['url'],
+			    	'id'=> $producto['id'],
+			    	'descripcion'=> $producto['descripcion']
+			    	//'descripcion'=>$productoss->descripcion
+					);
+					$key=explode(" ", 'nombre segundo');
+
+					if (array_key_exists(5, $key)) {
+						$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3]. " ". $key[4]. " ". $key[5];
+					}
+					elseif (array_key_exists(4, $key)) {
+						$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3]. " ". $key[4];
+					}
+					elseif (array_key_exists(3, $key)) {
+						$keywords=$key[0]. " ". $key[1]. " ". $key[2]. " ". $key[3];
+					}
+			
+					else if (array_key_exists(2, $key)) {
+						$keywords=$key[0]. " ". $key[1]. " ". $key[2];
+					}
+			
+					else if (array_key_exists(1, $key)) {
+						$keywords=$key[0]. " ". $key[1];
+					}
+					else{
+						$keywords=$key[0];
+					}
+
+ 
+
+
+$categorias = '';
+
+		$estado+=1;
+
+    	$categorias=Categoria::orderBy('nombre','asc')->get();
+		return view('detalleligar', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$relacionadosF,'estado'=>$estado]);
+
+	}
+
+	public function ligarmanual(Request $request){
+
+	    $datos[]=$request;
+	    $t = $request->all();
+
+	    $respuesta = $t['ligar'];
+	    $todoID=explode(',',$t['todo']);
+	    $arrayRespuestaSi=[];
+	    $i=0;
+
+	    foreach ($respuesta as $value) {
+
+	      if($value == 1 || $value == '1'){
+
+	        $e = array_push($arrayRespuestaSi, $i);
+
+
+	      }
+	      $i+=1;
+
+	      
+	    }
+
+	      
+	      $configuracion = Configuracion::where('id','=',2)->first();
+	      $codLigado = $configuracion['estado'] + 1;
+
+
+	      $configuracion->estado = $codLigado;	
+	      $configuracion->save();
+
+	      $configuracion = Configuracion::where('variable','=','producto_actual')->first();
+	      $configuracion->estado=$t['estado'];	
+	      $configuracion->save();
+
+
+	        $producto = DatosPrincipal::where('id','=',$t['productoBase'])->first();
+	        $producto->cod_producto = $codLigado;
+	        $producto->ligar_manual = 1;
+	        $producto->save();
+	        $nombreCodProducto=$producto->nombre_producto;
+
+
+	      foreach ($arrayRespuestaSi as $value) {
+
+
+	        $producto = DatosPrincipal::where('id','=',$todoID[$value])->first();
+	        $producto->cod_producto = $codLigado;
+	        $producto->ligar_manual = 1;
+	        $producto->producto = $nombreCodProducto;
+	        $producto->save();
+
+	      }
+
+	      return redirect()->action('SearchController@producto');
 
 	}
 
