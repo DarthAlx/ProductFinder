@@ -661,8 +661,10 @@ if(str_contains($enlace, $tienda->url)){
 	$estado = $configuracion['estado'];
 	//$estado = 20074;
 	$producto = DatosPrincipal::where('id','=',$estado)->first();
+	$size=sizeof($producto);
 
-	while(sizeof($producto)==0){
+
+	while(sizeof($size==0 || $size===null){
 
 		$estado += 1;
 		$producto = DatosPrincipal::where('id','=',$estado)->first();		
