@@ -664,7 +664,7 @@ if(str_contains($enlace, $tienda->url)){
 	$size=sizeof($producto);
 
 
-	while(sizeof($size==0 || $size===null){
+	while(sizeof($size==0) || $size===null){
 
 		$estado += 1;
 		$producto = DatosPrincipal::where('id','=',$estado)->first();		
