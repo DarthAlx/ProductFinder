@@ -664,7 +664,7 @@ if(str_contains($enlace, $tienda->url)){
 
 
 
-	while($producto->count()>0){
+	while($producto->isEmpty()){
 
 		$estado += 1;
 		$producto = DatosPrincipal::where('id','=',$estado)->first();		
