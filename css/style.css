@@ -1196,3 +1196,11 @@ iframe:last-child {
     z-index: 9;
         position: relative;
 }
+#formligar img{
+
+    width: 100% !important;
+}
+#formligar input, #formligar p, #formligar .price{
+
+    text-align: center !important;
+}

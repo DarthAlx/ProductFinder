@@ -655,16 +655,174 @@ if(str_contains($enlace, $tienda->url)){
 			return view('detalle', ['producto'=>$producto,'categorias'=>$categorias,'relacionados'=>$resultadosPermitidos]);		
 	}
 
-	public function productoligar(Request $request){
+
+    public function productoligar(Request $request)
+    {
+        set_time_limit(0);
+        ini_set('memory_limit', '-1');
+		//$tiendas=Tienda::all();
+        DB::connection()->enableQueryLog();
+
+        
+
+		//$tiendas=Tienda::all()->where('id','=',3);
+    	$productos=array();
+
+        $busqueda = $request->busqueda;
+
+	    $t = $request->all();
+
+	    $busqueda = $t['busqueda'];
+        //$busqueda = 'iphone x';
+
+        $busquedaArray =explode(' ', $busqueda);
+        $arrayPrueba=[];
+
+        foreach ($busquedaArray as $palabra ) {
+
+        	$arrayPalabra=[];
+        	$arrayPalabra=['producto', 'LIKE'];
+        	$tempPalabra='%'.$palabra.'%';
+        	array_push($arrayPalabra, $tempPalabra);
+        	array_push($arrayPrueba, $arrayPalabra);
+
+        }
+
+
+
+        $productoss=DatosPrincipal::where($arrayPrueba)->get();
+        $muestra=DatosPrincipal::where($arrayPrueba)->first();
+
+        $contador = 1;
+
+		
+
+		$procesados=[];
+		$itemProduct=[];
+		$procesados2=[];
+		$i=0;
+
+        $procesados = [];
+        $existe = false;
+        $productoFinal = [];
+        /*
+        foreach ($productoss as $key) {
+
+        	$existe = in_array($key->producto, $procesados);
+
+
+        	if(!$existe){
+
+				array_push($procesados,$key->producto);
+				array_push($productoFinal,$key);
+	
+
+        	}
+       	
+        }*/
+
+        $relacionadosF=[];
+        $arrayId=[];
+
+        foreach($productoss as $producto){
+
+        	//array_push($procesados,idealo($producto->url));
+
+        	$pos = strpos($producto->image_url, 'data:image/png;');
+
+        	if ($pos) {
+        		
+        		$imagen=$domain = strstr(strstr(trim($producto->image_url), ',data'), 'data');
+
+
+        	}else{
+
+        		if($producto->tienda == 'Claroshop' || $producto->tienda=='Sanborns'){
+
+        			$imagen= trim(explode('.jpg',$producto->image_url)[0]) . '.jpg';
+
+
+        		}elseif($producto->tienda == 'Costco' || $producto->tienda=='Officedepot'){
+
+        			if($producto->tienda == 'Costco'){ 
+
+        				$imagen = 'https://www.costco.com.mx' . $producto->image_url;
+
+
+        			}else{
+
+        				$imagen = 'https://www.officedepot.com.mx' . $producto->image_url;
+        			}
+
+
+
+        		}else{
+
+        			$imagen= trim(explode(',',$producto->image_url)[0]);
+
+        		}
+
+        		
+        	}
+
+
+        	if(trim($producto->tienda)=='Sanborns' || trim($producto->tienda)=='Bestbuy' || trim($producto->tienda)=='dormimundo' || trim($producto->tienda)=='Claroshop' || trim($producto->tienda)=='solarismexico' || trim($producto->tienda)=='casapalacio' || trim($producto->tienda)=='homedepot' || trim($producto->tienda)=='Porrua' || trim($producto->tienda)=='gandhi' ){
+
+        		$precioTemp=trim($producto->precio);
+        	}else{
+        		$precioTemp=trim($producto->precio);
+
+
+        	}
+
+
+
+	            $producto=array(
+	                'nombre'=>trim($producto->nombre_producto),
+	                'enlace'=>trim($producto->url),
+	                'imagen'=>$imagen,
+	                'precio'=>$producto->precio,
+	                'tienda'=>trim($producto->tienda),
+	                'enlacetienda'=>trim($producto->url),
+	                'orden'=>$contador,
+	                'descripcion'=> $producto->descripcion,
+	                'id'=> $producto->id, 
+	                'ligar_manual' => $producto->ligar_manual,
+	                'producto' => $producto->producto
+	                );
+	                $contador++;
+
+  
+
+
+	        array_push($relacionadosF, $producto);
+	        array_push($arrayId, $producto['id']);
+
+            }
+           
+
+			$categorias=Categoria::orderBy('nombre','asc')->get();
+
+            return view('detalleligar', ['producto'=>$muestra, 'relacionados'=>$relacionadosF,'arrayId'=>$arrayId, 'busqueda'=>$busqueda]);
+		//return view('buscar', ['productos'=>$productos,'busqueda'=>$request->busqueda,'sorting'=>$request->sort,'categorias'=>$categorias,'minimo'=>$request->minimo,'maximo'=>$request->maximo]);
+        
+      
+    }
+
+    public function ligar(Request $request)
+    {
+		return view('ligar');
+    }
+	public function productoligar2dsdsd(Request $request){
 	set_time_limit(0);
 	$configuracion = Configuracion::where('id','=',1)->first();
 	$estado = $configuracion['estado'];
 	//$estado = 20074;
 	$producto = DatosPrincipal::where('id','=',$estado)->first();
+	$size=sizeof($producto);
 
 
-
-	while(!$producto){
+	while($size==0 || $size===null){
 
 		$estado += 1;
 		$producto = DatosPrincipal::where('id','=',$estado)->first();		
@@ -816,25 +974,26 @@ $categorias = '';
 	    }
 
 	      
-	      $configuracion = Configuracion::where('id','=',2)->first();
+	      $configuracion = Configuracion::where('id','=',1)->first();
 	      $codLigado = $configuracion['estado'] + 1;
 
 
 	      $configuracion->estado = $codLigado;	
 	      $configuracion->save();
-
+/*
 	      $configuracion = Configuracion::where('variable','=','producto_actual')->first();
 	      $configuracion->estado=$t['estado'];	
 	      $configuracion->save();
-
-
+*/
+/*
 	        $producto = DatosPrincipal::where('id','=',$t['productoBase'])->first();
 	        $producto->cod_producto = $codLigado;
 	        $producto->ligar_manual = 1;
 	        $producto->save();
-	        $nombreCodProducto=$producto->nombre_producto;
-
-
+	        //$nombreCodProducto=$producto->nombre_producto;
+	        
+*/
+		  $nombreCodProducto=$t['nombreFinal'];
 	      foreach ($arrayRespuestaSi as $value) {
 
 
@@ -846,7 +1005,7 @@ $categorias = '';
 
 	      }
 
-	      return redirect()->action('SearchController@producto');
+	      return redirect()->action('SearchController@ligar');
 
 	}
 
