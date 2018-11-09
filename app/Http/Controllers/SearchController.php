@@ -681,7 +681,7 @@ if(str_contains($enlace, $tienda->url)){
         foreach ($busquedaArray as $palabra ) {
 
         	$arrayPalabra=[];
-        	$arrayPalabra=['producto', 'LIKE'];
+        	$arrayPalabra=['nombre_producto', 'LIKE'];
         	$tempPalabra='%'.$palabra.'%';
         	array_push($arrayPalabra, $tempPalabra);
         	array_push($arrayPrueba, $arrayPalabra);
@@ -691,6 +691,7 @@ if(str_contains($enlace, $tienda->url)){
 
 
         $productoss=DatosPrincipal::where($arrayPrueba)->get();
+        print_r(sizeof($productoss));
         $muestra=DatosPrincipal::where($arrayPrueba)->first();
 
         $contador = 1;
